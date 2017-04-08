@@ -6,7 +6,7 @@
 
 package institucion;
 
-import institucion.Views.Teacher.Welcome;
+import institucion.Views.Teacher.welcome;
 
 /**
  *
@@ -19,8 +19,8 @@ public class Institucion {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Welcome w = new Welcome();
-        w.setVisible(true);
+       welcome w = new welcome();
+       w.setVisible(true);
         
     }
     

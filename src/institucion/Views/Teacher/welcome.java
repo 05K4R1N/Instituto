@@ -129,21 +129,21 @@ public class welcome extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(lblWelcome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 778, Short.MAX_VALUE)
-                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(203, 203, 203))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 886, Short.MAX_VALUE)
+                .addComponent(btnClose)
+                .addGap(159, 159, 159))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(btnClose))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
-                        .addComponent(lblWelcome)))
-                .addContainerGap(267, Short.MAX_VALUE))
+                        .addComponent(lblWelcome))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(btnClose)))
+                .addContainerGap(292, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2);
@@ -168,6 +168,11 @@ public class welcome extends javax.swing.JFrame {
         btnAsistencia.setBorder(null);
         btnAsistencia.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAsistencia.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAsistencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsistenciaActionPerformed(evt);
+            }
+        });
 
         btnMaterias.setBackground(new java.awt.Color(51, 25, 230));
         btnMaterias.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
@@ -211,6 +216,11 @@ public class welcome extends javax.swing.JFrame {
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void btnAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsistenciaActionPerformed
+        attendance_control ctrl_attendance = new attendance_control();
+        ctrl_attendance.setVisible(true);
+    }//GEN-LAST:event_btnAsistenciaActionPerformed
 
     /**
      * @param args the command line arguments

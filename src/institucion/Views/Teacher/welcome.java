@@ -57,6 +57,11 @@ public class welcome extends javax.swing.JFrame {
         btnPerfil.setBorder(null);
         btnPerfil.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnPerfil.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerfilActionPerformed(evt);
+            }
+        });
 
         btnActualizar.setBackground(new java.awt.Color(0, 0, 0));
         btnActualizar.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
@@ -221,6 +226,11 @@ public class welcome extends javax.swing.JFrame {
         attendance_control ctrl_attendance = new attendance_control();
         ctrl_attendance.setVisible(true);
     }//GEN-LAST:event_btnAsistenciaActionPerformed
+
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
+        profile p = new profile();
+        p.setVisible(true);
+    }//GEN-LAST:event_btnPerfilActionPerformed
 
     /**
      * @param args the command line arguments

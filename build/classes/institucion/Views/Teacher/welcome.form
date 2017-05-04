@@ -56,9 +56,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   <Component id="btnPerfil" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
                   <Component id="btnActualizar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
                   <Component id="btnNotificaciones" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="123" max="32767" attributes="0"/>
               </Group>

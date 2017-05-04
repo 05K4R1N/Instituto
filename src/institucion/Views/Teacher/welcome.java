@@ -98,9 +98,9 @@ public class welcome extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addComponent(btnPerfil)
-                .addGap(137, 137, 137)
+                .addGap(124, 124, 124)
                 .addComponent(btnActualizar)
-                .addGap(103, 103, 103)
+                .addGap(116, 116, 116)
                 .addComponent(btnNotificaciones)
                 .addContainerGap(123, Short.MAX_VALUE))
         );

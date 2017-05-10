@@ -7,7 +7,6 @@
 package institucion;
 
 import institucion.Views.Teacher.welcome;
-
 /**
  *
  * @author master
@@ -19,8 +18,6 @@ public class Institucion {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-       welcome w = new welcome();
-       w.setVisible(true);
         
     }
     

@@ -4,13 +4,12 @@
  * and open the template in the editor.
  */
 
-package institucion.Controllers;
-
-import institucion.Views.Teacher.Edit;
+package institucion.Views.Teacher;
 
 /**
  *
  * @author master
  */
-public class Teacher {
+public interface Interface {
+    
 }

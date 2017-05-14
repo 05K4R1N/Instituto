@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package institucion.Models.BD.Core;
+package config;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;

@@ -71,6 +71,11 @@ public class welcome extends javax.swing.JFrame {
         btnActualizar.setBorder(null);
         btnActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnActualizar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnNotificaciones.setBackground(new java.awt.Color(0, 0, 0));
         btnNotificaciones.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
@@ -80,6 +85,11 @@ public class welcome extends javax.swing.JFrame {
         btnNotificaciones.setBorder(null);
         btnNotificaciones.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNotificaciones.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNotificaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNotificacionesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,6 +130,7 @@ public class welcome extends javax.swing.JFrame {
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
         btnClose.setText(" ");
         btnClose.setBorder(null);
+        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,6 +175,11 @@ public class welcome extends javax.swing.JFrame {
         btnAlumnado.setBorder(null);
         btnAlumnado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAlumnado.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAlumnado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlumnadoActionPerformed(evt);
+            }
+        });
 
         btnAsistencia.setBackground(new java.awt.Color(51, 25, 230));
         btnAsistencia.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
@@ -187,6 +203,11 @@ public class welcome extends javax.swing.JFrame {
         btnMaterias.setBorder(null);
         btnMaterias.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnMaterias.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnMaterias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMateriasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -223,14 +244,34 @@ public class welcome extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsistenciaActionPerformed
-        attendance_control ctrl_attendance = new attendance_control();
+        Attendance ctrl_attendance = new Attendance();
         ctrl_attendance.setVisible(true);
     }//GEN-LAST:event_btnAsistenciaActionPerformed
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
-        profile p = new profile();
+        Profile p = new Profile();
         p.setVisible(true);
     }//GEN-LAST:event_btnPerfilActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        Edit e = new Edit();
+        e.setVisible(true);
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnNotificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificacionesActionPerformed
+        Notification n = new Notification();
+        n.setVisible(true);
+    }//GEN-LAST:event_btnNotificacionesActionPerformed
+
+    private void btnMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMateriasActionPerformed
+        Subject s = new Subject();
+        s.setVisible(true);
+    }//GEN-LAST:event_btnMateriasActionPerformed
+
+    private void btnAlumnadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlumnadoActionPerformed
+       Classmate c = new Classmate();
+       c.setVisible(true);
+    }//GEN-LAST:event_btnAlumnadoActionPerformed
 
     /**
      * @param args the command line arguments

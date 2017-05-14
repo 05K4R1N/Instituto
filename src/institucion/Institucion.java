@@ -17,8 +17,8 @@ public class Institucion {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        
+        welcome w = new welcome();
+        w.setVisible(true);
     }
     
 }

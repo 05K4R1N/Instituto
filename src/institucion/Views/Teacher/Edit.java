@@ -1,6 +1,7 @@
 package institucion.Views.Teacher;
 
-import java.util.Hashtable;
+import institucion.Controllers.CtrlTeacher;
+import institucion.Models.Users.Teacher;
 import javax.swing.JOptionPane;
 
 /*
@@ -13,16 +14,19 @@ import javax.swing.JOptionPane;
  *
  * @author master
  */
-public class Edit extends javax.swing.JFrame {
+public class Edit extends javax.swing.JFrame{
 
     /**
      * Creates new form edit_profile
      */
+    private CtrlTeacher control;
+    
     public Edit() {
         this.setUndecorated(true);
         initComponents();
         this.setSize(777,503);
         this.setLocationRelativeTo(null);
+        control = new CtrlTeacher();
     }
 
     /**
@@ -52,9 +56,9 @@ public class Edit extends javax.swing.JFrame {
         btnCancel = new javax.swing.JButton();
         txtName = new javax.swing.JTextField();
         txtLast_Name = new javax.swing.JTextField();
-        txtBirthday = new javax.swing.JTextField();
         txtplace_birthday = new javax.swing.JTextField();
         txtAddress = new javax.swing.JTextField();
+        txtBirthday = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -161,10 +165,6 @@ public class Edit extends javax.swing.JFrame {
         txtLast_Name.setForeground(new java.awt.Color(255, 255, 255));
         txtLast_Name.setBorder(null);
 
-        txtBirthday.setBackground(new java.awt.Color(0, 0, 0));
-        txtBirthday.setForeground(new java.awt.Color(255, 255, 255));
-        txtBirthday.setBorder(null);
-
         txtplace_birthday.setBackground(new java.awt.Color(0, 0, 0));
         txtplace_birthday.setForeground(new java.awt.Color(255, 255, 255));
         txtplace_birthday.setBorder(null);
@@ -172,6 +172,9 @@ public class Edit extends javax.swing.JFrame {
         txtAddress.setBackground(new java.awt.Color(0, 0, 0));
         txtAddress.setForeground(new java.awt.Color(255, 255, 255));
         txtAddress.setBorder(null);
+
+        txtBirthday.setBackground(new java.awt.Color(0, 0, 0));
+        txtBirthday.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -197,17 +200,17 @@ public class Edit extends javax.swing.JFrame {
                     .addComponent(jSeparator3)
                     .addComponent(jSeparator5)
                     .addComponent(jSeparator6)
-                    .addComponent(txtBirthday)
                     .addComponent(txtLast_Name)
                     .addComponent(txtName)
                     .addComponent(txtplace_birthday)
-                    .addComponent(txtAddress))
+                    .addComponent(txtAddress)
+                    .addComponent(txtBirthday, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -223,7 +226,7 @@ public class Edit extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
@@ -251,11 +254,13 @@ public class Edit extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditMouseClicked
-        if(( txtName.getText().length() == 0 || txtName.getText().equals(" ") ) || 
-                (txtLast_Name.getText().length() == 0 || txtLast_Name.getText().equals(" ")) || 
-                (txtBirthday.getText().length() == 0 || txtBirthday.getText().equals(" ")) || 
-                (txtplace_birthday.getText().length() == 0 || txtplace_birthday.getText().equals(" ")) || 
-                (txtAddress.getText().length() == 0 || txtAddress.getText().equals(" ")) ){
+        Teacher t = new Teacher();
+        t.setFirst_name(txtName.getText());
+        t.setLast_name(txtLast_Name.getText());
+        t.setAddress(txtAddress.getText());
+        t.setBirthday(txtBirthday.getDate());
+        t.setPlace_birth(txtplace_birthday.getText());
+        if(!control.add(t)){
             JOptionPane.showMessageDialog(this, "Uno de sus campos se encuentran vacios. Verifique por favor.", "Error al editar", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEditMouseClicked
@@ -317,9 +322,11 @@ public class Edit extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JTextField txtAddress;
-    private javax.swing.JTextField txtBirthday;
+    private com.toedter.calendar.JDateChooser txtBirthday;
     private javax.swing.JTextField txtLast_Name;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtplace_birthday;
     // End of variables declaration//GEN-END:variables
+
+
 }

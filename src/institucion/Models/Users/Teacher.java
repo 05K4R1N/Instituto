@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 
-package institucion.Models.Components;
+package institucion.Models.Users;
+
+import java.util.Date;
 
 /**
  *
@@ -14,12 +16,9 @@ public class Teacher {
     private String first_name;
     private String last_name;
     private String address;
-    private String birthday;
+    private Date birthday;
     private String place_birth;
 
-    public Teacher(){
-        
-    }
     public String getFirst_name() {
         return first_name;
     }
@@ -44,11 +43,11 @@ public class Teacher {
         this.address = address;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 

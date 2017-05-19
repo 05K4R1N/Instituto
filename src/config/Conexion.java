@@ -16,40 +16,27 @@ import java.sql.SQLException;
  */
 public class Conexion {
     static String bd = "Instituto";
-   static String login = "root";
-   static String password = "sk@p1010";
-   static String url = "jdbc:mysql://localhost/"+bd;
+    static String user = "root";
+    static String password = "sk@p1010";
+    static String url = "jdbc:mysql://localhost/"+bd;
+    static String driver = "com.mysql.jdbc.Driver";
+    
+    private static final Conexion instance = new Conexion();
 
-   Connection conn = null;
-
-   /** Constructor de DbConnection */
-   public Conexion() {
-      try{
-         //obtenemos el driver de para mysql
-         Class.forName("com.mysql.jdbc.Driver");
-         //obtenemos la conexión
-         conn = DriverManager.getConnection(url,login,password);
-
-         if (conn!=null){
-            System.out.println("Conección a base de datos "+bd+" OK");
-         }
-      }
-      catch(SQLException e){
-         System.out.println(e);
-      }catch(ClassNotFoundException e){
-         System.out.println(e);
-      }catch(Exception e){
-         System.out.println(e);
-      }
-   }
-   /**Permite retornar la conexión*/
-   public Connection getConnection(){
-      return conn;
-   }
-
-   public void desconectar(){
-      conn = null;
-   }
-
-
+    private Conexion(){
+        try {
+            Class.forName(driver);
+            System.out.println("conectado");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    public Connection getConnection() throws SQLException{
+        Connection conn = null;
+        conn = DriverManager.getConnection(url, user, password);
+        return conn;
+    }
+    public static Conexion getInstance() {
+        return instance;
+    }
 }

@@ -10,12 +10,12 @@ package institucion.Views.Teacher;
  *
  * @author master
  */
-public class welcome extends javax.swing.JFrame {
+public class Welcome extends javax.swing.JFrame {
 
     /**
      * Creates new form welcome
      */
-    public welcome() {
+    public Welcome() {
         this.setUndecorated(true);
         initComponents();
         this.setSize(1500,700);
@@ -55,6 +55,7 @@ public class welcome extends javax.swing.JFrame {
         btnPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/manager.png"))); // NOI18N
         btnPerfil.setText("Ver Perfil");
         btnPerfil.setBorder(null);
+        btnPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPerfil.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnPerfil.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnPerfil.addActionListener(new java.awt.event.ActionListener() {
@@ -69,6 +70,7 @@ public class welcome extends javax.swing.JFrame {
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/edit.png"))); // NOI18N
         btnActualizar.setText("Editar Mi Perfil");
         btnActualizar.setBorder(null);
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnActualizar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -83,6 +85,7 @@ public class welcome extends javax.swing.JFrame {
         btnNotificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/notifications.png"))); // NOI18N
         btnNotificaciones.setText("Notificaciones");
         btnNotificaciones.setBorder(null);
+        btnNotificaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNotificaciones.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNotificaciones.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnNotificaciones.addActionListener(new java.awt.event.ActionListener() {
@@ -173,6 +176,7 @@ public class welcome extends javax.swing.JFrame {
         btnAlumnado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/classmate.png"))); // NOI18N
         btnAlumnado.setText("Alumnado");
         btnAlumnado.setBorder(null);
+        btnAlumnado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAlumnado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAlumnado.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnAlumnado.addActionListener(new java.awt.event.ActionListener() {
@@ -187,6 +191,7 @@ public class welcome extends javax.swing.JFrame {
         btnAsistencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/attendance.png"))); // NOI18N
         btnAsistencia.setText("Control de Asistencias");
         btnAsistencia.setBorder(null);
+        btnAsistencia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAsistencia.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAsistencia.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnAsistencia.addActionListener(new java.awt.event.ActionListener() {
@@ -201,6 +206,7 @@ public class welcome extends javax.swing.JFrame {
         btnMaterias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/subject.png"))); // NOI18N
         btnMaterias.setText("Mis Materias");
         btnMaterias.setBorder(null);
+        btnMaterias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMaterias.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnMaterias.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnMaterias.addActionListener(new java.awt.event.ActionListener() {
@@ -290,20 +296,20 @@ public class welcome extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new welcome().setVisible(true);
+                new Welcome().setVisible(true);
             }
         });
     }

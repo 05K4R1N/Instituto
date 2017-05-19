@@ -6,7 +6,7 @@
 
 package institucion;
 
-import institucion.Views.Teacher.welcome;
+import institucion.Views.Teacher.Welcome;
 /**
  *
  * @author master
@@ -17,7 +17,7 @@ public class Institucion {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        welcome w = new welcome();
+        Welcome w = new Welcome();
         w.setVisible(true);
     }
     

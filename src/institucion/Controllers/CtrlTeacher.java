@@ -21,7 +21,6 @@ public class CtrlTeacher {
     }
     public boolean add(Teacher t){
         boolean added = false;
-        System.out.println("entro");
         if(( t.getFirst_name().length() != 0 || !t.getFirst_name().equals(" ") ) || 
                 (t.getLast_name().length() != 0 || !t.getLast_name().equals(" ")) || 
                 (t.getBirthday().toString().isEmpty() || !t.getBirthday().toString().equals(" ")) || 

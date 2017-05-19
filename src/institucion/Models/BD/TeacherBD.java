@@ -8,6 +8,7 @@ package institucion.Models.BD;
 
 import config.Conexion;
 import institucion.Models.Users.Teacher;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -21,11 +22,13 @@ import java.util.logging.Logger;
 public class TeacherBD {
     public  boolean add(Teacher t){
         boolean res = false;
-        Conexion con = new Conexion();
+        Connection conn = null;
+        PreparedStatement ptmt = null;
         Date sql_date = new Date(t.getBirthday().getTime()); 
         String query = "UPDATE Teacher set first_name=?, last_name=?, birthday=?, address=?, place_birth=? WHERE id=?";
         try {
-            PreparedStatement ptmt = con.getConnection().prepareStatement(query);
+            conn = Conexion.getInstance().getConnection();
+            ptmt = conn.prepareStatement(query);
             ptmt.setString(1, t.getFirst_name());
             ptmt.setString(2, t.getLast_name());
             ptmt.setDate(3, sql_date);

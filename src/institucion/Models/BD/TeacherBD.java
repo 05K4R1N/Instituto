@@ -11,7 +11,9 @@ import institucion.Models.Users.Teacher;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,10 +39,38 @@ public class TeacherBD {
             ptmt.setInt(6, 1);
             ptmt.executeUpdate();
             
-        } catch (SQLException ex) {
-            Logger.getLogger(TeacherBD.class.getName()).log(Level.SEVERE, null, ex);
+            ptmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
         }
         
         return res;
+    }
+    public Teacher getTeacherByID(int id){
+        Teacher t = new Teacher();
+        Connection conn = null;
+        PreparedStatement ptmt = null;
+        ResultSet rs = null;
+        String query = "SELECT * FROM Teacher WHERE id = ?";
+        try {
+            conn = Conexion.getInstance().getConnection();
+            ptmt = conn.prepareStatement(query);
+            ptmt.setInt(1, id);
+            rs = ptmt.executeQuery();
+            rs.next();
+            t.setFirst_name(rs.getString("first_name"));
+            t.setLast_name(rs.getString("last_name"));
+            t.setBirthday(rs.getDate("birthday"));
+            t.setPlace_birth(rs.getString("place_birth"));
+            t.setAddress(rs.getString("address"));
+            rs.close();
+            ptmt.close();
+            conn.close();
+            
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return t;
     }
 }

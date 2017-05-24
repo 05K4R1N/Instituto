@@ -6,6 +6,10 @@
 
 package institucion.Views.Teacher;
 
+import institucion.Controllers.CtrlTeacher;
+import java.util.Date;
+import java.util.Hashtable;
+
 /**
  *
  * @author master
@@ -15,11 +19,13 @@ public class Profile extends javax.swing.JFrame {
     /**
      * Creates new form profile
      */
+    private CtrlTeacher ctrl;
     public Profile() {
         this.setUndecorated(true);
         initComponents();
         this.setSize(407,535);
         this.setLocationRelativeTo(null);
+        ctrl = new CtrlTeacher();
     }
 
     /**
@@ -41,11 +47,11 @@ public class Profile extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txtFName = new javax.swing.JTextField();
+        txtLName = new javax.swing.JTextField();
+        dateBirthday = new com.toedter.calendar.JDateChooser();
+        txtAddress = new javax.swing.JTextField();
+        txtPBirth = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -88,24 +94,35 @@ public class Profile extends javax.swing.JFrame {
 
         jSeparator4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField1.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField1.setBorder(null);
-        jTextField1.setEnabled(false);
+        txtFName.setBackground(new java.awt.Color(51, 51, 51));
+        txtFName.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
+        txtFName.setForeground(new java.awt.Color(255, 255, 255));
+        txtFName.setBorder(null);
+        txtFName.setEnabled(false);
 
-        jTextField2.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField2.setBorder(null);
-        jTextField2.setEnabled(false);
+        txtLName.setBackground(new java.awt.Color(51, 51, 51));
+        txtLName.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
+        txtLName.setForeground(new java.awt.Color(255, 255, 255));
+        txtLName.setBorder(null);
+        txtLName.setEnabled(false);
 
-        jDateChooser1.setBackground(new java.awt.Color(51, 51, 51));
-        jDateChooser1.setEnabled(false);
+        dateBirthday.setBackground(new java.awt.Color(51, 51, 51));
+        dateBirthday.setForeground(new java.awt.Color(255, 255, 255));
+        dateBirthday.setDateFormatString("yyyy-MM-dd");
+        dateBirthday.setEnabled(false);
+        dateBirthday.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
 
-        jTextField3.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField3.setBorder(null);
-        jTextField3.setEnabled(false);
+        txtAddress.setBackground(new java.awt.Color(51, 51, 51));
+        txtAddress.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
+        txtAddress.setForeground(new java.awt.Color(255, 255, 255));
+        txtAddress.setBorder(null);
+        txtAddress.setEnabled(false);
 
-        jTextField4.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField4.setBorder(null);
-        jTextField4.setEnabled(false);
+        txtPBirth.setBackground(new java.awt.Color(51, 51, 51));
+        txtPBirth.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
+        txtPBirth.setForeground(new java.awt.Color(255, 255, 255));
+        txtPBirth.setBorder(null);
+        txtPBirth.setEnabled(false);
 
         jSeparator6.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -117,26 +134,25 @@ public class Profile extends javax.swing.JFrame {
                 .addContainerGap(180, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lbl_dateofbirth)
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lbl_address)
-                        .addComponent(jSeparator3)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(2, 2, 2)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                                .addComponent(jTextField2)))
-                        .addComponent(jTextField3)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbl_placebirth)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_lastname)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
-                            .addComponent(lbl_firstname))
-                        .addComponent(jTextField4)))
+                    .addComponent(lbl_dateofbirth, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator4)
+                    .addComponent(lbl_address, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                            .addComponent(txtLName)))
+                    .addComponent(txtAddress, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dateBirthday, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_placebirth, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lbl_lastname)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtFName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
+                        .addComponent(lbl_firstname))
+                    .addComponent(txtPBirth, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -145,31 +161,31 @@ public class Profile extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbl_firstname)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbl_lastname)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbl_dateofbirth)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dateBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(lbl_address)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbl_placebirth, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75))
@@ -224,7 +240,14 @@ public class Profile extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
+        int id = 1;
+        Hashtable teacher_data = ctrl.getTeacherData(id);
+        System.out.println(teacher_data.get("first_name"));
+        txtFName.setText(teacher_data.get("first_name").toString());
+        txtLName.setText(teacher_data.get("last_name").toString());
+        txtAddress.setText(teacher_data.get("address").toString());
+        txtPBirth.setText(teacher_data.get("place_birth").toString());
+        dateBirthday.setDate((Date)teacher_data.get("birthday"));
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -263,8 +286,8 @@ public class Profile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser dateBirthday;
     private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
@@ -272,14 +295,14 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel lbl_address;
     private javax.swing.JLabel lbl_dateofbirth;
     private javax.swing.JLabel lbl_firstname;
     private javax.swing.JLabel lbl_lastname;
     private javax.swing.JLabel lbl_placebirth;
+    private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextField txtFName;
+    private javax.swing.JTextField txtLName;
+    private javax.swing.JTextField txtPBirth;
     // End of variables declaration//GEN-END:variables
 }

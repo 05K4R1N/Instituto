@@ -8,6 +8,7 @@ package institucion.Controllers;
 
 import institucion.Models.BD.TeacherBD;
 import institucion.Models.Users.Teacher;
+import java.util.Hashtable;
 
 /**
  *
@@ -30,6 +31,18 @@ public class CtrlTeacher {
             added = true;
         }
         return added;
+    }
+    public Hashtable getTeacherData(int id){
+        Hashtable teacher = new Hashtable();
+        if( id > 0 ){
+            Teacher data = mod.getTeacherByID(id);
+            teacher.put("first_name", data.getFirst_name());
+            teacher.put("last_name", data.getLast_name());
+            teacher.put("birthday", data.getBirthday());
+            teacher.put("place_birth", data.getPlace_birth());
+            teacher.put("address", data.getAddress());
+        }
+        return teacher;
     }
     public void saludo(){
         System.out.println("hola");

@@ -13,10 +13,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import java.util.HashMap;
 /**
  *
  * @author master
@@ -72,5 +69,58 @@ public class TeacherBD {
             System.out.println(e);
         }
         return t;
+    }
+    public Object[][] getAttendances(int id){
+        Object[][] attendances  = {};
+        Connection conn         = null;
+        ResultSet rs            = null;
+        PreparedStatement ptmt  = null;
+        HashMap status_attendances = this.getAttendanceStatus();
+        String query        = "SELECT attendance_status_id, time_attendance FROM Attendance WHERE teacher_id = ? LIMIT 15"; 
+        try{
+            conn = Conexion.getInstance().getConnection();
+            ptmt = conn.prepareStatement(query);
+            ptmt.setInt(1, id);
+            rs = ptmt.executeQuery();
+            rs.beforeFirst();  
+            rs.last();  
+            int tam = rs.getRow(); 
+            attendances = new Object[tam][2];
+            rs = ptmt.executeQuery();
+            int i=0;
+            while(rs.next()){
+                attendances[i][0] = rs.getDate("time_attendance") + " " + rs.getTime("time_attendance");
+                attendances[i][1] = status_attendances.get(rs.getInt("attendance_status_id"));
+//                System.out.println(status_attendances.get(rs.getInt("attendance_status_id")));
+//                System.out.println(rs.getDate("time_attendance")+ " "+ rs.getTime("time_attendance"));
+                i++;
+            }
+            
+            rs.close();
+            ptmt.close();
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        
+        return attendances;
+    }
+    public HashMap getAttendanceStatus(){
+        HashMap status        = new HashMap();
+        Connection conn         = null;
+        ResultSet rs            = null;
+        PreparedStatement ptmt  = null;
+        String query            = "SELECT * FROM Attendance_Items";
+        try{
+            conn = Conexion.getInstance().getConnection();
+            ptmt = conn.prepareStatement(query);
+            rs = ptmt.executeQuery();
+            while(rs.next()){
+                status.put(rs.getInt("id"), rs.getString("status"));
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return status;
     }
 }

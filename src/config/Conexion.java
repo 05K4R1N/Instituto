@@ -26,7 +26,6 @@ public class Conexion {
     private Conexion(){
         try {
             Class.forName(driver);
-            System.out.println("conectado");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

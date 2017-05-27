@@ -44,7 +44,11 @@ public class CtrlTeacher {
         }
         return teacher;
     }
-    public void saludo(){
-        System.out.println("hola");
+    public Object[][] getTeacherAttendances(int id){
+        Object[][] attendances= null;
+        if( id > 0 ){
+            attendances = mod.getAttendances(id);
+        }
+        return attendances;
     }
 }

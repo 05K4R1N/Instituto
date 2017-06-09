@@ -6,6 +6,7 @@
 
 package institucion.Views.Teacher;
 
+
 import institucion.Controllers.CtrlTeacher;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -106,6 +107,11 @@ public class Attendance extends javax.swing.JFrame {
         btnPrint.setBackground(new java.awt.Color(0, 51, 204));
         btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/printer.png"))); // NOI18N
         btnPrint.setBorder(null);
+        btnPrint.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPrintMouseClicked(evt);
+            }
+        });
 
         btnCancel.setBackground(new java.awt.Color(0, 51, 204));
         btnCancel.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
@@ -167,6 +173,10 @@ public class Attendance extends javax.swing.JFrame {
         tabAttendance.getColumnModel().getColumn(0).setCellRenderer(tcr);
         tabAttendance.getColumnModel().getColumn(1).setCellRenderer(tcr);
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnPrintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrintMouseClicked
+        
+    }//GEN-LAST:event_btnPrintMouseClicked
 
     /**
      * @param args the command line arguments

@@ -118,9 +118,34 @@ public class TeacherBD {
             while(rs.next()){
                 status.put(rs.getInt("id"), rs.getString("status"));
             }
+            rs.close();
+            ptmt.close();
+            conn.close();
         }catch(SQLException e){
             System.out.println(e);
         }
         return status;
+    }
+    /* Method will be changed for other query*/
+    public HashMap getClassRooms(){
+        HashMap classrooms      = new HashMap();
+        Connection conn     = null;
+        ResultSet rs        = null;
+        PreparedStatement ptmt = null;
+        String query = "SELECT * FROM  classroom";
+        try{
+            conn = Conexion.getInstance().getConnection();
+            ptmt = conn.prepareStatement(query);
+            rs = ptmt.executeQuery();
+            while(rs.next()){
+                classrooms.put(rs.getInt("id"), rs.getString("name"));
+            }
+            rs.close();
+            ptmt.close();
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return classrooms;
     }
 }

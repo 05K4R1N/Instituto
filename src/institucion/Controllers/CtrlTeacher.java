@@ -8,6 +8,7 @@ package institucion.Controllers;
 
 import institucion.Models.BD.TeacherBD;
 import institucion.Models.Users.Teacher;
+import java.util.HashMap;
 import java.util.Hashtable;
 
 /**
@@ -50,5 +51,10 @@ public class CtrlTeacher {
             attendances = mod.getAttendances(id);
         }
         return attendances;
+    }
+    public HashMap getClassRooms(){
+        HashMap classrooms = new HashMap();
+        classrooms = mod.getClassRooms();
+        return classrooms;
     }
 }

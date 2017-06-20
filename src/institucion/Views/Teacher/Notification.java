@@ -7,6 +7,7 @@
 package institucion.Views.Teacher;
 
 import institucion.Controllers.CtrlTeacher;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -144,10 +145,11 @@ public class Notification extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Map<Integer, String> classrooms = ctrl.getClassRooms();
-        int tam = classrooms.size();
+        int y = 0;
         for(Map.Entry<Integer, String> room : classrooms.entrySet()){
             JButton button = new JButton();
             button.setText(room.getValue());
+            button.setBounds(50, y, 100, 7500);
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -158,8 +160,8 @@ public class Notification extends javax.swing.JFrame {
             panelClassRoom.add(button);
             panelClassRoom.revalidate();
             panelClassRoom.repaint();
+            y = y + 40;
         }
-        System.out.println(classrooms.size());
     }//GEN-LAST:event_formWindowOpened
 
     /**

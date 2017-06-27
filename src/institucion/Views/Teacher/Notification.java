@@ -7,6 +7,7 @@
 package institucion.Views.Teacher;
 
 import institucion.Controllers.CtrlTeacher;
+import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,7 +30,7 @@ public class Notification extends javax.swing.JFrame {
         ctrl = new CtrlTeacher();
         this.setUndecorated(true);
         initComponents();
-        this.setSize(809,530);
+        this.setSize(809,528);
         this.setLocationRelativeTo(null);
     }
 
@@ -55,7 +56,7 @@ public class Notification extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 153));
 
@@ -70,7 +71,7 @@ public class Notification extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(103, Short.MAX_VALUE)
+                .addContainerGap(84, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -93,8 +94,19 @@ public class Notification extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 51));
 
+        panelClassRoom.setBackground(new java.awt.Color(0, 0, 102));
         panelClassRoom.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        panelClassRoom.setLayout(new java.awt.GridLayout(1, 0));
+
+        javax.swing.GroupLayout panelClassRoomLayout = new javax.swing.GroupLayout(panelClassRoom);
+        panelClassRoom.setLayout(panelClassRoomLayout);
+        panelClassRoomLayout.setHorizontalGroup(
+            panelClassRoomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 257, Short.MAX_VALUE)
+        );
+        panelClassRoomLayout.setVerticalGroup(
+            panelClassRoomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 364, Short.MAX_VALUE)
+        );
 
         btnCancel.setBackground(new java.awt.Color(0, 0, 51));
         btnCancel.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
@@ -115,21 +127,20 @@ public class Notification extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(169, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(panelClassRoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnCancel)
-                        .addGap(171, 171, 171))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancel)
+                .addGap(171, 171, 171))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(panelClassRoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(panelClassRoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 376, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
+                .addComponent(panelClassRoom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnCancel)
                 .addGap(26, 26, 26))
         );
@@ -145,11 +156,11 @@ public class Notification extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Map<Integer, String> classrooms = ctrl.getClassRooms();
-        int y = 0;
+        int y = 10;
         for(Map.Entry<Integer, String> room : classrooms.entrySet()){
             JButton button = new JButton();
             button.setText(room.getValue());
-            button.setBounds(50, y, 100, 7500);
+            button.setBounds(new Rectangle(80, y, 100, 50));
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -160,7 +171,7 @@ public class Notification extends javax.swing.JFrame {
             panelClassRoom.add(button);
             panelClassRoom.revalidate();
             panelClassRoom.repaint();
-            y = y + 40;
+            y = y + 70;
         }
     }//GEN-LAST:event_formWindowOpened
 

@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 /**
  *
@@ -148,4 +149,26 @@ public class TeacherBD {
         }
         return classrooms;
     }
+	public ArrayList<String> getMessages(int id){
+		ArrayList<String> messages = new ArrayList<String>();
+		Connection conn			= null;
+		ResultSet rs			= null;
+		PreparedStatement ptmt	= null;
+		String query = "SELECT title FROM message WHERE teacher_id = ?";
+		try{
+			conn = Conexion.getInstance().getConnection();
+			ptmt = conn.prepareStatement(query);
+			ptmt.setInt(1, id);
+			rs = ptmt.executeQuery();
+			while(rs.next()){
+				messages.add(rs.getString("title"));
+			}
+			rs.close();
+			ptmt.close();
+			conn.close();
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		return messages;
+	}
 }

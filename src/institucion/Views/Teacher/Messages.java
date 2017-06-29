@@ -6,6 +6,11 @@
 
 package institucion.Views.Teacher;
 
+import institucion.Controllers.CtrlTeacher;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+
 /**
  *
  * @author master
@@ -15,8 +20,12 @@ public class Messages extends javax.swing.JFrame {
     /**
      * Creates new form Messages
      */
+	private CtrlTeacher ctrl;
+	private int teacher_id;
     public Messages(int id) {
         initComponents();
+		ctrl = new CtrlTeacher();
+		this.teacher_id = id;
         this.setSize(583, 481);
         this.setLocationRelativeTo(null);
     }
@@ -35,20 +44,26 @@ public class Messages extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        MessageList = new javax.swing.JList();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 0));
 
-        jList1.setBackground(new java.awt.Color(51, 102, 0));
-        jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jScrollPane1.setViewportView(jList1);
+        MessageList.setBackground(new java.awt.Color(51, 102, 0));
+        MessageList.setForeground(new java.awt.Color(204, 255, 255));
+        MessageList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setViewportView(MessageList);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -92,7 +107,7 @@ public class Messages extends javax.swing.JFrame {
         jButton1.setText("SALIR");
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -134,6 +149,15 @@ public class Messages extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        ArrayList<String> messages = ctrl.viewMessages(teacher_id);
+		DefaultListModel list_aux = new DefaultListModel();
+		for(String m: messages){
+			list_aux.addElement(m);
+		}
+		MessageList.setModel(list_aux);
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -170,8 +194,8 @@ public class Messages extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList MessageList;
     private javax.swing.JButton jButton1;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

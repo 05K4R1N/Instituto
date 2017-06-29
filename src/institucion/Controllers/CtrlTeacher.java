@@ -8,6 +8,7 @@ package institucion.Controllers;
 
 import institucion.Models.BD.TeacherBD;
 import institucion.Models.Users.Teacher;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
 
@@ -57,4 +58,11 @@ public class CtrlTeacher {
         classrooms = mod.getClassRooms();
         return classrooms;
     }
+	public ArrayList<String> viewMessages(int id){
+		ArrayList<String> messages = null;
+		if( id > 0 ){
+			messages = mod.getMessages(id);
+		}
+		return messages;
+	}
 }

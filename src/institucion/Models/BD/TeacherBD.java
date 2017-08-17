@@ -76,8 +76,7 @@ public class TeacherBD {
         Connection conn         = null;
         ResultSet rs            = null;
         PreparedStatement ptmt  = null;
-        HashMap status_attendances = this.getAttendanceStatus();
-        String query        = "SELECT attendance_status_id, time_attendance FROM Attendance WHERE teacher_id = ? LIMIT 15"; 
+        String query        = "SELECT attendance_status, time_attendance FROM attendance WHERE teacher_id = ? LIMIT 15"; 
         try{
             conn = Conexion.getInstance().getConnection();
             ptmt = conn.prepareStatement(query);
@@ -90,10 +89,8 @@ public class TeacherBD {
             rs = ptmt.executeQuery();
             int i=0;
             while(rs.next()){
-                attendances[i][0] = rs.getDate("time_attendance") + " " + rs.getTime("time_attendance");
-                attendances[i][1] = status_attendances.get(rs.getInt("attendance_status_id"));
-//                System.out.println(status_attendances.get(rs.getInt("attendance_status_id")));
-//                System.out.println(rs.getDate("time_attendance")+ " "+ rs.getTime("time_attendance"));
+                attendances[i][0] = rs.getString("attendance_status");
+                attendances[i][1] = rs.getDate("time_attendance") + " " + rs.getTime("time_attendance");
                 i++;
             }
             
@@ -105,27 +102,6 @@ public class TeacherBD {
         }
         
         return attendances;
-    }
-    public HashMap getAttendanceStatus(){
-        HashMap status        = new HashMap();
-        Connection conn         = null;
-        ResultSet rs            = null;
-        PreparedStatement ptmt  = null;
-        String query            = "SELECT * FROM Attendance_Items";
-        try{
-            conn = Conexion.getInstance().getConnection();
-            ptmt = conn.prepareStatement(query);
-            rs = ptmt.executeQuery();
-            while(rs.next()){
-                status.put(rs.getInt("id"), rs.getString("status"));
-            }
-            rs.close();
-            ptmt.close();
-            conn.close();
-        }catch(SQLException e){
-            System.out.println(e);
-        }
-        return status;
     }
     /* Method will be changed for other query*/
     public HashMap getClassRooms(){

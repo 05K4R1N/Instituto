@@ -40,7 +40,7 @@ public class Subject extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(102, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 153));
 
         jLabel1.setFont(new java.awt.Font("Loma", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -68,9 +68,9 @@ public class Subject extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 367, 500);
+        jPanel1.setBounds(0, 0, 366, 500);
 
-        jPanel2.setBackground(new java.awt.Color(51, 0, 0));
+        jPanel2.setBackground(new java.awt.Color(51, 51, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -83,7 +83,7 @@ public class Subject extends javax.swing.JFrame {
             .addGap(0, 369, Short.MAX_VALUE)
         );
 
-        btnExit.setBackground(new java.awt.Color(51, 0, 0));
+        btnExit.setBackground(new java.awt.Color(51, 51, 255));
         btnExit.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
         btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N

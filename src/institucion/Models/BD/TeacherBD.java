@@ -149,16 +149,19 @@ public class TeacherBD {
         }
         return classrooms;
     }
-	public ArrayList<String> getMessages(int id){
+	public ArrayList<String> getMessages(int classroom_id, int teacher_id){
 		ArrayList<String> messages = new ArrayList<String>();
 		Connection conn			= null;
 		ResultSet rs			= null;
 		PreparedStatement ptmt	= null;
-		String query = "SELECT title FROM message WHERE teacher_id = ?";
+		String query = "SELECT title "
+					+ "FROM message "
+					+ "WHERE teacher_id = ? AND classroom_id = ?";
 		try{
 			conn = Conexion.getInstance().getConnection();
 			ptmt = conn.prepareStatement(query);
-			ptmt.setInt(1, id);
+			ptmt.setInt(1, teacher_id);
+			ptmt.setInt(2, classroom_id);
 			rs = ptmt.executeQuery();
 			while(rs.next()){
 				messages.add(rs.getString("title"));

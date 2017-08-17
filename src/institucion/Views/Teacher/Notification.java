@@ -26,12 +26,14 @@ public class Notification extends javax.swing.JFrame {
      * Creates new form notifications
      */
     private CtrlTeacher ctrl;
+	private int id;
     public Notification() {
         ctrl = new CtrlTeacher();
         this.setUndecorated(true);
         initComponents();
         this.setSize(809,528);
         this.setLocationRelativeTo(null);
+		this.id = 1;
     }
 
     /**
@@ -164,7 +166,7 @@ public class Notification extends javax.swing.JFrame {
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    Messages m = new Messages(room.getKey());
+                    Messages m = new Messages(room.getKey(), id);
                     m.setVisible(true);
                 }
             });

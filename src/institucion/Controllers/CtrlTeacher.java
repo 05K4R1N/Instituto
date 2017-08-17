@@ -58,10 +58,10 @@ public class CtrlTeacher {
         classrooms = mod.getClassRooms();
         return classrooms;
     }
-	public ArrayList<String> viewMessages(int id){
+	public ArrayList<String> viewMessages(int classroom_id, int teacher_id){
 		ArrayList<String> messages = null;
-		if( id > 0 ){
-			messages = mod.getMessages(id);
+		if( classroom_id > 0 || teacher_id > 0 ){
+			messages = mod.getMessages(classroom_id, teacher_id);
 		}
 		return messages;
 	}

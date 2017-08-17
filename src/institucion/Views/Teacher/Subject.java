@@ -6,6 +6,14 @@
 
 package institucion.Views.Teacher;
 
+import institucion.Controllers.CtrlSubject;
+import institucion.Controllers.CtrlTeacher;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Map;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author master
@@ -15,11 +23,17 @@ public class Subject extends javax.swing.JFrame {
     /**
      * Creates new form subjects
      */
+	private CtrlTeacher ctrlT;
+	private CtrlSubject ctrlS;
+	private int id;
     public Subject() {
         this.setUndecorated(true);
         initComponents();
         this.setSize(723,498);
         this.setLocationRelativeTo(null);
+		ctrlT = new CtrlTeacher();
+		ctrlS = new CtrlSubject();
+		id = 1; //pronto modificado
     }
 
     /**
@@ -34,11 +48,16 @@ public class Subject extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        panelSubjects = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
+        getContentPane().setLayout(new java.awt.GridLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 153));
 
@@ -57,29 +76,28 @@ public class Subject extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addComponent(jLabel1)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(140, 140, 140)
                 .addComponent(jLabel1)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 366, 500);
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 255));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelSubjectsLayout = new javax.swing.GroupLayout(panelSubjects);
+        panelSubjects.setLayout(panelSubjectsLayout);
+        panelSubjectsLayout.setHorizontalGroup(
+            panelSubjectsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelSubjectsLayout.setVerticalGroup(
+            panelSubjectsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 369, Short.MAX_VALUE)
         );
 
@@ -104,10 +122,10 @@ public class Subject extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelSubjects, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(152, Short.MAX_VALUE)
+                .addContainerGap(146, Short.MAX_VALUE)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(136, 136, 136))
         );
@@ -115,14 +133,13 @@ public class Subject extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(panelSubjects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(btnExit)
                 .addContainerGap())
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(358, 0, 370, 500);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -130,6 +147,33 @@ public class Subject extends javax.swing.JFrame {
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        Map<Integer, String> subjects = ctrlT.getSubjectsTeacher(id);
+		int y = 0;
+		for(Map.Entry<Integer, String> subject: subjects.entrySet()){
+			JButton button_subject = new JButton();
+			button_subject.setText(subject.getValue());
+			button_subject.setBounds(0, y, panelSubjects.getWidth(), 40);
+			button_subject.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//System.out.println(subject.getKey());
+					int subject_id = subject.getKey();
+					institucion.Models.Users.Subject materia = ctrlS.getSubjectById(subject_id);
+					JOptionPane.showMessageDialog(null,
+												"Materia: "+materia.getName()+"\nDescripcion: "+materia.getDescription(),
+												"MATERIA: "+materia.getName(),
+												JOptionPane.PLAIN_MESSAGE);
+				}
+			});
+			panelSubjects.add(button_subject);
+			panelSubjects.revalidate();
+			panelSubjects.repaint();
+			y+=40;
+			
+		}
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -171,6 +215,6 @@ public class Subject extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel panelSubjects;
     // End of variables declaration//GEN-END:variables
 }

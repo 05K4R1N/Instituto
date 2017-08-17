@@ -5,8 +5,8 @@
         <group>
             <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Models/BD/TeacherBD.java</file>
             <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Controllers/CtrlTeacher.java</file>
-            <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Views/Teacher/Notification.java</file>
-            <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Views/Teacher/Messages.java</file>
+            <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Views/Teacher/Subject.java</file>
+            <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Views/Teacher/Attendance.java</file>
         </group>
     </open-files>
 </project-private>

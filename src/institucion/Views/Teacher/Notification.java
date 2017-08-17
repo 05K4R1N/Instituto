@@ -7,14 +7,11 @@
 package institucion.Views.Teacher;
 
 import institucion.Controllers.CtrlTeacher;
-import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JButton;
-import javax.swing.JScrollPane;
 
 /**
  *

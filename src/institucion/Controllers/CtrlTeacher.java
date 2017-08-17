@@ -65,4 +65,11 @@ public class CtrlTeacher {
 		}
 		return messages;
 	}
+	public HashMap getSubjectsTeacher(int id){
+		HashMap subjects = new HashMap();
+		if(id > 0){
+			subjects = mod.getSubjectsbyTeacherId(id);
+		}
+		return subjects;
+	}
 }

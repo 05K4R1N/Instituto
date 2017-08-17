@@ -150,4 +150,28 @@ public class TeacherBD {
 		}
 		return messages;
 	}
+	public HashMap getSubjectsbyTeacherId(int id){
+		HashMap subjects = new HashMap();
+		Connection conn = null;
+		ResultSet rs = null;
+		PreparedStatement ptmt = null;
+		String query = "SELECT id, name "
+					+ "FROM subject "
+					+ "WHERE teacher_id= ?";
+		try{
+			conn = Conexion.getInstance().getConnection();
+			ptmt = conn.prepareStatement(query);
+			ptmt.setInt(1, id);
+			rs = ptmt.executeQuery();
+			while(rs.next()){
+				subjects.put(rs.getInt("id"), rs.getString("name"));
+			}
+			rs.close();
+			ptmt.close();
+			conn.close();
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		return subjects;
+	}
 }

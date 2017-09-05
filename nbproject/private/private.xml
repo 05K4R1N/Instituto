@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Models/Users/Subject.java</file>
-            <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Models/BD/TeacherBD.java</file>
-            <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Controllers/CtrlTeacher.java</file>
-            <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Views/Teacher/Notification.java</file>
-            <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Views/Teacher/Subject.java</file>
-            <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Views/Teacher/Attendance.java</file>
-            <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Controllers/CtrlSubject.java</file>
-            <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Models/BD/SubjectBD.java</file>
+            <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Controllers/CtrlClassroom.java</file>
+            <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Models/BD/ClassroomBD.java</file>
+            <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Views/Teacher/Classmate.java</file>
         </group>
     </open-files>
 </project-private>

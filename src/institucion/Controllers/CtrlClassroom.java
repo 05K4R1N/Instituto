@@ -6,6 +6,7 @@
 package institucion.Controllers;
 
 import institucion.Models.BD.ClassroomBD;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -18,11 +19,8 @@ public class CtrlClassroom {
 	public CtrlClassroom(){
 		mod = new ClassroomBD();
 	}
-	public HashMap getClassroomByTeacher(int teacher_id){
-		HashMap classrooms = new HashMap();
-		if(teacher_id > 0){
-			classrooms = mod.getClassroomsByTeacherID(teacher_id);
-		}
-		return classrooms;
+	
+	public ArrayList<String> obtainClassrooms(){
+		return mod.getClassRooms();
 	}
 }

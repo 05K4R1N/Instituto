@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 /**
  *
  * @author o5k4r1n
@@ -37,5 +38,27 @@ public class ClassroomBD {
 			System.out.println(e);
 		}
 		return classrooms;
+	}
+	public HashMap getClassroomStudents(String classroom){
+		HashMap<Integer, String> students = new HashMap<Integer, String>();
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		String query = "SELECT id, name, lastname FROM student WHERE classroom = ?";
+		try{
+			conn = Conexion.getInstance().getConnection();
+			ptmt = conn.prepareStatement(query);
+			ptmt.setString(1, classroom);
+			rs = ptmt.executeQuery();
+			while(rs.next()){
+				students.put(rs.getInt("id"), rs.getString("name") + " "+rs.getString("lastname"));
+			}
+			rs.close();
+			ptmt.close();
+			conn.close();
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		return students;
 	}
 }

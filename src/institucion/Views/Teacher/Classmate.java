@@ -8,12 +8,15 @@ package institucion.Views.Teacher;
 
 import institucion.Controllers.CtrlClassroom;
 import institucion.Models.Users.Classroom;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 /**
@@ -29,7 +32,7 @@ public class Classmate extends javax.swing.JFrame {
     public Classmate() {
         this.setUndecorated(true);
         initComponents();
-        this.setSize(829,524);
+        this.setSize(900,524);
         this.setLocationRelativeTo(null);
 		
 		ctrlC = new CtrlClassroom();
@@ -47,7 +50,7 @@ public class Classmate extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        panelStudent = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
         lblclasroom = new javax.swing.JLabel();
         teacher_clasroom = new javax.swing.JComboBox<>();
@@ -58,7 +61,7 @@ public class Classmate extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new java.awt.GridLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 102));
 
@@ -77,29 +80,28 @@ public class Classmate extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addComponent(jLabel1)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(186, Short.MAX_VALUE)
+                .addContainerGap(195, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(178, 178, 178))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 376, 535);
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 255));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 399, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelStudentLayout = new javax.swing.GroupLayout(panelStudent);
+        panelStudent.setLayout(panelStudentLayout);
+        panelStudentLayout.setHorizontalGroup(
+            panelStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 342, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelStudentLayout.setVerticalGroup(
+            panelStudentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 354, Short.MAX_VALUE)
         );
 
@@ -122,6 +124,12 @@ public class Classmate extends javax.swing.JFrame {
         lblclasroom.setForeground(new java.awt.Color(255, 255, 255));
         lblclasroom.setText("AULA:");
 
+        teacher_clasroom.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                teacher_clasroomItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -133,12 +141,12 @@ public class Classmate extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblclasroom)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(teacher_clasroom, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                        .addComponent(teacher_clasroom, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,14 +156,13 @@ public class Classmate extends javax.swing.JFrame {
                     .addComponent(lblclasroom)
                     .addComponent(teacher_clasroom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnExit)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(369, 0, 470, 535);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -171,6 +178,32 @@ public class Classmate extends javax.swing.JFrame {
 			teacher_clasroom.addItem(classroom);
 		}
     }//GEN-LAST:event_formWindowOpened
+
+    private void teacher_clasroomItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_teacher_clasroomItemStateChanged
+        String classroom = "";
+		if(evt.getStateChange() == 1){
+			//System.out.println( evt.getItem());
+			classroom = evt.getItem().toString();
+			int y = 0;
+			Map<Integer,String>  students = ctrlC.getStudents_of_classroom(classroom);
+			for(Map.Entry<Integer,String> student: students.entrySet()){
+				System.out.println(student);
+				JButton button = new JButton();
+				button.setText(student.getValue());
+				button.setBounds(new Rectangle(0, y, 170, 50));
+				button.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						System.out.println(student.getKey());
+					}
+				});
+				panelStudent.add(button);
+				panelStudent.revalidate();
+				panelStudent.repaint();
+				y=y+10;
+			}
+		}
+    }//GEN-LAST:event_teacher_clasroomItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -212,8 +245,8 @@ public class Classmate extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblclasroom;
+    private javax.swing.JPanel panelStudent;
     private javax.swing.JComboBox<String> teacher_clasroom;
     // End of variables declaration//GEN-END:variables
 }

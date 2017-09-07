@@ -23,4 +23,12 @@ public class CtrlClassroom {
 	public ArrayList<String> obtainClassrooms(){
 		return mod.getClassRooms();
 	}
+	public HashMap getStudents_of_classroom(String classroom){
+		HashMap students = new HashMap();
+		if(classroom.length() == 0 || 
+			!classroom.equals("Seleccione un Aula")){
+			students = mod.getClassroomStudents(classroom);
+		}
+		return students;
+	}
 }

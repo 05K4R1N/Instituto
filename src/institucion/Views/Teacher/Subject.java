@@ -158,7 +158,6 @@ public class Subject extends javax.swing.JFrame {
 			button_subject.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					//System.out.println(subject.getKey());
 					int subject_id = subject.getKey();
 					institucion.Models.Users.Subject materia = ctrlS.getSubjectById(subject_id);
 					JOptionPane.showMessageDialog(null,

@@ -51,7 +51,7 @@ public class ClassroomBD {
 			ptmt.setString(1, classroom);
 			rs = ptmt.executeQuery();
 			while(rs.next()){
-				students.put(rs.getInt("id"), rs.getString("name") + " "+rs.getString("lastname"));
+				students.put(rs.getInt("id"), rs.getString("lastname") + " "+rs.getString("name"));
 			}
 			rs.close();
 			ptmt.close();

@@ -242,7 +242,6 @@ public class Profile extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         int id = 1;
         Hashtable teacher_data = ctrl.getTeacherData(id);
-        System.out.println(teacher_data.get("first_name"));
         txtFName.setText(teacher_data.get("first_name").toString());
         txtLName.setText(teacher_data.get("last_name").toString());
         txtAddress.setText(teacher_data.get("address").toString());

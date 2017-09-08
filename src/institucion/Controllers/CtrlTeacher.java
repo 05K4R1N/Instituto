@@ -22,6 +22,7 @@ public class CtrlTeacher {
     public CtrlTeacher(){
         mod = new TeacherBD();
     }
+
     public boolean add(Teacher t){
         boolean added = false;
         if(( t.getFirst_name().length() != 0 || !t.getFirst_name().equals(" ") ) || 

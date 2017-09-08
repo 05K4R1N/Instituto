@@ -2,6 +2,9 @@ package institucion.Views.Teacher;
 
 import institucion.Controllers.CtrlTeacher;
 import institucion.Models.Users.Teacher;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Hashtable;
 import javax.swing.JOptionPane;
 
 /*
@@ -20,10 +23,11 @@ public class Edit extends javax.swing.JFrame{
      * Creates new form edit_profile
      */
     private CtrlTeacher control;
-    
+    private int teacher_id;
     public Edit() {
         this.setUndecorated(true);
         initComponents();
+		this.teacher_id = 1;
         this.setSize(777,503);
         this.setLocationRelativeTo(null);
         control = new CtrlTeacher();
@@ -61,6 +65,11 @@ public class Edit extends javax.swing.JFrame{
         txtBirthday = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
@@ -91,7 +100,7 @@ public class Edit extends javax.swing.JFrame{
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 369, 503);
+        jPanel1.setBounds(0, 0, 368, 503);
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -132,6 +141,7 @@ public class Edit extends javax.swing.JFrame{
         btnEdit.setText("Actualizar");
         btnEdit.setBorder(null);
         btnEdit.setBorderPainted(false);
+        btnEdit.setContentAreaFilled(false);
         btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -151,6 +161,11 @@ public class Edit extends javax.swing.JFrame{
         btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCancel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelMouseClicked(evt);
+            }
+        });
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelActionPerformed(evt);
@@ -260,14 +275,32 @@ public class Edit extends javax.swing.JFrame{
         t.setAddress(txtAddress.getText());
         t.setBirthday(txtBirthday.getDate());
         t.setPlace_birth(txtplace_birthday.getText());
-        if(!control.add(t)){
-            JOptionPane.showMessageDialog(this, "Uno de sus campos se encuentran vacios. Verifique por favor.", "Error al editar", JOptionPane.WARNING_MESSAGE);
-        }
+        if(control.add(t)){
+			JOptionPane.showMessageDialog(this, "Datos de Profesor Actualizados");
+			this.setVisible(false);
+			return;
+		}
+            
+		JOptionPane.showMessageDialog(this, "Uno de sus campos se encuentran vacios. Verifique por favor.", "Error al editar", JOptionPane.WARNING_MESSAGE);
+			
     }//GEN-LAST:event_btnEditMouseClicked
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        Hashtable teacher_data = control.getTeacherData(teacher_id);
+		txtName.setText(teacher_data.get("first_name").toString());
+        txtLast_Name.setText(teacher_data.get("last_name").toString());
+        txtplace_birthday.setText(teacher_data.get("place_birth").toString());
+        txtBirthday.setDate((Date)teacher_data.get("birthday"));
+		txtAddress.setText(teacher_data.get("address").toString());
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCancelMouseClicked
 
     /**
      * @param args the command line arguments

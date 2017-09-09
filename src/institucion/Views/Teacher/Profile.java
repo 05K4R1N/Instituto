@@ -6,9 +6,11 @@
 
 package institucion.Views.Teacher;
 
+import config.ImagenPanel;
 import institucion.Controllers.CtrlTeacher;
 import java.util.Date;
 import java.util.Hashtable;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -49,10 +51,11 @@ public class Profile extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         txtFName = new javax.swing.JTextField();
         txtLName = new javax.swing.JTextField();
-        dateBirthday = new com.toedter.calendar.JDateChooser();
         txtAddress = new javax.swing.JTextField();
         txtPBirth = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
+        UsersPhoto = new javax.swing.JPanel();
+        txtbirthdate = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
 
@@ -106,12 +109,6 @@ public class Profile extends javax.swing.JFrame {
         txtLName.setBorder(null);
         txtLName.setEnabled(false);
 
-        dateBirthday.setBackground(new java.awt.Color(51, 51, 51));
-        dateBirthday.setForeground(new java.awt.Color(255, 255, 255));
-        dateBirthday.setDateFormatString("yyyy-MM-dd");
-        dateBirthday.setEnabled(false);
-        dateBirthday.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
-
         txtAddress.setBackground(new java.awt.Color(51, 51, 51));
         txtAddress.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
         txtAddress.setForeground(new java.awt.Color(255, 255, 255));
@@ -126,54 +123,79 @@ public class Profile extends javax.swing.JFrame {
 
         jSeparator6.setBackground(new java.awt.Color(255, 255, 255));
 
+        javax.swing.GroupLayout UsersPhotoLayout = new javax.swing.GroupLayout(UsersPhoto);
+        UsersPhoto.setLayout(UsersPhotoLayout);
+        UsersPhotoLayout.setHorizontalGroup(
+            UsersPhotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 149, Short.MAX_VALUE)
+        );
+        UsersPhotoLayout.setVerticalGroup(
+            UsersPhotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        txtbirthdate.setBackground(new java.awt.Color(51, 51, 51));
+        txtbirthdate.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
+        txtbirthdate.setForeground(new java.awt.Color(255, 255, 255));
+        txtbirthdate.setBorder(null);
+        txtbirthdate.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(186, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                    .addComponent(lbl_dateofbirth, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator4)
-                    .addComponent(lbl_address, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
+                .addGap(19, 19, 19)
+                .addComponent(UsersPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtbirthdate, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jSeparator6, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                        .addComponent(lbl_dateofbirth, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jSeparator4)
+                        .addComponent(lbl_address, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(2, 2, 2)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                                .addComponent(txtLName)))
+                        .addComponent(txtAddress, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lbl_placebirth, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                            .addComponent(txtLName)))
-                    .addComponent(txtAddress, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dateBirthday, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_placebirth, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lbl_lastname)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtFName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
-                        .addComponent(lbl_firstname))
-                    .addComponent(txtPBirth, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(lbl_lastname)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtFName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
+                            .addComponent(lbl_firstname))
+                        .addComponent(txtPBirth, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbl_firstname)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_lastname)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_firstname)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbl_lastname)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(UsersPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbl_dateofbirth)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dateBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtbirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
@@ -203,7 +225,7 @@ public class Profile extends javax.swing.JFrame {
         jButton1.setText("SALIR");
         jButton1.setActionCommand("btnQuit");
         jButton1.setBorder(null);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -246,7 +268,17 @@ public class Profile extends javax.swing.JFrame {
         txtLName.setText(teacher_data.get("last_name").toString());
         txtAddress.setText(teacher_data.get("address").toString());
         txtPBirth.setText(teacher_data.get("place_birth").toString());
-        dateBirthday.setDate((Date)teacher_data.get("birthday"));
+        txtbirthdate.setText(teacher_data.get("birthday").toString());
+		/*ImageIcon photo = new ImageIcon(getClass().getResource("/images/photos/no_photo.jpg"));
+		System.out.println(UsersPhoto.getWidth() + " " + UsersPhoto.getHeight());
+		System.out.print(photo.getIconHeight() + " " + photo.getIconWidth());
+		ImagenPanel panel = new ImagenPanel(photo.getImage(), UsersPhoto.getWidth(), UsersPhoto.getHeight());
+		
+		UsersPhoto.add(panel);*/
+		ImageIcon photo = new ImageIcon(getClass().getResource("/images/photos/no_photo.jpg"));
+		ImagenPanel Imagen = new ImagenPanel(photo, UsersPhoto.getWidth(), UsersPhoto.getHeight());
+		UsersPhoto.add(Imagen);
+		UsersPhoto.repaint();
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -285,7 +317,7 @@ public class Profile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser dateBirthday;
+    private javax.swing.JPanel UsersPhoto;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -303,5 +335,6 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JTextField txtFName;
     private javax.swing.JTextField txtLName;
     private javax.swing.JTextField txtPBirth;
+    private javax.swing.JTextField txtbirthdate;
     // End of variables declaration//GEN-END:variables
 }

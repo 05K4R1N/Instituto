@@ -49,31 +49,29 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="txtbirthdate" pref="218" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jSeparator6" pref="218" max="32767" attributes="0"/>
-                          <Component id="lbl_dateofbirth" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jSeparator4" alignment="1" max="32767" attributes="0"/>
-                          <Component id="lbl_address" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jSeparator3" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jSeparator2" pref="216" max="32767" attributes="0"/>
-                                  <Component id="txtLName" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                      <Component id="jSeparator6" alignment="1" pref="218" max="32767" attributes="0"/>
+                      <Component id="lbl_dateofbirth" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jSeparator4" alignment="1" max="32767" attributes="0"/>
+                      <Component id="lbl_address" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jSeparator3" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jSeparator2" pref="216" max="32767" attributes="0"/>
+                              <Component id="txtLName" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="txtAddress" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lbl_placebirth" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="lbl_lastname" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="txtFName" alignment="1" pref="216" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="lbl_firstname" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="txtPBirth" alignment="0" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="txtAddress" alignment="0" max="32767" attributes="0"/>
+                      <Component id="lbl_placebirth" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                          <Component id="lbl_lastname" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
+                              <Component id="txtFName" alignment="1" pref="216" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="lbl_firstname" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="txtPBirth" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>

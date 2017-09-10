@@ -18,6 +18,7 @@ public class Teacher {
     private String address;
     private Date birthday;
     private String place_birth;
+	private String photo;
 
     public String getFirst_name() {
         return first_name;
@@ -58,5 +59,13 @@ public class Teacher {
     public void setPlace_birth(String place_birth) {
         this.place_birth = place_birth;
     }
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
     
 }

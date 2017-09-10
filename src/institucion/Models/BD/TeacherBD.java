@@ -62,6 +62,7 @@ public class TeacherBD {
             t.setBirthday(rs.getDate("birthday"));
             t.setPlace_birth(rs.getString("place_birth"));
             t.setAddress(rs.getString("address"));
+			t.setPhoto(rs.getString("photo"));
             rs.close();
             ptmt.close();
             conn.close();

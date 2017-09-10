@@ -8,7 +8,6 @@ package institucion.Views.Teacher;
 
 import config.ImagenPanel;
 import institucion.Controllers.CtrlTeacher;
-import java.util.Date;
 import java.util.Hashtable;
 import javax.swing.ImageIcon;
 
@@ -269,13 +268,12 @@ public class Profile extends javax.swing.JFrame {
         txtAddress.setText(teacher_data.get("address").toString());
         txtPBirth.setText(teacher_data.get("place_birth").toString());
         txtbirthdate.setText(teacher_data.get("birthday").toString());
-		/*ImageIcon photo = new ImageIcon(getClass().getResource("/images/photos/no_photo.jpg"));
-		System.out.println(UsersPhoto.getWidth() + " " + UsersPhoto.getHeight());
-		System.out.print(photo.getIconHeight() + " " + photo.getIconWidth());
-		ImagenPanel panel = new ImagenPanel(photo.getImage(), UsersPhoto.getWidth(), UsersPhoto.getHeight());
-		
-		UsersPhoto.add(panel);*/
-		ImageIcon photo = new ImageIcon(getClass().getResource("/images/photos/no_photo.jpg"));
+		String photo_name = "teacher/"+teacher_data.get("photo").toString();
+		if(photo_name.equals("") || photo_name.length() == 0){
+			photo_name = "no_photo.jpg";
+		}
+		System.out.println(photo_name);
+		ImageIcon photo = new ImageIcon(getClass().getResource("/images/photos/"+photo_name));
 		ImagenPanel Imagen = new ImagenPanel(photo, UsersPhoto.getWidth(), UsersPhoto.getHeight());
 		UsersPhoto.add(Imagen);
 		UsersPhoto.repaint();

@@ -67,11 +67,25 @@ public class CtrlTeacher {
 		}
 		return messages;
 	}
+	public Hashtable viewMessages2(int classroom_id, int teacher_id){
+		Hashtable messages = new Hashtable();
+		if(teacher_id > 0){
+			messages = mod.getMessages2(classroom_id, teacher_id);
+		}
+		return messages;
+	}
 	public HashMap getSubjectsTeacher(int id){
 		HashMap subjects = new HashMap();
 		if(id > 0){
 			subjects = mod.getSubjectsbyTeacherId(id);
 		}
 		return subjects;
+	}
+	public String getMessageByID(int teacher_id){
+		String message = "";
+		if( teacher_id > 0 ){
+			message = mod.getMessageByID(teacher_id);
+		}
+		return message;
 	}
 }

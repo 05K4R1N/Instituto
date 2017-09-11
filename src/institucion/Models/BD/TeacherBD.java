@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 /**
  *
  * @author master
@@ -151,6 +152,31 @@ public class TeacherBD {
 		}
 		return messages;
 	}
+	public Hashtable getMessages2(int classroom_id, int teacher_id){
+		Hashtable messages = new Hashtable();
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		String query = "SELECT id, title "
+					+ "FROM message "
+					+ "WHERE teacher_id = ? AND classroom_id = ?";
+		try{
+			conn = Conexion.getInstance().getConnection();
+			ptmt = conn.prepareStatement(query);
+			ptmt.setInt(1, teacher_id);
+			ptmt.setInt(2, classroom_id);
+			rs = ptmt.executeQuery();
+			while(rs.next()){
+				messages.put(rs.getInt("id"), rs.getString("title"));
+			}
+			rs.close();
+			ptmt.close();
+			conn.close();
+		}catch(SQLException e){
+			System.out.println(e);	
+		}
+		return messages;
+	}
 	public HashMap getSubjectsbyTeacherId(int id){
 		HashMap subjects = new HashMap();
 		Connection conn = null;
@@ -174,5 +200,29 @@ public class TeacherBD {
 			System.out.println(e);
 		}
 		return subjects;
+	}
+	public String getMessageByID(int teacher_id){
+		String message = "";
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		String query = "SELECT content "
+						+ "FROM message "
+						+ "WHERE id = ?";
+		try{
+			conn = Conexion.getInstance().getConnection();
+			ptmt = conn.prepareStatement(query);
+			ptmt.setInt(1, teacher_id);
+			rs = ptmt.executeQuery();
+			rs.next();
+			message = rs.getString("content");
+			
+			rs.close();
+			ptmt.close();
+			conn.close();
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		return message;
 	}
 }

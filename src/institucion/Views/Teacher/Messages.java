@@ -7,8 +7,14 @@
 package institucion.Views.Teacher;
 
 import institucion.Controllers.CtrlTeacher;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Map;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 /**
  *
  * @author master
@@ -29,7 +35,7 @@ public class Messages extends javax.swing.JFrame {
 		this.teacher_id   = teacher_id;
         this.setSize(583, 481);
         this.setLocationRelativeTo(null);
-		System.out.println(classroom_id + " " + teacher_id);
+		message_content.setLineWrap(true);
     }
 
     private Messages() {
@@ -45,12 +51,11 @@ public class Messages extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        MessageList = new javax.swing.JList();
+        panelMessages = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         btnSalir = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        message_content = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -58,35 +63,41 @@ public class Messages extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new java.awt.GridLayout());
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 0));
 
-        MessageList.setBackground(new java.awt.Color(51, 102, 0));
-        MessageList.setFont(new java.awt.Font("Loma", 0, 13)); // NOI18N
-        MessageList.setForeground(new java.awt.Color(204, 255, 255));
-        MessageList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane1.setViewportView(MessageList);
+        panelMessages.setBackground(new java.awt.Color(51, 102, 0));
+
+        javax.swing.GroupLayout panelMessagesLayout = new javax.swing.GroupLayout(panelMessages);
+        panelMessages.setLayout(panelMessagesLayout);
+        panelMessagesLayout.setHorizontalGroup(
+            panelMessagesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 230, Short.MAX_VALUE)
+        );
+        panelMessagesLayout.setVerticalGroup(
+            panelMessagesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 420, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(panelMessages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(panelMessages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 206, 480);
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 0));
 
@@ -105,36 +116,38 @@ public class Messages extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setBackground(new java.awt.Color(0, 101, 0));
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        message_content.setBackground(new java.awt.Color(0, 101, 0));
+        message_content.setColumns(20);
+        message_content.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
+        message_content.setForeground(new java.awt.Color(255, 255, 255));
+        message_content.setRows(5);
+        jScrollPane3.setViewportView(message_content);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(161, Short.MAX_VALUE)
-                .addComponent(btnSalir)
-                .addGap(155, 155, 155))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(118, 118, 118)
+                        .addComponent(btnSalir))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addContainerGap(68, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(32, 32, 32)
                 .addComponent(btnSalir)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(203, 0, 380, 480);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -144,12 +157,28 @@ public class Messages extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        ArrayList<String> messages = ctrl.viewMessages(classroom_id, teacher_id);
-		DefaultListModel list_aux = new DefaultListModel();
-		for(String m: messages){
-			list_aux.addElement(m);
+		Map<Integer,String> messages = ctrl.viewMessages2(classroom_id, teacher_id);
+		int y = 0;
+		for(Map.Entry<Integer, String> message: messages.entrySet()){
+			JButton btn_message = new JButton();
+			btn_message.setText(message.getValue());
+			btn_message.setFont(new Font("Loma", Font.PLAIN, 11));
+			btn_message.setBounds(0, y,panelMessages.getWidth(), 20);
+			btn_message.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//message_content.setText("seleccionado"+message.getKey());
+					int id = message.getKey();
+					String message = ctrl.getMessageByID(id);
+					message_content.setText(message);
+				}
+			});
+			panelMessages.add(btn_message);
+            panelMessages.revalidate();
+            panelMessages.repaint();
+            y = y + 20;
+			
 		}
-		MessageList.setModel(list_aux);
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -188,12 +217,11 @@ public class Messages extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList MessageList;
     private javax.swing.JButton btnSalir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea message_content;
+    private javax.swing.JPanel panelMessages;
     // End of variables declaration//GEN-END:variables
 }

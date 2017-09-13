@@ -15,6 +15,7 @@ import java.util.Hashtable;
 import java.util.Map;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 /**
  *
  * @author master
@@ -56,6 +57,8 @@ public class Messages extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         message_content = new javax.swing.JTextArea();
+        btndelete = new javax.swing.JButton();
+        txtMessageId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -63,7 +66,7 @@ public class Messages extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(51, 102, 0));
 
@@ -123,6 +126,18 @@ public class Messages extends javax.swing.JFrame {
         message_content.setRows(5);
         jScrollPane3.setViewportView(message_content);
 
+        btndelete.setBackground(new java.awt.Color(255, 0, 0));
+        btndelete.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
+        btndelete.setForeground(new java.awt.Color(255, 255, 255));
+        btndelete.setText("ELIMINAR");
+        btndelete.setBorderPainted(false);
+        btndelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btndelete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btndeleteMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -134,13 +149,22 @@ public class Messages extends javax.swing.JFrame {
                         .addComponent(btnSalir))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btndelete)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtMessageId, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(68, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btndelete)
+                    .addComponent(txtMessageId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(btnSalir)
@@ -157,7 +181,9 @@ public class Messages extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-		Map<Integer,String> messages = ctrl.viewMessages2(classroom_id, teacher_id);
+		btndelete.setEnabled(false);
+		txtMessageId.setVisible(false);
+		Map<Integer,String> messages = ctrl.viewMessages(classroom_id, teacher_id);
 		int y = 0;
 		for(Map.Entry<Integer, String> message: messages.entrySet()){
 			JButton btn_message = new JButton();
@@ -167,10 +193,11 @@ public class Messages extends javax.swing.JFrame {
 			btn_message.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					//message_content.setText("seleccionado"+message.getKey());
 					int id = message.getKey();
+					txtMessageId.setText(String.valueOf(id));
 					String message = ctrl.getMessageByID(id);
 					message_content.setText(message);
+					btndelete.setEnabled(true);
 				}
 			});
 			panelMessages.add(btn_message);
@@ -180,6 +207,14 @@ public class Messages extends javax.swing.JFrame {
 			
 		}
     }//GEN-LAST:event_formWindowOpened
+
+    private void btndeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btndeleteMouseClicked
+        int message_id = Integer.parseInt(txtMessageId.getText());
+		int resp = JOptionPane.showConfirmDialog(null, "Eliminacion de Mensaje en vista","Eliminar",JOptionPane.YES_NO_OPTION);
+		if(resp == 1){
+			ctrl.deleteMessageByTeacherID(message_id);
+		}
+    }//GEN-LAST:event_btndeleteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -218,10 +253,12 @@ public class Messages extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btndelete;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea message_content;
     private javax.swing.JPanel panelMessages;
+    private javax.swing.JTextField txtMessageId;
     // End of variables declaration//GEN-END:variables
 }

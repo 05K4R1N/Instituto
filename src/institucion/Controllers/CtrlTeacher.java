@@ -60,17 +60,11 @@ public class CtrlTeacher {
         classrooms = mod.getClassRooms();
         return classrooms;
     }
-	public ArrayList<String> viewMessages(int classroom_id, int teacher_id){
-		ArrayList<String> messages = null;
-		if( classroom_id > 0 || teacher_id > 0 ){
-			messages = mod.getMessages(classroom_id, teacher_id);
-		}
-		return messages;
-	}
-	public Hashtable viewMessages2(int classroom_id, int teacher_id){
+	
+	public Hashtable viewMessages(int classroom_id, int teacher_id){
 		Hashtable messages = new Hashtable();
 		if(teacher_id > 0){
-			messages = mod.getMessages2(classroom_id, teacher_id);
+			messages = mod.getMessages(classroom_id, teacher_id);
 		}
 		return messages;
 	}
@@ -87,5 +81,10 @@ public class CtrlTeacher {
 			message = mod.getMessageByID(teacher_id);
 		}
 		return message;
+	}
+	public void deleteMessageByTeacherID(int teacher_id){
+		if(teacher_id > 0){
+			mod.dropMessageByTeacherID(teacher_id);
+		}
 	}
 }

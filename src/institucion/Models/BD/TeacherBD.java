@@ -127,32 +127,8 @@ public class TeacherBD {
         }
         return classrooms;
     }
-	public ArrayList<String> getMessages(int classroom_id, int teacher_id){
-		ArrayList<String> messages = new ArrayList<String>();
-		Connection conn			= null;
-		ResultSet rs			= null;
-		PreparedStatement ptmt	= null;
-		String query = "SELECT title "
-					+ "FROM message "
-					+ "WHERE teacher_id = ? AND classroom_id = ?";
-		try{
-			conn = Conexion.getInstance().getConnection();
-			ptmt = conn.prepareStatement(query);
-			ptmt.setInt(1, teacher_id);
-			ptmt.setInt(2, classroom_id);
-			rs = ptmt.executeQuery();
-			while(rs.next()){
-				messages.add(rs.getString("title"));
-			}
-			rs.close();
-			ptmt.close();
-			conn.close();
-		}catch(SQLException e){
-			System.out.println(e);
-		}
-		return messages;
-	}
-	public Hashtable getMessages2(int classroom_id, int teacher_id){
+	
+	public Hashtable getMessages(int classroom_id, int teacher_id){
 		Hashtable messages = new Hashtable();
 		Connection conn = null;
 		PreparedStatement ptmt = null;
@@ -224,5 +200,23 @@ public class TeacherBD {
 			System.out.println(e);
 		}
 		return message;
+	}
+	public void dropMessageByTeacherID(int teacher_id){
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		String sql = "DELETE FROM message where id = ?";
+		try{
+			conn = Conexion.getInstance().getConnection();
+			ptmt = conn.prepareStatement(sql);
+			ptmt.setInt(1, teacher_id);
+			rs = ptmt.executeQuery();
+			
+			rs.close();
+			ptmt.close();
+			conn.close();
+		}catch(SQLException e){
+			System.out.println(e);
+		}
 	}
 }

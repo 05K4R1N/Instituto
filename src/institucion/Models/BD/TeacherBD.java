@@ -128,8 +128,8 @@ public class TeacherBD {
         return classrooms;
     }
 	
-	public Hashtable getMessages(int classroom_id, int teacher_id){
-		Hashtable messages = new Hashtable();
+	public Hashtable<Integer,String> getMessages(int classroom_id, int teacher_id){
+		Hashtable<Integer,String> messages = new Hashtable();
 		Connection conn = null;
 		PreparedStatement ptmt = null;
 		ResultSet rs = null;
@@ -201,18 +201,17 @@ public class TeacherBD {
 		}
 		return message;
 	}
-	public void dropMessageByTeacherID(int teacher_id){
+	public void dropMessageByTeacherID(int message_id, int teacher_id){
 		Connection conn = null;
 		PreparedStatement ptmt = null;
-		ResultSet rs = null;
-		String sql = "DELETE FROM message where id = ?";
+		String sql = "DELETE FROM message where id = ? AND teacher_id = ?";
 		try{
 			conn = Conexion.getInstance().getConnection();
 			ptmt = conn.prepareStatement(sql);
-			ptmt.setInt(1, teacher_id);
-			rs = ptmt.executeQuery();
+			ptmt.setInt(1, message_id);
+			ptmt.setInt(2, teacher_id);
+			ptmt.executeUpdate();
 			
-			rs.close();
 			ptmt.close();
 			conn.close();
 		}catch(SQLException e){

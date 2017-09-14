@@ -75,16 +75,16 @@ public class CtrlTeacher {
 		}
 		return subjects;
 	}
-	public String getMessageByID(int teacher_id){
+	public String getMessageByID(int message_id){
 		String message = "";
-		if( teacher_id > 0 ){
-			message = mod.getMessageByID(teacher_id);
+		if( message_id > 0 ){
+			message = mod.getMessageByID(message_id);
 		}
 		return message;
 	}
-	public void deleteMessageByTeacherID(int teacher_id){
-		if(teacher_id > 0){
-			mod.dropMessageByTeacherID(teacher_id);
+	public void deleteMessageByMessageID(int message_id, int teacher_id){
+		if(teacher_id > 0 && message_id > 0){
+			mod.dropMessageByTeacherID(message_id, teacher_id);
 		}
 	}
 }

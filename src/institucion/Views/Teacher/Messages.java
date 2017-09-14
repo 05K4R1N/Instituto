@@ -7,6 +7,7 @@
 package institucion.Views.Teacher;
 
 import institucion.Controllers.CtrlTeacher;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -183,39 +184,62 @@ public class Messages extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 		btndelete.setEnabled(false);
 		txtMessageId.setVisible(false);
-		Map<Integer,String> messages = ctrl.viewMessages(classroom_id, teacher_id);
-		int y = 0;
-		for(Map.Entry<Integer, String> message: messages.entrySet()){
-			JButton btn_message = new JButton();
-			btn_message.setText(message.getValue());
-			btn_message.setFont(new Font("Loma", Font.PLAIN, 11));
-			btn_message.setBounds(0, y,panelMessages.getWidth(), 20);
-			btn_message.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					int id = message.getKey();
-					txtMessageId.setText(String.valueOf(id));
-					String message = ctrl.getMessageByID(id);
-					message_content.setText(message);
-					btndelete.setEnabled(true);
-				}
-			});
-			panelMessages.add(btn_message);
-            panelMessages.revalidate();
-            panelMessages.repaint();
-            y = y + 20;
-			
+		System.out.println(listMessages());
+		if(listMessages() == 0){
+			JOptionPane.showMessageDialog(null, "No existe ningun mensaje en Notificacion", "SIN NOTIFICACION", JOptionPane.ERROR_MESSAGE);
+			this.setVisible(false);
 		}
     }//GEN-LAST:event_formWindowOpened
 
     private void btndeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btndeleteMouseClicked
-        int message_id = Integer.parseInt(txtMessageId.getText());
-		int resp = JOptionPane.showConfirmDialog(null, "Eliminacion de Mensaje en vista","Eliminar",JOptionPane.YES_NO_OPTION);
-		if(resp == 1){
-			ctrl.deleteMessageByTeacherID(message_id);
+        if(btndelete.isEnabled()){
+			int message_id = Integer.parseInt(txtMessageId.getText());
+			int resp = JOptionPane.showConfirmDialog(null, "Eliminacion de Mensaje en vista","Eliminar",JOptionPane.YES_NO_OPTION);
+			if(resp == 0){
+				ctrl.deleteMessageByMessageID(message_id, teacher_id);
+				message_content.setText("");
+				txtMessageId.setText("");
+				btndelete.setEnabled(false);
+				panelMessages.removeAll();
+				int num_messages = listMessages();
+				if(num_messages == 0 ){
+					JOptionPane.showMessageDialog(null, "No existe ningun mensaje en Notificacion", "SIN NOTIFICACION", JOptionPane.ERROR_MESSAGE);
+					this.setVisible(false);
+				}
+			}
 		}
     }//GEN-LAST:event_btndeleteMouseClicked
+	public int  listMessages(){
+		Map<Integer,String> messages = ctrl.viewMessages(classroom_id, teacher_id);
+		int y = 0;
+		if(messages.size() > 0){
+			for(Map.Entry<Integer, String> message: messages.entrySet()){
+				JButton btn_message = new JButton();
+				btn_message.setText(message.getValue());
+				btn_message.setFont(new Font("Loma", Font.PLAIN, 11));
+				btn_message.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				btn_message.setBounds(0, y,panelMessages.getWidth(), 20);
+				btn_message.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						int id = message.getKey();
+						txtMessageId.setText(String.valueOf(id));
+						String message = ctrl.getMessageByID(id);
+						message_content.setText(message);
+						txtMessageId.setText(String.valueOf(id));
+						btndelete.setEnabled(true);
+					}
+				});
+				panelMessages.add(btn_message);
+				panelMessages.revalidate();
+				panelMessages.repaint();
+				y = y + 20;
 
+			}
+		}
+		int num_messages = messages.size();
+		return num_messages;
+	}
     /**
      * @param args the command line arguments
      */

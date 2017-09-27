@@ -15,7 +15,9 @@ public class Edit extends javax.swing.JFrame {
 	 * Creates new form Edit
 	 */
 	public Edit() {
+		this.setUndecorated(true);
 		initComponents();
+        this.setLocationRelativeTo(null);
 	}
 
 	/**
@@ -25,18 +27,210 @@ public class Edit extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        lblIconTitle = new javax.swing.JLabel();
+        lblIconEdit = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lblName = new javax.swing.JLabel();
+        lblLastname = new javax.swing.JLabel();
+        lblDateOfBirth = new javax.swing.JLabel();
+        lblSex = new javax.swing.JLabel();
+        lblAddress = new javax.swing.JLabel();
+        lblCI = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        cmbSex = new javax.swing.JComboBox<>();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jSeparator6 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
+
+        jPanel1.setBackground(new java.awt.Color(0, 51, 51));
+
+        lblIconTitle.setFont(new java.awt.Font("Loma", 1, 24)); // NOI18N
+        lblIconTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lblIconTitle.setText("ACTUALIZAR PERFIL");
+
+        lblIconEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/teacher.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(91, Short.MAX_VALUE)
+                .addComponent(lblIconTitle)
+                .addGap(75, 75, 75))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(138, 138, 138)
+                .addComponent(lblIconEdit)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(204, Short.MAX_VALUE)
+                .addComponent(lblIconEdit)
+                .addGap(54, 54, 54)
+                .addComponent(lblIconTitle)
+                .addGap(165, 165, 165))
         );
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 410, 590);
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+
+        lblName.setFont(new java.awt.Font("Loma", 1, 16)); // NOI18N
+        lblName.setForeground(new java.awt.Color(255, 255, 255));
+        lblName.setText("Nombres:");
+
+        lblLastname.setFont(new java.awt.Font("Loma", 1, 16)); // NOI18N
+        lblLastname.setForeground(new java.awt.Color(255, 255, 255));
+        lblLastname.setText("Apellidos:");
+
+        lblDateOfBirth.setFont(new java.awt.Font("Loma", 1, 16)); // NOI18N
+        lblDateOfBirth.setForeground(new java.awt.Color(255, 255, 255));
+        lblDateOfBirth.setText("Fecha de Nacimiento:");
+
+        lblSex.setFont(new java.awt.Font("Loma", 1, 16)); // NOI18N
+        lblSex.setForeground(new java.awt.Color(255, 255, 255));
+        lblSex.setText("Sexo:");
+
+        lblAddress.setFont(new java.awt.Font("Loma", 1, 16)); // NOI18N
+        lblAddress.setForeground(new java.awt.Color(255, 255, 255));
+        lblAddress.setText("Direccion:");
+
+        lblCI.setFont(new java.awt.Font("Loma", 1, 16)); // NOI18N
+        lblCI.setForeground(new java.awt.Color(255, 255, 255));
+        lblCI.setText("CI:");
+
+        jTextField1.setBackground(new java.awt.Color(0, 0, 0));
+        jTextField1.setBorder(null);
+
+        jTextField2.setBackground(new java.awt.Color(0, 0, 0));
+        jTextField2.setBorder(null);
+
+        cmbSex.setBackground(new java.awt.Color(0, 0, 0));
+        cmbSex.setFont(new java.awt.Font("Loma", 1, 12)); // NOI18N
+        cmbSex.setForeground(new java.awt.Color(255, 255, 255));
+
+        jTextField3.setBackground(new java.awt.Color(0, 0, 0));
+        jTextField3.setBorder(null);
+
+        jTextField4.setBackground(new java.awt.Color(0, 0, 0));
+        jTextField4.setBorder(null);
+
+        jButton1.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/edit.png"))); // NOI18N
+        jButton1.setText("ACTUALIZAR");
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        jButton2.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
+        jButton2.setText("SALIR");
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jSeparator5)
+                        .addComponent(jSeparator3)
+                        .addComponent(jSeparator2)
+                        .addComponent(lblCI)
+                        .addComponent(lblAddress)
+                        .addComponent(lblSex)
+                        .addComponent(lblDateOfBirth)
+                        .addComponent(lblLastname)
+                        .addComponent(lblName)
+                        .addComponent(cmbSex, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField1)
+                        .addComponent(jTextField3)
+                        .addComponent(jTextField4)
+                        .addComponent(jSeparator1)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jSeparator4)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(lblName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblLastname)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblDateOfBirth)
+                .addGap(2, 2, 2)
+                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(lblSex)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmbSex, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCI)
+                .addGap(3, 3, 3)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAddress)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(405, 0, 330, 590);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -77,5 +271,29 @@ public class Edit extends javax.swing.JFrame {
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cmbSex;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel lblAddress;
+    private javax.swing.JLabel lblCI;
+    private javax.swing.JLabel lblDateOfBirth;
+    private javax.swing.JLabel lblIconEdit;
+    private javax.swing.JLabel lblIconTitle;
+    private javax.swing.JLabel lblLastname;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblSex;
     // End of variables declaration//GEN-END:variables
 }

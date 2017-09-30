@@ -39,6 +39,7 @@ public class PrincipalBD {
 			p.setAddress(rs.getString("address"));
 			p.setDate_of_birth(rs.getDate("date_of_birth"));
 			p.setCi(rs.getInt("ci"));
+			p.setPhoto_name(rs.getString("photo"));
 			
 			rs.close();
 			ptmt.close();

@@ -5,8 +5,10 @@
  */
 package institucion.Views.Director;
 
+import config.ImagenPanel;
 import institucion.Controllers.CtrlPrincipal;
 import institucion.Models.Users.Principal;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -55,7 +57,7 @@ public class Profile extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
-        jPanel2 = new javax.swing.JPanel();
+        principalPhoto = new javax.swing.JPanel();
         btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -109,14 +111,14 @@ public class Profile extends javax.swing.JFrame {
         lblPrincipalSex.setForeground(new java.awt.Color(201, 201, 201));
         lblPrincipalSex.setText("XXXXXX");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout principalPhotoLayout = new javax.swing.GroupLayout(principalPhoto);
+        principalPhoto.setLayout(principalPhotoLayout);
+        principalPhotoLayout.setHorizontalGroup(
+            principalPhotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 156, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        principalPhotoLayout.setVerticalGroup(
+            principalPhotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 146, Short.MAX_VALUE)
         );
 
@@ -126,6 +128,11 @@ public class Profile extends javax.swing.JFrame {
         btnClose.setBorderPainted(false);
         btnClose.setContentAreaFilled(false);
         btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,7 +140,7 @@ public class Profile extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(principalPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -178,7 +185,7 @@ public class Profile extends javax.swing.JFrame {
                         .addComponent(lblPrincipalLastname)
                         .addGap(3, 3, 3)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(principalPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblCI)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -223,15 +230,27 @@ public class Profile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        Principal p = ctrlP.getPrincipalDataByID(director_id);
+        showData();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCloseActionPerformed
+	public void showData(){
+		Principal p = ctrlP.getPrincipalDataByID(director_id);
+		String photo_name = "principal/"+p.getPhoto_name();
+		System.out.println(photo_name);
 		lblPrincipalName.setText(p.getName());
 		lblPrincipalLastname.setText(p.getLastname());
 		lblPrincipalCI.setText(String.valueOf(p.getCi()));
 		lblPrincipalSex.setText((p.getSex().equals("F"))?"Femenino":"Masculino");
 		lblPrincipalAddress.setText(p.getAddress());
 		lblPrincipalBirthday.setText(String.valueOf(p.getDate_of_birth()));
-    }//GEN-LAST:event_formWindowOpened
-
+		ImageIcon photo = new ImageIcon(getClass().getResource("/images/photos/"+photo_name));
+		ImagenPanel Imagen = new ImagenPanel(photo, principalPhoto.getWidth(), principalPhoto.getHeight());
+		principalPhoto.add(Imagen);
+		principalPhoto.repaint();
+	}
 	/**
 	 * @param args the command line arguments
 	 */
@@ -270,7 +289,6 @@ public class Profile extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -289,5 +307,6 @@ public class Profile extends javax.swing.JFrame {
     private javax.swing.JLabel lblPrincipalName;
     private javax.swing.JLabel lblPrincipalSex;
     private javax.swing.JLabel lblSex;
+    private javax.swing.JPanel principalPhoto;
     // End of variables declaration//GEN-END:variables
 }

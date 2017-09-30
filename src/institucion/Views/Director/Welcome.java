@@ -14,6 +14,7 @@ public class Welcome extends javax.swing.JFrame {
 	/**
 	 * Creates new form Welcome
 	 */
+	private int director_id = 1;
 	public Welcome() {
 		this.setUndecorated(true);
 		initComponents();
@@ -60,6 +61,11 @@ public class Welcome extends javax.swing.JFrame {
         btnProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProfile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnProfile.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProfileActionPerformed(evt);
+            }
+        });
 
         btnEditProfile.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
         btnEditProfile.setForeground(new java.awt.Color(255, 255, 255));
@@ -297,6 +303,11 @@ public class Welcome extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
+        Profile e = new Profile(director_id);
+		e.setVisible(true);
+    }//GEN-LAST:event_btnProfileActionPerformed
 
 	/**
 	 * @param args the command line arguments

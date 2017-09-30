@@ -5,6 +5,9 @@
  */
 package institucion.Views.Director;
 
+import institucion.Controllers.CtrlPrincipal;
+import institucion.Models.Users.Principal;
+
 /**
  *
  * @author o5k4r1n
@@ -14,10 +17,18 @@ public class Profile extends javax.swing.JFrame {
 	/**
 	 * Creates new form Profile
 	 */
+	private CtrlPrincipal ctrlP;
+	private int director_id;
 	public Profile() {
 		this.setUndecorated(true);
 		initComponents();
 		this.setLocationRelativeTo(null);
+		this.setSize(406,575);
+		ctrlP = new CtrlPrincipal();
+	}
+
+	Profile(int director_id) {
+		this.director_id = director_id;
 	}
 
 	/**
@@ -50,6 +61,11 @@ public class Profile extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -99,7 +115,7 @@ public class Profile extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 155, Short.MAX_VALUE)
+            .addGap(0, 156, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,6 +223,11 @@ public class Profile extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        Principal p = ctrlP.getPrincipalDataByID(director_id);
+		System.out.println(p);
+    }//GEN-LAST:event_formWindowOpened
 
 	/**
 	 * @param args the command line arguments

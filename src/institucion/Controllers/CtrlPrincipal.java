@@ -6,6 +6,7 @@
 package institucion.Controllers;
 
 import institucion.Models.BD.PrincipalBD;
+import institucion.Models.Users.Principal;
 
 /**
  *
@@ -16,5 +17,19 @@ public class CtrlPrincipal {
 	
 	public CtrlPrincipal(){
 		mod = new PrincipalBD();
+	}
+	public Principal getPrincipalDataByID(int director_id){
+		Principal p = new Principal();
+		if(director_id > 0){
+			p = mod.getPrincipalByID(director_id);
+		}
+		return p;
+	}
+	public boolean updatePrincipal(Principal p, int director_id){
+		boolean updated = false;
+		if(mod.editPrincipalData(p, director_id)){
+			updated = true;
+		}
+		return updated;
 	}
 }

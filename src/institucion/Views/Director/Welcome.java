@@ -5,6 +5,8 @@
  */
 package institucion.Views.Director;
 
+import javax.swing.JTree;
+
 /**
  *
  * @author o5k4r1n
@@ -77,6 +79,11 @@ public class Welcome extends javax.swing.JFrame {
         btnEditProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditProfile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEditProfile.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEditProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditProfileActionPerformed(evt);
+            }
+        });
 
         btnMessage.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
         btnMessage.setForeground(new java.awt.Color(255, 255, 255));
@@ -305,9 +312,14 @@ public class Welcome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
-        Profile e = new Profile(director_id);
+        Profile e = new Profile();
 		e.setVisible(true);
     }//GEN-LAST:event_btnProfileActionPerformed
+
+    private void btnEditProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditProfileActionPerformed
+        Edit e = new Edit();
+		e.setVisible(true);
+    }//GEN-LAST:event_btnEditProfileActionPerformed
 
 	/**
 	 * @param args the command line arguments

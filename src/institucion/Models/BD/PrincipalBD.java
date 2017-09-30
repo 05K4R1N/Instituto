@@ -53,7 +53,10 @@ public class PrincipalBD {
 		Connection			conn	= null;
 		PreparedStatement	ptmt	= null;
 		ResultSet			rs		= null;
+		
 		Date principal_birthday = new Date(p.getDate_of_birth().getTime()); 
+		String sex = (p.getSex().equals("Femenino"))?"F":"M";
+		
 		String query = "UPDATE principal set name = ?, "
 											+ "lastname = ?, "
 											+ "sex = ?, "
@@ -66,10 +69,11 @@ public class PrincipalBD {
 			ptmt = conn.prepareStatement(query);
 			ptmt.setString(1, p.getName());
 			ptmt.setString(2, p.getLastname());
-			ptmt.setString(3, p.getSex());
+			ptmt.setString(3, sex);
 			ptmt.setString(4, p.getAddress());
 			ptmt.setDate(5, principal_birthday);
 			ptmt.setInt(6, p.getCi());
+			ptmt.setInt(7, director_id);
 			
 			ptmt.executeUpdate();
 			res = true;

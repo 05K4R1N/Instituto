@@ -20,6 +20,15 @@ public class Principal {
 	private int ci;
 
 	public Principal(){}
+
+	public Principal(String name, String lastname, String sex, String address, Date date_of_birth, int ci) {
+		this.name = name;
+		this.lastname = lastname;
+		this.sex = sex;
+		this.address = address;
+		this.date_of_birth = date_of_birth;
+		this.ci = ci;
+	}
 	
 	public String getName() {
 		return name;

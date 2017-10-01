@@ -7,6 +7,7 @@ package institucion.Controllers;
 
 import institucion.Models.BD.PrincipalBD;
 import institucion.Models.Users.Principal;
+import java.util.HashMap;
 
 /**
  *
@@ -31,5 +32,8 @@ public class CtrlPrincipal {
 			updated = true;
 		}
 		return updated;
+	}
+	public HashMap<Integer, String> getAllTeachers(){
+		return mod.getAllTeachers();
 	}
 }

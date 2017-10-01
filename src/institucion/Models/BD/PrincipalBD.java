@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 
 /**
  *
@@ -84,5 +85,27 @@ public class PrincipalBD {
 			System.out.println(e);
 		}
 		return res;
+	}
+	public HashMap getAllTeachers(){
+		HashMap<Integer, String> teachers = new HashMap();
+		Connection			conn	=	null;
+		PreparedStatement	ptmt	=	null;
+		ResultSet			rs		=	null;
+		String query = "SELECT id, first_name, last_name "
+					+ "FROM Teacher";
+		try{
+			conn = Conexion.getInstance().getConnection();
+			ptmt = conn.prepareStatement(query);
+			rs	 = ptmt.executeQuery();
+			while(rs.next()){
+				teachers.put(rs.getInt("id"), rs.getString("first_name") + " " + rs.getString("last_name"));
+			}
+			rs.close();
+			ptmt.close();
+			conn.close();
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		return teachers;
 	}
 }

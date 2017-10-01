@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package institucion.Views.Director;
+package institucion.Views.Principal;
 
 import config.ImagenPanel;
 import institucion.Controllers.CtrlPrincipal;

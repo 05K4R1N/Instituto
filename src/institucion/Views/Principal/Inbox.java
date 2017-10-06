@@ -6,8 +6,12 @@
 package institucion.Views.Principal;
 
 import institucion.Controllers.CtrlPrincipal;
+import institucion.Controllers.CtrlTeacher;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 /**
  *
@@ -19,10 +23,12 @@ public class Inbox extends javax.swing.JFrame {
 	 * Creates new form Inbox
 	 */
 	private CtrlPrincipal ctrlP;
+	private CtrlTeacher ctrlT;
 	public Inbox() {
 		this.setUndecorated(true);
 		initComponents();
 		ctrlP = new CtrlPrincipal();
+		ctrlT = new CtrlTeacher();
 	}
 
 	/**
@@ -48,6 +54,7 @@ public class Inbox extends javax.swing.JFrame {
         txtTeacher = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         list_teachers = new javax.swing.JList<>();
+        txtIDTeacher = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -99,7 +106,18 @@ public class Inbox extends javax.swing.JFrame {
         lblTeacher.setForeground(new java.awt.Color(255, 255, 255));
         lblTeacher.setText("Profesor:");
 
+        txtTeacher.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTeacherKeyReleased(evt);
+            }
+        });
+
         list_teachers.setFont(new java.awt.Font("Loma", 0, 12)); // NOI18N
+        list_teachers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                list_teachersMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(list_teachers);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -122,13 +140,15 @@ public class Inbox extends javax.swing.JFrame {
                                     .addComponent(lblTitle))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane2)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(lblTeacher)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane2))))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtIDTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblMainTItle2)
@@ -153,7 +173,9 @@ public class Inbox extends javax.swing.JFrame {
                             .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblTeacher)
                             .addComponent(txtTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(45, 45, 45)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIDTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblMessage)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -182,8 +204,29 @@ public class Inbox extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
+		//txtIDTeacher.setVisible(false);
     }//GEN-LAST:event_formWindowOpened
+
+    private void txtTeacherKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTeacherKeyReleased
+		String teacher = txtTeacher.getText();
+		ArrayList<String> new_list = ctrlT.getTeachersBySearching(teacher);
+		DefaultListModel list_model = new DefaultListModel();
+		for(String t: new_list){
+			list_model.addElement(t);
+		}
+		list_teachers.setModel(list_model);
+    }//GEN-LAST:event_txtTeacherKeyReleased
+
+    private void list_teachersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list_teachersMouseClicked
+       String name = list_teachers.getSelectedValue();
+	   String[] aux_name = name.split("-");
+	   
+	   String ln = aux_name[0];
+	   String fn = aux_name[1];
+	   
+	   int id = ctrlT.getTeacherID(fn, ln);
+	   txtIDTeacher.setText(String.valueOf(id));
+    }//GEN-LAST:event_list_teachersMouseClicked
 
 	/**
 	 * @param args the command line arguments
@@ -234,6 +277,7 @@ public class Inbox extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JList<String> list_teachers;
     private javax.swing.JTable tabMessages;
+    private javax.swing.JTextField txtIDTeacher;
     private javax.swing.JTextArea txtMessage;
     private javax.swing.JTextField txtTeacher;
     private javax.swing.JTextField txtTitle;

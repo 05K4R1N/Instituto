@@ -87,4 +87,18 @@ public class CtrlTeacher {
 			mod.dropMessageByTeacherID(message_id, teacher_id);
 		}
 	}
+	public ArrayList<String> getTeachersBySearching(String name){
+		ArrayList<String> teachers = new ArrayList<String>();
+		if(name.length()!=0){
+			teachers = mod.getTeachersBySearch(name);
+		}
+		return teachers;
+	}
+	public int getTeacherID(String fn, String ln){
+		int teacher_id = 0;
+		if( fn.length() !=0 || ln.length() !=0 ){
+			teacher_id = mod.getTeacherID(fn, ln);
+		}
+		return teacher_id;
+	}
 }

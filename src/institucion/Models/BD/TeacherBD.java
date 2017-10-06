@@ -218,4 +218,46 @@ public class TeacherBD {
 			System.out.println(e);
 		}
 	}
+	public ArrayList<String> getTeachersBySearch(String name){
+		ArrayList<String> teachers = new ArrayList<String>();
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		String query = "SELECT CONCAT(last_name, '-', first_name) as teacher_name "
+					+ "FROM  Teacher "
+					+ "WHERE first_name LIKE '%"+name+"%' OR last_name LIKE '%"+name+"%'";
+		try{
+			conn = Conexion.getInstance().getConnection();
+			ptmt = conn.prepareStatement(query);
+			rs = ptmt.executeQuery();
+			while(rs.next()){
+				teachers.add(rs.getString("teacher_name"));
+			}
+			rs.close();
+			ptmt.close();
+			conn.close();
+		}catch(SQLException e){
+			System.err.println(e);
+		}
+		return teachers;
+	}
+	public int getTeacherID(String fname, String lname){
+		int teacher_id = 0;
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		String query = "SELECT id "
+					+ "FROM Teacher "
+					+ "WHERE first_name LIKE '%"+fname+"%' AND last_name LIKE '%"+lname+"%'";
+		try{
+			conn = Conexion.getInstance().getConnection();
+			ptmt = conn.prepareStatement(query);
+			rs = ptmt.executeQuery();
+			rs.next();
+			teacher_id = rs.getInt("id");
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		return teacher_id;
+	}
 }

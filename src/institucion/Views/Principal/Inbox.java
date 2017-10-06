@@ -98,9 +98,25 @@ public class Inbox extends javax.swing.JFrame {
         txtMessage.setRows(5);
         jScrollPane2.setViewportView(txtMessage);
 
+        btnSend.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
+        btnSend.setForeground(new java.awt.Color(255, 255, 255));
+        btnSend.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/sent.png"))); // NOI18N
         btnSend.setText("Enviar");
+        btnSend.setBorderPainted(false);
+        btnSend.setContentAreaFilled(false);
+        btnSend.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSend.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSend.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        btnClean.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
+        btnClean.setForeground(new java.awt.Color(255, 255, 255));
+        btnClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
         btnClean.setText("Limpiar");
+        btnClean.setBorderPainted(false);
+        btnClean.setContentAreaFilled(false);
+        btnClean.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClean.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnClean.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         lblTeacher.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
         lblTeacher.setForeground(new java.awt.Color(255, 255, 255));
@@ -184,7 +200,7 @@ public class Inbox extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSend)
                     .addComponent(btnClean))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -204,7 +220,7 @@ public class Inbox extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-		//txtIDTeacher.setVisible(false);
+		txtIDTeacher.setVisible(false);
     }//GEN-LAST:event_formWindowOpened
 
     private void txtTeacherKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTeacherKeyReleased

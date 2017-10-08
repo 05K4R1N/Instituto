@@ -5,6 +5,7 @@
         <group>
             <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Models/BD/PrincipalBD.java</file>
             <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Models/BD/TeacherBD.java</file>
+            <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Controllers/CtrlTeacher.java</file>
             <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Views/Principal/Welcome.java</file>
             <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Controllers/CtrlPrincipal.java</file>
             <file>file:/home/o5k4r1n/ProjectsJava/Instituto/src/institucion/Views/Principal/Inbox.java</file>

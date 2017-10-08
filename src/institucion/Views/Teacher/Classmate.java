@@ -191,7 +191,6 @@ public class Classmate extends javax.swing.JFrame {
 		if(evt.getStateChange() == 1){
 			panelStudent.removeAll();
 			panelStudent.repaint();
-			//System.out.println( evt.getItem());
 			classroom = evt.getItem().toString();
 			int y = 0;
 			int x = 0;

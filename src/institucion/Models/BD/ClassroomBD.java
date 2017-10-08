@@ -61,4 +61,28 @@ public class ClassroomBD {
 		}
 		return students;
 	}
+	public int getClassroomID(String classroom){
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		int id = 0;
+		String query = "SELECT id "
+					+ "FROM classroom "
+					+ "WHERE name=?";
+		try{
+			conn = Conexion.getInstance().getConnection();
+			ptmt = conn.prepareStatement(query);
+			ptmt.setString(1, classroom);
+			rs = ptmt.executeQuery();
+			rs.next();
+			id = rs.getInt("id");
+			
+			rs.close();
+			ptmt.close();
+			conn.close();
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		return id;
+	}
 }

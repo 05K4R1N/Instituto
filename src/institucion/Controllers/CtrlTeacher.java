@@ -101,4 +101,11 @@ public class CtrlTeacher {
 		}
 		return teacher_id;
 	}
+	public ArrayList<String> getTeacherByClassroom(int classroom_id){
+		ArrayList<String> teachers = new ArrayList<String>();
+		if(classroom_id != 0){
+			teachers = mod.getTeachersByClassroom(classroom_id);
+		}
+		return teachers;
+	}
 }

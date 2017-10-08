@@ -260,4 +260,28 @@ public class TeacherBD {
 		}
 		return teacher_id;
 	}
+	public ArrayList<String> getTeachersByClassroom(int classroom_id){
+		ArrayList<String> teachers = new ArrayList<String>();
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		String query = "SELECT CONCAT(A.last_name, ', ', A.first_name) as teachers_name "
+						+ "FROM Teacher A, teacher_classroom B "
+						+ "WHERE  B.teacher_id = A.id AND B.classroom_id = ?";
+		try{
+			conn = Conexion.getInstance().getConnection();
+			ptmt = conn.prepareStatement(query);
+			ptmt.setInt(1, classroom_id);
+			rs = ptmt.executeQuery();
+			while(rs.next()){
+				teachers.add(rs.getString("teachers_name"));
+			}
+			rs.close();
+			ptmt.close();
+			conn.close();
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		return teachers;
+	}
 }

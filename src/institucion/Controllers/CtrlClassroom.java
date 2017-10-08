@@ -31,4 +31,11 @@ public class CtrlClassroom {
 		}
 		return students;
 	}
+	public int getClassroomID(String classroom){
+		int classroom_id = 0;
+		if(classroom.length()!=0){
+			classroom_id = mod.getClassroomID(classroom);
+		}
+		return classroom_id;
+	}
 }

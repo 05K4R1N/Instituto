@@ -5,13 +5,12 @@
  */
 package institucion.Views.Principal;
 
+import institucion.Controllers.CtrlClassroom;
 import institucion.Controllers.CtrlPrincipal;
 import institucion.Controllers.CtrlTeacher;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
+
 
 /**
  *
@@ -24,11 +23,13 @@ public class Inbox extends javax.swing.JFrame {
 	 */
 	private CtrlPrincipal ctrlP;
 	private CtrlTeacher ctrlT;
+	private CtrlClassroom ctrlC;
 	public Inbox() {
 		this.setUndecorated(true);
 		initComponents();
 		ctrlP = new CtrlPrincipal();
 		ctrlT = new CtrlTeacher();
+		ctrlC = new CtrlClassroom();
 	}
 
 	/**
@@ -55,6 +56,9 @@ public class Inbox extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         list_teachers = new javax.swing.JList<>();
         txtIDTeacher = new javax.swing.JTextField();
+        lblClassroom = new javax.swing.JLabel();
+        cmbClassroom = new javax.swing.JComboBox<>();
+        txtClassroomID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -107,6 +111,11 @@ public class Inbox extends javax.swing.JFrame {
         btnSend.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSend.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSend.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSend.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSendMouseClicked(evt);
+            }
+        });
 
         btnClean.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
         btnClean.setForeground(new java.awt.Color(255, 255, 255));
@@ -122,13 +131,7 @@ public class Inbox extends javax.swing.JFrame {
         lblTeacher.setForeground(new java.awt.Color(255, 255, 255));
         lblTeacher.setText("Profesor:");
 
-        txtTeacher.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtTeacherKeyReleased(evt);
-            }
-        });
-
-        list_teachers.setFont(new java.awt.Font("Loma", 0, 12)); // NOI18N
+        list_teachers.setFont(new java.awt.Font("Loma", 0, 11)); // NOI18N
         list_teachers.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 list_teachersMouseClicked(evt);
@@ -136,13 +139,23 @@ public class Inbox extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(list_teachers);
 
+        lblClassroom.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
+        lblClassroom.setForeground(new java.awt.Color(255, 255, 255));
+        lblClassroom.setText("Aula:");
+
+        cmbClassroom.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbClassroomItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -156,17 +169,27 @@ public class Inbox extends javax.swing.JFrame {
                                     .addComponent(lblTitle))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jScrollPane2)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lblTeacher)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(149, 149, 149)
+                                                .addComponent(txtClassroomID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(txtIDTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(25, 25, 25)
+                                                .addComponent(lblTeacher)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtIDTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(0, 32, Short.MAX_VALUE)
+                                                .addComponent(lblClassroom)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(cmbClassroom, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtTeacher))))))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addComponent(lblMainTItle2)
                     .addComponent(lblMainTitle1)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -184,14 +207,21 @@ public class Inbox extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTitle)
-                            .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTeacher)
-                            .addComponent(txtTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblTitle)
+                                .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(cmbClassroom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblClassroom)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtIDTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtIDTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblTeacher)
+                                .addComponent(txtClassroomID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(13, 13, 13)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblMessage)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -200,7 +230,7 @@ public class Inbox extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSend)
                     .addComponent(btnClean))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -221,21 +251,18 @@ public class Inbox extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 		txtIDTeacher.setVisible(false);
-    }//GEN-LAST:event_formWindowOpened
-
-    private void txtTeacherKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTeacherKeyReleased
-		String teacher = txtTeacher.getText();
-		ArrayList<String> new_list = ctrlT.getTeachersBySearching(teacher);
-		DefaultListModel list_model = new DefaultListModel();
-		for(String t: new_list){
-			list_model.addElement(t);
+		txtClassroomID.setVisible(false);
+		txtTeacher.setEnabled(false);
+		ArrayList<String> classrooms = ctrlC.obtainClassrooms();
+		for(String i: classrooms){
+			cmbClassroom.addItem(i);
 		}
-		list_teachers.setModel(list_model);
-    }//GEN-LAST:event_txtTeacherKeyReleased
+    }//GEN-LAST:event_formWindowOpened
 
     private void list_teachersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list_teachersMouseClicked
        String name = list_teachers.getSelectedValue();
-	   String[] aux_name = name.split("-");
+	   txtTeacher.setText(name);
+	   String[] aux_name = name.split(", ");
 	   
 	   String ln = aux_name[0];
 	   String fn = aux_name[1];
@@ -243,6 +270,31 @@ public class Inbox extends javax.swing.JFrame {
 	   int id = ctrlT.getTeacherID(fn, ln);
 	   txtIDTeacher.setText(String.valueOf(id));
     }//GEN-LAST:event_list_teachersMouseClicked
+
+    private void btnSendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSendMouseClicked
+		String title		= txtTitle.getText();
+		String content		= txtMessage.getText();
+		String teacher_id	= txtIDTeacher.getText();
+		String classroom_id = txtClassroomID.getText();
+		
+    }//GEN-LAST:event_btnSendMouseClicked
+
+    private void cmbClassroomItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbClassroomItemStateChanged
+        String classroom = "";
+		int classroom_id = 0;
+		ArrayList<String> teachers = new ArrayList<String>();
+		if(evt.getStateChange() == 1){
+			classroom = evt.getItem().toString();
+			classroom_id = ctrlC.getClassroomID(classroom);
+			txtClassroomID.setText(String.valueOf(classroom_id));
+			teachers = ctrlT.getTeacherByClassroom(classroom_id);
+			DefaultListModel<String> list_T = new DefaultListModel<String>();
+			for(String t: teachers){
+				list_T.addElement(t);
+			}
+			list_teachers.setModel(list_T);
+		}
+    }//GEN-LAST:event_cmbClassroomItemStateChanged
 
 	/**
 	 * @param args the command line arguments
@@ -282,10 +334,12 @@ public class Inbox extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClean;
     private javax.swing.JButton btnSend;
+    private javax.swing.JComboBox<String> cmbClassroom;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblClassroom;
     private javax.swing.JLabel lblMainTItle2;
     private javax.swing.JLabel lblMainTitle1;
     private javax.swing.JLabel lblMessage;
@@ -293,6 +347,7 @@ public class Inbox extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JList<String> list_teachers;
     private javax.swing.JTable tabMessages;
+    private javax.swing.JTextField txtClassroomID;
     private javax.swing.JTextField txtIDTeacher;
     private javax.swing.JTextArea txtMessage;
     private javax.swing.JTextField txtTeacher;

@@ -6,6 +6,7 @@
 package institucion.Models.BD;
 
 import config.Conexion;
+import institucion.Models.Users.Message;
 import institucion.Models.Users.Principal;
 import java.sql.Connection;
 import java.sql.Date;
@@ -107,5 +108,33 @@ public class PrincipalBD {
 			System.out.println(e);
 		}
 		return teachers;
+	}
+	
+	public boolean sendMessage(Message m){
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		boolean registered = false;
+		
+		String query = "INSERT INTO message (teacher_id, classroom_id, title, content, moment, resend) "
+					+ "VALUES (?,?,?,?,?,?)";
+		try{
+			conn = Conexion.getInstance().getConnection();
+			ptmt = conn.prepareStatement(query);
+			ptmt.setInt(1, m.getTeacher_id());
+			ptmt.setInt(2, m.getClassroom_id());
+			ptmt.setString(3, m.getTitle());
+			ptmt.setString(4, m.getContent());
+			ptmt.setString(5, m.getMoment());
+			ptmt.setInt(6, m.getResend());
+			
+			ptmt.executeUpdate();
+			registered = true;
+			ptmt.close();
+			conn.close();
+		}
+		catch(SQLException e){
+			System.out.println(e);
+		}
+		return registered;
 	}
 }

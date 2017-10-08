@@ -57,8 +57,9 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="btnSend" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                                   <Component id="btnClean" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -69,12 +70,13 @@
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jScrollPane2" min="-2" pref="485" max="-2" attributes="0"/>
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
                                               <Component id="txtTitle" min="-2" pref="310" max="-2" attributes="0"/>
                                               <Group type="102" attributes="0">
-                                                  <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
+                                                  <Component id="txtResend" min="-2" pref="32" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="txtClassroomID" min="-2" pref="32" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="txtIDTeacher" min="-2" pref="36" max="-2" attributes="0"/>
                                                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                                                   <Component id="lblTeacher" min="-2" max="-2" attributes="0"/>
@@ -94,8 +96,23 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane3" pref="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="btnClose" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="lblSelectTeacher" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="jScrollPane3" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
                       </Group>
                       <Component id="lblMainTItle2" min="-2" max="-2" attributes="0"/>
                       <Component id="lblMainTitle1" min="-2" max="-2" attributes="0"/>
@@ -114,9 +131,9 @@
                   <Component id="jScrollPane1" min="-2" pref="144" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Component id="lblMainTItle2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
+                          <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblTitle" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -134,6 +151,7 @@
                                   <Component id="txtIDTeacher" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblTeacher" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtClassroomID" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtResend" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
@@ -142,12 +160,18 @@
                               <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="jScrollPane3" alignment="1" min="-2" pref="165" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblSelectTeacher" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane3" min="-2" pref="142" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnSend" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="btnClean" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnClose" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="8" max="32767" attributes="0"/>
               </Group>
@@ -259,7 +283,7 @@
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSendMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSendActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnClean">
@@ -271,7 +295,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/icons/close.png"/>
+              <Image iconType="3" name="/images/icons/clean.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Limpiar"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -282,6 +306,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCleanActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTeacher">
           <Properties>
@@ -348,6 +375,43 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="txtClassroomID">
+        </Component>
+        <Component class="javax.swing.JButton" name="btnClose">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Loma" size="14" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/images/icons/close.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Cerrar"/>
+            <Property name="borderPainted" type="boolean" value="false"/>
+            <Property name="contentAreaFilled" type="boolean" value="false"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCloseActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtResend">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblSelectTeacher">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Loma" size="14" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Seleccione Profesor:"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

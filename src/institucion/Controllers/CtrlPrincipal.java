@@ -6,6 +6,7 @@
 package institucion.Controllers;
 
 import institucion.Models.BD.PrincipalBD;
+import institucion.Models.Users.Message;
 import institucion.Models.Users.Principal;
 import java.util.HashMap;
 
@@ -35,5 +36,16 @@ public class CtrlPrincipal {
 	}
 	public HashMap<Integer, String> getAllTeachers(){
 		return mod.getAllTeachers();
+	}
+	public boolean checkMessage(Message m){
+		boolean res = false;
+		if(!m.getTitle().isEmpty() || 
+				!m.getContent().isEmpty() ||
+				m.getTeacher_id() != 0 || 
+				m.getClassroom_id() != 0){
+			
+			res = mod.sendMessage(m);
+		}
+		return res;
 	}
 }

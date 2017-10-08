@@ -8,8 +8,13 @@ package institucion.Views.Principal;
 import institucion.Controllers.CtrlClassroom;
 import institucion.Controllers.CtrlPrincipal;
 import institucion.Controllers.CtrlTeacher;
+import institucion.Models.Users.Message;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -59,6 +64,9 @@ public class Inbox extends javax.swing.JFrame {
         lblClassroom = new javax.swing.JLabel();
         cmbClassroom = new javax.swing.JComboBox<>();
         txtClassroomID = new javax.swing.JTextField();
+        btnClose = new javax.swing.JButton();
+        txtResend = new javax.swing.JTextField();
+        lblSelectTeacher = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -111,21 +119,26 @@ public class Inbox extends javax.swing.JFrame {
         btnSend.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSend.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSend.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnSend.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSendMouseClicked(evt);
+        btnSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendActionPerformed(evt);
             }
         });
 
         btnClean.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
         btnClean.setForeground(new java.awt.Color(255, 255, 255));
-        btnClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
+        btnClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/clean.png"))); // NOI18N
         btnClean.setText("Limpiar");
         btnClean.setBorderPainted(false);
         btnClean.setContentAreaFilled(false);
         btnClean.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnClean.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnClean.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnClean.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCleanActionPerformed(evt);
+            }
+        });
 
         lblTeacher.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
         lblTeacher.setForeground(new java.awt.Color(255, 255, 255));
@@ -149,6 +162,25 @@ public class Inbox extends javax.swing.JFrame {
             }
         });
 
+        btnClose.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
+        btnClose.setForeground(new java.awt.Color(255, 255, 255));
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
+        btnClose.setText("Cerrar");
+        btnClose.setBorderPainted(false);
+        btnClose.setContentAreaFilled(false);
+        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnClose.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
+
+        lblSelectTeacher.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
+        lblSelectTeacher.setForeground(new java.awt.Color(255, 255, 255));
+        lblSelectTeacher.setText("Seleccione Profesor:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -161,8 +193,9 @@ public class Inbox extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnSend)
-                                .addGap(69, 69, 69)
-                                .addComponent(btnClean))
+                                .addGap(54, 54, 54)
+                                .addComponent(btnClean)
+                                .addGap(15, 15, 15))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblMessage)
@@ -171,12 +204,13 @@ public class Inbox extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(149, 149, 149)
+                                                .addComponent(txtResend, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(txtClassroomID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(txtIDTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(25, 25, 25)
                                                 .addComponent(lblTeacher)))
@@ -188,8 +222,18 @@ public class Inbox extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(cmbClassroom, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(txtTeacher))))))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(btnClose)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(lblSelectTeacher)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))))
                     .addComponent(lblMainTItle2)
                     .addComponent(lblMainTitle1)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -204,9 +248,9 @@ public class Inbox extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(lblMainTItle2)
-                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblTitle)
@@ -220,16 +264,22 @@ public class Inbox extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtIDTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblTeacher)
-                                .addComponent(txtClassroomID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtClassroomID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtResend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(13, 13, 13)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblMessage)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblSelectTeacher)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSend)
-                    .addComponent(btnClean))
+                    .addComponent(btnClean)
+                    .addComponent(btnClose))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
@@ -252,7 +302,9 @@ public class Inbox extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 		txtIDTeacher.setVisible(false);
 		txtClassroomID.setVisible(false);
+		txtResend.setVisible(false);
 		txtTeacher.setEnabled(false);
+		clean();
 		ArrayList<String> classrooms = ctrlC.obtainClassrooms();
 		for(String i: classrooms){
 			cmbClassroom.addItem(i);
@@ -271,14 +323,6 @@ public class Inbox extends javax.swing.JFrame {
 	   txtIDTeacher.setText(String.valueOf(id));
     }//GEN-LAST:event_list_teachersMouseClicked
 
-    private void btnSendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSendMouseClicked
-		String title		= txtTitle.getText();
-		String content		= txtMessage.getText();
-		String teacher_id	= txtIDTeacher.getText();
-		String classroom_id = txtClassroomID.getText();
-		
-    }//GEN-LAST:event_btnSendMouseClicked
-
     private void cmbClassroomItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbClassroomItemStateChanged
         String classroom = "";
 		int classroom_id = 0;
@@ -296,6 +340,41 @@ public class Inbox extends javax.swing.JFrame {
 		}
     }//GEN-LAST:event_cmbClassroomItemStateChanged
 
+    private void btnCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCleanActionPerformed
+		clean();
+    }//GEN-LAST:event_btnCleanActionPerformed
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
+		int counter_resend = Integer.parseInt(txtResend.getText());
+		String title	= txtTitle.getText();
+		String message	= txtMessage.getText();
+		int teacher_id	= Integer.parseInt(txtIDTeacher.getText());
+		int classroom_id= Integer.parseInt(txtClassroomID.getText());
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Calendar cal = Calendar.getInstance();
+		String moment = dateFormat.format(cal.getTime());
+		Message m = new Message(teacher_id, classroom_id, title, message, moment, counter_resend);
+		if(ctrlP.checkMessage(m)){
+			JOptionPane.showMessageDialog(this, "Mensaje enviado con éxito","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+			clean();
+			return;
+		}
+		JOptionPane.showMessageDialog(this, "Error al enviar mensaje, favor de revisar los datos","ERROR",JOptionPane.ERROR_MESSAGE);
+    }//GEN-LAST:event_btnSendActionPerformed
+    public void clean(){
+		txtTitle.setText("");
+		txtTeacher.setText("");
+		txtMessage.setText("");
+		txtClassroomID.setText("0");
+		txtIDTeacher.setText("0");
+		txtResend.setText("0");
+		DefaultListModel empty_list = new DefaultListModel();
+		list_teachers.setModel(empty_list);
+	}
 	/**
 	 * @param args the command line arguments
 	 */
@@ -333,6 +412,7 @@ public class Inbox extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClean;
+    private javax.swing.JButton btnClose;
     private javax.swing.JButton btnSend;
     private javax.swing.JComboBox<String> cmbClassroom;
     private javax.swing.JPanel jPanel1;
@@ -343,6 +423,7 @@ public class Inbox extends javax.swing.JFrame {
     private javax.swing.JLabel lblMainTItle2;
     private javax.swing.JLabel lblMainTitle1;
     private javax.swing.JLabel lblMessage;
+    private javax.swing.JLabel lblSelectTeacher;
     private javax.swing.JLabel lblTeacher;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JList<String> list_teachers;
@@ -350,6 +431,7 @@ public class Inbox extends javax.swing.JFrame {
     private javax.swing.JTextField txtClassroomID;
     private javax.swing.JTextField txtIDTeacher;
     private javax.swing.JTextArea txtMessage;
+    private javax.swing.JTextField txtResend;
     private javax.swing.JTextField txtTeacher;
     private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables

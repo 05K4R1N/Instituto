@@ -137,4 +137,36 @@ public class PrincipalBD {
 		}
 		return registered;
 	}
+	public Object[][] getAllMessages(){
+		Object[][] messages = {};
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		String query = "SELECT title, content, resend "
+					+ "FROM message";
+		try{
+			conn = Conexion.getInstance().getConnection();
+			ptmt = conn.prepareStatement(query);
+			rs = ptmt.executeQuery();
+			rs.beforeFirst();  
+            rs.last();  
+            int tam = rs.getRow();
+            messages = new Object[tam][3];
+			rs = ptmt.executeQuery();
+			int i = 0;
+			while(rs.next()){
+				messages[i][0]	= rs.getString("title");
+				messages[i][1]	= rs.getString("content");
+				messages[i][2]	= rs.getInt("resend");
+				i++;
+			}
+			
+			rs.close();
+			ptmt.close();
+			conn.close();
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		return messages;
+	}
 }

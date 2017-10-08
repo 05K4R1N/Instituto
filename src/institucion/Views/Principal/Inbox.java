@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -242,11 +243,11 @@ public class Inbox extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(18, 18, 18)
                 .addComponent(lblMainTitle1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMainTItle2)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -305,6 +306,11 @@ public class Inbox extends javax.swing.JFrame {
 		txtResend.setVisible(false);
 		txtTeacher.setEnabled(false);
 		clean();
+		String[] cols = {"Titulo", "Mensaje", "# Reenvios"};
+		Object[][] data= ctrlP.getMessages();
+		
+		DefaultTableModel tab = new DefaultTableModel(data, cols);
+		tabMessages.setModel(tab);
 		ArrayList<String> classrooms = ctrlC.obtainClassrooms();
 		for(String i: classrooms){
 			cmbClassroom.addItem(i);

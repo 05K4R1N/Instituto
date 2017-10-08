@@ -39,13 +39,16 @@ public class CtrlPrincipal {
 	}
 	public boolean checkMessage(Message m){
 		boolean res = false;
-		if(!m.getTitle().isEmpty() || 
-				!m.getContent().isEmpty() ||
+		if(!m.getTitle().isEmpty() || m.getTitle().length() != 0 ||
+				!m.getContent().isEmpty() || m.getContent().length() != 0 || 
 				m.getTeacher_id() != 0 || 
 				m.getClassroom_id() != 0){
 			
 			res = mod.sendMessage(m);
 		}
 		return res;
+	}
+	public Object[][] getMessages(){
+		return mod.getAllMessages();
 	}
 }

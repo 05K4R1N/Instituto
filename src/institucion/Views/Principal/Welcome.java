@@ -5,7 +5,14 @@
  */
 package institucion.Views.Principal;
 
-import javax.swing.JTree;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
+
+
 
 /**
  *
@@ -312,8 +319,20 @@ public class Welcome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
-        Profile e = new Profile();
-		e.setVisible(true);
+		try {
+			Player apl;
+			try {
+				apl = new Player(new FileInputStream(
+						"/home/o5k4r1n/ProjectsJava/Instituto/src/sounds/bep.mp3"));
+				apl.play();
+			} catch (JavaLayerException ex) {
+				System.out.println(ex);
+			}
+			Profile e = new Profile();
+			e.setVisible(true);
+		} catch (FileNotFoundException e) {
+			System.out.println(e);
+		}
     }//GEN-LAST:event_btnProfileActionPerformed
 
     private void btnEditProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditProfileActionPerformed

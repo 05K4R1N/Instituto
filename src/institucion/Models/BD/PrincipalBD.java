@@ -142,7 +142,7 @@ public class PrincipalBD {
 		Connection conn = null;
 		PreparedStatement ptmt = null;
 		ResultSet rs = null;
-		String query = "SELECT title, content, resend "
+		String query = "SELECT * "
 					+ "FROM message";
 		try{
 			conn = Conexion.getInstance().getConnection();
@@ -151,13 +151,17 @@ public class PrincipalBD {
 			rs.beforeFirst();  
             rs.last();  
             int tam = rs.getRow();
-            messages = new Object[tam][3];
+            messages = new Object[tam][7];
 			rs = ptmt.executeQuery();
 			int i = 0;
 			while(rs.next()){
-				messages[i][0]	= rs.getString("title");
-				messages[i][1]	= rs.getString("content");
-				messages[i][2]	= rs.getInt("resend");
+				messages[i][0]	= rs.getInt("id");
+				messages[i][1]	= rs.getString("title");
+				messages[i][2]	= rs.getString("content");
+				messages[i][3]	= rs.getInt("resend");
+				messages[i][4]	= rs.getInt("teacher_id");
+				messages[i][5]	= rs.getInt("classroom_id");
+				messages[i][6]	= rs.getInt("resend");
 				i++;
 			}
 			
@@ -168,5 +172,31 @@ public class PrincipalBD {
 			System.out.println(e);
 		}
 		return messages;
+	}
+	public boolean resendMessage(Message m){
+		boolean res = false;
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		String query = "UPDATE message "
+					+ "SET teacher_id = ?, classroom_id = ?, title = ?, content = ?, resend = ? "
+					+ "WHERE id = ?";
+		try{
+			conn = Conexion.getInstance().getConnection();
+			ptmt = conn.prepareStatement(query);
+			ptmt.setInt(1, m.getTeacher_id());
+			ptmt.setInt(2, m.getClassroom_id());
+			ptmt.setString(3, m.getTitle());
+			ptmt.setString(4, m.getContent());
+			ptmt.setInt(5, m.getResend());
+			ptmt.setInt(6, m.getId());
+			
+			ptmt.executeUpdate();
+			res = true;
+			ptmt.close();
+			conn.close();
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		return res;
 	}
 }

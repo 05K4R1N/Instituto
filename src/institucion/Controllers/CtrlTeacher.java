@@ -48,6 +48,13 @@ public class CtrlTeacher {
         }
         return teacher;
     }
+	public String getTeacherNameByID(int teacher_id){
+		String teachers_name = "";
+		if(teacher_id > 0){
+			teachers_name = mod.getTeacherNameByID(teacher_id);
+		}
+		return teachers_name;
+	}
     public Object[][] getTeacherAttendances(int id){
         Object[][] attendances= null;
         if( id > 0 ){

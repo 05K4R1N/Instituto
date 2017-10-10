@@ -10,6 +10,7 @@ package institucion.Models.Users;
  * @author o5k4r1n
  */
 public class Message {
+	private int id;
 	private int teacher_id;
 	private int classroom_id;
 	private String title;
@@ -25,8 +26,25 @@ public class Message {
 		this.moment = moment;
 		this.resend = resend;
 	}
+
+	public Message(int id, int teacher_id, int classroom_id, String title, String content, int resend) {
+		this.id = id;
+		this.teacher_id = teacher_id;
+		this.classroom_id = classroom_id;
+		this.title = title;
+		this.content = content;
+		this.resend = resend;
+	}
+	
 	public Message(){}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	public int getClassroom_id() {
 		return classroom_id;
 	}

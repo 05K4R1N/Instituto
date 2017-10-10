@@ -30,12 +30,14 @@ public class Inbox extends javax.swing.JFrame {
 	private CtrlPrincipal ctrlP;
 	private CtrlTeacher ctrlT;
 	private CtrlClassroom ctrlC;
+	private String estado;
 	public Inbox() {
 		this.setUndecorated(true);
 		initComponents();
 		ctrlP = new CtrlPrincipal();
 		ctrlT = new CtrlTeacher();
 		ctrlC = new CtrlClassroom();
+		estado = "enviar";
 	}
 
 	/**
@@ -68,6 +70,7 @@ public class Inbox extends javax.swing.JFrame {
         btnClose = new javax.swing.JButton();
         txtResend = new javax.swing.JTextField();
         lblSelectTeacher = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -89,6 +92,11 @@ public class Inbox extends javax.swing.JFrame {
 
             }
         ));
+        tabMessages.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabMessagesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabMessages);
 
         lblMainTitle1.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
@@ -129,7 +137,7 @@ public class Inbox extends javax.swing.JFrame {
         btnClean.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
         btnClean.setForeground(new java.awt.Color(255, 255, 255));
         btnClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/clean.png"))); // NOI18N
-        btnClean.setText("Limpiar");
+        btnClean.setText("Reiniciar");
         btnClean.setBorderPainted(false);
         btnClean.setContentAreaFilled(false);
         btnClean.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -205,16 +213,21 @@ public class Inbox extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(80, 80, 80)
+                                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(txtResend, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(txtClassroomID, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(txtIDTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(25, 25, 25)
-                                                .addComponent(lblTeacher)))
+                                                .addComponent(lblTeacher))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                                .addGap(2, 2, 2)
+                                                .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -266,7 +279,8 @@ public class Inbox extends javax.swing.JFrame {
                                 .addComponent(txtIDTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblTeacher)
                                 .addComponent(txtClassroomID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtResend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtResend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(13, 13, 13)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblMessage)
@@ -305,18 +319,32 @@ public class Inbox extends javax.swing.JFrame {
 		txtClassroomID.setVisible(false);
 		txtResend.setVisible(false);
 		txtTeacher.setEnabled(false);
+		txtID.setVisible(false);
 		clean();
-		String[] cols = {"Titulo", "Mensaje", "# Reenvios"};
+		String[] cols = {"id","Titulo", "Mensaje", "# Envios","teacher_id","classroom_id"};
 		Object[][] data= ctrlP.getMessages();
 		
 		DefaultTableModel tab = new DefaultTableModel(data, cols);
 		tabMessages.setModel(tab);
+		
+		hideColumns();
 		ArrayList<String> classrooms = ctrlC.obtainClassrooms();
 		for(String i: classrooms){
 			cmbClassroom.addItem(i);
 		}
     }//GEN-LAST:event_formWindowOpened
+	public void hideColumns(){
+		tabMessages.getColumnModel().getColumn(0).setWidth(0);
+		tabMessages.getColumnModel().getColumn(0).setMinWidth(0);
+		tabMessages.getColumnModel().getColumn(0).setMaxWidth(0);
+		tabMessages.getColumnModel().getColumn(4).setWidth(0);
+		tabMessages.getColumnModel().getColumn(4).setMinWidth(0);
+		tabMessages.getColumnModel().getColumn(4).setMaxWidth(0);
+		tabMessages.getColumnModel().getColumn(5).setWidth(0);
+		tabMessages.getColumnModel().getColumn(5).setMinWidth(0);
+		tabMessages.getColumnModel().getColumn(5).setMaxWidth(0);
 
+	}
     private void list_teachersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list_teachersMouseClicked
        String name = list_teachers.getSelectedValue();
 	   txtTeacher.setText(name);
@@ -355,6 +383,7 @@ public class Inbox extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
+		int id = Integer.parseInt(txtID.getText());
 		int counter_resend = Integer.parseInt(txtResend.getText());
 		String title	= txtTitle.getText();
 		String message	= txtMessage.getText();
@@ -363,23 +392,58 @@ public class Inbox extends javax.swing.JFrame {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Calendar cal = Calendar.getInstance();
 		String moment = dateFormat.format(cal.getTime());
-		Message m = new Message(teacher_id, classroom_id, title, message, moment, counter_resend);
-		if(ctrlP.checkMessage(m)){
+		Message m;
+		if(estado.equals("enviar")){
+			m = new Message(teacher_id, classroom_id, title, message, moment, counter_resend);
+		}else{
+			m = new Message(id, teacher_id, classroom_id, title, message, counter_resend);
+		}
+		//Message m = new Message(teacher_id, classroom_id, title, message, moment, counter_resend);
+		if(ctrlP.checkMessage(m, estado)){
 			JOptionPane.showMessageDialog(this, "Mensaje enviado con éxito","Mensaje",JOptionPane.INFORMATION_MESSAGE);
 			clean();
 			return;
 		}
 		JOptionPane.showMessageDialog(this, "Error al enviar mensaje, favor de revisar los datos","ERROR",JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnSendActionPerformed
+
+    private void tabMessagesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabMessagesMouseClicked
+        estado = "reenviar";
+		btnSend.setText("Reenviar");
+		int fila = tabMessages.rowAtPoint(evt.getPoint());
+		String id = tabMessages.getValueAt(fila, 0).toString();
+		String title = tabMessages.getValueAt(fila, 1).toString();
+		String message = tabMessages.getValueAt(fila, 2).toString();
+		int resend = Integer.parseInt(tabMessages.getValueAt(fila, 3).toString());
+		int teacher_id = Integer.parseInt(tabMessages.getValueAt(fila, 4).toString());
+		int classroom_id = Integer.parseInt(tabMessages.getValueAt(fila, 5).toString());
+		String teacher_name = ctrlT.getTeacherNameByID(teacher_id);
+		txtTeacher.setText(teacher_name);
+		txtTitle.setText(title);
+		txtMessage.setText(message);
+		txtResend.setText(String.valueOf(resend+1));
+		txtIDTeacher.setText(String.valueOf(teacher_id));
+		txtClassroomID.setText(String.valueOf(classroom_id));
+		txtID.setText(id);
+		
+		cmbClassroom.setEnabled(false);
+		list_teachers.setEnabled(false);
+    }//GEN-LAST:event_tabMessagesMouseClicked
     public void clean(){
+		estado = "enviar";
 		txtTitle.setText("");
 		txtTeacher.setText("");
 		txtMessage.setText("");
+		txtID.setText("0");
 		txtClassroomID.setText("0");
 		txtIDTeacher.setText("0");
 		txtResend.setText("0");
+		btnSend.setText("Enviar");
 		DefaultListModel empty_list = new DefaultListModel();
 		list_teachers.setModel(empty_list);
+		
+		cmbClassroom.setEnabled(true);
+		list_teachers.setEnabled(true);
 	}
 	/**
 	 * @param args the command line arguments
@@ -435,6 +499,7 @@ public class Inbox extends javax.swing.JFrame {
     private javax.swing.JList<String> list_teachers;
     private javax.swing.JTable tabMessages;
     private javax.swing.JTextField txtClassroomID;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtIDTeacher;
     private javax.swing.JTextArea txtMessage;
     private javax.swing.JTextField txtResend;

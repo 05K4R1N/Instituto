@@ -284,4 +284,28 @@ public class TeacherBD {
 		}
 		return teachers;
 	}
+	public String getTeacherNameByID(int teacher_id){
+		String name = "";
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		String query = "SELECT first_name, last_name "
+					+ "FROM Teacher "
+					+ "WHERE id = ?";
+		try{
+			conn = Conexion.getInstance().getConnection();
+			ptmt = conn.prepareStatement(query);
+			ptmt.setInt(1, teacher_id);
+			rs = ptmt.executeQuery();
+			rs.next();
+			name = rs.getString("last_name")+", "+rs.getString("first_name");
+			
+			rs.close();
+			ptmt.close();
+			conn.close();
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		return name;
+	}
 }

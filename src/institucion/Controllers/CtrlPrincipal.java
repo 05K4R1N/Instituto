@@ -37,14 +37,18 @@ public class CtrlPrincipal {
 	public HashMap<Integer, String> getAllTeachers(){
 		return mod.getAllTeachers();
 	}
-	public boolean checkMessage(Message m){
+	public boolean checkMessage(Message m, String estado){
 		boolean res = false;
 		if(!m.getTitle().isEmpty() || m.getTitle().length() != 0 ||
 				!m.getContent().isEmpty() || m.getContent().length() != 0 || 
 				m.getTeacher_id() != 0 || 
 				m.getClassroom_id() != 0){
-			
-			res = mod.sendMessage(m);
+			if(estado.equals("enviar")){
+				res = mod.sendMessage(m);
+			}
+			else{
+				res = mod.resendMessage(m);
+			}
 		}
 		return res;
 	}

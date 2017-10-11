@@ -6,6 +6,8 @@
 
 package institucion.Views.Teacher;
 
+import config.Sound;
+
 /**
  *
  * @author master
@@ -15,12 +17,13 @@ public class Welcome extends javax.swing.JFrame {
     /**
      * Creates new form welcome
      */
+	private Sound s;
     public Welcome() {
         this.setUndecorated(true);
         initComponents();
         this.setSize(1500,700);
         this.setLocationRelativeTo(null);
-       
+		s = new Sound();
     }
 
     /**
@@ -250,33 +253,39 @@ public class Welcome extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsistenciaActionPerformed
-        Attendance ctrl_attendance = new Attendance();
+        s.reproduce("bep.mp3");
+		Attendance ctrl_attendance = new Attendance();
         ctrl_attendance.setVisible(true);
     }//GEN-LAST:event_btnAsistenciaActionPerformed
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
-        Profile p = new Profile();
+        s.reproduce("bep.mp3");
+		Profile p = new Profile();
         p.setVisible(true);
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        Edit e = new Edit();
+        s.reproduce("bep.mp3");
+		Edit e = new Edit();
         e.setVisible(true);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnNotificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificacionesActionPerformed
-        Notification n = new Notification();
+        s.reproduce("bep.mp3"); 
+		Notification n = new Notification();
         n.setVisible(true);
     }//GEN-LAST:event_btnNotificacionesActionPerformed
 
     private void btnMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMateriasActionPerformed
-        Subject s = new Subject();
+        s.reproduce("bep.mp3");
+		Subject s = new Subject();
         s.setVisible(true);
     }//GEN-LAST:event_btnMateriasActionPerformed
 
     private void btnAlumnadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlumnadoActionPerformed
-       Classmate c = new Classmate();
-       c.setVisible(true);
+        s.reproduce("bep.mp3");
+		Classmate c = new Classmate();
+		c.setVisible(true);
     }//GEN-LAST:event_btnAlumnadoActionPerformed
 
     /**

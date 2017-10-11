@@ -34,6 +34,7 @@ public class Inbox extends javax.swing.JFrame {
 	public Inbox() {
 		this.setUndecorated(true);
 		initComponents();
+		this.setLocationRelativeTo(null);
 		ctrlP = new CtrlPrincipal();
 		ctrlT = new CtrlTeacher();
 		ctrlC = new CtrlClassroom();
@@ -321,13 +322,8 @@ public class Inbox extends javax.swing.JFrame {
 		txtTeacher.setEnabled(false);
 		txtID.setVisible(false);
 		clean();
-		String[] cols = {"id","Titulo", "Mensaje", "# Envios","teacher_id","classroom_id"};
-		Object[][] data= ctrlP.getMessages();
 		
-		DefaultTableModel tab = new DefaultTableModel(data, cols);
-		tabMessages.setModel(tab);
-		
-		hideColumns();
+		updateTableMessages();
 		ArrayList<String> classrooms = ctrlC.obtainClassrooms();
 		for(String i: classrooms){
 			cmbClassroom.addItem(i);
@@ -402,11 +398,20 @@ public class Inbox extends javax.swing.JFrame {
 		if(ctrlP.checkMessage(m, estado)){
 			JOptionPane.showMessageDialog(this, "Mensaje enviado con éxito","Mensaje",JOptionPane.INFORMATION_MESSAGE);
 			clean();
+			updateTableMessages();
 			return;
 		}
 		JOptionPane.showMessageDialog(this, "Error al enviar mensaje, favor de revisar los datos","ERROR",JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnSendActionPerformed
-
+	public void updateTableMessages(){
+		tabMessages.setModel(new DefaultTableModel());
+		String[] cols = {"id","Titulo", "Mensaje", "# Envios","teacher_id","classroom_id"};
+		Object[][] data= ctrlP.getMessages();
+		DefaultTableModel tab = new DefaultTableModel(data, cols);
+		tabMessages.setModel(tab);
+		hideColumns();
+		
+	}
     private void tabMessagesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabMessagesMouseClicked
         estado = "reenviar";
 		btnSend.setText("Reenviar");

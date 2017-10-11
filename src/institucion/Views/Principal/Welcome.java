@@ -5,6 +5,7 @@
  */
 package institucion.Views.Principal;
 
+import config.Sound;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
@@ -24,11 +25,13 @@ public class Welcome extends javax.swing.JFrame {
 	 * Creates new form Welcome
 	 */
 	private int director_id = 1;
+	private Sound s;
 	public Welcome() {
 		this.setUndecorated(true);
 		initComponents();
 		this.setSize(1500,700);
 		this.setLocationRelativeTo(null);
+		s = new Sound();
 	}
 
 	/**
@@ -102,6 +105,11 @@ public class Welcome extends javax.swing.JFrame {
         btnMessage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMessage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnMessage.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnMessage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMessageActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -319,26 +327,22 @@ public class Welcome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
-		try {
-			Player apl;
-			try {
-				apl = new Player(new FileInputStream(
-						"/home/o5k4r1n/ProjectsJava/Instituto/src/sounds/bep.mp3"));
-				apl.play();
-			} catch (JavaLayerException ex) {
-				System.out.println(ex);
-			}
-			Profile e = new Profile();
-			e.setVisible(true);
-		} catch (FileNotFoundException e) {
-			System.out.println(e);
-		}
+		 s.reproduce("bep.mp3");
+		Profile e = new Profile();
+		e.setVisible(true);
     }//GEN-LAST:event_btnProfileActionPerformed
 
     private void btnEditProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditProfileActionPerformed
-        Edit e = new Edit();
+        s.reproduce("bep.mp3");
+		Edit e = new Edit();
 		e.setVisible(true);
     }//GEN-LAST:event_btnEditProfileActionPerformed
+
+    private void btnMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMessageActionPerformed
+        s.reproduce("bep.mp3");
+		Inbox i = new Inbox();
+		i.setVisible(true);
+    }//GEN-LAST:event_btnMessageActionPerformed
 
 	/**
 	 * @param args the command line arguments

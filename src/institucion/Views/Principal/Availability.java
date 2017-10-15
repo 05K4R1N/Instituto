@@ -7,6 +7,9 @@ package institucion.Views.Principal;
 
 import institucion.Controllers.CtrlClassroom;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JButton;
 
 /**
  *
@@ -33,7 +36,7 @@ public class Availability extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        panelClassVision = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
         cbmClassrooms = new javax.swing.JComboBox<>();
@@ -47,16 +50,16 @@ public class Availability extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 0));
 
-        jPanel2.setBackground(new java.awt.Color(51, 153, 0));
+        panelClassVision.setBackground(new java.awt.Color(51, 153, 0));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 763, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelClassVisionLayout = new javax.swing.GroupLayout(panelClassVision);
+        panelClassVision.setLayout(panelClassVisionLayout);
+        panelClassVisionLayout.setHorizontalGroup(
+            panelClassVisionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 770, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelClassVisionLayout.setVerticalGroup(
+            panelClassVisionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 354, Short.MAX_VALUE)
         );
 
@@ -96,12 +99,12 @@ public class Availability extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelClassVision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblTitle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbmClassrooms, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(72, Short.MAX_VALUE))
+                        .addComponent(cbmClassrooms, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,7 +114,7 @@ public class Availability extends javax.swing.JFrame {
                     .addComponent(lblTitle)
                     .addComponent(cbmClassrooms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelClassVision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnExit)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -144,10 +147,31 @@ public class Availability extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void cbmClassroomsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbmClassroomsItemStateChanged
-        String classroom = "";
-		if(evt.getStateChange() == 1){
-			classroom = evt.getItem().toString();
-			System.out.println(classroom);
+        String selected_value = evt.getItem().toString();
+		int x = 30;
+		int y = 20;
+		if(evt.getStateChange() == 1 && !selected_value.equals("Seleccione Aula")){
+			panelClassVision.removeAll();
+			panelClassVision.repaint();
+			int pos = 0;
+			HashMap<String, Integer> data = ctrlC.getClassroomNumbers(selected_value);
+			//770 de ancho
+			for(int i = 0; i < data.get("capacity"); i++){
+				JButton btn = new JButton();
+				btn.setText(String.valueOf(pos));
+				btn.setBounds(x, y, 70, 40);
+				x += 80;
+				System.out.println(x);
+				if( x == 750){
+					x = 30;
+					y += 40;
+				}
+				pos++;
+				panelClassVision.add(btn);
+				panelClassVision.revalidate();
+				panelClassVision.repaint();
+			}
+			//System.out.println(classroom);
 		}
     }//GEN-LAST:event_cbmClassroomsItemStateChanged
 
@@ -190,7 +214,7 @@ public class Availability extends javax.swing.JFrame {
     private javax.swing.JButton btnExit;
     private javax.swing.JComboBox<String> cbmClassrooms;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel panelClassVision;
     // End of variables declaration//GEN-END:variables
 }

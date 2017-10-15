@@ -85,4 +85,28 @@ public class ClassroomBD {
 		}
 		return id;
 	}
+	public HashMap<String, Integer> getClassroomNumbers(String classroom){
+		HashMap<String, Integer> data = new HashMap();
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		String query = "SELECT capacity, occupied "
+				+ "FROM classroom "
+				+ "WHERE name = ?";
+		try{
+			conn = Conexion.getInstance().getConnection();
+			ptmt = conn.prepareStatement(query);
+			ptmt.setString(1, classroom);
+			rs = ptmt.executeQuery();
+			rs.next();
+			data.put("capacity", rs.getInt("capacity"));
+			data.put("occupied", rs.getInt("occupied"));
+			rs.close();
+			ptmt.close();
+			conn.close();
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		return data;
+	}
 }

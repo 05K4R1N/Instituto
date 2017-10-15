@@ -6,7 +6,6 @@
 package institucion.Models.BD;
 
 import config.Conexion;
-import institucion.Models.Users.Classroom;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

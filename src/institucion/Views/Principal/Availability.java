@@ -6,6 +6,7 @@
 package institucion.Views.Principal;
 
 import institucion.Controllers.CtrlClassroom;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,6 +41,10 @@ public class Availability extends javax.swing.JFrame {
         btnExit = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
         cbmClassrooms = new javax.swing.JComboBox<>();
+        lblSub1 = new javax.swing.JLabel();
+        lblSub2 = new javax.swing.JLabel();
+        lblCapacity = new javax.swing.JLabel();
+        lblOccupied = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -88,12 +93,36 @@ public class Availability extends javax.swing.JFrame {
             }
         });
 
+        lblSub1.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
+        lblSub1.setForeground(new java.awt.Color(255, 255, 255));
+        lblSub1.setText("Capacidad:");
+
+        lblSub2.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
+        lblSub2.setForeground(new java.awt.Color(255, 255, 255));
+        lblSub2.setText("Ocupados:");
+
+        lblCapacity.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
+        lblCapacity.setForeground(new java.awt.Color(255, 255, 255));
+        lblCapacity.setText("x");
+
+        lblOccupied.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
+        lblOccupied.setForeground(new java.awt.Color(255, 255, 255));
+        lblOccupied.setText("x");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(207, 207, 207)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblSub1)
+                    .addComponent(lblSub2))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblCapacity)
+                    .addComponent(lblOccupied))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnExit)
                 .addGap(85, 85, 85))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -115,8 +144,19 @@ public class Availability extends javax.swing.JFrame {
                     .addComponent(cbmClassrooms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelClassVision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnExit)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnExit))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblSub1)
+                            .addComponent(lblCapacity))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblSub2)
+                            .addComponent(lblOccupied))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -140,8 +180,23 @@ public class Availability extends javax.swing.JFrame {
 		for(String clasroom: classrooms){
 			cbmClassrooms.addItem(clasroom);
 		}
+		hideLabels();
     }//GEN-LAST:event_formWindowOpened
-
+	public void hideLabels(){
+		lblSub1.setVisible(false);
+		lblSub2.setVisible(false);
+		lblCapacity.setVisible(false);
+		lblOccupied.setVisible(false);
+	}
+	public void showInfo(int occupied, int capacity){
+		lblSub1.setVisible(true);
+		lblSub2.setVisible(true);
+		lblCapacity.setVisible(true);
+		lblOccupied.setVisible(true);
+		
+		lblCapacity.setText(String.valueOf(capacity));
+		lblOccupied.setText(String.valueOf(occupied));
+	}
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
 		this.setVisible(false);
     }//GEN-LAST:event_btnExitActionPerformed
@@ -150,28 +205,36 @@ public class Availability extends javax.swing.JFrame {
         String selected_value = evt.getItem().toString();
 		int x = 30;
 		int y = 20;
+		hideLabels();
 		if(evt.getStateChange() == 1 && !selected_value.equals("Seleccione Aula")){
 			panelClassVision.removeAll();
 			panelClassVision.repaint();
-			int pos = 0;
+			int pos = 1;
+			int cont_occupied = 0;
 			HashMap<String, Integer> data = ctrlC.getClassroomNumbers(selected_value);
-			//770 de ancho
+			int occupied = data.get("occupied");
+			int capacity = data.get("capacity");
+			showInfo(occupied, capacity);
+			//770 de anchoS
 			for(int i = 0; i < data.get("capacity"); i++){
 				JButton btn = new JButton();
 				btn.setText(String.valueOf(pos));
-				btn.setBounds(x, y, 70, 40);
+				btn.setBounds(x, y, 60, 30);
+				btn.setBackground(Color.white);
 				x += 80;
-				System.out.println(x);
 				if( x == 750){
 					x = 30;
 					y += 40;
 				}
 				pos++;
+				if(cont_occupied < occupied){
+					cont_occupied++;
+					btn.setBackground(Color.RED);
+				}
 				panelClassVision.add(btn);
 				panelClassVision.revalidate();
 				panelClassVision.repaint();
 			}
-			//System.out.println(classroom);
 		}
     }//GEN-LAST:event_cbmClassroomsItemStateChanged
 
@@ -214,6 +277,10 @@ public class Availability extends javax.swing.JFrame {
     private javax.swing.JButton btnExit;
     private javax.swing.JComboBox<String> cbmClassrooms;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblCapacity;
+    private javax.swing.JLabel lblOccupied;
+    private javax.swing.JLabel lblSub1;
+    private javax.swing.JLabel lblSub2;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel panelClassVision;
     // End of variables declaration//GEN-END:variables

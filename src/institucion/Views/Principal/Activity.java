@@ -5,13 +5,14 @@
  */
 package institucion.Views.Principal;
 
-import java.text.DateFormat;
+import institucion.Controllers.CtrlActivity;
+import institucion.Controllers.CtrlClassroom;
+import institucion.Controllers.CtrlPrincipal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Timer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import institucion.Models.Users.Act;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,11 +23,18 @@ public class Activity extends javax.swing.JFrame {
 	/**
 	 * Creates new form Activity
 	 */
-	public Activity() {
+	private CtrlPrincipal ctrlP;
+	private CtrlClassroom ctrlC;
+	private CtrlActivity ctrlA;
+	public Activity() {	
 		this.setUndecorated(true);
 		initComponents();
 		this.setSize(830, 610);
 		this.setLocationRelativeTo(null);
+		
+		ctrlP = new CtrlPrincipal();
+		ctrlA = new CtrlActivity();
+		ctrlC = new CtrlClassroom();
 	}
 
 	/**
@@ -55,8 +63,15 @@ public class Activity extends javax.swing.JFrame {
         btnReset = new javax.swing.JButton();
         hourActivity = new javax.swing.JComboBox<>();
         minActivity = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        cmbClassroom = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -180,6 +195,10 @@ public class Activity extends javax.swing.JFrame {
 
         minActivity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55" }));
 
+        jLabel2.setFont(new java.awt.Font("Loma", 1, 15)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Aula:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -193,7 +212,7 @@ public class Activity extends javax.swing.JFrame {
                             .addComponent(lblDescription)
                             .addComponent(lblName))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(dateActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -203,7 +222,12 @@ public class Activity extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(minActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(txtActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbClassroom, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblActivities)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -230,7 +254,9 @@ public class Activity extends javax.swing.JFrame {
                         .addGap(67, 67, 67)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblName)
-                            .addComponent(txtActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)
+                            .addComponent(cmbClassroom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -278,21 +304,31 @@ public class Activity extends javax.swing.JFrame {
 
     private void btnAddActivityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActivityActionPerformed
         String name = txtActivity.getText();
+		String classroom = cmbClassroom.getSelectedItem().toString();
+		int classroom_id = ctrlC.getClassroomID(classroom);
 		String desc = txtDesc.getText();
 		Date date_activity = dateActivity.getDate();
-		
-		String time_activity = hourActivity.getSelectedItem().toString()+":"+minActivity.getSelectedItem().toString();
+		String time = hourActivity.getSelectedItem().toString()+":"+minActivity.getSelectedItem().toString();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
         try
         {
-            Date date = simpleDateFormat.parse(time_activity);
-            System.out.println("date : "+simpleDateFormat.format(date));
-			
+            Date date = simpleDateFormat.parse(time);
+			String time_activity = simpleDateFormat.format(date);
+			Act a = new Act(classroom_id, name, desc, date_activity, time_activity);
+			ctrlA.organizeActivity(a, "insert");
         }catch (ParseException e)
         {
             System.out.println("Exception "+ e);
         }
     }//GEN-LAST:event_btnAddActivityActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        ArrayList<String> classrooms = ctrlC.obtainClassrooms();
+		cmbClassroom.addItem("Seleccionar");
+		for(String classroom: classrooms){
+			cmbClassroom.addItem(classroom);
+		}
+    }//GEN-LAST:event_formWindowOpened
 
 	/**
 	 * @param args the command line arguments
@@ -333,9 +369,11 @@ public class Activity extends javax.swing.JFrame {
     private javax.swing.JButton btnAddActivity;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnReset;
+    private javax.swing.JComboBox<String> cmbClassroom;
     private com.toedter.calendar.JDateChooser dateActivity;
     private javax.swing.JComboBox<String> hourActivity;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

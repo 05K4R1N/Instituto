@@ -6,6 +6,7 @@
 package institucion.Models.BD;
 
 import config.Conexion;
+import institucion.Models.Users.Act;
 import institucion.Models.Users.Message;
 import institucion.Models.Users.Principal;
 import java.sql.Connection;
@@ -13,7 +14,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashMap;
 
 /**

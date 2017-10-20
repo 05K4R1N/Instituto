@@ -6,25 +6,34 @@
 package institucion.Models.Users;
 
 import java.util.Date;
-import java.util.Timer;
 
 /**
  *
  * @author o5k4r1n
  */
-public class Activity {
+public class Act {
 	private String name;
+	private int classroom_id;
 	private String description;
 	private Date date_activity;
-	private Date time_activity;
+	private String time_activity;
 
-	public Activity(){}
+	public Act(){}
 
-	public Activity(String name, String description, Date date_activity, Date time_activity) {
+	public Act(int classroom_id,String name, String description, Date date_activity, String time_activity) {
+		this.classroom_id = classroom_id;
 		this.name = name;
 		this.description = description;
 		this.date_activity = date_activity;
 		this.time_activity = time_activity;
+	}
+
+	public int getClassroom_id() {
+		return classroom_id;
+	}
+
+	public void setClassroom_id(int classroom_id) {
+		this.classroom_id = classroom_id;
 	}
 	
 	
@@ -52,11 +61,11 @@ public class Activity {
 		this.date_activity = date_activity;
 	}
 
-	public Date getTime_activity() {
+	public String getTime_activity() {
 		return time_activity;
 	}
 
-	public void setTime_activity(Date time_activity) {
+	public void setTime_activity(String time_activity) {
 		this.time_activity = time_activity;
 	}
 	

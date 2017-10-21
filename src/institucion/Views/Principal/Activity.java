@@ -12,7 +12,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import institucion.Models.Users.Act;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -290,12 +292,7 @@ public class Activity extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        Date date = new Date();
-		txtActivity.setText("");
-		txtDesc.setText("");
-		dateActivity.setDate(date);
-		hourActivity.setSelectedIndex(0);
-		minActivity.setSelectedIndex(0);
+		clean_form();
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -315,19 +312,35 @@ public class Activity extends javax.swing.JFrame {
             Date date = simpleDateFormat.parse(time);
 			String time_activity = simpleDateFormat.format(date);
 			Act a = new Act(classroom_id, name, desc, date_activity, time_activity);
-			ctrlA.organizeActivity(a, "insert");
+			if(ctrlA.organizeActivity(a, "insert")){
+				JOptionPane.showMessageDialog(this, "ACTIVIDAD REGISTRADA", "Registro de Actividad", JOptionPane.INFORMATION_MESSAGE);
+				clean_form();
+				return;
+			}
+			JOptionPane.showMessageDialog(this, "Error al registrar la actividad. Verificar Campos.", "Error", JOptionPane.ERROR_MESSAGE);
         }catch (ParseException e)
         {
+			JOptionPane.showMessageDialog(this, "Favor de Verificar la Hora.", "Hora de Actividad", JOptionPane.WARNING_MESSAGE);
             System.out.println("Exception "+ e);
         }
     }//GEN-LAST:event_btnAddActivityActionPerformed
-
+	public void clean_form(){
+		Date d = new Date();
+		txtActivity.setText("");
+		txtDesc.setText("");
+		dateActivity.setDate(d);
+		cmbClassroom.setSelectedIndex(0);
+		hourActivity.setSelectedIndex(0);
+		minActivity.setSelectedIndex(0);
+	}
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         ArrayList<String> classrooms = ctrlC.obtainClassrooms();
 		cmbClassroom.addItem("Seleccionar");
 		for(String classroom: classrooms){
 			cmbClassroom.addItem(classroom);
 		}
+		Date d = new Date();
+		dateActivity.setDate(d);
     }//GEN-LAST:event_formWindowOpened
 
 	/**

@@ -12,8 +12,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import institucion.Models.Users.Act;
+import java.awt.Image;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,15 +35,16 @@ public class Activity extends javax.swing.JFrame {
 	private CtrlPrincipal ctrlP;
 	private CtrlClassroom ctrlC;
 	private CtrlActivity ctrlA;
+	private String action;
 	public Activity() {	
 		this.setUndecorated(true);
 		initComponents();
 		this.setSize(830, 610);
 		this.setLocationRelativeTo(null);
-		
 		ctrlP = new CtrlPrincipal();
 		ctrlA = new CtrlActivity();
 		ctrlC = new CtrlClassroom();
+		action = "insert";
 	}
 
 	/**
@@ -68,6 +75,7 @@ public class Activity extends javax.swing.JFrame {
         minActivity = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         cmbClassroom = new javax.swing.JComboBox<>();
+        txtID = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -235,7 +243,11 @@ public class Activity extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cmbClassroom, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmbClassroom, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))))))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblActivities)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -259,7 +271,9 @@ public class Activity extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblDate))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
+                        .addGap(34, 34, 34)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblName)
                             .addComponent(txtActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -312,13 +326,14 @@ public class Activity extends javax.swing.JFrame {
 		String desc = txtDesc.getText();
 		Date date_activity = dateActivity.getDate();
 		String time = hourActivity.getSelectedItem().toString()+":"+minActivity.getSelectedItem().toString();
+		int id = Integer.parseInt(txtID.getText());
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
         try
         {
             Date date = simpleDateFormat.parse(time);
 			String time_activity = simpleDateFormat.format(date);
 			Act a = new Act(classroom_id, name, desc, date_activity, time_activity);
-			if(ctrlA.organizeActivity(a, "insert")){
+			if(ctrlA.organizeActivity(a, action)){
 				JOptionPane.showMessageDialog(this, "ACTIVIDAD REGISTRADA", "Registro de Actividad", JOptionPane.INFORMATION_MESSAGE);
 				clean_form();
 				return;
@@ -338,9 +353,19 @@ public class Activity extends javax.swing.JFrame {
 		cmbClassroom.setSelectedIndex(0);
 		hourActivity.setSelectedIndex(0);
 		minActivity.setSelectedIndex(0);
+		txtID.setText("");
+		action = "insert";
+		btnAddActivity.setText("REGISTRAR");
+		try {
+			Image img = ImageIO.read(getClass().getResource("../../../images/icons/add.png"));
+			btnAddActivity.setIcon(new ImageIcon(img));
+		} catch (IOException e) {
+			System.out.println(e);
+		}
 	}
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        ArrayList<String> classrooms = ctrlC.obtainClassrooms();
+        txtID.setVisible(false);
+		ArrayList<String> classrooms = ctrlC.obtainClassrooms();
 		cmbClassroom.addItem("Seleccionar");
 		for(String classroom: classrooms){
 			cmbClassroom.addItem(classroom);
@@ -371,6 +396,15 @@ public class Activity extends javax.swing.JFrame {
 		String[] hour_min = time.split(":");
 		hourActivity.setSelectedItem(hour_min[0]);
 		minActivity.setSelectedItem(hour_min[1]);
+		txtID.setText(String.valueOf(id));
+		btnAddActivity.setText("EDITAR");
+		try {
+			Image img = ImageIO.read(getClass().getResource("../../../images/icons/edit.png"));
+			btnAddActivity.setIcon(new ImageIcon(img));
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+		action = "update";
     }//GEN-LAST:event_tabActivitiesMouseClicked
 
 	/**
@@ -430,5 +464,6 @@ public class Activity extends javax.swing.JFrame {
     private javax.swing.JTable tabActivities;
     private javax.swing.JTextField txtActivity;
     private javax.swing.JTextArea txtDesc;
+    private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }

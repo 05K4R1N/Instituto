@@ -45,6 +45,29 @@ public class ActivityBD {
 			}catch(SQLException e){
 				System.out.println(e);
 			}
+		}else if(action.equals("update")){
+			String query = "UPDATE activity "
+					+ "SET classroom_id = ?, activity_name = ?, description = ?, activity_date = ?, activity_time = ? "
+					+ "WHERE id = ?";
+			try{
+				conn = Conexion.getInstance().getConnection();
+				ptmt = conn.prepareStatement(query);
+				ptmt.setInt(1, a.getClassroom_id());
+				ptmt.setString(2, a.getName());
+				ptmt.setString(3, a.getDescription());
+				ptmt.setDate(4, sql_date);
+				ptmt.setString(5, a.getTime_activity());
+				ptmt.setInt(6, a.getId());
+				
+				ptmt.executeUpdate();
+				
+				ptmt.close();
+				conn.close();
+				
+				res = true;
+			}catch(SQLException e){
+				System.out.println(e);
+			}
 		}
 		return res;
 	}

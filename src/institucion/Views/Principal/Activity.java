@@ -64,7 +64,6 @@ public class Activity extends javax.swing.JFrame {
         txtActivity = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDesc = new javax.swing.JTextArea();
-        dateActivity = new com.toedter.calendar.JDateChooser();
         btnAddActivity = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -76,6 +75,7 @@ public class Activity extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         cmbClassroom = new javax.swing.JComboBox<>();
         txtID = new javax.swing.JTextField();
+        dateActivity = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -135,8 +135,6 @@ public class Activity extends javax.swing.JFrame {
         txtDesc.setColumns(20);
         txtDesc.setRows(5);
         jScrollPane1.setViewportView(txtDesc);
-
-        dateActivity.setDateFormatString("YYYY-M-dd");
 
         btnAddActivity.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
         btnAddActivity.setForeground(new java.awt.Color(255, 255, 255));
@@ -215,6 +213,8 @@ public class Activity extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Aula:");
 
+        dateActivity.setDateFormatString("yyyy-MM-dd");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -230,8 +230,9 @@ public class Activity extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(dateActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(6, 6, 6)
+                                .addComponent(dateActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(hourActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -268,9 +269,6 @@ public class Activity extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblDate))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -287,7 +285,6 @@ public class Activity extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(dateActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addGap(6, 6, 6))
@@ -295,7 +292,12 @@ public class Activity extends javax.swing.JFrame {
                                         .addGap(1, 1, 1)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(hourActivity)
-                                            .addComponent(minActivity))))))))
+                                            .addComponent(minActivity)))))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dateActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDate))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -326,16 +328,27 @@ public class Activity extends javax.swing.JFrame {
 		String desc = txtDesc.getText();
 		Date date_activity = dateActivity.getDate();
 		String time = hourActivity.getSelectedItem().toString()+":"+minActivity.getSelectedItem().toString();
-		int id = Integer.parseInt(txtID.getText());
+		String id = txtID.getText();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
         try
         {
             Date date = simpleDateFormat.parse(time);
 			String time_activity = simpleDateFormat.format(date);
-			Act a = new Act(classroom_id, name, desc, date_activity, time_activity);
+			Act a = new Act();
+			a.setName(name);
+			a.setDescription(desc);
+			a.setClassroom_id(classroom_id);
+			a.setDate_activity(date_activity);
+			a.setTime_activity(time_activity);
+			if( !id.equals("") || id.length() != 0 ){
+				int act_id = Integer.parseInt(id);
+				a.setId(act_id);
+				action = "update";
+			}
 			if(ctrlA.organizeActivity(a, action)){
 				JOptionPane.showMessageDialog(this, "ACTIVIDAD REGISTRADA", "Registro de Actividad", JOptionPane.INFORMATION_MESSAGE);
 				clean_form();
+				update_table();
 				return;
 			}
 			JOptionPane.showMessageDialog(this, "Error al registrar la actividad. Verificar Campos.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -345,6 +358,17 @@ public class Activity extends javax.swing.JFrame {
             System.out.println("Exception "+ e);
         }
     }//GEN-LAST:event_btnAddActivityActionPerformed
+	public void update_table(){
+		DefaultTableModel empty_table = new DefaultTableModel();
+		tabActivities.setModel(empty_table);
+		String[] titles = {"id","Curso", "Actividad", "Fecha", "Hora"};
+		Object[][] activities = ctrlA.getActivities();
+		DefaultTableModel act_model = new DefaultTableModel(activities, titles);
+		tabActivities.setModel(act_model);
+		tabActivities.getColumnModel().getColumn(0).setWidth(0);
+		tabActivities.getColumnModel().getColumn(0).setMinWidth(0);
+		tabActivities.getColumnModel().getColumn(0).setMaxWidth(0);
+	}
 	public void clean_form(){
 		Date d = new Date();
 		txtActivity.setText("");
@@ -373,17 +397,12 @@ public class Activity extends javax.swing.JFrame {
 		Date d = new Date();
 		dateActivity.setDate(d);
 		
-		String[] titles = {"id","Curso", "Actividad", "Fecha", "Hora"};
-		Object[][] activities = ctrlA.getActivities();
-		DefaultTableModel tab_activities = new DefaultTableModel(activities, titles);
-		tabActivities.setModel(tab_activities);
-		tabActivities.getColumnModel().getColumn(0).setWidth(0);
-		tabActivities.getColumnModel().getColumn(0).setMinWidth(0);
-		tabActivities.getColumnModel().getColumn(0).setMaxWidth(0);
+		update_table();
     }//GEN-LAST:event_formWindowOpened
 
     private void tabActivitiesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabActivitiesMouseClicked
 		int fila = tabActivities.rowAtPoint(evt.getPoint());
+		txtID.setText(tabActivities.getValueAt(fila, 0).toString());
 		int id = Integer.parseInt(tabActivities.getValueAt(fila, 0).toString());
 		Act a = ctrlA.getActivityById(id);
 		txtActivity.setText(a.getName());

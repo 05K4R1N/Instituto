@@ -12,6 +12,7 @@ import java.util.Date;
  * @author o5k4r1n
  */
 public class Act {
+	private int id;
 	private String name;
 	private int classroom_id;
 	private String description;
@@ -20,6 +21,13 @@ public class Act {
 
 	public Act(){}
 
+	public Act(String name, String description, Date date_activity, String time_activity) {
+		this.name = name;
+		this.description = description;
+		this.date_activity = date_activity;
+		this.time_activity = time_activity;
+	}
+	
 	public Act(int classroom_id,String name, String description, Date date_activity, String time_activity) {
 		this.classroom_id = classroom_id;
 		this.name = name;
@@ -27,7 +35,15 @@ public class Act {
 		this.date_activity = date_activity;
 		this.time_activity = time_activity;
 	}
+	
+	public int getId() {
+		return id;
+	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public int getClassroom_id() {
 		return classroom_id;
 	}

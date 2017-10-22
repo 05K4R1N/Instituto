@@ -38,6 +38,13 @@ public class CtrlClassroom {
 		}
 		return classroom_id;
 	}
+	public String getClassroomByID(int id){
+		String classroom = "";
+		if( id > 0 ){
+			classroom = mod.getClassroomByID(id);
+		}
+		return classroom;
+	}
 	public HashMap<String, Integer> getClassroomNumbers(String classroom){
 		HashMap<String, Integer> data = new HashMap();
 		if(!classroom.isEmpty() || classroom.length() != 0){

@@ -24,4 +24,14 @@ public class CtrlActivity {
 			res = true;
 		return res;
 	}
+	public Object[][] getActivities(){
+		return mod.getActivities();
+	}
+	public Act getActivityById(int id){
+		Act a = new Act();
+		if( id > 0 ){
+			a = mod.getActivityByID(id);
+		}
+		return a;
+	}
 }

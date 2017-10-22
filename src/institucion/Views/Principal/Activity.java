@@ -15,6 +15,7 @@ import institucion.Models.Users.Act;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -172,6 +173,11 @@ public class Activity extends javax.swing.JFrame {
 
             }
         ));
+        tabActivities.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabActivitiesMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabActivities);
 
         lblActivities.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
@@ -341,7 +347,31 @@ public class Activity extends javax.swing.JFrame {
 		}
 		Date d = new Date();
 		dateActivity.setDate(d);
+		
+		String[] titles = {"id","Curso", "Actividad", "Fecha", "Hora"};
+		Object[][] activities = ctrlA.getActivities();
+		DefaultTableModel tab_activities = new DefaultTableModel(activities, titles);
+		tabActivities.setModel(tab_activities);
+		tabActivities.getColumnModel().getColumn(0).setWidth(0);
+		tabActivities.getColumnModel().getColumn(0).setMinWidth(0);
+		tabActivities.getColumnModel().getColumn(0).setMaxWidth(0);
     }//GEN-LAST:event_formWindowOpened
+
+    private void tabActivitiesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabActivitiesMouseClicked
+		int fila = tabActivities.rowAtPoint(evt.getPoint());
+		int id = Integer.parseInt(tabActivities.getValueAt(fila, 0).toString());
+		Act a = ctrlA.getActivityById(id);
+		txtActivity.setText(a.getName());
+		txtDesc.setText(a.getDescription());
+		dateActivity.setDate(a.getDate_activity());
+		String classroom = ctrlC.getClassroomByID(a.getClassroom_id());
+		cmbClassroom.setSelectedItem(classroom);
+		
+		String time = a.getTime_activity();
+		String[] hour_min = time.split(":");
+		hourActivity.setSelectedItem(hour_min[0]);
+		minActivity.setSelectedItem(hour_min[1]);
+    }//GEN-LAST:event_tabActivitiesMouseClicked
 
 	/**
 	 * @param args the command line arguments

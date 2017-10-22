@@ -60,6 +60,32 @@ public class ClassroomBD {
 		}
 		return students;
 	}
+	public String getClassroomByID(int id){
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		String classroom = "";
+		String query = "SELECT name "
+				+ "FROM classroom "
+				+ "WHERE id = ?";
+		try{
+			conn = Conexion.getInstance().getConnection();
+			ptmt = conn.prepareStatement(query);
+			ptmt.setInt(1, id);
+			rs = ptmt.executeQuery();
+			rs.next();
+			
+			classroom = rs.getString("name");
+			
+			rs.close();
+			ptmt.close();
+			conn.close();
+			
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		return classroom;
+	}
 	public int getClassroomID(String classroom){
 		Connection conn = null;
 		PreparedStatement ptmt = null;

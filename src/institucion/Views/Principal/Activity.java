@@ -14,10 +14,7 @@ import java.util.Date;
 import institucion.Models.Users.Act;
 import java.awt.Image;
 import java.io.IOException;
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -32,7 +29,6 @@ public class Activity extends javax.swing.JFrame {
 	/**
 	 * Creates new form Activity
 	 */
-	private CtrlPrincipal ctrlP;
 	private CtrlClassroom ctrlC;
 	private CtrlActivity ctrlA;
 	private String action;
@@ -41,7 +37,6 @@ public class Activity extends javax.swing.JFrame {
 		initComponents();
 		this.setSize(830, 610);
 		this.setLocationRelativeTo(null);
-		ctrlP = new CtrlPrincipal();
 		ctrlA = new CtrlActivity();
 		ctrlC = new CtrlClassroom();
 		action = "insert";

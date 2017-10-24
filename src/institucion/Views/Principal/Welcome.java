@@ -6,12 +6,6 @@
 package institucion.Views.Principal;
 
 import config.Sound;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.Player;
 
 
 
@@ -180,6 +174,11 @@ public class Welcome extends javax.swing.JFrame {
         btnClassrooms.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnClassrooms.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnClassrooms.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnClassrooms.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClassroomsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -208,6 +207,11 @@ public class Welcome extends javax.swing.JFrame {
         btnActivities.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnActivities.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnActivities.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnActivities.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActivitiesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -234,6 +238,11 @@ public class Welcome extends javax.swing.JFrame {
         btnStadistics.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnStadistics.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnStadistics.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnStadistics.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStadisticsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -343,6 +352,24 @@ public class Welcome extends javax.swing.JFrame {
 		Inbox i = new Inbox();
 		i.setVisible(true);
     }//GEN-LAST:event_btnMessageActionPerformed
+
+    private void btnClassroomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClassroomsActionPerformed
+        s.reproduce("bep.mp3");
+		Availability a = new Availability();
+		a.setVisible(true);
+    }//GEN-LAST:event_btnClassroomsActionPerformed
+
+    private void btnActivitiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivitiesActionPerformed
+        s.reproduce("bep.mp3");
+		Activity act = new Activity();
+		act.setVisible(true);
+    }//GEN-LAST:event_btnActivitiesActionPerformed
+
+    private void btnStadisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStadisticsActionPerformed
+        s.reproduce("bep.mp3");
+		Stadistics st = new Stadistics();
+		st.setVisible(true);
+    }//GEN-LAST:event_btnStadisticsActionPerformed
 
 	/**
 	 * @param args the command line arguments

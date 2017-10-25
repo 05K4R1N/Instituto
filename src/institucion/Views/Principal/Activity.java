@@ -7,7 +7,6 @@ package institucion.Views.Principal;
 
 import institucion.Controllers.CtrlActivity;
 import institucion.Controllers.CtrlClassroom;
-import institucion.Controllers.CtrlPrincipal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

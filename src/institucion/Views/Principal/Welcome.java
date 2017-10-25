@@ -142,7 +142,7 @@ public class Welcome extends javax.swing.JFrame {
 
         btnTeacherAttendances.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
         btnTeacherAttendances.setForeground(new java.awt.Color(255, 255, 255));
-        btnTeacherAttendances.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/clock.png"))); // NOI18N
+        btnTeacherAttendances.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/time.png"))); // NOI18N
         btnTeacherAttendances.setText("Asistencia de Maestros");
         btnTeacherAttendances.setBorder(null);
         btnTeacherAttendances.setBorderPainted(false);

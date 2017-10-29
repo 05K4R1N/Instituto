@@ -1,5 +1,11 @@
 package institucion.Views.Principal;
 
+import institucion.Controllers.CtrlClassroom;
+import institucion.Controllers.CtrlPrincipal;
+import institucion.Controllers.CtrlTeacher;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,11 +21,17 @@ public class Attendance extends javax.swing.JFrame {
 	/**
 	 * Creates new form Attendance
 	 */
+	private CtrlClassroom ctrlC;
+	private CtrlPrincipal ctrlP;
+	
 	public Attendance() {
 		this.setUndecorated(true);
 		initComponents();
 		this.setSize(750,460);
 		this.setLocationRelativeTo(null);
+		
+		ctrlC = new CtrlClassroom();
+		ctrlP =new CtrlPrincipal();
 	}
 
 	/**
@@ -33,15 +45,18 @@ public class Attendance extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        lblTeacher = new javax.swing.JLabel();
+        tabAttendances = new javax.swing.JTable();
+        btnQuit = new javax.swing.JButton();
         lblClassroom = new javax.swing.JLabel();
-        cmbTeacher = new javax.swing.JComboBox<>();
         cmbClassroom = new javax.swing.JComboBox<>();
         btnSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -76,7 +91,7 @@ public class Attendance extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(51, 153, 0));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabAttendances.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -87,26 +102,22 @@ public class Attendance extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabAttendances);
 
-        jButton1.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
-        jButton1.setText("SALIR");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnQuit.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
+        btnQuit.setForeground(new java.awt.Color(255, 255, 255));
+        btnQuit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
+        btnQuit.setText("SALIR");
+        btnQuit.setBorderPainted(false);
+        btnQuit.setContentAreaFilled(false);
+        btnQuit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnQuit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnQuit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnQuit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnQuitActionPerformed(evt);
             }
         });
-
-        lblTeacher.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
-        lblTeacher.setForeground(new java.awt.Color(255, 255, 255));
-        lblTeacher.setText("Profesor:");
 
         lblClassroom.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
         lblClassroom.setForeground(new java.awt.Color(255, 255, 255));
@@ -121,6 +132,11 @@ public class Attendance extends javax.swing.JFrame {
         btnSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -128,37 +144,31 @@ public class Attendance extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblTeacher)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblClassroom)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbClassroom, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(cmbClassroom, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(btnQuit)
                     .addComponent(btnSearch))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(53, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTeacher)
                     .addComponent(lblClassroom)
-                    .addComponent(cmbTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbClassroom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnSearch)
                         .addGap(86, 86, 86)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnQuit, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
         );
@@ -169,9 +179,27 @@ public class Attendance extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitActionPerformed
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnQuitActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        String classroom	= cmbClassroom.getSelectedItem().toString();
+		int classroom_id	= ctrlC.getClassroomID(classroom);
+		DefaultTableModel empty_table = new DefaultTableModel();
+		tabAttendances.setModel(empty_table);
+		Object[][] attendances = ctrlP.getTodayAttendances(classroom_id);
+		String columns[] = {"Profesor", "Hora", "Estado"};
+		DefaultTableModel tab_model = new DefaultTableModel(attendances, columns);
+		tabAttendances.setModel(tab_model);
+    }//GEN-LAST:event_btnSearchActionPerformed
+	
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        ArrayList<String> classrooms = ctrlC.obtainClassrooms();
+		for(String clasroom: classrooms){
+			cmbClassroom.addItem(clasroom);
+		}
+    }//GEN-LAST:event_formWindowOpened
 
 	/**
 	 * @param args the command line arguments
@@ -209,16 +237,14 @@ public class Attendance extends javax.swing.JFrame {
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnQuit;
     private javax.swing.JButton btnSearch;
     private javax.swing.JComboBox<String> cmbClassroom;
-    private javax.swing.JComboBox<String> cmbTeacher;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblClassroom;
-    private javax.swing.JLabel lblTeacher;
+    private javax.swing.JTable tabAttendances;
     // End of variables declaration//GEN-END:variables
 }

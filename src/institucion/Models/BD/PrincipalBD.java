@@ -199,4 +199,49 @@ public class PrincipalBD {
 		}
 		return res;
 	}
+	public Object[][] getTodayAttendances(int classroom_id){
+		HashMap<Integer, String> coll_teachers = new HashMap<Integer, String>();
+		Object[][] attendances = null;
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		String query = "SELECT * FROM Teacher";
+		try{
+			conn = Conexion.getInstance().getConnection();
+			ptmt = conn.prepareStatement(query);
+			rs   = ptmt.executeQuery();
+			while(rs.next()){
+				coll_teachers.put(rs.getInt("id"), rs.getString("last_name") + " " + rs.getString("first_name"));
+			}
+					query = "SELECT teacher_id, time_attendance, attendance_status "
+					+ "FROM attendance "
+					+ "WHERE classroom_id = ?";
+			try{
+				conn = Conexion.getInstance().getConnection();
+				ptmt = conn.prepareStatement(query);
+				ptmt.setInt(1, classroom_id);
+				rs = ptmt.executeQuery();
+				rs.beforeFirst();  
+				rs.last();  
+				int tam = rs.getRow();
+				attendances = new Object[tam][3];
+				rs = ptmt.executeQuery();
+				int i = 0;
+				while(rs.next()){
+					attendances[i][0] = coll_teachers.get(rs.getInt("teacher_id"));
+					attendances[i][1] = rs.getString("time_attendance");
+					attendances[i][2] = rs.getString("attendance_status");
+					i++;
+				}
+				rs.close();
+				ptmt.close();
+				conn.close();
+			}catch(SQLException e){
+				System.out.println(e);
+			}
+		}catch(SQLException e){
+			System.out.println(e);
+		}
+		return attendances;
+	}
 }

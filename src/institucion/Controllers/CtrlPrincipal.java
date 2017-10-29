@@ -55,4 +55,11 @@ public class CtrlPrincipal {
 	public Object[][] getMessages(){
 		return mod.getAllMessages();
 	}
+	public Object[][] getTodayAttendances(int classroom_id){
+		Object[][] attendances = null;
+		if(classroom_id > 0){
+			attendances = mod.getTodayAttendances(classroom_id);
+		}
+		return attendances;
+	}
 }

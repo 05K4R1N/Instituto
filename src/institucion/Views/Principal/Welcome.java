@@ -6,6 +6,7 @@
 package institucion.Views.Principal;
 
 import config.Sound;
+import config.Tiempo;
 
 
 
@@ -13,19 +14,27 @@ import config.Sound;
  *
  * @author o5k4r1n
  */
-public class Welcome extends javax.swing.JFrame {
+public class Welcome extends javax.swing.JFrame implements Runnable {
 
 	/**
 	 * Creates new form Welcome
 	 */
 	private int director_id = 1;
 	private Sound s;
+	private Thread h1;
+	private Tiempo t;
+	
 	public Welcome() {
 		this.setUndecorated(true);
 		initComponents();
 		this.setSize(1500,700);
 		this.setLocationRelativeTo(null);
+		
 		s = new Sound();
+		t = new Tiempo();
+		
+		h1 = new Thread(this);
+		h1.start();
 	}
 
 	/**
@@ -51,6 +60,7 @@ public class Welcome extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        lblTime = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -150,6 +160,11 @@ public class Welcome extends javax.swing.JFrame {
         btnTeacherAttendances.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTeacherAttendances.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnTeacherAttendances.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnTeacherAttendances.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTeacherAttendancesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -305,15 +320,24 @@ public class Welcome extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Bienvenido");
 
+        lblTime.setFont(new java.awt.Font("Loma", 1, 48)); // NOI18N
+        lblTime.setForeground(new java.awt.Color(255, 255, 255));
+        lblTime.setText("jLabel2");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 704, Short.MAX_VALUE)
-                .addComponent(btnExit)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTime))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 624, Short.MAX_VALUE)
+                        .addComponent(btnExit)))
                 .addGap(366, 366, 366))
         );
         jPanel3Layout.setVerticalGroup(
@@ -326,11 +350,13 @@ public class Welcome extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(307, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
+                .addComponent(lblTime)
+                .addGap(19, 19, 19))
         );
 
         getContentPane().add(jPanel3);
-        jPanel3.setBounds(230, 0, 1580, 430);
+        jPanel3.setBounds(230, 0, 1500, 430);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -371,6 +397,10 @@ public class Welcome extends javax.swing.JFrame {
 		st.setVisible(true);
     }//GEN-LAST:event_btnStadisticsActionPerformed
 
+    private void btnTeacherAttendancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTeacherAttendancesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTeacherAttendancesActionPerformed
+	
 	/**
 	 * @param args the command line arguments
 	 */
@@ -423,5 +453,18 @@ public class Welcome extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JLabel lblTime;
     // End of variables declaration//GEN-END:variables
+
+	@Override
+	public void run() {
+		Thread ct = Thread.currentThread();
+		while(ct == h1) {
+			t.calcular();
+			lblTime.setText(t.calcular());
+			try {
+				Thread.sleep(1000);
+			}catch(InterruptedException e) {}
+		}
+	}
 }

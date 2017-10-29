@@ -7,23 +7,34 @@
 package institucion.Views.Teacher;
 
 import config.Sound;
+import config.Tiempo;
 
 /**
  *
  * @author master
  */
-public class Welcome extends javax.swing.JFrame {
+public class Welcome extends javax.swing.JFrame implements Runnable {
 
     /**
      * Creates new form welcome
      */
 	private Sound s;
+	private Tiempo t;
+	
+	private Thread h1;
+	
     public Welcome() {
         this.setUndecorated(true);
         initComponents();
         this.setSize(1500,700);
         this.setLocationRelativeTo(null);
+		
+		
 		s = new Sound();
+		t = new Tiempo();
+		
+		h1 = new Thread(this);
+		h1.start();
     }
 
     /**
@@ -42,6 +53,7 @@ public class Welcome extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         lblWelcome = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
+        lblTime = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnAlumnado = new javax.swing.JButton();
         btnAsistencia = new javax.swing.JButton();
@@ -58,7 +70,7 @@ public class Welcome extends javax.swing.JFrame {
         btnPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/manager.png"))); // NOI18N
         btnPerfil.setText("Ver Perfil");
         btnPerfil.setBorder(null);
-        btnPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPerfil.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnPerfil.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnPerfil.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +85,7 @@ public class Welcome extends javax.swing.JFrame {
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/edit.png"))); // NOI18N
         btnActualizar.setText("Editar Mi Perfil");
         btnActualizar.setBorder(null);
-        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnActualizar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +100,7 @@ public class Welcome extends javax.swing.JFrame {
         btnNotificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/notifications.png"))); // NOI18N
         btnNotificaciones.setText("Notificaciones");
         btnNotificaciones.setBorder(null);
-        btnNotificaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNotificaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNotificaciones.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNotificaciones.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnNotificaciones.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +148,7 @@ public class Welcome extends javax.swing.JFrame {
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
         btnClose.setText(" ");
         btnClose.setBorder(null);
-        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,15 +156,24 @@ public class Welcome extends javax.swing.JFrame {
             }
         });
 
+        lblTime.setFont(new java.awt.Font("Loma", 1, 48)); // NOI18N
+        lblTime.setForeground(new java.awt.Color(255, 255, 255));
+        lblTime.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(lblWelcome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 886, Short.MAX_VALUE)
-                .addComponent(btnClose)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTime))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(lblWelcome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 886, Short.MAX_VALUE)
+                        .addComponent(btnClose)))
                 .addGap(159, 159, 159))
         );
         jPanel2Layout.setVerticalGroup(
@@ -165,7 +186,9 @@ public class Welcome extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(btnClose)))
-                .addContainerGap(292, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
+                .addComponent(lblTime)
+                .addContainerGap())
         );
 
         getContentPane().add(jPanel2);
@@ -179,7 +202,7 @@ public class Welcome extends javax.swing.JFrame {
         btnAlumnado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/classmate.png"))); // NOI18N
         btnAlumnado.setText("Alumnado");
         btnAlumnado.setBorder(null);
-        btnAlumnado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAlumnado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAlumnado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAlumnado.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnAlumnado.addActionListener(new java.awt.event.ActionListener() {
@@ -194,7 +217,7 @@ public class Welcome extends javax.swing.JFrame {
         btnAsistencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/attendance.png"))); // NOI18N
         btnAsistencia.setText("Control de Asistencias");
         btnAsistencia.setBorder(null);
-        btnAsistencia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAsistencia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAsistencia.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAsistencia.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnAsistencia.addActionListener(new java.awt.event.ActionListener() {
@@ -209,7 +232,7 @@ public class Welcome extends javax.swing.JFrame {
         btnMaterias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/subject.png"))); // NOI18N
         btnMaterias.setText("Mis Materias");
         btnMaterias.setBorder(null);
-        btnMaterias.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMaterias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMaterias.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnMaterias.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnMaterias.addActionListener(new java.awt.event.ActionListener() {
@@ -334,6 +357,20 @@ public class Welcome extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblTime;
     private javax.swing.JLabel lblWelcome;
     // End of variables declaration//GEN-END:variables
+
+	@Override
+	public void run() {
+		Thread ct = Thread.currentThread();
+		while(ct == h1) {
+			lblTime.setText(t.calcular());
+			try {
+				Thread.sleep(1000);
+			}catch(InterruptedException e) {
+				System.out.println(e);
+			}
+		}
+	}
 }

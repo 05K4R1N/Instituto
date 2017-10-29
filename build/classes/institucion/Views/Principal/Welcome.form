@@ -250,6 +250,9 @@
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="3"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTeacherAttendancesActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -422,7 +425,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="230" y="0" width="1580" height="430"/>
+          <AbsoluteConstraints x="230" y="0" width="1500" height="430"/>
         </Constraint>
       </Constraints>
 
@@ -430,10 +433,18 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="378" max="-2" attributes="0"/>
-                  <EmptySpace pref="704" max="32767" attributes="0"/>
-                  <Component id="btnExit" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="lblTime" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" pref="378" max="-2" attributes="0"/>
+                          <EmptySpace pref="624" max="32767" attributes="0"/>
+                          <Component id="btnExit" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <EmptySpace min="-2" pref="366" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -451,7 +462,9 @@
                           <Component id="jLabel1" min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="307" max="32767" attributes="0"/>
+                  <EmptySpace pref="210" max="32767" attributes="0"/>
+                  <Component id="lblTime" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -485,6 +498,17 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Bienvenido"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblTime">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Loma" size="48" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="jLabel2"/>
           </Properties>
         </Component>
       </SubComponents>

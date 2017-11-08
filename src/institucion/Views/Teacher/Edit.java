@@ -190,6 +190,7 @@ public class Edit extends javax.swing.JFrame{
 
         txtBirthday.setBackground(new java.awt.Color(0, 0, 0));
         txtBirthday.setForeground(new java.awt.Color(255, 255, 255));
+        txtBirthday.setDateFormatString("yyyy-MM-dd");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

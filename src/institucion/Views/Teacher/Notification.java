@@ -7,6 +7,7 @@
 package institucion.Views.Teacher;
 
 import institucion.Controllers.CtrlTeacher;
+import java.awt.Cursor;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -160,6 +161,7 @@ public class Notification extends javax.swing.JFrame {
             JButton button = new JButton();
             button.setText(room.getValue());
             button.setBounds(new Rectangle(80, y, 100, 50));
+			button.setCursor(new Cursor(Cursor.HAND_CURSOR));
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {

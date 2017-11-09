@@ -184,7 +184,6 @@ public class Messages extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 		btndelete.setEnabled(false);
 		txtMessageId.setVisible(false);
-		System.out.println(listMessages());
 		if(listMessages() == 0){
 			JOptionPane.showMessageDialog(null, "No existe ningun mensaje en Notificacion", "SIN NOTIFICACION", JOptionPane.ERROR_MESSAGE);
 			this.setVisible(false);

@@ -321,6 +321,7 @@ public class Inbox extends javax.swing.JFrame {
 		txtResend.setVisible(false);
 		txtTeacher.setEnabled(false);
 		txtID.setVisible(false);
+		txtMessage.setLineWrap(true);
 		clean();
 		
 		updateTableMessages();

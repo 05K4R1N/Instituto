@@ -8,6 +8,7 @@ package institucion.Views.Teacher;
 
 import institucion.Controllers.CtrlSubject;
 import institucion.Controllers.CtrlTeacher;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
@@ -154,6 +155,7 @@ public class Subject extends javax.swing.JFrame {
 		for(Map.Entry<Integer, String> subject: subjects.entrySet()){
 			JButton button_subject = new JButton();
 			button_subject.setText(subject.getValue());
+			button_subject.setCursor(new Cursor(HAND_CURSOR));
 			button_subject.setBounds(0, y, panelSubjects.getWidth(), 40);
 			button_subject.addActionListener(new ActionListener() {
 				@Override

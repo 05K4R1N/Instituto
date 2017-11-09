@@ -383,6 +383,7 @@ public class Activity extends javax.swing.JFrame {
 	}
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         txtID.setVisible(false);
+		txtDesc.setLineWrap(true);
 		ArrayList<String> classrooms = ctrlC.obtainClassrooms();
 		cmbClassroom.addItem("Seleccionar");
 		for(String classroom: classrooms){

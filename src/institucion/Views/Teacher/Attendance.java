@@ -84,7 +84,7 @@ public class Attendance extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 370, 509);
+        jPanel1.setBounds(0, 0, 370, 510);
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 255));
 
@@ -99,7 +99,6 @@ public class Attendance extends javax.swing.JFrame {
             }
         ));
         tabAttendance.setSelectionBackground(new java.awt.Color(0, 0, 102));
-        tabAttendance.setSelectionForeground(new java.awt.Color(255, 255, 255));
         tabAttendance.getTableHeader().setResizingAllowed(false);
         tabAttendance.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tabAttendance);
@@ -107,9 +106,9 @@ public class Attendance extends javax.swing.JFrame {
         btnPrint.setBackground(new java.awt.Color(0, 51, 204));
         btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/printer.png"))); // NOI18N
         btnPrint.setBorder(null);
-        btnPrint.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPrintMouseClicked(evt);
+        btnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintActionPerformed(evt);
             }
         });
 
@@ -117,7 +116,7 @@ public class Attendance extends javax.swing.JFrame {
         btnCancel.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
         btnCancel.setBorder(null);
-        btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCancel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCancel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +165,13 @@ public class Attendance extends javax.swing.JFrame {
 
         Object[][] attendances = ctrl.getTeacherAttendances(1);
         String[] columns = {"Estado Asistencia", "Fecha  Hora"};
-        DefaultTableModel dtm = new DefaultTableModel(attendances,columns);
+        DefaultTableModel dtm = new DefaultTableModel(attendances,columns){
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+			
+		};
         tabAttendance.setModel(dtm);
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -174,9 +179,9 @@ public class Attendance extends javax.swing.JFrame {
         tabAttendance.getColumnModel().getColumn(1).setCellRenderer(tcr);
     }//GEN-LAST:event_formWindowOpened
 
-    private void btnPrintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrintMouseClicked
-        
-    }//GEN-LAST:event_btnPrintMouseClicked
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPrintActionPerformed
 
     /**
      * @param args the command line arguments

@@ -398,7 +398,9 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btnStadisticsActionPerformed
 
     private void btnTeacherAttendancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTeacherAttendancesActionPerformed
-        // TODO add your handling code here:
+        s.reproduce("bep.mp3");
+		Attendance a = new Attendance();
+		a.setVisible(true);
     }//GEN-LAST:event_btnTeacherAttendancesActionPerformed
 	
 	/**

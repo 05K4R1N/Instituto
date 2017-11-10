@@ -190,7 +190,13 @@ public class Attendance extends javax.swing.JFrame {
 		tabAttendances.setModel(empty_table);
 		Object[][] attendances = ctrlP.getTodayAttendances(classroom_id);
 		String columns[] = {"Profesor", "Hora", "Estado"};
-		DefaultTableModel tab_model = new DefaultTableModel(attendances, columns);
+		DefaultTableModel tab_model = new DefaultTableModel(attendances, columns){
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+			
+		};
 		tabAttendances.setModel(tab_model);
     }//GEN-LAST:event_btnSearchActionPerformed
 	

@@ -106,6 +106,7 @@ public class Attendance extends javax.swing.JFrame {
         btnPrint.setBackground(new java.awt.Color(0, 51, 204));
         btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/printer.png"))); // NOI18N
         btnPrint.setBorder(null);
+        btnPrint.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintActionPerformed(evt);
@@ -116,7 +117,7 @@ public class Attendance extends javax.swing.JFrame {
         btnCancel.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
         btnCancel.setBorder(null);
-        btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCancel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnCancel.addActionListener(new java.awt.event.ActionListener() {

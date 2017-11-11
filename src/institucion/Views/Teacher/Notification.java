@@ -7,6 +7,7 @@
 package institucion.Views.Teacher;
 
 import institucion.Controllers.CtrlTeacher;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -110,6 +111,7 @@ public class Notification extends javax.swing.JFrame {
 
         btnCancel.setBackground(new java.awt.Color(0, 0, 51));
         btnCancel.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
+        btnCancel.setForeground(new java.awt.Color(255, 255, 255));
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
         btnCancel.setText("SALIR");
         btnCancel.setBorder(null);
@@ -160,6 +162,8 @@ public class Notification extends javax.swing.JFrame {
         for(Map.Entry<Integer, String> room : classrooms.entrySet()){
             JButton button = new JButton();
             button.setText(room.getValue());
+			button.setBackground(Color.DARK_GRAY);
+			button.setForeground(Color.WHITE);
             button.setBounds(new Rectangle(80, y, 100, 50));
 			button.setCursor(new Cursor(Cursor.HAND_CURSOR));
             button.addActionListener(new ActionListener() {

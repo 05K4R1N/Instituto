@@ -5,8 +5,10 @@
  */
 package institucion.Views.Principal;
 
+import config.Reconocedor;
 import config.Sound;
 import config.Tiempo;
+import javax.swing.JOptionPane;
 
 
 
@@ -24,6 +26,9 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
 	private Thread h1;
 	private Tiempo t;
 	
+        public Reconocedor rec;
+        private Thread hiloEscucha;
+        
 	public Welcome() {
 		this.setUndecorated(true);
 		initComponents();
@@ -61,6 +66,7 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         btnExit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblTime = new javax.swing.JLabel();
+        btnVoice = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -74,7 +80,7 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         btnProfile.setBorder(null);
         btnProfile.setBorderPainted(false);
         btnProfile.setContentAreaFilled(false);
-        btnProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnProfile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnProfile.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnProfile.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +96,7 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         btnEditProfile.setBorder(null);
         btnEditProfile.setBorderPainted(false);
         btnEditProfile.setContentAreaFilled(false);
-        btnEditProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEditProfile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEditProfile.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnEditProfile.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +112,7 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         btnMessage.setBorder(null);
         btnMessage.setBorderPainted(false);
         btnMessage.setContentAreaFilled(false);
-        btnMessage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMessage.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMessage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnMessage.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnMessage.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +163,7 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         btnTeacherAttendances.setBorder(null);
         btnTeacherAttendances.setBorderPainted(false);
         btnTeacherAttendances.setContentAreaFilled(false);
-        btnTeacherAttendances.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnTeacherAttendances.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnTeacherAttendances.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnTeacherAttendances.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnTeacherAttendances.addActionListener(new java.awt.event.ActionListener() {
@@ -186,7 +192,7 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         btnClassrooms.setBorder(null);
         btnClassrooms.setBorderPainted(false);
         btnClassrooms.setContentAreaFilled(false);
-        btnClassrooms.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClassrooms.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnClassrooms.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnClassrooms.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnClassrooms.addActionListener(new java.awt.event.ActionListener() {
@@ -219,7 +225,7 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         btnActivities.setBorder(null);
         btnActivities.setBorderPainted(false);
         btnActivities.setContentAreaFilled(false);
-        btnActivities.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnActivities.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnActivities.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnActivities.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnActivities.addActionListener(new java.awt.event.ActionListener() {
@@ -250,7 +256,7 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         btnStadistics.setBorder(null);
         btnStadistics.setBorderPainted(false);
         btnStadistics.setContentAreaFilled(false);
-        btnStadistics.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnStadistics.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnStadistics.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnStadistics.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnStadistics.addActionListener(new java.awt.event.ActionListener() {
@@ -314,7 +320,7 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         btnExit.setBorder(null);
         btnExit.setBorderPainted(false);
         btnExit.setContentAreaFilled(false);
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Loma", 1, 60)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -324,20 +330,29 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         lblTime.setForeground(new java.awt.Color(255, 255, 255));
         lblTime.setText("jLabel2");
 
+        btnVoice.setText("ACTIVAR CONTROL DE VOZ");
+        btnVoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoiceActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(68, 68, 68)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblTime))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 624, Short.MAX_VALUE)
-                        .addComponent(btnExit)))
+                        .addComponent(btnExit))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnVoice)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTime)
+                        .addGap(20, 20, 20)))
                 .addGap(366, 366, 366))
         );
         jPanel3Layout.setVerticalGroup(
@@ -350,9 +365,14 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
-                .addComponent(lblTime)
-                .addGap(19, 19, 19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblTime)
+                        .addGap(19, 19, 19))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnVoice)
+                        .addGap(39, 39, 39))))
         );
 
         getContentPane().add(jPanel3);
@@ -402,7 +422,53 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
 		Attendance a = new Attendance();
 		a.setVisible(true);
     }//GEN-LAST:event_btnTeacherAttendancesActionPerformed
+
+    private void btnVoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoiceActionPerformed
+        this.iniciarVoz();
+        JOptionPane.showMessageDialog(rootPane, "Reconocimiento de voz iniciado"
+                + "\ncorrectamente....!!", "Comando", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnVoiceActionPerformed
 	
+    private void iniciarVoz() {
+        hiloEscucha = new Thread(rec = new Reconocedor(this));
+        hiloEscucha.start();
+    }
+    
+    private void detenerVoz(){
+        hiloEscucha.stop();
+    }
+    public void abrirSeccion(String seccion){
+        switch(seccion){
+            case "Ver":
+                Profile p = new Profile();
+                p.setVisible(true);
+                break;
+            case "Editar":
+                Edit e = new Edit();
+                e.setVisible(true);
+                break;
+            case "Enviar":
+                Inbox i = new Inbox();
+                i.setVisible(true);
+                break;
+            case "Asistencia":
+                Attendance a = new Attendance();
+                a.setVisible(true);
+                break;
+            case "Salas":
+                Availability av = new Availability();
+                av.setVisible(true);
+                break;
+            case "Actividades":
+                Activity act = new Activity();
+                act.setVisible(true);
+                break;
+            case "Estadisticas":
+                Stadistics s = new Stadistics();
+                s.setVisible(true);
+                break;
+        }
+    }
 	/**
 	 * @param args the command line arguments
 	 */
@@ -447,6 +513,7 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btnProfile;
     private javax.swing.JButton btnStadistics;
     private javax.swing.JButton btnTeacherAttendances;
+    private javax.swing.JButton btnVoice;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

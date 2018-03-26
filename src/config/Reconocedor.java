@@ -26,7 +26,7 @@ public class Reconocedor extends ResultAdapter implements Runnable {
     Welcome principalView;
     
     /**Reconoce el comado de voz del Usuario*/
-    Recognizer reconocedorVoz;
+    static Recognizer reconocedorVoz;
     
     /**Palabra que el usuario a pronunciado*/
     String palabra;
@@ -74,6 +74,10 @@ public class Reconocedor extends ResultAdapter implements Runnable {
                 if(palabra.equals("Estadisticas")){
                     this.principalView.abrirSeccion("Estadisticas");
                 }
+                if(palabra.equals("Silenciar")){
+                    reconocedorVoz.deallocate();
+                    this.principalView.abrirSeccion("Silenciar");
+                }
             }
         } catch (Exception ex) {
             System.out.println("Error: " + ex.getMessage());
@@ -108,6 +112,6 @@ public class Reconocedor extends ResultAdapter implements Runnable {
 
     @Override
     public void run() {
-            this.reconocerVoz();
+        this.reconocerVoz();
     }
 }

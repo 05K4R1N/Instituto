@@ -441,7 +441,6 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
             this.estado_voz = true;
             this.changeIconBtn("/images/icons/voice_on.png");
         }else{
-            this.detenerVoz();
             JOptionPane.showMessageDialog(rootPane, "Silenciado", "Comando", 
                         JOptionPane.INFORMATION_MESSAGE);
             this.estado_voz = false;
@@ -452,9 +451,6 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
     private void iniciarVoz() {
         hiloEscucha = new Thread(rec = new Reconocedor(this));
         hiloEscucha.start();
-    }
-    public void detenerVoz(){
-        hiloEscucha.interrupt();
     }
     public void abrirSeccion(String seccion){
         switch(seccion){

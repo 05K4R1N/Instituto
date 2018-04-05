@@ -16,7 +16,10 @@ public class Loggin extends javax.swing.JFrame {
 	 * Creates new form Loggin
 	 */
 	public Loggin() {
-		initComponents();
+            this.setUndecorated(true);
+            initComponents();
+            this.setLocationRelativeTo(null);
+                
 	}
 
 	/**
@@ -56,6 +59,11 @@ public class Loggin extends javax.swing.JFrame {
         btnEnter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEnter.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEnter.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEnter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEnterMouseClicked(evt);
+            }
+        });
 
         btnExit.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
@@ -66,6 +74,11 @@ public class Loggin extends javax.swing.JFrame {
         btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnExit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExitMouseClicked(evt);
+            }
+        });
 
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/manager.png"))); // NOI18N
 
@@ -128,6 +141,16 @@ public class Loggin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEnterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnterMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnEnterMouseClicked
+
+    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
+        this.setVisible(false);
+        System.exit(0);
+    }//GEN-LAST:event_btnExitMouseClicked
 
 	/**
 	 * @param args the command line arguments

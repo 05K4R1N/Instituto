@@ -6,7 +6,6 @@
 package institucion.Models.BD;
 
 import config.Conexion;
-import institucion.Models.Users.Act;
 import institucion.Models.Users.Message;
 import institucion.Models.Users.Principal;
 import java.sql.Connection;

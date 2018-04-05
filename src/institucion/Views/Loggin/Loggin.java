@@ -1,5 +1,8 @@
 package institucion.Views.Loggin;
 
+import institucion.Controllers.CtrlLoggin;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,14 +15,13 @@ package institucion.Views.Loggin;
  */
 public class Loggin extends javax.swing.JFrame {
 
-	/**
-	 * Creates new form Loggin
-	 */
+	private CtrlLoggin ctrlL;
 	public Loggin() {
             this.setUndecorated(true);
             initComponents();
-            this.setLocationRelativeTo(null);
-                
+            this.setLocationRelativeTo(null);          
+            
+            ctrlL = new CtrlLoggin();
 	}
 
 	/**
@@ -143,8 +145,8 @@ public class Loggin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEnterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnterMouseClicked
-        // TODO add your handling code here:
-        
+        boolean bandera = ctrlL.validateUser("username","ass");
+        JOptionPane.showMessageDialog(null, "d" + bandera);
     }//GEN-LAST:event_btnEnterMouseClicked
 
     private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked

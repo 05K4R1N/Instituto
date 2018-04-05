@@ -18,8 +18,6 @@ public class Institucion {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /*Welcome w = new Welcome();
-        w.setVisible(true);*/
         Loggin log = new Loggin();
         log.setVisible(true);
     }

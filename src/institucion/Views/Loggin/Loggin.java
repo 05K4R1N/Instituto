@@ -145,8 +145,10 @@ public class Loggin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEnterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnterMouseClicked
-        boolean bandera = ctrlL.validateUser("username","ass");
-        JOptionPane.showMessageDialog(null, "d" + bandera);
+        String username = txtUser.getText();
+        String pass     = txtPassword.getText();
+        boolean bandera = ctrlL.validateUser(username, pass);
+        JOptionPane.showMessageDialog(null, bandera);
     }//GEN-LAST:event_btnEnterMouseClicked
 
     private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked

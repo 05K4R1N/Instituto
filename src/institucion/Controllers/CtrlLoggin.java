@@ -7,6 +7,7 @@
 package institucion.Controllers;
 
 import institucion.Models.BD.LogginBD;
+import java.util.HashMap;
 
 /**
  *
@@ -19,9 +20,12 @@ public class CtrlLoggin {
         mod = new LogginBD();
     }
     
-    public boolean validateUser(String username, String pass){
-        boolean res = false;
-        res = mod.authorizeUser(username, pass);
-        return res;
+    public HashMap validateUser(String username, String pass){
+        HashMap<Integer, String> data = new HashMap();
+        if(username.length() != 0 || 
+                pass.length() != 0){
+            data = mod.authorizeUser(username, pass);
+        }
+        return data;
     }
 }

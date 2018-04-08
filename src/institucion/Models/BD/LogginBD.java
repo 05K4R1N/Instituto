@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 /**
  *
@@ -18,33 +19,36 @@ import java.sql.SQLException;
  */
 public class LogginBD {
     
-    public boolean authorizeUser(String username, String pass){
-        boolean res = false;
+    public HashMap authorizeUser(String username, String pass){
+        HashMap<Integer, String> reference = new HashMap();
         String[] roles = {"principal", "teacher"};
         Connection conn = null;
         PreparedStatement ptmt = null;
         ResultSet rs = null;
         try{
             for(String rol: roles){
-                String query = "SELECT * "
+                String query = "SELECT id "
                             + "FROM " + rol + " "
                             + "WHERE username = ? AND password = ?";
+
                 conn = Conexion.getInstance().getConnection();
                 ptmt = conn.prepareStatement(query);
                 ptmt.setString(1, username);
                 ptmt.setString(2, pass);
                 rs = ptmt.executeQuery();
+                int id = 0;
                 if(rs.next()){
-                    res = true;
+                    id = rs.getInt("id");
+                    reference.put(id, rol);
                 }
                 rs.close();
                 ptmt.close();
                 conn.close();
-                if(res) break;
+                if( id > 0 ) break;
             }
         }catch(SQLException e){
                     System.out.println(e);
         }
-        return res;
+        return reference;
     }
 }

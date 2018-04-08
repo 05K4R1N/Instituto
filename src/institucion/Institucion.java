@@ -7,7 +7,7 @@
 package institucion;
 
 import institucion.Views.Loggin.Loggin;
-import institucion.Views.Teacher.Welcome;
+import institucion.Views.Teacher.WelcomeT;
 /**
  *
  * @author master

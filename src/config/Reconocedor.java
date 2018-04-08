@@ -2,7 +2,7 @@
 package config;
 
 
-import institucion.Views.Principal.Welcome;
+import institucion.Views.Principal.WelcomeP;
 import java.io.FileReader;
 import java.util.Locale;
 import javax.speech.Central;
@@ -23,7 +23,7 @@ public class Reconocedor extends ResultAdapter implements Runnable {
      *Permite manipular la calculadora desde esta clase, y ejecutar las acciones
      *segun el comando de voz
      */
-    Welcome principalView;
+    WelcomeP principalView;
     
     /**Reconoce el comado de voz del Usuario*/
     static Recognizer reconocedorVoz;
@@ -31,7 +31,7 @@ public class Reconocedor extends ResultAdapter implements Runnable {
     /**Palabra que el usuario a pronunciado*/
     String palabra;
 
-    public Reconocedor(Welcome pv) {
+    public Reconocedor(WelcomeP pv) {
         this.principalView = pv;
     }
 

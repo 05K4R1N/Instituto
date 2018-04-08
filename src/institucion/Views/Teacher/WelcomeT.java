@@ -8,12 +8,13 @@ package institucion.Views.Teacher;
 
 import config.Sound;
 import config.Tiempo;
+import institucion.Views.Loggin.Loggin;
 
 /**
  *
  * @author master
  */
-public class Welcome extends javax.swing.JFrame implements Runnable {
+public class WelcomeT extends javax.swing.JFrame implements Runnable {
 
     /**
      * Creates new form welcome
@@ -23,7 +24,7 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
 	
 	private Thread h1;
 	
-    public Welcome() {
+    public WelcomeT() {
         this.setUndecorated(true);
         initComponents();
         this.setSize(1500,700);
@@ -70,7 +71,7 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         btnPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/manager.png"))); // NOI18N
         btnPerfil.setText("Ver Perfil");
         btnPerfil.setBorder(null);
-        btnPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnPerfil.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnPerfil.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnPerfil.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +86,7 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/edit.png"))); // NOI18N
         btnActualizar.setText("Editar Mi Perfil");
         btnActualizar.setBorder(null);
-        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnActualizar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +101,7 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         btnNotificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/notifications.png"))); // NOI18N
         btnNotificaciones.setText("Notificaciones");
         btnNotificaciones.setBorder(null);
-        btnNotificaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNotificaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNotificaciones.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNotificaciones.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnNotificaciones.addActionListener(new java.awt.event.ActionListener() {
@@ -148,11 +149,12 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
         btnClose.setText(" ");
         btnClose.setBorder(null);
+        btnClose.setContentAreaFilled(false);
         btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCloseActionPerformed(evt);
+        btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCloseMouseClicked(evt);
             }
         });
 
@@ -202,7 +204,7 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         btnAlumnado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/classmate.png"))); // NOI18N
         btnAlumnado.setText("Alumnado");
         btnAlumnado.setBorder(null);
-        btnAlumnado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAlumnado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAlumnado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAlumnado.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnAlumnado.addActionListener(new java.awt.event.ActionListener() {
@@ -217,7 +219,7 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         btnAsistencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/attendance.png"))); // NOI18N
         btnAsistencia.setText("Control de Asistencias");
         btnAsistencia.setBorder(null);
-        btnAsistencia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAsistencia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAsistencia.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAsistencia.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnAsistencia.addActionListener(new java.awt.event.ActionListener() {
@@ -232,7 +234,7 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         btnMaterias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/subject.png"))); // NOI18N
         btnMaterias.setText("Mis Materias");
         btnMaterias.setBorder(null);
-        btnMaterias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMaterias.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnMaterias.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnMaterias.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnMaterias.addActionListener(new java.awt.event.ActionListener() {
@@ -271,10 +273,6 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnCloseActionPerformed
-
     private void btnAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsistenciaActionPerformed
         s.reproduce("bep.mp3");
 		Attendance ctrl_attendance = new Attendance();
@@ -311,6 +309,12 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
 		c.setVisible(true);
     }//GEN-LAST:event_btnAlumnadoActionPerformed
 
+    private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
+        Loggin loggin = new Loggin();
+        loggin.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCloseMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -328,20 +332,20 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WelcomeT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WelcomeT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WelcomeT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WelcomeT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Welcome().setVisible(true);
+                new WelcomeT().setVisible(true);
             }
         });
     }

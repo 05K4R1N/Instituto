@@ -8,6 +8,7 @@ package institucion.Views.Principal;
 import config.Reconocedor;
 import config.Sound;
 import config.Tiempo;
+import institucion.Views.Loggin.Loggin;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -22,10 +23,10 @@ import javax.swing.JOptionPane;
  *
  * @author o5k4r1n
  */
-public class Welcome extends javax.swing.JFrame implements Runnable {
+public class WelcomeP extends javax.swing.JFrame implements Runnable {
 
 	/**
-	 * Creates new form Welcome
+	 * Creates new form WelcomeP
 	 */
 	private int director_id = 1;
 	private Sound s;
@@ -35,10 +36,10 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         public Reconocedor rec;
         private Thread hiloEscucha;
         private boolean estado_voz;
-	public Welcome() {
+	public WelcomeP() {
 		this.setUndecorated(true);
 		initComponents();
-		this.setSize(1500,700);
+		this.setSize(1400,700);
 		this.setLocationRelativeTo(null);
 		this.estado_voz = false;
 		s = new Sound();
@@ -329,6 +330,11 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
         btnExit.setBorderPainted(false);
         btnExit.setContentAreaFilled(false);
         btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExitMouseClicked(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Loma", 1, 60)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -447,6 +453,12 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
             this.changeIconBtn("/images/icons/voice_off.png");
         }
     }//GEN-LAST:event_btnVoiceActionPerformed
+
+    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
+        Loggin loggin = new Loggin();
+        loggin.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnExitMouseClicked
 	
     private void iniciarVoz() {
         hiloEscucha = new Thread(rec = new Reconocedor(this));
@@ -514,20 +526,20 @@ public class Welcome extends javax.swing.JFrame implements Runnable {
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(WelcomeP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(WelcomeP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(WelcomeP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(WelcomeP.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		//</editor-fold>
 
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new Welcome().setVisible(true);
+				new WelcomeP().setVisible(true);
 			}
 		});
 	}

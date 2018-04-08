@@ -1,7 +1,8 @@
 package institucion.Views.Loggin;
 
 import institucion.Controllers.CtrlLoggin;
-import institucion.Views.Principal.Welcome;
+import institucion.Views.Principal.WelcomeP;
+import institucion.Views.Teacher.WelcomeT;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 
@@ -166,12 +167,12 @@ public class Loggin extends javax.swing.JFrame {
             }
             switch(rol){
                 case "principal":
-                    Welcome p = new Welcome();
+                    WelcomeP p = new WelcomeP();
                     this.setVisible(false);
                     p.setVisible(true);
                     break;
                 case "teacher":
-                    institucion.Views.Teacher.Welcome t = new institucion.Views.Teacher.Welcome();
+                    WelcomeT t = new WelcomeT();
                     t.setVisible(true);
                     this.setVisible(false);
                     break;

@@ -44,7 +44,7 @@ public class CtrlTeacher {
             teacher.put("birthday", data.getBirthday());
             teacher.put("place_birth", data.getPlace_birth());
             teacher.put("address", data.getAddress());
-			teacher.put("photo", data.getPhoto());
+            teacher.put("photo", data.getPhoto());
         }
         return teacher;
     }

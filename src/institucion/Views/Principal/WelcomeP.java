@@ -8,6 +8,8 @@ package institucion.Views.Principal;
 import config.Reconocedor;
 import config.Sound;
 import config.Tiempo;
+import institucion.Controllers.CtrlPrincipal;
+import institucion.Models.Users.Principal;
 import institucion.Views.Loggin.Loggin;
 import java.awt.Image;
 import java.io.IOException;
@@ -28,7 +30,9 @@ public class WelcomeP extends javax.swing.JFrame implements Runnable {
 	/**
 	 * Creates new form WelcomeP
 	 */
-	private int director_id = 1;
+	public int director_id = 1;
+        
+        private CtrlPrincipal ctrlP;
 	private Sound s;
 	private Thread h1;
 	private Tiempo t;
@@ -42,6 +46,8 @@ public class WelcomeP extends javax.swing.JFrame implements Runnable {
 		this.setSize(1400,700);
 		this.setLocationRelativeTo(null);
 		this.estado_voz = false;
+                
+                ctrlP = new CtrlPrincipal();
 		s = new Sound();
 		t = new Tiempo();
 		
@@ -73,11 +79,16 @@ public class WelcomeP extends javax.swing.JFrame implements Runnable {
         btnStadistics = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblWelcome = new javax.swing.JLabel();
         lblTime = new javax.swing.JLabel();
         btnVoice = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -336,9 +347,9 @@ public class WelcomeP extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Loma", 1, 60)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Bienvenido");
+        lblWelcome.setFont(new java.awt.Font("Loma", 1, 48)); // NOI18N
+        lblWelcome.setForeground(new java.awt.Color(255, 255, 255));
+        lblWelcome.setText("Bienvenido");
 
         lblTime.setFont(new java.awt.Font("Loma", 1, 48)); // NOI18N
         lblTime.setForeground(new java.awt.Color(255, 255, 255));
@@ -364,12 +375,12 @@ public class WelcomeP extends javax.swing.JFrame implements Runnable {
                 .addGap(68, 68, 68)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 624, Short.MAX_VALUE)
+                        .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 958, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnExit))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnVoice)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 753, Short.MAX_VALUE)
                         .addComponent(lblTime)
                         .addGap(20, 20, 20)))
                 .addGap(366, 366, 366))
@@ -383,7 +394,7 @@ public class WelcomeP extends javax.swing.JFrame implements Runnable {
                         .addComponent(btnExit))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblTime, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -459,6 +470,13 @@ public class WelcomeP extends javax.swing.JFrame implements Runnable {
         loggin.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnExitMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        int id = this.director_id;
+        Principal p = ctrlP.getPrincipalDataByID(id);
+        String fullname = p.getName() + " " + p.getLastname();System.out.println(fullname);
+        lblWelcome.setText("Bienvenido " + fullname );
+    }//GEN-LAST:event_formWindowOpened
 	
     private void iniciarVoz() {
         hiloEscucha = new Thread(rec = new Reconocedor(this));
@@ -554,7 +572,6 @@ public class WelcomeP extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btnStadistics;
     private javax.swing.JButton btnTeacherAttendances;
     private javax.swing.JButton btnVoice;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -563,6 +580,7 @@ public class WelcomeP extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JLabel lblTime;
+    private javax.swing.JLabel lblWelcome;
     // End of variables declaration//GEN-END:variables
 
 	@Override

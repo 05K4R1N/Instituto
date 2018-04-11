@@ -168,11 +168,13 @@ public class Loggin extends javax.swing.JFrame {
             switch(rol){
                 case "principal":
                     WelcomeP p = new WelcomeP();
+                    p.director_id = id;
                     this.setVisible(false);
                     p.setVisible(true);
                     break;
                 case "teacher":
                     WelcomeT t = new WelcomeT();
+                    t.teacher_id = id;
                     t.setVisible(true);
                     this.setVisible(false);
                     break;

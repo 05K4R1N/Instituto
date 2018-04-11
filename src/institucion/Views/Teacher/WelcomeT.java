@@ -8,7 +8,10 @@ package institucion.Views.Teacher;
 
 import config.Sound;
 import config.Tiempo;
+import institucion.Controllers.CtrlTeacher;
 import institucion.Views.Loggin.Loggin;
+import java.util.HashMap;
+import java.util.Hashtable;
 
 /**
  *
@@ -19,23 +22,25 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
     /**
      * Creates new form welcome
      */
-	private Sound s;
-	private Tiempo t;
-	
-	private Thread h1;
-	
+    public int teacher_id;
+    
+    private CtrlTeacher ctrlT;
+    private Sound s;
+    private Tiempo t;
+    private Thread h1;
+    
     public WelcomeT() {
         this.setUndecorated(true);
         initComponents();
         this.setSize(1500,700);
         this.setLocationRelativeTo(null);
 		
-		
-		s = new Sound();
-		t = new Tiempo();
-		
-		h1 = new Thread(this);
-		h1.start();
+        s = new Sound();
+        t = new Tiempo();
+        ctrlT = new CtrlTeacher();
+
+        h1 = new Thread(this);
+        h1.start();
     }
 
     /**
@@ -61,6 +66,11 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
         btnMaterias = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -314,6 +324,13 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
         loggin.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCloseMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        int teacher_id = this.teacher_id;
+        Hashtable teacher = ctrlT.getTeacherData(teacher_id);
+        String fullname = teacher.get("first_name") + " " + teacher.get("last_name");
+        lblWelcome.setText("Bienvenido " + fullname);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

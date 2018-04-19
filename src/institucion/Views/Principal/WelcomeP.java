@@ -474,7 +474,7 @@ public class WelcomeP extends javax.swing.JFrame implements Runnable {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         int id = this.director_id;
         Principal p = ctrlP.getPrincipalDataByID(id);
-        String fullname = p.getName() + " " + p.getLastname();System.out.println(fullname);
+        String fullname = p.getName() + " " + p.getLastname();
         lblWelcome.setText("Bienvenido " + fullname );
     }//GEN-LAST:event_formWindowOpened
 	

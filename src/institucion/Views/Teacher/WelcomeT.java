@@ -81,7 +81,7 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
         btnPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/manager.png"))); // NOI18N
         btnPerfil.setText("Ver Perfil");
         btnPerfil.setBorder(null);
-        btnPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPerfil.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnPerfil.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnPerfil.addActionListener(new java.awt.event.ActionListener() {
@@ -96,7 +96,7 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/edit.png"))); // NOI18N
         btnActualizar.setText("Editar Mi Perfil");
         btnActualizar.setBorder(null);
-        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnActualizar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +111,7 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
         btnNotificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/notifications.png"))); // NOI18N
         btnNotificaciones.setText("Notificaciones");
         btnNotificaciones.setBorder(null);
-        btnNotificaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNotificaciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNotificaciones.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNotificaciones.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnNotificaciones.addActionListener(new java.awt.event.ActionListener() {
@@ -214,7 +214,7 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
         btnAlumnado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/classmate.png"))); // NOI18N
         btnAlumnado.setText("Alumnado");
         btnAlumnado.setBorder(null);
-        btnAlumnado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAlumnado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAlumnado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAlumnado.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnAlumnado.addActionListener(new java.awt.event.ActionListener() {
@@ -229,7 +229,7 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
         btnAsistencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/attendance.png"))); // NOI18N
         btnAsistencia.setText("Control de Asistencias");
         btnAsistencia.setBorder(null);
-        btnAsistencia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAsistencia.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAsistencia.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAsistencia.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnAsistencia.addActionListener(new java.awt.event.ActionListener() {
@@ -244,7 +244,7 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
         btnMaterias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/subject.png"))); // NOI18N
         btnMaterias.setText("Mis Materias");
         btnMaterias.setBorder(null);
-        btnMaterias.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMaterias.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnMaterias.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnMaterias.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnMaterias.addActionListener(new java.awt.event.ActionListener() {

@@ -22,8 +22,7 @@ public class Sound {
 		try {
 			Player apl;
 			try {
-				apl = new Player(new FileInputStream(
-						"/home/o5k4r1n/ProjectsJava/Instituto/src/sounds/"+fileSound));
+				apl = new Player(new FileInputStream(System.getProperty("user.dir")+"/src/sounds/"+fileSound));
 				apl.play();
 			} catch (FileNotFoundException e) {
 				System.out.println(e);

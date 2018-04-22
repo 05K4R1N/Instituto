@@ -275,18 +275,18 @@ public class Edit extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         String name		= txtName.getText();
-		String lastname = txtLastname.getText();
-		String address	= txtAddress.getText();
-		String sex		= cmbSex.getSelectedItem().toString();
-		Date birthday	= txtBirthday.getDate();
-		int ci			= Integer.parseInt(txtCI.getText());
-		Principal p		= new Principal(name, lastname, sex, address, birthday, ci);
-		if(ctrlP.updatePrincipal(p, director_id)){
-			JOptionPane.showMessageDialog(this, "Datos de Director actualizados exitosamente");
-			this.setVisible(false);
-			return;
-		}
-		JOptionPane.showMessageDialog(this, "Error al Actualizar los datos");
+        String lastname = txtLastname.getText();
+        String address	= txtAddress.getText();
+        String sex		= cmbSex.getSelectedItem().toString();
+        Date birthday	= txtBirthday.getDate();
+        int ci			= Integer.parseInt(txtCI.getText());
+        Principal p		= new Principal(name, lastname, sex, address, birthday, ci);
+        if(ctrlP.updatePrincipal(p, director_id)){
+                JOptionPane.showMessageDialog(this, "Datos de Director actualizados exitosamente");
+                this.setVisible(false);
+                return;
+        }
+        JOptionPane.showMessageDialog(this, "Error al Actualizar los datos");
     }//GEN-LAST:event_btnUpdateActionPerformed
 	public void fullFields(){
 		Principal p = ctrlP.getPrincipalDataByID(director_id);

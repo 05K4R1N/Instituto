@@ -25,11 +25,12 @@ public class CtrlTeacher {
 
     public boolean add(Teacher t){
         boolean added = false;
-        if(( t.getFirst_name().length() != 0 || !t.getFirst_name().equals(" ") ) || 
+        System.out.println(t.getLast_name().length());
+        if(( t.getFirst_name().length() != 0 && !t.getFirst_name().equals(" ") ) || 
                 (t.getLast_name().length() != 0 || !t.getLast_name().equals(" ")) || 
-                (t.getBirthday().toString().isEmpty() || !t.getBirthday().toString().equals(" ")) || 
-                (t.getPlace_birth().length() != 0 || !t.getPlace_birth().equals(" ")) || 
-                (t.getAddress().length() != 0 || !t.getAddress().equals(" ")) ){
+                //(t.getBirthday().toString().length() != 0 && !t.getBirthday().toString().equals(" ")) || 
+                (t.getPlace_birth().length() != 0 && !t.getPlace_birth().equals(" ")) || 
+                (t.getAddress().length() != 0 && !t.getAddress().equals(" ")) ){
             mod.add(t);
             added = true;
         }

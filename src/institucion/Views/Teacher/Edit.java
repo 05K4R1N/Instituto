@@ -3,7 +3,6 @@ package institucion.Views.Teacher;
 import institucion.Controllers.CtrlTeacher;
 import institucion.Models.Users.Teacher;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Hashtable;
 import javax.swing.JOptionPane;
 
@@ -277,12 +276,12 @@ public class Edit extends javax.swing.JFrame{
         t.setBirthday(txtBirthday.getDate());
         t.setPlace_birth(txtplace_birthday.getText());
         if(control.add(t)){
-			JOptionPane.showMessageDialog(this, "Datos de Profesor Actualizados");
-			this.setVisible(false);
-			return;
-		}
-            
-		JOptionPane.showMessageDialog(this, "Uno de sus campos se encuentran vacios. Verifique por favor.", "Error al editar", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Datos de Profesor Actualizados");
+            this.setVisible(false);
+            return;
+        }
+
+        JOptionPane.showMessageDialog(this, "Uno de sus campos se encuentran vacios. Verifique por favor.", "Error al editar", JOptionPane.WARNING_MESSAGE);
 			
     }//GEN-LAST:event_btnEditMouseClicked
 

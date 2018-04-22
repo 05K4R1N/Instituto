@@ -10,7 +10,6 @@ import config.Sound;
 import config.Tiempo;
 import institucion.Controllers.CtrlTeacher;
 import institucion.Views.Loggin.Loggin;
-import java.util.HashMap;
 import java.util.Hashtable;
 
 /**

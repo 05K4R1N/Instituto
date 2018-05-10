@@ -274,19 +274,30 @@ public class Edit extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        String name		= txtName.getText();
-        String lastname = txtLastname.getText();
-        String address	= txtAddress.getText();
-        String sex		= cmbSex.getSelectedItem().toString();
-        Date birthday	= txtBirthday.getDate();
-        int ci			= Integer.parseInt(txtCI.getText());
-        Principal p		= new Principal(name, lastname, sex, address, birthday, ci);
+        String name     =   txtName.getText();
+        String lastname =   txtLastname.getText();
+        String address	=   txtAddress.getText();
+        String sex	=   cmbSex.getSelectedItem().toString();
+        Date birthday	=   txtBirthday.getDate();
+        int ci          =   0;
+        try{
+            ci  =   Integer.parseInt(txtCI.getText());
+        }catch(NumberFormatException e){
+            ci  =   0;
+        }
+        Principal p     =   new Principal();
+        p.setName(name);
+        p.setLastname(lastname);
+        p.setAddress(address);
+        p.setSex(sex);
+        p.setDate_of_birth(birthday);
+        p.setCi(ci);
         if(ctrlP.updatePrincipal(p, director_id)){
                 JOptionPane.showMessageDialog(this, "Datos de Director actualizados exitosamente");
                 this.setVisible(false);
                 return;
         }
-        JOptionPane.showMessageDialog(this, "Error al Actualizar los datos");
+        JOptionPane.showMessageDialog(this, "Uno de los campos se encuentra vacíos o es incorrecto, favor verificar.");
     }//GEN-LAST:event_btnUpdateActionPerformed
 	public void fullFields(){
 		Principal p = ctrlP.getPrincipalDataByID(director_id);

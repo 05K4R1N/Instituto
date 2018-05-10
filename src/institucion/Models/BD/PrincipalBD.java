@@ -50,8 +50,7 @@ public class PrincipalBD {
 		}
 		return p;
 	}
-	public boolean editPrincipalData(Principal p, int director_id){
-		boolean				res		= false;
+	public void editPrincipalData(Principal p, int director_id){
 		Connection			conn	= null;
 		PreparedStatement	ptmt	= null;
 		ResultSet			rs		= null;
@@ -78,13 +77,11 @@ public class PrincipalBD {
 			ptmt.setInt(7, director_id);
 			
 			ptmt.executeUpdate();
-			res = true;
 			ptmt.close();
 			conn.close();
 		}catch(SQLException e){
 			System.out.println(e);
 		}
-		return res;
 	}
 	public HashMap getAllTeachers(){
 		HashMap<Integer, String> teachers = new HashMap();

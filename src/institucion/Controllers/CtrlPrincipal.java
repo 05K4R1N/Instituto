@@ -29,9 +29,18 @@ public class CtrlPrincipal {
 	}
 	public boolean updatePrincipal(Principal p, int director_id){
 		boolean updated = false;
-		if(mod.editPrincipalData(p, director_id)){
+		/*if(mod.editPrincipalData(p, director_id)){
 			updated = true;
-		}
+		}*/
+                if(p.getName().length() != 0 && 
+                        p.getLastname().length() != 0 && 
+                        p.getAddress().length() != 0 && 
+                        p.getSex().length() != 0 &&
+                        p.getDate_of_birth() != null && 
+                        p.getCi() != 0 ){
+                            mod.editPrincipalData(p, director_id);
+                            updated = true;
+                }
 		return updated;
 	}
 	public HashMap<Integer, String> getAllTeachers(){

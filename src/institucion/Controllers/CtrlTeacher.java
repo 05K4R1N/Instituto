@@ -25,7 +25,6 @@ public class CtrlTeacher {
 
     public boolean add(Teacher t){
         boolean added = false;
-        System.out.println(t.getBirthday()+" ");
         if( t.getFirst_name().length() > 0  && 
                 t.getLast_name().length() > 0 && 
                 t.getAddress().length() > 0 && 

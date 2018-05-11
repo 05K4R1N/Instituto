@@ -202,10 +202,10 @@ public class Inbox extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnSend)
-                                .addGap(54, 54, 54)
-                                .addComponent(btnClean)
-                                .addGap(15, 15, 15))
+                                .addGap(40, 40, 40)
+                                .addComponent(btnClean))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblMessage)
@@ -233,18 +233,15 @@ public class Inbox extends javax.swing.JFrame {
                                         .addComponent(lblTeacher)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(btnClose)
+                                .addComponent(lblSelectTeacher)
                                 .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblSelectTeacher)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnClose))))
                     .addComponent(lblMainTItle2)
                     .addComponent(lblMainTitle1)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 756, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -391,10 +388,10 @@ public class Inbox extends javax.swing.JFrame {
         }
         //Message m = new Message(teacher_id, classroom_id, title, message, moment, counter_resend);
         if(ctrlP.checkMessage(m, estado)){
-                JOptionPane.showMessageDialog(this, "Mensaje enviado con éxito","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-                clean();
-                updateTableMessages();
-                return;
+            JOptionPane.showMessageDialog(this, "Mensaje enviado con éxito","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+            clean();
+            updateTableMessages();
+            return;
         }
         JOptionPane.showMessageDialog(this, "Error al enviar mensaje, favor de revisar los datos","ERROR",JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnSendActionPerformed
@@ -437,7 +434,7 @@ public class Inbox extends javax.swing.JFrame {
         txtID.setText("0");
         txtClassroomID.setText("0");
         txtIDTeacher.setText("0");
-        txtResend.setText("0");
+        txtResend.setText("1");
         btnSend.setText("Enviar");
         DefaultListModel empty_list = new DefaultListModel();
         list_teachers.setModel(empty_list);

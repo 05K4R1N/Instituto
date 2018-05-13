@@ -12,77 +12,76 @@ import java.util.Date;
  * @author o5k4r1n
  */
 public class Act {
-	private int id;
-	private String name;
-	private int classroom_id;
-	private String description;
-	private Date date_activity;
-	private String time_activity;
+    private int id;
+    private String name;
+    private int classroom_id;
+    private String description;
+    private Date date_activity;
+    private String time_activity;
 
-	public Act(){}
+    public Act(){}
 
-	public Act(String name, String description, Date date_activity, String time_activity) {
-		this.name = name;
-		this.description = description;
-		this.date_activity = date_activity;
-		this.time_activity = time_activity;
-	}
-	
-	public Act(int classroom_id,String name, String description, Date date_activity, String time_activity) {
-		this.classroom_id = classroom_id;
-		this.name = name;
-		this.description = description;
-		this.date_activity = date_activity;
-		this.time_activity = time_activity;
-	}
-	
-	public int getId() {
-		return id;
-	}
+    public Act(String name, String description, Date date_activity, String time_activity) {
+            this.name = name;
+            this.description = description;
+            this.date_activity = date_activity;
+            this.time_activity = time_activity;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	public int getClassroom_id() {
-		return classroom_id;
-	}
+    public Act(int classroom_id,String name, String description, Date date_activity, String time_activity) {
+            this.classroom_id = classroom_id;
+            this.name = name;
+            this.description = description;
+            this.date_activity = date_activity;
+            this.time_activity = time_activity;
+    }
 
-	public void setClassroom_id(int classroom_id) {
-		this.classroom_id = classroom_id;
-	}
-	
-	
-	public String getName() {
-		return name;
-	}
+    public int getId() {
+            return id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setId(int id) {
+            this.id = id;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public int getClassroom_id() {
+            return classroom_id;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setClassroom_id(int classroom_id) {
+            this.classroom_id = classroom_id;
+    }
 
-	public Date getDate_activity() {
-		return date_activity;
-	}
 
-	public void setDate_activity(Date date_activity) {
-		this.date_activity = date_activity;
-	}
+    public String getName() {
+            return name;
+    }
 
-	public String getTime_activity() {
-		return time_activity;
-	}
+    public void setName(String name) {
+            this.name = name;
+    }
 
-	public void setTime_activity(String time_activity) {
-		this.time_activity = time_activity;
-	}
-	
+    public String getDescription() {
+            return description;
+    }
+
+    public void setDescription(String description) {
+            this.description = description;
+    }
+
+    public Date getDate_activity() {
+            return date_activity;
+    }
+
+    public void setDate_activity(Date date_activity) {
+            this.date_activity = date_activity;
+    }
+
+    public String getTime_activity() {
+            return time_activity;
+    }
+
+    public void setTime_activity(String time_activity) {
+            this.time_activity = time_activity;
+    }
 }

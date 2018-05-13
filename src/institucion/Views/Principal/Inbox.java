@@ -393,13 +393,24 @@ public class Inbox extends javax.swing.JFrame {
             updateTableMessages();
             return;
         }
-        JOptionPane.showMessageDialog(this, "Error al enviar mensaje, favor de revisar los datos","ERROR",JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, 
+                "Error al enviar mensaje, favor de revisar los datos",
+                "ERROR",
+                JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnSendActionPerformed
     public void updateTableMessages(){
         tabMessages.setModel(new DefaultTableModel());
         String[] cols = {"id","Titulo", "Mensaje", "# Envios","teacher_id","classroom_id"};
         Object[][] data= ctrlP.getMessages();
-        DefaultTableModel tab = new DefaultTableModel(data, cols);
+        DefaultTableModel tab = new DefaultTableModel(data, cols){
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+            
+        };
+        
         tabMessages.setModel(tab);
         hideColumns();
 

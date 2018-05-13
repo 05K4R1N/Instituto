@@ -15,61 +15,57 @@ import java.util.HashMap;
  * @author o5k4r1n
  */
 public class CtrlPrincipal {
-	private PrincipalBD mod;
-	
-	public CtrlPrincipal(){
-		mod = new PrincipalBD();
-	}
-	public Principal getPrincipalDataByID(int director_id){
-		Principal p = new Principal();
-		if(director_id > 0){
-			p = mod.getPrincipalByID(director_id);
-		}
-		return p;
-	}
-	public boolean updatePrincipal(Principal p, int director_id){
-		boolean updated = false;
-		/*if(mod.editPrincipalData(p, director_id)){
-			updated = true;
-		}*/
-                if(p.getName().length() != 0 && 
-                        p.getLastname().length() != 0 && 
-                        p.getAddress().length() != 0 && 
-                        p.getSex().length() != 0 &&
-                        p.getDate_of_birth() != null && 
-                        p.getCi() != 0 ){
-                            mod.editPrincipalData(p, director_id);
-                            updated = true;
-                }
-		return updated;
-	}
-	public HashMap<Integer, String> getAllTeachers(){
-		return mod.getAllTeachers();
-	}
-	public boolean checkMessage(Message m, String estado){
-		boolean res = false;
-                System.out.println(m.getTitle().length()+" "+ m.getContent().length());
-		if( m.getTitle().length() != 0 &&
-				m.getContent().length() != 0 &&
-				m.getTeacher_id() != 0 && 
-				m.getClassroom_id() != 0){
-			if(estado.equals("enviar")){
-				res = mod.sendMessage(m);
-			}
-			else{
-				res = mod.resendMessage(m);
-			}
-		}
-		return res;
-	}
-	public Object[][] getMessages(){
-		return mod.getAllMessages();
-	}
-	public Object[][] getTodayAttendances(int classroom_id){
-		Object[][] attendances = null;
-		if(classroom_id > 0){
-			attendances = mod.getTodayAttendances(classroom_id);
-		}
-		return attendances;
-	}
+    private PrincipalBD mod;
+
+    public CtrlPrincipal(){
+            mod = new PrincipalBD();
+    }
+    public Principal getPrincipalDataByID(int director_id){
+            Principal p = new Principal();
+            if(director_id > 0){
+                    p = mod.getPrincipalByID(director_id);
+            }
+            return p;
+    }
+    public boolean updatePrincipal(Principal p, int director_id){
+        boolean updated = false;
+        if(p.getName().length() != 0 && 
+            p.getLastname().length() != 0 && 
+            p.getAddress().length() != 0 && 
+            p.getSex().length() != 0 &&
+            p.getDate_of_birth() != null && 
+            p.getCi() != 0 ){
+                mod.editPrincipalData(p, director_id);
+                updated = true;
+        }
+        return updated;
+    }
+    public HashMap<Integer, String> getAllTeachers(){
+        return mod.getAllTeachers();
+    }
+    public boolean checkMessage(Message m, String estado){
+        boolean res = false;
+        if( m.getTitle().length() != 0 &&
+            m.getContent().length() != 0 &&
+            m.getTeacher_id() != 0 && 
+            m.getClassroom_id() != 0){
+            if(estado.equals("enviar")){
+                    res = mod.sendMessage(m);
+            }
+            else{
+                    res = mod.resendMessage(m);
+            }
+        }
+        return res;
+    }
+    public Object[][] getMessages(){
+        return mod.getAllMessages();
+    }
+    public Object[][] getTodayAttendances(int classroom_id){
+        Object[][] attendances = null;
+        if(classroom_id > 0){
+                attendances = mod.getTodayAttendances(classroom_id);
+        }
+        return attendances;
+    }
 }

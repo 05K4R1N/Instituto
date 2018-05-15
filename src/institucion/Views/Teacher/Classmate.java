@@ -8,6 +8,7 @@ package institucion.Views.Teacher;
 
 import institucion.Controllers.CtrlClassroom;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -32,7 +33,7 @@ public class Classmate extends javax.swing.JFrame {
         this.setSize(900,524);
         this.setLocationRelativeTo(null);
 		
-		ctrlC = new CtrlClassroom();
+        ctrlC = new CtrlClassroom();
     }
 
     /**
@@ -50,7 +51,7 @@ public class Classmate extends javax.swing.JFrame {
         panelStudent = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
         lblclasroom = new javax.swing.JLabel();
-        teacher_clasroom = new javax.swing.JComboBox<>();
+        teacher_clasroom = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -102,6 +103,7 @@ public class Classmate extends javax.swing.JFrame {
         lblclasroom.setForeground(new java.awt.Color(255, 255, 255));
         lblclasroom.setText("AULA:");
 
+        teacher_clasroom.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         teacher_clasroom.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 teacher_clasroomItemStateChanged(evt);
@@ -173,46 +175,47 @@ public class Classmate extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-		ArrayList<String> classrooms = ctrlC.obtainClassrooms();
-		teacher_clasroom.addItem("Seleccione un Aula");
-		for(String classroom: classrooms){
-			teacher_clasroom.addItem(classroom);
-		}
+        ArrayList<String> classrooms = ctrlC.obtainClassrooms();
+        teacher_clasroom.addItem("Seleccione un Aula");
+        for(String classroom: classrooms){
+                teacher_clasroom.addItem(classroom);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void teacher_clasroomItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_teacher_clasroomItemStateChanged
         String classroom = "";
-		if(evt.getStateChange() == 1){
-			panelStudent.removeAll();
-			panelStudent.repaint();
-			classroom = evt.getItem().toString();
-			int y = 0;
-			int x = 0;
-			
-			Map<Integer,String>  students = ctrlC.getStudents_of_classroom(classroom);
-			for(Map.Entry<Integer,String> student: students.entrySet()){
-				JButton button = new JButton();
-				button.setText(student.getValue());
-				button.setFont(new Font("Loma", Font.PLAIN, 11));
-				button.setBackground(Color.DARK_GRAY);
-				button.setForeground(Color.WHITE);
-				button.setBounds(new Rectangle(x, y, 140, 30));
-				button.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						System.out.println(student.getKey());
-					}
-				});
-				x=x+140;
-				if(x>=420){
-					y+=30;
-					x=0;
-				}
-				panelStudent.add(button);
-				panelStudent.revalidate();
-				panelStudent.repaint();
-			}
-		}
+        if(evt.getStateChange() == 1){
+            panelStudent.removeAll();
+            panelStudent.repaint();
+            classroom = evt.getItem().toString();
+            int y = 0;
+            int x = 0;
+
+            Map<Integer,String>  students = ctrlC.getStudents_of_classroom(classroom);
+            for(Map.Entry<Integer,String> student: students.entrySet()){
+                    JButton button = new JButton();
+                    button.setText(student.getValue());
+                    button.setFont(new Font("Loma", Font.PLAIN, 11));
+                    button.setBackground(Color.DARK_GRAY);
+                    button.setForeground(Color.WHITE);
+                    button.setBounds(new Rectangle(x, y, 140, 30));
+                    button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                            //System.out.println(student.getKey());
+                    }
+                    });
+                    x=x+140;
+                    if(x>=420){
+                            y+=30;
+                            x=0;
+                    }
+                    panelStudent.add(button);
+                    panelStudent.revalidate();
+                    panelStudent.repaint();
+            }
+        }
     }//GEN-LAST:event_teacher_clasroomItemStateChanged
 
     /**

@@ -182,9 +182,18 @@ public class Messages extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         btndelete.setEnabled(false);
         txtMessageId.setVisible(false);
-        if(listMessages() == 0){
-            JOptionPane.showMessageDialog(null, "No existe ningun mensaje en Notificacion", "SIN NOTIFICACION", JOptionPane.ERROR_MESSAGE);
+        int num_messages = listMessages();
+        if(num_messages == 0){
+            JOptionPane.showMessageDialog(null, 
+                                    "No existe ningun mensaje en Notificacion", 
+                                    "SIN NOTIFICACION", 
+                                    JOptionPane.ERROR_MESSAGE);
             this.setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(null, 
+                                    "Usted tiene " + num_messages + " mensajes",
+                                    "Mensajes", 
+                                    JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -225,7 +234,7 @@ public class Messages extends javax.swing.JFrame {
                             message_content.setText(message);
                             txtMessageId.setText(String.valueOf(id));
                             btndelete.setEnabled(true);
-                            m.setVisible(false);
+                            
                     }
                 });
                 panelMessages.add(btn_message);
@@ -241,7 +250,6 @@ public class Messages extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    static Messages m ;
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -269,12 +277,7 @@ public class Messages extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                m = new Messages();
-                m.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+                new Messages().setVisible(true);
             }
         });
     }

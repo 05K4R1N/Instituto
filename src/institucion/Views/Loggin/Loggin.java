@@ -44,6 +44,7 @@ public class Loggin extends javax.swing.JFrame {
         btnEnter = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         lblIcon = new javax.swing.JLabel();
+        btnAttendance = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +90,21 @@ public class Loggin extends javax.swing.JFrame {
 
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/manager.png"))); // NOI18N
 
+        btnAttendance.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
+        btnAttendance.setForeground(new java.awt.Color(255, 255, 255));
+        btnAttendance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/attendace_time.png"))); // NOI18N
+        btnAttendance.setText("ASISTENCIA");
+        btnAttendance.setBorderPainted(false);
+        btnAttendance.setContentAreaFilled(false);
+        btnAttendance.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAttendance.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAttendance.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAttendance.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAttendanceMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -98,22 +114,24 @@ public class Loggin extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(171, 171, 171)
                         .addComponent(lblIcon))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addContainerGap(78, Short.MAX_VALUE)
-                            .addComponent(btnEnter)
-                            .addGap(74, 74, 74)
-                            .addComponent(btnExit))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(33, 33, 33)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblPassword)
-                                .addComponent(lblUser))
-                            .addGap(32, 32, 32)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(66, 66, 66))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblPassword)
+                            .addComponent(lblUser))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 42, Short.MAX_VALUE)
+                .addComponent(btnEnter)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnExit)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAttendance)
+                .addGap(41, 41, 41))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,11 +146,12 @@ public class Loggin extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPassword)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnExit)
-                    .addComponent(btnEnter))
-                .addGap(25, 25, 25))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAttendance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -187,6 +206,11 @@ public class Loggin extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnExitMouseClicked
 
+    private void btnAttendanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAttendanceMouseClicked
+        Access a = new Access();
+        a.setVisible(true);
+    }//GEN-LAST:event_btnAttendanceMouseClicked
+
     /**
     * @param args the command line arguments
     */
@@ -223,6 +247,7 @@ public class Loggin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAttendance;
     private javax.swing.JButton btnEnter;
     private javax.swing.JButton btnExit;
     private javax.swing.JPanel jPanel1;

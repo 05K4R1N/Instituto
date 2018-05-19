@@ -6,7 +6,12 @@
 
 package institucion.Views.Loggin;
 
+import institucion.Controllers.CtrlLoggin;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
@@ -14,17 +19,22 @@ import javax.swing.border.LineBorder;
  *
  * @author Oscar
  */
-public class Access extends javax.swing.JFrame {
+public class Access extends javax.swing.JFrame implements ActionListener{
 
     /**
      * Creates new form Access
      */
+    private CtrlLoggin ctrlL;
     public Access() {
         this.setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        Timer t = new Timer(10000, this);
+        t.start();
+        
+        ctrlL = new CtrlLoggin();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,7 +46,7 @@ public class Access extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblCode = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCode = new javax.swing.JTextField();
         btnMark = new javax.swing.JButton();
         lblTitle = new javax.swing.JLabel();
 
@@ -58,6 +68,11 @@ public class Access extends javax.swing.JFrame {
         btnMark.setForeground(new java.awt.Color(255, 255, 255));
         btnMark.setText("Marcar");
         btnMark.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMark.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMarkMouseClicked(evt);
+            }
+        });
 
         lblTitle.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
@@ -76,7 +91,7 @@ public class Access extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblCode)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(btnMark, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24))))
@@ -89,7 +104,7 @@ public class Access extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCode)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMark, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32))
         );
@@ -112,6 +127,23 @@ public class Access extends javax.swing.JFrame {
         Border border = new LineBorder(Color.WHITE, 1);
         btnMark.setBorder(border);
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnMarkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMarkMouseClicked
+        String usercode = txtCode.getText();
+        int validation = ctrlL.validateCode(usercode);
+        switch(validation){
+            case 1:
+                this.dispose();
+                break;
+            case 0:
+                JOptionPane.showMessageDialog(this, 
+                                            "Código No Valido",
+                                            "Error", 
+                                            JOptionPane.ERROR_MESSAGE);
+                txtCode.setText("");
+                break;
+        }
+    }//GEN-LAST:event_btnMarkMouseClicked
 
     /**
      * @param args the command line arguments
@@ -151,8 +183,13 @@ public class Access extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMark;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblCode;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTextField txtCode;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        this.dispose();
+    }
 }

@@ -28,4 +28,16 @@ public class CtrlLoggin {
         }
         return data;
     }
+    public int validateCode(String code){
+        int res = 0;
+        try{
+            int user_code = Integer.parseInt(code);
+            if(mod.validateUser(user_code) == 1){
+                res = 1;
+            }
+        }catch(NumberFormatException e){
+            System.out.println(e);
+        }
+        return res;
+    }
 }

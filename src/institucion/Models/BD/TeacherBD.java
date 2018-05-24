@@ -26,7 +26,13 @@ public class TeacherBD {
         Connection conn = null;
         PreparedStatement ptmt = null;
         Date sql_date = new Date(t.getBirthday().getTime()); 
-        String query = "UPDATE Teacher set first_name=?, last_name=?, birthday=?, address=?, place_birth=? WHERE id=?";
+        String query = "UPDATE Teacher "
+                    + "SET first_name=?, "
+                    + "last_name=?, "
+                    + "birthday=?, "
+                    + "address=?, "
+                    + "place_birth=? "
+                    + "WHERE id=?";
         try {
             conn = Conexion.getInstance().getConnection();
             ptmt = conn.prepareStatement(query);
@@ -78,7 +84,9 @@ public class TeacherBD {
         Connection conn         = null;
         ResultSet rs            = null;
         PreparedStatement ptmt  = null;
-        String query        = "SELECT attendance_status, time_attendance FROM attendance WHERE teacher_id = ? LIMIT 15"; 
+        String query        = "SELECT attendance_status, time_attendance "
+                            + "FROM attendance "
+                            + "WHERE teacher_id = ? LIMIT 15"; 
         try{
             conn = Conexion.getInstance().getConnection();
             ptmt = conn.prepareStatement(query);

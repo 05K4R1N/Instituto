@@ -60,12 +60,12 @@ public class Teacher {
         this.place_birth = place_birth;
     }
 
-	public String getPhoto() {
-		return photo;
-	}
+    public String getPhoto() {
+            return photo;
+    }
 
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
+    public void setPhoto(String photo) {
+            this.photo = photo;
+    }
     
 }

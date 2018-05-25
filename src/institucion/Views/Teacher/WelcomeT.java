@@ -63,6 +63,7 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
         btnAlumnado = new javax.swing.JButton();
         btnAsistencia = new javax.swing.JButton();
         btnMaterias = new javax.swing.JButton();
+        btnSchedule = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -75,7 +76,7 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         btnPerfil.setBackground(new java.awt.Color(0, 0, 0));
-        btnPerfil.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
+        btnPerfil.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
         btnPerfil.setForeground(new java.awt.Color(255, 255, 255));
         btnPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/manager.png"))); // NOI18N
         btnPerfil.setText("Ver Perfil");
@@ -90,7 +91,7 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
         });
 
         btnActualizar.setBackground(new java.awt.Color(0, 0, 0));
-        btnActualizar.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
+        btnActualizar.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/edit.png"))); // NOI18N
         btnActualizar.setText("Editar Mi Perfil");
@@ -105,7 +106,7 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
         });
 
         btnNotificaciones.setBackground(new java.awt.Color(0, 0, 0));
-        btnNotificaciones.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
+        btnNotificaciones.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
         btnNotificaciones.setForeground(new java.awt.Color(255, 255, 255));
         btnNotificaciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/notifications.png"))); // NOI18N
         btnNotificaciones.setText("Notificaciones");
@@ -140,7 +141,7 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
                 .addComponent(btnActualizar)
                 .addGap(116, 116, 116)
                 .addComponent(btnNotificaciones)
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -208,7 +209,7 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
         jPanel3.setBackground(new java.awt.Color(0, 0, 51));
 
         btnAlumnado.setBackground(new java.awt.Color(51, 25, 230));
-        btnAlumnado.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
+        btnAlumnado.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
         btnAlumnado.setForeground(new java.awt.Color(255, 255, 255));
         btnAlumnado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/classmate.png"))); // NOI18N
         btnAlumnado.setText("Alumnado");
@@ -223,7 +224,7 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
         });
 
         btnAsistencia.setBackground(new java.awt.Color(51, 25, 230));
-        btnAsistencia.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
+        btnAsistencia.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
         btnAsistencia.setForeground(new java.awt.Color(255, 255, 255));
         btnAsistencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/attendance.png"))); // NOI18N
         btnAsistencia.setText("Control de Asistencias");
@@ -238,7 +239,7 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
         });
 
         btnMaterias.setBackground(new java.awt.Color(51, 25, 230));
-        btnMaterias.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
+        btnMaterias.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
         btnMaterias.setForeground(new java.awt.Color(255, 255, 255));
         btnMaterias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/subject.png"))); // NOI18N
         btnMaterias.setText("Mis Materias");
@@ -252,27 +253,40 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
             }
         });
 
+        btnSchedule.setBackground(new java.awt.Color(51, 25, 230));
+        btnSchedule.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
+        btnSchedule.setForeground(new java.awt.Color(255, 255, 255));
+        btnSchedule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/schedule.png"))); // NOI18N
+        btnSchedule.setText("Horarios");
+        btnSchedule.setBorder(null);
+        btnSchedule.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSchedule.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSchedule.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(83, Short.MAX_VALUE)
-                .addComponent(btnAlumnado, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(132, 132, 132)
-                .addComponent(btnMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(125, 125, 125)
-                .addComponent(btnAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(229, 229, 229))
+                .addComponent(btnAlumnado, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86)
+                .addComponent(btnMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83)
+                .addComponent(btnAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addComponent(btnSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(253, 253, 253))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAsistencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnMaterias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAlumnado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAlumnado, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(73, Short.MAX_VALUE))
         );
 
@@ -374,6 +388,7 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btnMaterias;
     private javax.swing.JButton btnNotificaciones;
     private javax.swing.JButton btnPerfil;
+    private javax.swing.JButton btnSchedule;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

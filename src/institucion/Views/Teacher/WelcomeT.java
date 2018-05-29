@@ -262,6 +262,11 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
         btnSchedule.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSchedule.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSchedule.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSchedule.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnScheduleMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -298,38 +303,38 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
 
     private void btnAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsistenciaActionPerformed
         s.reproduce("bep.mp3");
-		Attendance ctrl_attendance = new Attendance();
+        Attendance ctrl_attendance = new Attendance();
         ctrl_attendance.setVisible(true);
     }//GEN-LAST:event_btnAsistenciaActionPerformed
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
         s.reproduce("bep.mp3");
-		Profile p = new Profile();
+        Profile p = new Profile();
         p.setVisible(true);
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         s.reproduce("bep.mp3");
-		Edit e = new Edit();
+        Edit e = new Edit();
         e.setVisible(true);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnNotificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificacionesActionPerformed
         s.reproduce("bep.mp3"); 
-		Notification n = new Notification();
+        Notification n = new Notification();
         n.setVisible(true);
     }//GEN-LAST:event_btnNotificacionesActionPerformed
 
     private void btnMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMateriasActionPerformed
         s.reproduce("bep.mp3");
-		Subject s = new Subject();
+        Subject s = new Subject();
         s.setVisible(true);
     }//GEN-LAST:event_btnMateriasActionPerformed
 
     private void btnAlumnadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlumnadoActionPerformed
         s.reproduce("bep.mp3");
-		Classmate c = new Classmate();
-		c.setVisible(true);
+        Classmate c = new Classmate();
+        c.setVisible(true);
     }//GEN-LAST:event_btnAlumnadoActionPerformed
 
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
@@ -344,6 +349,12 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
         String fullname = teacher.get("first_name") + " " + teacher.get("last_name");
         lblWelcome.setText("Bienvenido " + fullname);
     }//GEN-LAST:event_formWindowOpened
+
+    private void btnScheduleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScheduleMouseClicked
+        s.reproduce("bep.mp3");
+        Schedule s = new Schedule();
+        s.setVisible(true);
+    }//GEN-LAST:event_btnScheduleMouseClicked
 
     /**
      * @param args the command line arguments
@@ -398,14 +409,14 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
 
 	@Override
 	public void run() {
-		Thread ct = Thread.currentThread();
-		while(ct == h1) {
-			lblTime.setText(t.calcular());
-			try {
-				Thread.sleep(1000);
-			}catch(InterruptedException e) {
-				System.out.println(e);
-			}
-		}
+            Thread ct = Thread.currentThread();
+            while(ct == h1) {
+                lblTime.setText(t.calcular());
+                try {
+                        Thread.sleep(1000);
+                }catch(InterruptedException e) {
+                        System.out.println(e);
+                }
+            }
 	}
 }

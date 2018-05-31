@@ -353,6 +353,7 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
     private void btnScheduleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnScheduleMouseClicked
         s.reproduce("bep.mp3");
         Schedule s = new Schedule();
+        s.teacher_id = this.teacher_id;
         s.setVisible(true);
     }//GEN-LAST:event_btnScheduleMouseClicked
 

@@ -18,28 +18,28 @@ import java.sql.SQLException;
  */
 public class SubjectBD {
 	
-	public Subject getSubjectById(int id){
-		Subject subject = new Subject();
-		Connection conn = null;
-		PreparedStatement ptmt = null;
-		ResultSet rs = null;
-		String query = "SELECT * "
-					+ "FROM subject "
-					+ "WHERE id = ?";
-		try{
-			conn = Conexion.getInstance().getConnection();
-			ptmt = conn.prepareStatement(query);
-			ptmt.setInt(1, id);
-			rs = ptmt.executeQuery();
-			rs.next();
-			subject.setName(rs.getString("name"));
-			subject.setDescription(rs.getString("description"));
-			rs.close();
-			ptmt.close();
-			conn.close();
-		}catch(SQLException e){
-			System.out.println(e);
-		}
-		return subject;
-	}
+    public Subject getSubjectById(int id){
+        Subject subject = new Subject();
+        Connection conn = null;
+        PreparedStatement ptmt = null;
+        ResultSet rs = null;
+        String query = "SELECT * "
+                                + "FROM subject "
+                                + "WHERE id = ?";
+        try{
+                conn = Conexion.getInstance().getConnection();
+                ptmt = conn.prepareStatement(query);
+                ptmt.setInt(1, id);
+                rs = ptmt.executeQuery();
+                rs.next();
+                subject.setName(rs.getString("name"));
+                subject.setDescription(rs.getString("description"));
+                rs.close();
+                ptmt.close();
+                conn.close();
+        }catch(SQLException e){
+                System.out.println(e);
+        }
+        return subject;
+    }
 }

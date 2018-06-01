@@ -32,13 +32,13 @@ public class Inbox extends javax.swing.JFrame {
 	private CtrlClassroom ctrlC;
 	private String estado;
 	public Inbox() {
-		this.setUndecorated(true);
-		initComponents();
-		this.setLocationRelativeTo(null);
-		ctrlP = new CtrlPrincipal();
-		ctrlT = new CtrlTeacher();
-		ctrlC = new CtrlClassroom();
-		estado = "enviar";
+            this.setUndecorated(true);
+            initComponents();
+            this.setLocationRelativeTo(null);
+            ctrlP = new CtrlPrincipal();
+            ctrlT = new CtrlTeacher();
+            ctrlC = new CtrlClassroom();
+            estado = "enviar";
 	}
 
 	/**

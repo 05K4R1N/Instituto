@@ -24,7 +24,7 @@ public class CtrlSchedule {
         boolean res = false;
         String[] aux_time = time.split(":");
         if(teacher_id > 0 && 
-                (aux_time[0].equals("--") || aux_time[1].equals("--"))){
+                (!aux_time[0].equals("--") && !aux_time[1].equals("--"))){
             res = mod.addSchedule(teacher_id, time);
         }
         return res;

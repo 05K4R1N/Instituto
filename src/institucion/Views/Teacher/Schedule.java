@@ -62,7 +62,7 @@ public class Schedule extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 102));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 51));
 
         jLabel3.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
         jLabel3.setText(":");
@@ -182,18 +182,27 @@ public class Schedule extends javax.swing.JFrame {
         int teacher_id      =   this.teacher_id;
         
         boolean added = ctrlS.addSchedule(teacher_id, time_sched);
-        if(added) JOptionPane.showMessageDialog(this, "Horario Registrado exitosamente", 
+        if(added){
+            JOptionPane.showMessageDialog(this, "Horario Registrado exitosamente", 
                                                 "Registro de Horario",
                                                 JOptionPane.INFORMATION_MESSAGE);
-        else JOptionPane.showMessageDialog(this, "Ingrese Horario Valido",
+            cmbSchedHour.setSelectedItem("--");
+            cmbSchedMin.setSelectedItem("--");
+            putContentTable(false);
+            putContentTable(true);
+        }else{ 
+            JOptionPane.showMessageDialog(this, "Ingrese Horario Valido",
                                             "Error",
                                             JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnAddScheduleMouseClicked
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        int teacher_id = this.teacher_id;
-        Object[][] list_schedules = ctrlS.getListSched(teacher_id);
-        if(list_schedules.length != 0){
+    public void putContentTable(boolean b){
+        if(!b){
+            DefaultTableModel t = new DefaultTableModel();
+            tabSchedule.setModel(t);
+        }else{
+            int teacher_id = this.teacher_id;
+            Object[][] list_schedules = ctrlS.getListSched(teacher_id);
             String[] headers = {"id", "Ingreso"};
             DefaultTableModel tab = new DefaultTableModel(list_schedules, headers){
 
@@ -201,10 +210,13 @@ public class Schedule extends javax.swing.JFrame {
                 public boolean isCellEditable(int row, int column) {
                     return false;
                 }
-                
+
             };
             tabSchedule.setModel(tab);
         }
+    }
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        putContentTable(true);
     }//GEN-LAST:event_formWindowOpened
 
     /**

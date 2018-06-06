@@ -9,7 +9,9 @@ package institucion.Views.Teacher;
 import institucion.Controllers.CtrlSchedule;
 import java.util.HashMap;
 import java.util.Hashtable;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -213,6 +215,12 @@ public class Schedule extends javax.swing.JFrame {
 
             };
             tabSchedule.setModel(tab);
+            tabSchedule.getColumnModel().getColumn(0).setWidth(0);
+            tabSchedule.getColumnModel().getColumn(0).setMinWidth(0);
+            tabSchedule.getColumnModel().getColumn(0).setMaxWidth(0);
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+            tabSchedule.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
         }
     }
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

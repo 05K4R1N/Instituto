@@ -48,13 +48,13 @@ public class CtrlTeacher {
         }
         return teacher;
     }
-	public String getTeacherNameByID(int teacher_id){
-		String teachers_name = "";
-		if(teacher_id > 0){
-			teachers_name = mod.getTeacherNameByID(teacher_id);
-		}
-		return teachers_name;
-	}
+    public String getTeacherNameByID(int teacher_id){
+        String teachers_name = "";
+        if(teacher_id > 0){
+                teachers_name = mod.getTeacherNameByID(teacher_id);
+        }
+        return teachers_name;
+    }
     public Object[][] getTeacherAttendances(int id){
         Object[][] attendances= null;
         if( id > 0 ){
@@ -68,51 +68,51 @@ public class CtrlTeacher {
         return classrooms;
     }
 	
-	public Hashtable viewMessages(int classroom_id, int teacher_id){
-		Hashtable messages = new Hashtable();
-		if(teacher_id > 0){
-			messages = mod.getMessages(classroom_id, teacher_id);
-		}
-		return messages;
-	}
-	public HashMap getSubjectsTeacher(int id){
-		HashMap subjects = new HashMap();
-		if(id > 0){
-			subjects = mod.getSubjectsbyTeacherId(id);
-		}
-		return subjects;
-	}
-	public String getMessageByID(int message_id){
-		String message = "";
-		if( message_id > 0 ){
-			message = mod.getMessageByID(message_id);
-		}
-		return message;
-	}
-	public void deleteMessageByMessageID(int message_id, int teacher_id){
-		if(teacher_id > 0 && message_id > 0){
-			mod.dropMessageByTeacherID(message_id, teacher_id);
-		}
-	}
-	public ArrayList<String> getTeachersBySearching(String name){
-		ArrayList<String> teachers = new ArrayList<String>();
-		if(name.length()!=0){
-			teachers = mod.getTeachersBySearch(name);
-		}
-		return teachers;
-	}
-	public int getTeacherID(String fn, String ln){
-		int teacher_id = 0;
-		if( fn.length() !=0 || ln.length() !=0 ){
-			teacher_id = mod.getTeacherID(fn, ln);
-		}
-		return teacher_id;
-	}
-	public ArrayList<String> getTeacherByClassroom(int classroom_id){
-		ArrayList<String> teachers = new ArrayList<String>();
-		if(classroom_id != 0){
-			teachers = mod.getTeachersByClassroom(classroom_id);
-		}
-		return teachers;
-	}
+    public Hashtable viewMessages(int classroom_id, int teacher_id){
+        Hashtable messages = new Hashtable();
+        if(teacher_id > 0){
+                messages = mod.getMessages(classroom_id, teacher_id);
+        }
+        return messages;
+    }
+    public HashMap getSubjectsTeacher(int id){
+        HashMap subjects = new HashMap();
+        if(id > 0){
+                subjects = mod.getSubjectsbyTeacherId(id);
+        }
+        return subjects;
+    }
+    public String getMessageByID(int message_id){
+        String message = "";
+        if( message_id > 0 ){
+                message = mod.getMessageByID(message_id);
+        }
+        return message;
+    }
+    public void deleteMessageByMessageID(int message_id, int teacher_id){
+        if(teacher_id > 0 && message_id > 0){
+                mod.dropMessageByTeacherID(message_id, teacher_id);
+        }
+    }
+    public ArrayList<String> getTeachersBySearching(String name){
+        ArrayList<String> teachers = new ArrayList<String>();
+        if(name.length()!=0){
+                teachers = mod.getTeachersBySearch(name);
+        }
+        return teachers;
+    }
+    public int getTeacherID(String fn, String ln){
+        int teacher_id = 0;
+        if( fn.length() !=0 || ln.length() !=0 ){
+                teacher_id = mod.getTeacherID(fn, ln);
+        }
+        return teacher_id;
+    }
+    public ArrayList<String> getTeacherByClassroom(int classroom_id){
+        ArrayList<String> teachers = new ArrayList<String>();
+        if(classroom_id != 0){
+                teachers = mod.getTeachersByClassroom(classroom_id);
+        }
+        return teachers;
+    }
 }

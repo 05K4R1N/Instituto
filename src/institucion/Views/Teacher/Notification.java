@@ -32,7 +32,7 @@ public class Notification extends javax.swing.JFrame {
         initComponents();
         this.setSize(809,528);
         this.setLocationRelativeTo(null);
-		this.id = 1;
+	this.id = 1;
     }
 
     /**
@@ -162,10 +162,10 @@ public class Notification extends javax.swing.JFrame {
         for(Map.Entry<Integer, String> room : classrooms.entrySet()){
             JButton button = new JButton();
             button.setText(room.getValue());
-			button.setBackground(Color.DARK_GRAY);
-			button.setForeground(Color.WHITE);
+            button.setBackground(Color.DARK_GRAY);
+            button.setForeground(Color.WHITE);
             button.setBounds(new Rectangle(80, y, 100, 50));
-			button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            button.setCursor(new Cursor(Cursor.HAND_CURSOR));
             button.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {

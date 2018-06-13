@@ -84,9 +84,9 @@ public class TeacherBD {
         Connection conn         = null;
         ResultSet rs            = null;
         PreparedStatement ptmt  = null;
-        String query        = "SELECT attendance_status, time_attendance "
+        String query        = "SELECT attendance_status, date_enter, time_enter "
                             + "FROM attendance "
-                            + "WHERE teacher_id = ? LIMIT 15"; 
+                            + "WHERE personal_id = ?"; 
         try{
             conn = Conexion.getInstance().getConnection();
             ptmt = conn.prepareStatement(query);
@@ -100,7 +100,7 @@ public class TeacherBD {
             int i=0;
             while(rs.next()){
                 attendances[i][0] = rs.getString("attendance_status");
-                attendances[i][1] = rs.getDate("time_attendance") + " " + rs.getTime("time_attendance");
+                attendances[i][1] = rs.getDate("date_enter") + " - " + rs.getTime("time_enter");
                 i++;
             }
             

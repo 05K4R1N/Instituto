@@ -25,7 +25,7 @@ public class Notification extends javax.swing.JFrame {
      * Creates new form notifications
      */
     private CtrlTeacher ctrl;
-	private int id;
+    private int id;
     public Notification() {
         ctrl = new CtrlTeacher();
         this.setUndecorated(true);

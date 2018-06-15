@@ -193,6 +193,8 @@ public class Attendance extends javax.swing.JFrame {
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tabAttendance.getColumnModel().getColumn(0).setCellRenderer(tcr);
         tabAttendance.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tabAttendance.getColumnModel().getColumn(0).setPreferredWidth(5);
+
     }//GEN-LAST:event_formWindowOpened
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed

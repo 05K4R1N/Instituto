@@ -82,16 +82,20 @@ public class LogginBD {
                 if(res == 1) break;
             }
             if(res == 1){
-                query = "INSERT INTO attendance(type_personal, personal_id, attendance_status, time_enter) "
-                    + "VALUES (?,?,?,?)";
-                DateFormat dateFormat   =   new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                query = "INSERT INTO attendance(type_personal, personal_id, "
+                                            + "attendance_status, date_enter, time_enter) "
+                    + "VALUES (?,?,?,?,?)";
+                DateFormat dateFormat   =   new SimpleDateFormat("yyyy-MM-dd");
+                DateFormat timeFormat   =   new SimpleDateFormat("HH:mm:ss");
                 Calendar cal            =   Calendar.getInstance();
-                String time_enter       =   dateFormat.format(cal.getTime());
+                String date_enter       =   dateFormat.format(cal.getTime());
+                String time_enter       =   timeFormat.format(cal.getTime());
                 ptmt = conn.prepareStatement(query);
                 ptmt.setString(1, personal_rol);
                 ptmt.setInt(2, personal_id);
                 ptmt.setString(3,"Asistido");
-                ptmt.setString(4, time_enter);
+                ptmt.setString(4, date_enter);
+                ptmt.setString(5, time_enter);
                 ptmt.executeUpdate();
             }
             ptmt.close();

@@ -55,10 +55,10 @@ public class CtrlTeacher {
         }
         return teachers_name;
     }
-    public Object[][] getTeacherAttendances(int id){
+    public Object[][] getTeacherAttendances(int id, int month){
         Object[][] attendances= null;
         if( id > 0 ){
-            attendances = mod.getAttendances(id);
+            attendances = mod.getAttendances(id, month);
         }
         return attendances;
     }

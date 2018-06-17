@@ -8,6 +8,8 @@ package institucion.Views.Teacher;
 
 
 import institucion.Controllers.CtrlTeacher;
+import java.awt.event.ItemEvent;
+import java.util.HashMap;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -108,7 +110,7 @@ public class Attendance extends javax.swing.JFrame {
         btnPrint.setBackground(new java.awt.Color(0, 51, 204));
         btnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/printer.png"))); // NOI18N
         btnPrint.setBorder(null);
-        btnPrint.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPrint.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintActionPerformed(evt);
@@ -119,7 +121,7 @@ public class Attendance extends javax.swing.JFrame {
         btnCancel.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
         btnCancel.setBorder(null);
-        btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCancel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCancel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -133,6 +135,11 @@ public class Attendance extends javax.swing.JFrame {
         lblMonth.setText("Mes:");
 
         cmbMonth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Enero", "Febrero", "Marzo", "Abril", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        cmbMonth.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbMonthItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -179,8 +186,7 @@ public class Attendance extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-
-        Object[][] attendances = ctrl.getTeacherAttendances(1);
+        Object[][] attendances = ctrl.getTeacherAttendances(1, 0);
         String[] columns = {"Estado Asistencia", "Fecha  Hora"};
         DefaultTableModel dtm = new DefaultTableModel(attendances,columns){
             @Override
@@ -200,6 +206,43 @@ public class Attendance extends javax.swing.JFrame {
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPrintActionPerformed
+
+    private void cmbMonthItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbMonthItemStateChanged
+        String month = "";
+        HashMap<String,Integer> collMonths=new HashMap<String, Integer>();
+        collMonths.put("Enero", 1);
+        collMonths.put("Febrero", 2);
+        collMonths.put("Marzo", 3);
+        collMonths.put("Abril", 4);
+        collMonths.put("Mayo", 5);
+        collMonths.put("Junio", 6);
+        collMonths.put("Julio", 7);
+        collMonths.put("Agosto", 8);
+        collMonths.put("Septiembre", 9);
+        collMonths.put("Octubre", 10);
+        collMonths.put("Noviembre", 11);
+        collMonths.put("Diciembre", 12);
+        DefaultTableModel tabEmpty = new DefaultTableModel();
+        tabAttendance.setModel(tabEmpty);
+        if(evt.getStateChange() == ItemEvent.SELECTED){
+            month = cmbMonth.getSelectedItem().toString();
+            int m = collMonths.get(month);
+            Object[][] attendances = ctrl.getTeacherAttendances(1, m);
+            String[] columns = {"Estado Asistencia", "Fecha  Hora"};
+            DefaultTableModel dtm = new DefaultTableModel(attendances,columns){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                        return false;
+                }
+            };
+            tabAttendance.setModel(dtm);
+            DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+            tcr.setHorizontalAlignment(SwingConstants.CENTER);
+            tabAttendance.getColumnModel().getColumn(0).setCellRenderer(tcr);
+            tabAttendance.getColumnModel().getColumn(1).setCellRenderer(tcr);
+            tabAttendance.getColumnModel().getColumn(0).setPreferredWidth(5);
+        }
+    }//GEN-LAST:event_cmbMonthItemStateChanged
 
     /**
      * @param args the command line arguments

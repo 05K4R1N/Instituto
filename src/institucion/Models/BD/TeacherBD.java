@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Hashtable;
 /**
@@ -79,18 +80,21 @@ public class TeacherBD {
         }
         return t;
     }
-    public Object[][] getAttendances(int id){
-        Object[][] attendances  = {};
-        Connection conn         = null;
-        ResultSet rs            = null;
-        PreparedStatement ptmt  = null;
-        String query        = "SELECT attendance_status, date_enter, time_enter "
-                            + "FROM attendance "
-                            + "WHERE personal_id = ?"; 
+    public Object[][] getAttendances(int id, int month){
+        Calendar now            =   Calendar.getInstance();
+        month                   =   (month == 0)?now.get(Calendar.MONTH) +1:month;
+        Object[][] attendances  =   {};
+        Connection conn         =   null;
+        ResultSet rs            =   null;
+        PreparedStatement ptmt  =   null;
+        String query            = "SELECT attendance_status, date_enter, time_enter "
+                                + "FROM attendance "
+                                + "WHERE personal_id = ? AND MONTH(date_enter) = ?"; 
         try{
             conn = Conexion.getInstance().getConnection();
             ptmt = conn.prepareStatement(query);
             ptmt.setInt(1, id);
+            ptmt.setInt(2, month);
             rs = ptmt.executeQuery();
             rs.beforeFirst();  
             rs.last();  

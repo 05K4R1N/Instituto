@@ -25,6 +25,7 @@ public class Attendance extends javax.swing.JFrame {
      * Creates new form attendance_control
      */
     private CtrlTeacher ctrl;
+    public int teacher_id;
     public Attendance() {
         ctrl = new CtrlTeacher();
         this.setUndecorated(true);
@@ -187,7 +188,8 @@ public class Attendance extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        this.setTable(1, 0);
+        int teacher_id = this.teacher_id;
+        this.setTable(teacher_id, 0);
     }//GEN-LAST:event_formWindowOpened
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
@@ -195,7 +197,8 @@ public class Attendance extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void cmbMonthItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbMonthItemStateChanged
-        String month = "";
+        String month    =   "";
+        int teacher_id  =   0;
         HashMap<String,Integer> collMonths=new HashMap<String, Integer>();
         collMonths.put("Enero", 1);
         collMonths.put("Febrero", 2);
@@ -212,10 +215,11 @@ public class Attendance extends javax.swing.JFrame {
         DefaultTableModel tabEmpty = new DefaultTableModel();
         tabAttendance.setModel(tabEmpty);
         if(evt.getStateChange() == ItemEvent.SELECTED){
-            month = cmbMonth.getSelectedItem().toString();
+            teacher_id  =   this.teacher_id;
+            month       =   cmbMonth.getSelectedItem().toString();
             if(!month.equals("--")){
                 int m = collMonths.get(month);
-                this.setTable(1, m);
+                this.setTable(this.teacher_id, m);
             }else{
                 JOptionPane.showMessageDialog(null, 
                                               "Favor de seleccionar un mes Válido", 

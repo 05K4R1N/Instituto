@@ -2,7 +2,6 @@ package institucion.Views.Principal;
 
 import institucion.Controllers.CtrlClassroom;
 import institucion.Controllers.CtrlPrincipal;
-import institucion.Controllers.CtrlTeacher;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -48,7 +47,7 @@ public class Attendance extends javax.swing.JFrame {
         tabAttendances = new javax.swing.JTable();
         btnQuit = new javax.swing.JButton();
         lblClassroom = new javax.swing.JLabel();
-        cmbClassroom = new javax.swing.JComboBox<>();
+        cmbClassroom = new javax.swing.JComboBox<String>();
         btnSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -123,13 +122,16 @@ public class Attendance extends javax.swing.JFrame {
         lblClassroom.setForeground(new java.awt.Color(255, 255, 255));
         lblClassroom.setText("Aula:");
 
+        cmbClassroom.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        cmbClassroom.setCursor(new java.awt.Cursor(java.awt.Cursor.NW_RESIZE_CURSOR));
+
         btnSearch.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
         btnSearch.setForeground(new java.awt.Color(255, 255, 255));
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/search.png"))); // NOI18N
         btnSearch.setText("BUSCAR");
         btnSearch.setBorderPainted(false);
         btnSearch.setContentAreaFilled(false);
-        btnSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSearch.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -154,7 +156,7 @@ public class Attendance extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnQuit)
                     .addComponent(btnSearch))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,30 +184,27 @@ public class Attendance extends javax.swing.JFrame {
     private void btnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_btnQuitActionPerformed
+	
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        
+    }//GEN-LAST:event_formWindowOpened
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         String classroom	= cmbClassroom.getSelectedItem().toString();
-		int classroom_id	= ctrlC.getClassroomID(classroom);
-		DefaultTableModel empty_table = new DefaultTableModel();
-		tabAttendances.setModel(empty_table);
-		Object[][] attendances = ctrlP.getTodayAttendances(classroom_id);
-		String columns[] = {"Profesor", "Hora", "Estado"};
-		DefaultTableModel tab_model = new DefaultTableModel(attendances, columns){
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-			
-		};
-		tabAttendances.setModel(tab_model);
+        int classroom_id	= ctrlC.getClassroomID(classroom);
+        DefaultTableModel empty_table = new DefaultTableModel();
+        tabAttendances.setModel(empty_table);
+        Object[][] attendances = ctrlP.getTodayAttendances(classroom_id);
+        String columns[] = {"Profesor", "Hora", "Estado"};
+        DefaultTableModel tab_model = new DefaultTableModel(attendances, columns){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+
+        };
+        tabAttendances.setModel(tab_model);
     }//GEN-LAST:event_btnSearchActionPerformed
-	
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        ArrayList<String> classrooms = ctrlC.obtainClassrooms();
-		for(String clasroom: classrooms){
-			cmbClassroom.addItem(clasroom);
-		}
-    }//GEN-LAST:event_formWindowOpened
 
 	/**
 	 * @param args the command line arguments

@@ -10,6 +10,7 @@ package institucion.Views.Teacher;
 import institucion.Controllers.CtrlTeacher;
 import java.awt.event.ItemEvent;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -186,21 +187,7 @@ public class Attendance extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        Object[][] attendances = ctrl.getTeacherAttendances(1, 0);
-        String[] columns = {"Estado Asistencia", "Fecha  Hora"};
-        DefaultTableModel dtm = new DefaultTableModel(attendances,columns){
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                    return false;
-            }
-        };
-        tabAttendance.setModel(dtm);
-        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-        tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        tabAttendance.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        tabAttendance.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        tabAttendance.getColumnModel().getColumn(0).setPreferredWidth(5);
-
+        this.setTable(1, 0);
     }//GEN-LAST:event_formWindowOpened
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
@@ -226,24 +213,33 @@ public class Attendance extends javax.swing.JFrame {
         tabAttendance.setModel(tabEmpty);
         if(evt.getStateChange() == ItemEvent.SELECTED){
             month = cmbMonth.getSelectedItem().toString();
-            int m = collMonths.get(month);
-            Object[][] attendances = ctrl.getTeacherAttendances(1, m);
-            String[] columns = {"Estado Asistencia", "Fecha  Hora"};
-            DefaultTableModel dtm = new DefaultTableModel(attendances,columns){
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                        return false;
-                }
-            };
-            tabAttendance.setModel(dtm);
-            DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-            tcr.setHorizontalAlignment(SwingConstants.CENTER);
-            tabAttendance.getColumnModel().getColumn(0).setCellRenderer(tcr);
-            tabAttendance.getColumnModel().getColumn(1).setCellRenderer(tcr);
-            tabAttendance.getColumnModel().getColumn(0).setPreferredWidth(5);
+            if(!month.equals("--")){
+                int m = collMonths.get(month);
+                this.setTable(1, m);
+            }else{
+                JOptionPane.showMessageDialog(null, 
+                                              "Favor de seleccionar un mes Válido", 
+                                              "Error", 
+                                              JOptionPane.WARNING_MESSAGE);
+            }
         }
     }//GEN-LAST:event_cmbMonthItemStateChanged
-
+    private void setTable(int id, int month){
+        Object[][] attendances = ctrl.getTeacherAttendances(id, month);
+        String[] columns = {"Estado Asistencia", "Fecha  Hora"};
+        DefaultTableModel dtm = new DefaultTableModel(attendances,columns){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                    return false;
+            }
+        };
+        tabAttendance.setModel(dtm);
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tabAttendance.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        tabAttendance.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        tabAttendance.getColumnModel().getColumn(0).setPreferredWidth(5);
+    }
     /**
      * @param args the command line arguments
      */

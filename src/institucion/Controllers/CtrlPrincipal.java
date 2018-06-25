@@ -61,4 +61,12 @@ public class CtrlPrincipal {
     public Object[][] getMessages(){
         return mod.getAllMessages();
     }
+    
+    public Object[][] getMonthAttendances(int month){
+        Object[][] res = null;
+        if(month > 0){
+            res = mod.getMonthAttendances(month);
+        }
+        return res;
+    }
 }

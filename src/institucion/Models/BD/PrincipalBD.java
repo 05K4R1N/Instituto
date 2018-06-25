@@ -195,4 +195,37 @@ public class PrincipalBD {
         }
         return res;
     }
+    public Object[][] getMonthAttendances(int month){
+        Object[][] res          =   {};
+        Connection conn         =   null;
+        PreparedStatement ptmt  =   null;
+        ResultSet rs            =   null;
+        String query            =   "SELECT * "
+                                + " FROM attendance "
+                                + " WHERE MONTH(date_enter) = ?";
+        try{
+            conn = Conexion.getInstance().getConnection();
+            ptmt = conn.prepareStatement(query);
+            ptmt.setInt(1, month);
+            rs = ptmt.executeQuery();
+            rs.beforeFirst();  
+            rs.last();  
+            int tam =   rs.getRow(); 
+            res     =   new Object[tam][3];
+            rs      =   ptmt.executeQuery();
+            int i   =   0;
+            while(rs.next()){
+                res[i][0]   =   rs.getInt("personal_id");
+                res[i][1]   =   rs.getString("attendance_status");
+                res[i][2]   =   rs.getDate("date_enter") + " - " + rs.getTime("time_enter");
+                i++;
+            }
+            rs.close();
+            ptmt.close();
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return res;
+    }
 }

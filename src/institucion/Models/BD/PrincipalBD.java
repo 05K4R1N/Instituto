@@ -200,12 +200,15 @@ public class PrincipalBD {
         Connection conn         =   null;
         PreparedStatement ptmt  =   null;
         ResultSet rs            =   null;
-        String query            =   "SELECT * "
+        String query_attendance =   "SELECT * "
                                 + " FROM attendance "
                                 + " WHERE MONTH(date_enter) = ?";
+        String query_personal   =   "SELECT DISTINCT(personal_id), type_personal "
+                                + " FROM attendance "
+                                + " ORDER BY type_persnal DESC";
         try{
             conn = Conexion.getInstance().getConnection();
-            ptmt = conn.prepareStatement(query);
+            ptmt = conn.prepareStatement(query_attendance);
             ptmt.setInt(1, month);
             rs = ptmt.executeQuery();
             rs.beforeFirst();  

@@ -197,17 +197,31 @@ public class PrincipalBD {
     }
     public Object[][] getMonthAttendances(int month){
         Object[][] res          =   {};
+        HashMap<Integer, String> teachers = new HashMap<Integer,String>();
         Connection conn         =   null;
         PreparedStatement ptmt  =   null;
         ResultSet rs            =   null;
         String query_attendance =   "SELECT * "
                                 + " FROM attendance "
-                                + " WHERE MONTH(date_enter) = ?";
-        String query_personal   =   "SELECT DISTINCT(personal_id), type_personal "
-                                + " FROM attendance "
-                                + " ORDER BY type_persnal DESC";
+                                + " WHERE MONTH(date_enter) = ? "
+                                + " AND type_personal = 'teacher'";
+        
+        String query_teacher    =   "SELECT id, CONCAT(first_name,' ',last_name) as Profesor "
+                                + "FROM teacher "
+                                + "WHERE id IN "
+                                + "(SELECT DISTINCT(personal_id) "
+                                + "FROM attendance "
+                                + "WHERE type_personal = 'teacher' AND "
+                                + "MONTH(date_enter) = ? "
+                                + "ORDER BY type_personal DESC)";
         try{
             conn = Conexion.getInstance().getConnection();
+            ptmt = conn.prepareStatement(query_teacher);
+            ptmt.setInt(1, month);
+            rs  = ptmt.executeQuery();
+            while(rs.next()){
+                teachers.put(rs.getInt("id"), rs.getString("Profesor"));
+            }
             ptmt = conn.prepareStatement(query_attendance);
             ptmt.setInt(1, month);
             rs = ptmt.executeQuery();
@@ -218,7 +232,7 @@ public class PrincipalBD {
             rs      =   ptmt.executeQuery();
             int i   =   0;
             while(rs.next()){
-                res[i][0]   =   rs.getInt("personal_id");
+                res[i][0]   =   teachers.get(rs.getInt("personal_id"));
                 res[i][1]   =   rs.getString("attendance_status");
                 res[i][2]   =   rs.getDate("date_enter") + " - " + rs.getTime("time_enter");
                 i++;

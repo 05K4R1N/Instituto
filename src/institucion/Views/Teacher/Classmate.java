@@ -26,7 +26,7 @@ public class Classmate extends javax.swing.JFrame {
     /**
      * Creates new form classmate
      */
-	private CtrlClassroom ctrlC;
+    private CtrlClassroom ctrlC;
     public Classmate() {
         this.setUndecorated(true);
         initComponents();
@@ -178,7 +178,7 @@ public class Classmate extends javax.swing.JFrame {
         ArrayList<String> classrooms = ctrlC.obtainClassrooms();
         teacher_clasroom.addItem("Seleccione un Aula");
         for(String classroom: classrooms){
-                teacher_clasroom.addItem(classroom);
+            teacher_clasroom.addItem(classroom);
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -193,27 +193,27 @@ public class Classmate extends javax.swing.JFrame {
 
             Map<Integer,String>  students = ctrlC.getStudents_of_classroom(classroom);
             for(Map.Entry<Integer,String> student: students.entrySet()){
-                    JButton button = new JButton();
-                    button.setText(student.getValue());
-                    button.setFont(new Font("Loma", Font.PLAIN, 11));
-                    button.setBackground(Color.DARK_GRAY);
-                    button.setForeground(Color.WHITE);
-                    button.setBounds(new Rectangle(x, y, 140, 30));
-                    button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                    button.addActionListener(new ActionListener() {
+                JButton button = new JButton();
+                button.setText(student.getValue());
+                button.setFont(new Font("Loma", Font.PLAIN, 11));
+                button.setBackground(Color.DARK_GRAY);
+                button.setForeground(Color.WHITE);
+                button.setBounds(new Rectangle(x, y, 140, 30));
+                button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                            //System.out.println(student.getKey());
+                        //System.out.println(student.getKey());
                     }
-                    });
-                    x=x+140;
-                    if(x>=420){
-                            y+=30;
-                            x=0;
-                    }
-                    panelStudent.add(button);
-                    panelStudent.revalidate();
-                    panelStudent.repaint();
+                });
+                x=x+140;
+                if(x>=420){
+                    y+=30;
+                    x=0;
+                }
+                panelStudent.add(button);
+                panelStudent.revalidate();
+                panelStudent.repaint();
             }
         }
     }//GEN-LAST:event_teacher_clasroomItemStateChanged

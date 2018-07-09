@@ -12,12 +12,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 /**
  *
@@ -232,20 +229,16 @@ public class Availability extends javax.swing.JFrame {
                 btn.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        Object[] options1 = { "Guardar", "Choose A Random Number",
-                "Quit" };
+                        Object[] options1 = { "Actualizar", "Cancelar"};
 
-                        JPanel panel = new JPanel();
-                        panel.add(new JLabel("Selecciona un estado de Asistencia: "));
-                        JTextField textField = new JTextField(10);
-                        panel.add(textField);
+                        String[] list = {"Liberar", "Ocupar"};
+                        JComboBox jcb = new JComboBox(list);
+                        jcb.setEditable(false);
 
-                        int result = JOptionPane.showOptionDialog(null, panel, "Marcar Asistencia",
+                        int result = JOptionPane.showOptionDialog(null, jcb, "Marcar Asistencia",
                                 JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
                                 null, options1, null);
-                        if (result == JOptionPane.YES_OPTION){
-                            JOptionPane.showMessageDialog(null, textField.getText());
-                        }
+                        System.out.println(result);
                     }
                 });
                 x += 80;

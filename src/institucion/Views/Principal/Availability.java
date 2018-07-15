@@ -267,12 +267,6 @@ public class Availability extends javax.swing.JFrame {
         String selected_classroom   =   cmbClassrooms.getSelectedItem().toString();
         String selected_sched       =   cmbSched.getSelectedItem().toString();
         String selected_subject     =   cmbSubject.getSelectedItem().toString();
-        hideLabels();
-        /*if(!selected_subject.equals("Seleccione Materia") &&
-            !selected_classroom.equals("Seleccione Aula") && 
-            !selected_sched.equals("Seleccione Turno")){
-            this.updateViewClassroom(selected_classroom);
-        }*/
         if(selected_subject.equals("Seleccione Materia") ||
             selected_classroom.equals("Seleccione Aula") || 
             selected_sched.equals("Seleccione Turno")){
@@ -282,7 +276,8 @@ public class Availability extends javax.swing.JFrame {
                                         JOptionPane.WARNING_MESSAGE);
             return;
         }
-        this.updateViewClassroom(selected_classroom);
+        this.updateViewClassroom(selected_classroom, selected_sched, selected_subject);
+        hideLabels();
     }//GEN-LAST:event_btnSearchMouseClicked
 
     private void cmbSubjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSubjectItemStateChanged
@@ -298,52 +293,54 @@ public class Availability extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbSubjectItemStateChanged
     
-    private void updateViewClassroom(String classroom){
+    private void updateViewClassroom(String classroom, String sched, String subject){
         int x = 30;
         int y = 20;
         panelClassVision.removeAll();
         panelClassVision.repaint();
         int pos = 1;
         int cont_occupied = 0;
-        HashMap<String, Integer> data = ctrlC.getClassroomNumbers(classroom);
-        int occupied = data.get("occupied");
-        int capacity = data.get("capacity");
-        showInfo(occupied, capacity);
-        //770 de anchos
-        for(int i = 0; i < data.get("capacity"); i++){
-            JButton btn = new JButton();
-            btn.setText(String.valueOf(pos));
-            btn.setBounds(x, y, 60, 30);
-            btn.setBackground(Color.white);
-            btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            btn.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    Object[] options1 = { "Actualizar", "Cancelar"};
+        HashMap<String, Integer> data = ctrlC.getClassroomNumbers(classroom, sched, subject);
+        if(!data.isEmpty()){
+            int occupied = data.get("occupied");
+            int capacity = data.get("capacity");
+            showInfo(occupied, capacity);
+            //770 de anchos
+            for(int i = 0; i < data.get("capacity"); i++){
+                JButton btn = new JButton();
+                btn.setText(String.valueOf(pos));
+                btn.setBounds(x, y, 60, 30);
+                btn.setBackground(Color.white);
+                btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                btn.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        Object[] options1 = { "Actualizar", "Cancelar"};
 
-                    String[] list = {"Liberar", "Ocupar"};
-                    JComboBox jcb = new JComboBox(list);
-                    jcb.setEditable(false);
+                        String[] list = {"Liberar", "Ocupar"};
+                        JComboBox jcb = new JComboBox(list);
+                        jcb.setEditable(false);
 
-                    int result = JOptionPane.showOptionDialog(null, jcb, "Marcar Asistencia",
-                            JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
-                            null, options1, null);
-                    System.out.println(result);
+                        int result = JOptionPane.showOptionDialog(null, jcb, "Marcar Asistencia",
+                                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
+                                null, options1, null);
+                        System.out.println(result);
+                    }
+                });
+                x += 80;
+                if( x == 750){
+                    x = 30;
+                    y += 40;
                 }
-            });
-            x += 80;
-            if( x == 750){
-                x = 30;
-                y += 40;
+                pos++;
+                if(cont_occupied < occupied){
+                    cont_occupied++;
+                    btn.setBackground(Color.RED);
+                }
+                panelClassVision.add(btn);
+                panelClassVision.revalidate();
+                panelClassVision.repaint();
             }
-            pos++;
-            if(cont_occupied < occupied){
-                cont_occupied++;
-                btn.setBackground(Color.RED);
-            }
-            panelClassVision.add(btn);
-            panelClassVision.revalidate();
-            panelClassVision.repaint();
         }
     }
     /**

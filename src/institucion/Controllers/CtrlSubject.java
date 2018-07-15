@@ -3,6 +3,7 @@ package institucion.Controllers;
 import config.Conexion;
 import institucion.Models.BD.SubjectBD;
 import institucion.Models.Users.Subject;
+import java.util.ArrayList;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,17 +15,29 @@ import institucion.Models.Users.Subject;
  * @author o5k4r1n
  */
 public class CtrlSubject {
-	private SubjectBD mod;
-	
-	public CtrlSubject(){
-		mod = new SubjectBD();
-	}
-	public Subject getSubjectById(int id){
-		Subject subject = null;
-		if( id > 0 ){
-			subject = mod.getSubjectById(id);
-		}
-		return subject;
-	}
-	
+    private SubjectBD mod;
+
+    public CtrlSubject(){
+        mod = new SubjectBD();
+    }
+    
+    public Subject getSubjectById(int id){
+        Subject subject = null;
+        if( id > 0 ){
+                subject = mod.getSubjectById(id);
+        }
+        return subject;
+    }
+
+    public ArrayList<String> getSubjects(){
+        return mod.getAllSubjects();
+    }
+    
+    public ArrayList<String> getSubjectShifts(String name){
+        ArrayList<String> shifts = new ArrayList<String>();
+        if(!name.equals("Seleccione Materia")){
+            shifts = mod.getShiftsByName(name);
+        }
+        return shifts;
+    }
 }

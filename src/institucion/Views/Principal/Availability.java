@@ -100,6 +100,8 @@ public class Availability extends javax.swing.JFrame {
         lblTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblTitle.setText("SALA:");
 
+        cmbClassrooms.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         lblSub1.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
         lblSub1.setForeground(new java.awt.Color(255, 255, 255));
         lblSub1.setText("Capacidad:");
@@ -120,6 +122,8 @@ public class Availability extends javax.swing.JFrame {
         lblSched.setForeground(new java.awt.Color(255, 255, 255));
         lblSched.setText("TURNO:");
 
+        cmbSched.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         btnSearch.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
         btnSearch.setForeground(new java.awt.Color(255, 255, 255));
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/search2.png"))); // NOI18N
@@ -138,6 +142,7 @@ public class Availability extends javax.swing.JFrame {
         lblSubject.setForeground(new java.awt.Color(255, 255, 255));
         lblSubject.setText("MATERIA:");
 
+        cmbSubject.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cmbSubject.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbSubjectItemStateChanged(evt);
@@ -263,11 +268,21 @@ public class Availability extends javax.swing.JFrame {
         String selected_sched       =   cmbSched.getSelectedItem().toString();
         String selected_subject     =   cmbSubject.getSelectedItem().toString();
         hideLabels();
-        if(!selected_subject.equals("Seleccione Materia") &&
+        /*if(!selected_subject.equals("Seleccione Materia") &&
             !selected_classroom.equals("Seleccione Aula") && 
             !selected_sched.equals("Seleccione Turno")){
             this.updateViewClassroom(selected_classroom);
+        }*/
+        if(selected_subject.equals("Seleccione Materia") ||
+            selected_classroom.equals("Seleccione Aula") || 
+            selected_sched.equals("Seleccione Turno")){
+            JOptionPane.showMessageDialog(rootPane, 
+                                        "Favor seleccionar datos correctos.",
+                                        "Error",
+                                        JOptionPane.WARNING_MESSAGE);
+            return;
         }
+        this.updateViewClassroom(selected_classroom);
     }//GEN-LAST:event_btnSearchMouseClicked
 
     private void cmbSubjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSubjectItemStateChanged

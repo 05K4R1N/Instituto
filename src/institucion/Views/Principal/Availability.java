@@ -9,6 +9,7 @@ import institucion.Controllers.CtrlClassroom;
 import institucion.Controllers.CtrlSubject;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -58,6 +60,7 @@ public class Availability extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         lblSubject = new javax.swing.JLabel();
         cmbSubject = new javax.swing.JComboBox();
+        lblEmpty = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -149,6 +152,10 @@ public class Availability extends javax.swing.JFrame {
             }
         });
 
+        lblEmpty.setFont(new java.awt.Font("Lao UI", 1, 24)); // NOI18N
+        lblEmpty.setForeground(new java.awt.Color(255, 255, 255));
+        lblEmpty.setText("SALA VACIA");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -164,6 +171,8 @@ public class Availability extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCapacity)
                             .addComponent(lblOccupied))
+                        .addGap(75, 75, 75)
+                        .addComponent(lblEmpty)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnExit))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -184,7 +193,7 @@ public class Availability extends javax.swing.JFrame {
                                 .addComponent(cmbSched, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnSearch)))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,26 +211,28 @@ public class Availability extends javax.swing.JFrame {
                 .addComponent(panelClassVision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblSub1)
-                            .addComponent(lblCapacity))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblSub2)
-                            .addComponent(lblOccupied))
-                        .addContainerGap(30, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnExit)
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblSub1)
+                                    .addComponent(lblCapacity))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblOccupied)
+                                    .addComponent(lblSub2)))
+                            .addComponent(btnExit)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(lblEmpty)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,15 +253,21 @@ public class Availability extends javax.swing.JFrame {
         for(String subject: subjects){
             cmbSubject.addItem(subject);
         }
-        hideLabels();
+        showLabels(false);
+        showEmpty(true);
     }//GEN-LAST:event_formWindowOpened
-    public void hideLabels(){
-        lblSub1.setVisible(false);
-        lblSub2.setVisible(false);
-        lblCapacity.setVisible(false);
-        lblOccupied.setVisible(false);
+    private void showLabels(boolean state){
+        lblSub1.setVisible(state);
+        lblSub2.setVisible(state);
+        lblCapacity.setVisible(state);
+        lblOccupied.setVisible(state);
     }
-    public void showInfo(int occupied, int capacity){
+    
+    private void showEmpty(boolean state){
+        lblEmpty.setVisible(state);
+    }
+    
+    private void showInfo(int occupied, int capacity){
         lblSub1.setVisible(true);
         lblSub2.setVisible(true);
         lblCapacity.setVisible(true);
@@ -274,10 +291,10 @@ public class Availability extends javax.swing.JFrame {
                                         "Favor seleccionar datos correctos.",
                                         "Error",
                                         JOptionPane.WARNING_MESSAGE);
+            showLabels(false);
             return;
         }
         this.updateViewClassroom(selected_classroom, selected_sched, selected_subject);
-        hideLabels();
     }//GEN-LAST:event_btnSearchMouseClicked
 
     private void cmbSubjectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSubjectItemStateChanged
@@ -341,41 +358,46 @@ public class Availability extends javax.swing.JFrame {
                 panelClassVision.revalidate();
                 panelClassVision.repaint();
             }
+            showLabels(true);
+            showEmpty(false);
+        }else{
+            showLabels(false);
+            showEmpty(true);
         }
     }
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-            /* Set the Nimbus look and feel */
-            //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-            /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-             */
-            try {
-                    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                            if ("Nimbus".equals(info.getName())) {
-                                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                                    break;
-                            }
-                    }
-            } catch (ClassNotFoundException ex) {
-                    java.util.logging.Logger.getLogger(Availability.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                    java.util.logging.Logger.getLogger(Availability.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                    java.util.logging.Logger.getLogger(Availability.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                    java.util.logging.Logger.getLogger(Availability.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            }
-            //</editor-fold>
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+ * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                        if ("Nimbus".equals(info.getName())) {
+                                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                                break;
+                        }
+                }
+        } catch (ClassNotFoundException ex) {
+                java.util.logging.Logger.getLogger(Availability.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+                java.util.logging.Logger.getLogger(Availability.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+                java.util.logging.Logger.getLogger(Availability.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+                java.util.logging.Logger.getLogger(Availability.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
-            /* Create and display the form */
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                            new Availability().setVisible(true);
-                    }
-            });
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                        new Availability().setVisible(true);
+                }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -386,6 +408,7 @@ public class Availability extends javax.swing.JFrame {
     private javax.swing.JComboBox cmbSubject;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCapacity;
+    private javax.swing.JLabel lblEmpty;
     private javax.swing.JLabel lblOccupied;
     private javax.swing.JLabel lblSched;
     private javax.swing.JLabel lblSub1;

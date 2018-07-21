@@ -61,6 +61,7 @@ public class PrincipalBD {
         String query = "UPDATE principal set name = ?, "
                                         + "lastname = ?, "
                                         + "sex = ?, "
+                                        + "photo = ?, "
                                         + "address = ?, "
                                         + "date_of_birth = ?, "
                                         + "ci = ? "
@@ -71,10 +72,11 @@ public class PrincipalBD {
             ptmt.setString(1, p.getName());
             ptmt.setString(2, p.getLastname());
             ptmt.setString(3, sex);
-            ptmt.setString(4, p.getAddress());
-            ptmt.setDate(5, principal_birthday);
-            ptmt.setInt(6, p.getCi());
-            ptmt.setInt(7, director_id);
+            ptmt.setString(4, p.getPhoto_name());
+            ptmt.setString(5, p.getAddress());
+            ptmt.setDate(6, principal_birthday);
+            ptmt.setInt(7, p.getCi());
+            ptmt.setInt(8, director_id);
 
             ptmt.executeUpdate();
             ptmt.close();

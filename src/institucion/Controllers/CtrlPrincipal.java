@@ -18,14 +18,14 @@ public class CtrlPrincipal {
     private PrincipalBD mod;
 
     public CtrlPrincipal(){
-            mod = new PrincipalBD();
+        mod = new PrincipalBD();
     }
     public Principal getPrincipalDataByID(int director_id){
-            Principal p = new Principal();
-            if(director_id > 0){
-                    p = mod.getPrincipalByID(director_id);
-            }
-            return p;
+        Principal p = new Principal();
+        if(director_id > 0){
+                p = mod.getPrincipalByID(director_id);
+        }
+        return p;
     }
     public boolean updatePrincipal(Principal p, int director_id){
         boolean updated = false;
@@ -33,6 +33,7 @@ public class CtrlPrincipal {
             p.getLastname().length() != 0 && 
             p.getAddress().length() != 0 && 
             p.getSex().length() != 0 &&
+            p.getPhoto_name().length() != 0 && 
             p.getDate_of_birth() != null && 
             p.getCi() != 0 ){
                 mod.editPrincipalData(p, director_id);

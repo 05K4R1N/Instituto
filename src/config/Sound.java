@@ -17,19 +17,19 @@ import javazoom.jl.player.Player;
 public class Sound {
 
 	
-	public Sound(){}
-	public void reproduce(String fileSound){
-		try {
-			Player apl;
-			try {
-				apl = new Player(new FileInputStream(System.getProperty("user.dir")+"/src/sounds/"+fileSound));
-				apl.play();
-			} catch (FileNotFoundException e) {
-				System.out.println(e);
-			}
-		}
-		catch (JavaLayerException e) {
-			System.out.println(e);
-		} 
-	}
+    public Sound(){}
+    public void reproduce(String fileSound){
+        try {
+            Player apl;
+            try {
+                apl = new Player(new FileInputStream(System.getProperty("user.dir")+"/src/sounds/"+fileSound));
+                apl.play();
+            } catch (FileNotFoundException e) {
+                System.out.println(e);
+            }
+        }
+        catch (JavaLayerException e) {
+            System.out.println(e);
+        } 
+    }
 }

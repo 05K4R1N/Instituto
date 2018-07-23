@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.stage.FileChooser;
+import javax.activation.MimetypesFileTypeMap;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -312,41 +313,55 @@ public class Edit extends javax.swing.JFrame {
         String photo_file_name  =   f.getName();
         Date birthday           =   txtBirthday.getDate();
         int ci                  =   0;
-        try{
-            ci  =   Integer.parseInt(txtCI.getText());
-        }catch(NumberFormatException e){
-            ci  =   0;
-        }
-        Principal p =   new Principal();
-        p.setName(name);
-        p.setLastname(lastname);
-        p.setAddress(address);
-        p.setSex(sex);
-        p.setPhoto_name(photo_file_name);
-        p.setDate_of_birth(birthday);
-        p.setCi(ci);
-        if(ctrlP.updatePrincipal(p, director_id)){
-            try {
-                Files.copy(Paths.get(photo), 
+        File file               =   new File(photo);
+        String format_file      =   new MimetypesFileTypeMap().getContentType(file);
+        if(format_file.equals("image/jpeg")
+                || format_file.equals("image/png")){
+            try{
+                ci  =   Integer.parseInt(txtCI.getText());
+            }catch(NumberFormatException e){
+                ci  =   0;
+            }
+            Principal p =   new Principal();
+            p.setName(name);
+            p.setLastname(lastname);
+            p.setAddress(address);
+            p.setSex(sex);
+            p.setPhoto_name(photo_file_name);
+            p.setDate_of_birth(birthday);
+            p.setCi(ci);
+            if(ctrlP.updatePrincipal(p, director_id)){
+                try {
+                    Files.copy(Paths.get(photo), 
                             Paths.get(System.getProperty("user.dir")+"/src/images/photos/principal/"+lastname+" "+name+" "+ci+".jpg"),
                             StandardCopyOption.REPLACE_EXISTING);
-                
-                JOptionPane.showMessageDialog(this, "Datos de Director actualizados exitosamente");
-                this.setVisible(false);
-                return;
-            } catch (IOException ex) {
-                Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+
+                    JOptionPane.showMessageDialog(this, "Datos de Director actualizados exitosamente");
+                    this.setVisible(false);
+                    return;
+                } catch (IOException ex) {
+                    Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+            JOptionPane.showMessageDialog(this, "Uno de los campos se encuentra vacíos o es incorrecto, favor verificar.");
         }
-        JOptionPane.showMessageDialog(this, "Uno de los campos se encuentra vacíos o es incorrecto, favor verificar.");
+        else{
+            JOptionPane.showMessageDialog(this, 
+                                        "Formato  no valido, agregue una imagen para la imagen", 
+                                        "Error", 
+                                        JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnPhotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPhotoMouseClicked
         JFileChooser imageFile = new JFileChooser();
         imageFile.showOpenDialog(null);
         File f = imageFile.getSelectedFile();
-        String fileName = f.getAbsolutePath();
-        txtImage.setText(fileName);
+        try{
+            String fileName = f.getAbsolutePath();
+            txtImage.setText(fileName);
+        }catch(NullPointerException e){            
+        }
     }//GEN-LAST:event_btnPhotoMouseClicked
     public void fullFields(){
         Principal p = ctrlP.getPrincipalDataByID(director_id);

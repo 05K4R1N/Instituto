@@ -4,8 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Proyectos/Instituto/src/institucion/Views/Principal/Edit.java</file>
-            <file>file:/D:/Proyectos/Instituto/src/institucion/Models/BD/ClassroomBD.java</file>
             <file>file:/D:/Proyectos/Instituto/src/config/Sound.java</file>
+            <file>file:/D:/Proyectos/Instituto/src/institucion/Controllers/CtrlPrincipal.java</file>
+            <file>file:/D:/Proyectos/Instituto/src/institucion/Models/BD/PrincipalBD.java</file>
         </group>
     </open-files>
 </project-private>

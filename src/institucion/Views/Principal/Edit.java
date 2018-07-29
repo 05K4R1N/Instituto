@@ -81,7 +81,7 @@ public class Edit extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
 
-        lblIconTitle.setFont(new java.awt.Font("Loma", 1, 24)); // NOI18N
+        lblIconTitle.setFont(new java.awt.Font("Lao UI", 1, 24)); // NOI18N
         lblIconTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblIconTitle.setText("ACTUALIZAR PERFIL");
 
@@ -92,7 +92,7 @@ public class Edit extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(91, Short.MAX_VALUE)
+                .addContainerGap(104, Short.MAX_VALUE)
                 .addComponent(lblIconTitle)
                 .addGap(75, 75, 75))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -117,7 +117,7 @@ public class Edit extends javax.swing.JFrame {
 
         lblName.setFont(new java.awt.Font("Lao UI", 1, 16)); // NOI18N
         lblName.setForeground(new java.awt.Color(255, 255, 255));
-        lblName.setText("Nombres:");
+        lblName.setText("Nombre(s):");
 
         lblLastname.setFont(new java.awt.Font("Lao UI", 1, 16)); // NOI18N
         lblLastname.setForeground(new java.awt.Color(255, 255, 255));
@@ -139,9 +139,11 @@ public class Edit extends javax.swing.JFrame {
         lblCI.setForeground(new java.awt.Color(255, 255, 255));
         lblCI.setText("CI:");
 
+        txtName.setBackground(new java.awt.Color(51, 51, 51));
         txtName.setForeground(new java.awt.Color(255, 255, 255));
         txtName.setBorder(null);
 
+        txtLastname.setBackground(new java.awt.Color(51, 51, 51));
         txtLastname.setForeground(new java.awt.Color(255, 255, 255));
         txtLastname.setBorder(null);
 
@@ -149,11 +151,16 @@ public class Edit extends javax.swing.JFrame {
         cmbSex.setFont(new java.awt.Font("Loma", 1, 12)); // NOI18N
         cmbSex.setForeground(new java.awt.Color(255, 255, 255));
 
+        txtCI.setBackground(new java.awt.Color(51, 51, 51));
         txtCI.setForeground(new java.awt.Color(255, 255, 255));
         txtCI.setBorder(null);
 
+        txtAddress.setBackground(new java.awt.Color(51, 51, 51));
         txtAddress.setForeground(new java.awt.Color(255, 255, 255));
         txtAddress.setBorder(null);
+
+        txtBirthday.setBackground(new java.awt.Color(0, 0, 0));
+        txtBirthday.setForeground(new java.awt.Color(255, 255, 255));
 
         btnUpdate.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
@@ -241,8 +248,8 @@ public class Edit extends javax.swing.JFrame {
                 .addComponent(lblName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblLastname)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

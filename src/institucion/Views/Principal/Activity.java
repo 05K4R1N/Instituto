@@ -7,16 +7,23 @@ package institucion.Views.Principal;
 
 import institucion.Controllers.CtrlActivity;
 import institucion.Controllers.CtrlClassroom;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import institucion.Models.Users.Act;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.imageio.ImageIO;
+import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -412,27 +419,39 @@ public class Activity extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void tabActivitiesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabActivitiesMouseClicked
-        int fila = tabActivities.rowAtPoint(evt.getPoint());
+        JPopupMenu popupMenu = new JPopupMenu();
+        JMenuItem menuItem = new JMenuItem(new AbstractAction("Eliminar Actividad") {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("presiono eliminar");
+            }
+        
+        });
+        popupMenu.add(menuItem);
+        tabActivities.setComponentPopupMenu(popupMenu);
+        
+        int fila    =   tabActivities.rowAtPoint(evt.getPoint());
         txtID.setText(tabActivities.getValueAt(fila, 0).toString());
-        int id = Integer.parseInt(tabActivities.getValueAt(fila, 0).toString());
-        Act a = ctrlA.getActivityById(id);
+        int id      =   Integer.parseInt(tabActivities.getValueAt(fila, 0).toString());
+        Act a       =   ctrlA.getActivityById(id);
         txtActivity.setText(a.getName());
         txtDesc.setText(a.getDescription());
         dateActivity.setDate(a.getDate_activity());
         String classroom = ctrlC.getClassroomByID(a.getClassroom_id());
         cmbClassroom.setSelectedItem(classroom);
 
-        String time = a.getTime_activity();
-        String[] hour_min = time.split(":");
+        String time         =   a.getTime_activity();
+        String[] hour_min   =   time.split(":");
         hourActivity.setSelectedItem(hour_min[0]);
         minActivity.setSelectedItem(hour_min[1]);
         txtID.setText(String.valueOf(id));
         btnAddActivity.setText("EDITAR");
         try {
-                Image img = ImageIO.read(getClass().getResource("../../../images/icons/edit.png"));
-                btnAddActivity.setIcon(new ImageIcon(img));
+            Image img = ImageIO.read(getClass().getResource("../../../images/icons/edit.png"));
+            btnAddActivity.setIcon(new ImageIcon(img));
         } catch (IOException e) {
-                System.out.println(e);
+            System.out.println(e);
         }
         action = "update";
     }//GEN-LAST:event_tabActivitiesMouseClicked
@@ -441,35 +460,35 @@ public class Activity extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-            /* Set the Nimbus look and feel */
-            //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-            /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-             */
-            try {
-                    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                            if ("Nimbus".equals(info.getName())) {
-                                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                                    break;
-                            }
-                    }
-            } catch (ClassNotFoundException ex) {
-                    java.util.logging.Logger.getLogger(Activity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                    java.util.logging.Logger.getLogger(Activity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                    java.util.logging.Logger.getLogger(Activity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                    java.util.logging.Logger.getLogger(Activity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            }
-            //</editor-fold>
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+ * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                        if ("Nimbus".equals(info.getName())) {
+                                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                                break;
+                        }
+                }
+        } catch (ClassNotFoundException ex) {
+                java.util.logging.Logger.getLogger(Activity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+                java.util.logging.Logger.getLogger(Activity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+                java.util.logging.Logger.getLogger(Activity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+                java.util.logging.Logger.getLogger(Activity.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
-            /* Create and display the form */
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                            new Activity().setVisible(true);
-                    }
-            });
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                        new Activity().setVisible(true);
+                }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

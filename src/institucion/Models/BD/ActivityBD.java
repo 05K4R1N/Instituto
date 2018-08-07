@@ -128,24 +128,43 @@ public class ActivityBD {
                         + "FROM  activity "
                         + "WHERE id = ?";
         try{
-                conn = Conexion.getInstance().getConnection();
-                ptmt = conn.prepareStatement(query);
-                ptmt.setInt(1, id);
-                rs = ptmt.executeQuery();
-                rs.next();
+            conn = Conexion.getInstance().getConnection();
+            ptmt = conn.prepareStatement(query);
+            ptmt.setInt(1, id);
+            rs = ptmt.executeQuery();
+            rs.next();
 
-                a.setClassroom_id(rs.getInt("classroom_id"));
-                a.setName(rs.getString("activity_name"));
-                a.setDescription(rs.getString("description"));
-                a.setDate_activity(rs.getDate("activity_date"));
-                a.setTime_activity(rs.getString("activity_time"));
+            a.setClassroom_id(rs.getInt("classroom_id"));
+            a.setName(rs.getString("activity_name"));
+            a.setDescription(rs.getString("description"));
+            a.setDate_activity(rs.getDate("activity_date"));
+            a.setTime_activity(rs.getString("activity_time"));
 
-                rs.close();
-                ptmt.close();
-                conn.close();
+            rs.close();
+            ptmt.close();
+            conn.close();
         }catch(SQLException e){
-                System.out.println(e);
+            System.out.println(e);
         }
         return a;
+    }
+    public boolean deleteActivity(int activity_id){
+        boolean res             =   false;
+        Connection conn         =   null;
+        PreparedStatement ptmt  =   null;
+        String query            =   "DELETE FROM activity WHERE id = ?";
+        try{
+            conn = Conexion.getInstance().getConnection();
+            ptmt = conn.prepareStatement(query);
+            ptmt.setInt(1, activity_id);
+            ptmt.executeUpdate();
+            
+            ptmt.close();
+            conn.close();
+            res = true;
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return res;
     }
 }

@@ -39,13 +39,13 @@ public class Activity extends javax.swing.JFrame {
     private CtrlActivity ctrlA;
     private String action;
     public Activity() {	
-            this.setUndecorated(true);
-            initComponents();
-            this.setSize(830, 610);
-            this.setLocationRelativeTo(null);
-            ctrlA = new CtrlActivity();
-            ctrlC = new CtrlClassroom();
-            action = "insert";
+        this.setUndecorated(true);
+        initComponents();
+        this.setSize(830, 610);
+        this.setLocationRelativeTo(null);
+        ctrlA = new CtrlActivity();
+        ctrlC = new CtrlClassroom();
+        action = "insert";
     }
 
     /**
@@ -346,9 +346,9 @@ public class Activity extends javax.swing.JFrame {
             a.setDate_activity(date_activity);
             a.setTime_activity(time_activity);
             if( !id.equals("") || id.length() != 0 ){
-                    int act_id = Integer.parseInt(id);
-                    a.setId(act_id);
-                    action = "update";
+                int act_id = Integer.parseInt(id);
+                a.setId(act_id);
+                action = "update";
             }
             if(ctrlA.organizeActivity(a, action)){
                 JOptionPane.showMessageDialog(this, "ACTIVIDAD REGISTRADA", 
@@ -424,7 +424,14 @@ public class Activity extends javax.swing.JFrame {
             
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("presiono eliminar");
+                int activity_id = Integer.parseInt(tabActivities.getValueAt(tabActivities.getSelectedRow(), 0).toString());
+                if(ctrlA.deleteActivity(activity_id)){
+                    JOptionPane.showMessageDialog(null, 
+                                                    "Actividad eliminada fue eliminada con éxito", 
+                                                    "Eliminación de Actividad",
+                                                    JOptionPane.INFORMATION_MESSAGE);
+                    update_table();
+                }
             }
         
         });

@@ -36,8 +36,15 @@ public class CtrlActivity {
     public Act getActivityById(int id){
         Act a = new Act();
         if( id > 0 ){
-                a = mod.getActivityByID(id);
+            a = mod.getActivityByID(id);
         }
         return a;
+    }
+    public boolean deleteActivity(int activity_id){
+        boolean res = false;
+        if( activity_id > 0 ){
+            res = mod.deleteActivity(activity_id);
+        }
+        return res;
     }
 }

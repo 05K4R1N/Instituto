@@ -6,15 +6,20 @@
 package institucion.Views.Principal;
 
 import institucion.Controllers.CtrlClassroom;
+import institucion.Controllers.CtrlMessage;
 import institucion.Controllers.CtrlPrincipal;
 import institucion.Controllers.CtrlTeacher;
 import institucion.Models.Users.Message;
+import java.awt.event.ActionEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.AbstractAction;
 import javax.swing.DefaultListModel;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -30,6 +35,7 @@ public class Inbox extends javax.swing.JFrame {
 	private CtrlPrincipal ctrlP;
 	private CtrlTeacher ctrlT;
 	private CtrlClassroom ctrlC;
+        private CtrlMessage ctrlM;
 	private String estado;
 	public Inbox() {
             this.setUndecorated(true);
@@ -38,6 +44,7 @@ public class Inbox extends javax.swing.JFrame {
             ctrlP = new CtrlPrincipal();
             ctrlT = new CtrlTeacher();
             ctrlC = new CtrlClassroom();
+            ctrlM = new CtrlMessage();
             estado = "enviar";
 	}
 
@@ -414,6 +421,25 @@ public class Inbox extends javax.swing.JFrame {
 
     }
     private void tabMessagesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabMessagesMouseClicked
+        JPopupMenu popupMenu = new JPopupMenu();
+        JMenuItem menuItem = new JMenuItem(new AbstractAction("Eliminar Mensaje") {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int message_id = Integer.parseInt(tabMessages.getValueAt(tabMessages.getSelectedRow(), 0).toString());
+                if(ctrlM.deleteMessage(message_id)){
+                    updateTableMessages();
+                    JOptionPane.showMessageDialog(null, 
+                                                "Mensaje Eliminado con Exito", 
+                                                "Eliminar Mensaje", 
+                                                JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+            
+        });
+        popupMenu.add(menuItem);
+        tabMessages.setComponentPopupMenu(popupMenu);
+        
         estado = "reenviar";
         btnSend.setText("Reenviar");
         int fila = tabMessages.rowAtPoint(evt.getPoint());

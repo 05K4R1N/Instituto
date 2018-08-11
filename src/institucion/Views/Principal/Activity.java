@@ -10,8 +10,6 @@ import institucion.Controllers.CtrlClassroom;
 import institucion.Models.Users.Act;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

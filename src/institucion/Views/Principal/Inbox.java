@@ -317,7 +317,7 @@ public class Inbox extends javax.swing.JFrame {
         txtTeacher.setEnabled(false);
         txtID.setVisible(false);
         txtMessage.setLineWrap(true);
-        clean();
+        this.clean();
 
         updateTableMessages();
         ArrayList<String> classrooms = ctrlC.obtainClassrooms();
@@ -368,7 +368,7 @@ public class Inbox extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbClassroomItemStateChanged
 
     private void btnCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCleanActionPerformed
-        clean();
+        this.clean();
     }//GEN-LAST:event_btnCleanActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
@@ -378,30 +378,34 @@ public class Inbox extends javax.swing.JFrame {
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
         int id = Integer.parseInt(txtID.getText());
         int counter_resend = Integer.parseInt(txtResend.getText());
-        String title	= txtTitle.getText();
-        String message	= txtMessage.getText();
+        String title	=   txtTitle.getText();
+        String message	=   txtMessage.getText();
+        String teacher  =   txtTeacher.getText();
         int teacher_id	= Integer.parseInt(txtIDTeacher.getText());
         int classroom_id= Integer.parseInt(txtClassroomID.getText());
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Calendar cal = Calendar.getInstance();
         String moment = dateFormat.format(cal.getTime());
         Message m;
-        if(estado.equals("enviar")){
-                m = new Message(teacher_id, classroom_id, title, message, moment, counter_resend);
-        }else{
-                m = new Message(id, teacher_id, classroom_id, title, message, counter_resend);
-        }
-        //Message m = new Message(teacher_id, classroom_id, title, message, moment, counter_resend);
-        if(ctrlP.checkMessage(m, estado)){
-            JOptionPane.showMessageDialog(this, "Mensaje enviado con éxito","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-            clean();
-            updateTableMessages();
-            return;
-        }
-        JOptionPane.showMessageDialog(this, 
+        if((message.length() == 0 || message.trim().isEmpty()) ||
+                (title.length() == 0 || title.trim().isEmpty()) ||
+                (teacher.length() == 0 || teacher.trim().isEmpty())){
+            JOptionPane.showMessageDialog(this, 
                 "Error al enviar mensaje, favor de revisar los datos",
                 "ERROR",
                 JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(estado.equals("enviar"))
+            m = new Message(teacher_id, classroom_id, title, message, moment, counter_resend);
+        else
+            m = new Message(id, teacher_id, classroom_id, title, message, counter_resend);
+        
+        if(ctrlP.checkMessage(m, estado)){
+            JOptionPane.showMessageDialog(this, "Mensaje enviado con éxito","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+            this.clean();
+            updateTableMessages();
+        }
     }//GEN-LAST:event_btnSendActionPerformed
     public void updateTableMessages(){
         tabMessages.setModel(new DefaultTableModel());
@@ -423,19 +427,26 @@ public class Inbox extends javax.swing.JFrame {
     private void tabMessagesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabMessagesMouseClicked
         JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem menuItem = new JMenuItem(new AbstractAction("Eliminar Mensaje") {
-
             @Override
             public void actionPerformed(ActionEvent e) {
-                int message_id = Integer.parseInt(tabMessages.getValueAt(tabMessages.getSelectedRow(), 0).toString());
-                if(ctrlM.deleteMessage(message_id)){
-                    updateTableMessages();
+                try{
+                    int message_id = Integer.parseInt(tabMessages.getValueAt(tabMessages.getSelectedRow(), 0).toString());
+                    if(ctrlM.deleteMessage(message_id)){
+                        updateTableMessages();
+                        clean();
+                        JOptionPane.showMessageDialog(null, 
+                                                    "Mensaje Eliminado con Exito", 
+                                                    "Eliminar Mensaje", 
+                                                    JOptionPane.INFORMATION_MESSAGE);
+                        
+                    }
+                }catch(ArrayIndexOutOfBoundsException ex){
                     JOptionPane.showMessageDialog(null, 
-                                                "Mensaje Eliminado con Exito", 
-                                                "Eliminar Mensaje", 
-                                                JOptionPane.INFORMATION_MESSAGE);
+                                                    "Seleccione un mensaje para proceder a eliminar", 
+                                                    "Eliminar Mensaje", 
+                                                    JOptionPane.ERROR_MESSAGE);
                 }
             }
-            
         });
         popupMenu.add(menuItem);
         tabMessages.setComponentPopupMenu(popupMenu);
@@ -461,7 +472,7 @@ public class Inbox extends javax.swing.JFrame {
         cmbClassroom.setEnabled(false);
         list_teachers.setEnabled(false);
     }//GEN-LAST:event_tabMessagesMouseClicked
-    public void clean(){
+    private void clean(){
         estado = "enviar";
         txtTitle.setText("");
         txtTeacher.setText("");

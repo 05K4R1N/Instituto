@@ -318,45 +318,47 @@ public class Edit extends javax.swing.JFrame {
         int ci                  =   0;
         File file               =   new File(photo);
         String format_file      =   new MimetypesFileTypeMap().getContentType(file);
-        if(format_file.equals("image/jpeg")
-                || format_file.equals("image/png")){
-            try{
-                ci  =   Integer.parseInt(txtCI.getText());
-            }catch(NumberFormatException e){
-                ci  =   0;
-            }
-            photo_file_name     =   lastname+" "+name+" "+ci+".jpg";
-            Principal p =   new Principal();
-            p.setName(name);
-            p.setLastname(lastname);
-            p.setAddress(address);
-            p.setSex(sex);
-            p.setPhoto_name(photo_file_name);
-            p.setDate_of_birth(birthday);
-            p.setCi(ci);
-            if(ctrlP.updatePrincipal(p, director_id)){
-                try {
-                    Files.copy(
-                            Paths.get(photo), 
-                            Paths.get(System.getProperty("user.dir")
-                                        +"/src/images/photos/principal/" + photo_file_name),
-                            StandardCopyOption.REPLACE_EXISTING);
-
-                    JOptionPane.showMessageDialog(this, "Datos de Director actualizados exitosamente");
-                    this.setVisible(false);
-                    return;
-                } catch (IOException ex) {
-                }
-            }
-            JOptionPane.showMessageDialog(this, 
-                                        "Uno de los campos se encuentra vacíos o es incorrecto, favor verificar.");
-        }
-        else{
-            JOptionPane.showMessageDialog(this, 
+        String type             =   format_file.split("/")[0];
+        if(!(photo.equals("")) || !(photo.length()==0)){
+            if(!type.equals("image")){
+                JOptionPane.showMessageDialog(this, 
                                         "Formato  no valido, agregue una imagen para la imagen", 
                                         "Error", 
                                         JOptionPane.ERROR_MESSAGE);
+                return;
+            }
         }
+        try{
+            ci  =   Integer.parseInt(txtCI.getText());
+        }catch(NumberFormatException e){
+            ci  =   0;
+        }
+        photo_file_name     =   lastname+" "+name+" "+ci+".jpg";
+        Principal p =   new Principal();
+        p.setName(name);
+        p.setLastname(lastname);
+        p.setAddress(address);
+        p.setSex(sex);
+        p.setPhoto_name(photo_file_name);
+        p.setDate_of_birth(birthday);
+        p.setCi(ci);
+        if(ctrlP.updatePrincipal(p, director_id)){
+            try {
+                Files.copy(
+                        Paths.get(photo), 
+                        Paths.get(System.getProperty("user.dir")
+                                    +"/src/images/photos/principal/" + photo_file_name),
+                        StandardCopyOption.REPLACE_EXISTING);
+
+                JOptionPane.showMessageDialog(this, "Datos de Director actualizados exitosamente");
+                this.setVisible(false);
+                return;
+            } catch (IOException ex) {
+            }
+        }
+        JOptionPane.showMessageDialog(this, 
+                                    "Uno de los campos se encuentra vacíos o es incorrecto, favor verificar.");
+
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnPhotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPhotoMouseClicked

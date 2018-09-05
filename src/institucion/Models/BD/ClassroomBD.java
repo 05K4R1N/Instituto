@@ -118,7 +118,7 @@ public class ClassroomBD {
         PreparedStatement ptmt          =   null;
         ResultSet rs                    =   null;
         int subject_id                  =   0;
-        String query_classroom  =   "SELECT capacity, occupied "
+        String query_classroom  =   "SELECT capacity "
                                 + "FROM classroom "
                                 + "WHERE name = ? "
                                 + "AND shift = ? "
@@ -142,7 +142,6 @@ public class ClassroomBD {
             rs = ptmt.executeQuery();
             if(rs.next()){
                 data.put("capacity", rs.getInt("capacity"));
-                data.put("occupied", rs.getInt("occupied"));
             }
             rs.close();
             ptmt.close();

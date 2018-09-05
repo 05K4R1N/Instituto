@@ -316,10 +316,10 @@ public class Availability extends javax.swing.JFrame {
         panelClassVision.removeAll();
         panelClassVision.repaint();
         int pos = 1;
-        int cont_occupied = 0;
+        //int cont_occupied = 0;
         HashMap<String, Integer> data = ctrlC.getClassroomNumbers(classroom, sched, subject);
         if(!data.isEmpty()){
-            int occupied = data.get("occupied");
+            int occupied = 0;
             int capacity = data.get("capacity");
             showInfo(occupied, capacity);
             //770 de anchos
@@ -332,16 +332,7 @@ public class Availability extends javax.swing.JFrame {
                 btn.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        Object[] options1 = { "Actualizar", "Cancelar"};
-
-                        String[] list = {"Liberar", "Ocupar"};
-                        JComboBox jcb = new JComboBox(list);
-                        jcb.setEditable(false);
-
-                        int result = JOptionPane.showOptionDialog(null, jcb, "Marcar Asistencia",
-                                JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE,
-                                null, options1, null);
-                        System.out.println(result);
+                        
                     }
                 });
                 x += 80;
@@ -350,10 +341,6 @@ public class Availability extends javax.swing.JFrame {
                     y += 40;
                 }
                 pos++;
-                if(cont_occupied < occupied){
-                    cont_occupied++;
-                    btn.setBackground(Color.RED);
-                }
                 panelClassVision.add(btn);
                 panelClassVision.revalidate();
                 panelClassVision.repaint();

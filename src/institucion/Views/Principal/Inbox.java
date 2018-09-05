@@ -317,7 +317,7 @@ public class Inbox extends javax.swing.JFrame {
         txtTeacher.setEnabled(false);
         txtID.setVisible(false);
         txtMessage.setLineWrap(true);
-        this.clean();
+        clean();
 
         updateTableMessages();
         ArrayList<String> classrooms = ctrlC.obtainClassrooms();
@@ -368,7 +368,7 @@ public class Inbox extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbClassroomItemStateChanged
 
     private void btnCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCleanActionPerformed
-        this.clean();
+        clean();
     }//GEN-LAST:event_btnCleanActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
@@ -403,7 +403,7 @@ public class Inbox extends javax.swing.JFrame {
         
         if(ctrlP.checkMessage(m, estado)){
             JOptionPane.showMessageDialog(this, "Mensaje enviado con éxito","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-            this.clean();
+            clean();
             updateTableMessages();
         }
     }//GEN-LAST:event_btnSendActionPerformed

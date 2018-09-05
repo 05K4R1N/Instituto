@@ -38,19 +38,20 @@ public class WelcomeP extends javax.swing.JFrame implements Runnable {
         public Reconocedor rec;
         private Thread hiloEscucha;
         private boolean estado_voz;
+        
 	public WelcomeP() {
-		this.setUndecorated(true);
-		initComponents();
-		this.setSize(1400,700);
-		this.setLocationRelativeTo(null);
-		this.estado_voz = false;
-                
-                ctrlP = new CtrlPrincipal();
-		s = new Sound();
-		t = new Tiempo();
-		
-		h1 = new Thread(this);
-		h1.start();
+            this.setUndecorated(true);
+            initComponents();
+            this.setSize(1400,700);
+            this.setLocationRelativeTo(null);
+            this.estado_voz = false;
+
+            ctrlP = new CtrlPrincipal();
+            s = new Sound();
+            t = new Tiempo();
+
+            h1 = new Thread(this);
+            h1.start();
 	}
 
 	/**

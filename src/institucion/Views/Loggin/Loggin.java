@@ -2,6 +2,7 @@ package institucion.Views.Loggin;
 
 import institucion.Controllers.CtrlLoggin;
 import institucion.Views.Principal.WelcomeP;
+import institucion.Views.Secretary.WelcomeS;
 import institucion.Views.Teacher.WelcomeT;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
@@ -173,8 +174,10 @@ public class Loggin extends javax.swing.JFrame {
         String pass     = txtPassword.getText();
         HashMap<Integer, String> data = ctrlL.validateUser(username, pass);
         if( data.isEmpty() ){
-            JOptionPane.showMessageDialog(null, "Nombre de Usuario y/o contraseña no validos", 
-                                        "Usuario No Encontrado", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, 
+                                        "Nombre de Usuario y/o contraseña no validos", 
+                                        "Usuario No Encontrado", 
+                                        JOptionPane.ERROR_MESSAGE);
             txtUser.setText("");
             txtPassword.setText("");
         }else{
@@ -195,6 +198,12 @@ public class Loggin extends javax.swing.JFrame {
                     WelcomeT t = new WelcomeT();
                     t.teacher_id = id;
                     t.setVisible(true);
+                    this.setVisible(false);
+                    break;
+                case "secretary":
+                    WelcomeS s = new WelcomeS();
+                    s.secretary_id = id;
+                    s.setVisible(true);
                     this.setVisible(false);
                     break;
            }

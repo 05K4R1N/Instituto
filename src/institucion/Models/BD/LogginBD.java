@@ -24,7 +24,7 @@ public class LogginBD {
     
     public HashMap authorizeUser(String username, String pass){
         HashMap<Integer, String> reference = new HashMap();
-        String[] roles = {"principal", "teacher"};
+        String[] roles = {"principal", "teacher", "secretary"};
         Connection conn = null;
         PreparedStatement ptmt = null;
         ResultSet rs = null;

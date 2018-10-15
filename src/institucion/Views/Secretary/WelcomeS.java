@@ -37,9 +37,9 @@ public class WelcomeS extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnClose = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnPrincipalProfile = new javax.swing.JButton();
+        btnTeachers = new javax.swing.JButton();
+        btnProfile = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
@@ -81,45 +81,45 @@ public class WelcomeS extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
 
-        jButton1.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/principal.png"))); // NOI18N
-        jButton1.setText("Director");
-        jButton1.setToolTipText("");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnPrincipalProfile.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
+        btnPrincipalProfile.setForeground(new java.awt.Color(255, 255, 255));
+        btnPrincipalProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/principal.png"))); // NOI18N
+        btnPrincipalProfile.setText("Director");
+        btnPrincipalProfile.setToolTipText("");
+        btnPrincipalProfile.setBorderPainted(false);
+        btnPrincipalProfile.setContentAreaFilled(false);
+        btnPrincipalProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPrincipalProfile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnPrincipalProfile.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnPrincipalProfile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btnPrincipalProfileMouseClicked(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/teacher2.png"))); // NOI18N
-        jButton2.setText("Profesores");
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnTeachers.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
+        btnTeachers.setForeground(new java.awt.Color(255, 255, 255));
+        btnTeachers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/teacher2.png"))); // NOI18N
+        btnTeachers.setText("Profesores");
+        btnTeachers.setBorderPainted(false);
+        btnTeachers.setContentAreaFilled(false);
+        btnTeachers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnTeachers.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnTeachers.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jButton4.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/secretary.png"))); // NOI18N
-        jButton4.setText("Perfil");
-        jButton4.setToolTipText("");
-        jButton4.setBorderPainted(false);
-        jButton4.setContentAreaFilled(false);
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnProfile.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
+        btnProfile.setForeground(new java.awt.Color(255, 255, 255));
+        btnProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/secretary.png"))); // NOI18N
+        btnProfile.setText("Perfil");
+        btnProfile.setToolTipText("");
+        btnProfile.setBorderPainted(false);
+        btnProfile.setContentAreaFilled(false);
+        btnProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProfile.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnProfile.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnProfile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
+                btnProfileMouseClicked(evt);
             }
         });
 
@@ -137,20 +137,20 @@ public class WelcomeS extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPrincipalProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTeachers, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(61, 61, 61)
-                .addComponent(jButton1)
+                .addComponent(btnPrincipalProfile)
                 .addGap(36, 36, 36)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTeachers, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(jButton4)
+                .addComponent(btnProfile)
                 .addGap(153, 153, 153)
                 .addComponent(jButton5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -184,15 +184,16 @@ public class WelcomeS extends javax.swing.JFrame {
         loggin.setVisible(true);
     }//GEN-LAST:event_btnCloseMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void btnPrincipalProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrincipalProfileMouseClicked
         ProfilePrincipal principal = new ProfilePrincipal();
         principal.setVisible(true);
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_btnPrincipalProfileMouseClicked
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+    private void btnProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfileMouseClicked
         Profile secretary = new Profile();
+        secretary.secretary_id = this.secretary_id;
         secretary.setVisible(true);
-    }//GEN-LAST:event_jButton4MouseClicked
+    }//GEN-LAST:event_btnProfileMouseClicked
 
     /**
      * @param args the command line arguments
@@ -231,9 +232,9 @@ public class WelcomeS extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnPrincipalProfile;
+    private javax.swing.JButton btnProfile;
+    private javax.swing.JButton btnTeachers;
     private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

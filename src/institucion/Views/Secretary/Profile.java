@@ -6,12 +6,17 @@
 
 package institucion.Views.Secretary;
 
+import institucion.Controllers.CtrlSecretary;
+import institucion.Models.Users.Secretary;
+
 /**
  *
  * @author OscarT
  */
 public class Profile extends javax.swing.JFrame {
 
+    public int secretary_id;
+    private CtrlSecretary ctrlS;
     /**
      * Creates new form Profile
      */
@@ -19,6 +24,7 @@ public class Profile extends javax.swing.JFrame {
         this.setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
+        ctrlS = new CtrlSecretary();
     }
 
     /**
@@ -56,6 +62,11 @@ public class Profile extends javax.swing.JFrame {
         jLabel4.setText("jLabel4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -242,6 +253,21 @@ public class Profile extends javax.swing.JFrame {
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
         this.setVisible(false);
     }//GEN-LAST:event_btnCloseMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        Secretary secretary = ctrlS.getSecretaryId(secretary_id);
+        lblFirstname.setText(secretary.getFirstName());
+        lblLastname.setText(secretary.getLastName());
+        lblAddress.setText(secretary.getAddress());
+        lblCI.setText(String.valueOf(secretary.getCi()));
+        lblBirth.setText(String.valueOf(secretary.getBirthday()));
+        String sex = "";
+        sex = "Masculino";
+        if(secretary.getSex().equals("F")){
+            sex = "Femenino";
+        }
+        lblSex.setText(sex);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

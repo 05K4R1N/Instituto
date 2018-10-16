@@ -401,45 +401,45 @@ public class WelcomeP extends javax.swing.JFrame implements Runnable {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
-		 s.reproduce("bep.mp3");
-		Profile e = new Profile();
-		e.setVisible(true);
+        s.reproduce("bep.mp3");
+        Profile e = new Profile();
+        e.setVisible(true);
     }//GEN-LAST:event_btnProfileActionPerformed
 
     private void btnEditProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditProfileActionPerformed
         s.reproduce("bep.mp3");
-		Edit e = new Edit();
-		e.setVisible(true);
+        Edit e = new Edit();
+        e.setVisible(true);
     }//GEN-LAST:event_btnEditProfileActionPerformed
 
     private void btnMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMessageActionPerformed
         s.reproduce("bep.mp3");
-		Inbox i = new Inbox();
-		i.setVisible(true);
+        Inbox i = new Inbox();
+        i.setVisible(true);
     }//GEN-LAST:event_btnMessageActionPerformed
 
     private void btnClassroomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClassroomsActionPerformed
         s.reproduce("bep.mp3");
-		Availability a = new Availability();
-		a.setVisible(true);
+        Availability a = new Availability();
+        a.setVisible(true);
     }//GEN-LAST:event_btnClassroomsActionPerformed
 
     private void btnActivitiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivitiesActionPerformed
         s.reproduce("bep.mp3");
-		Activity act = new Activity();
-		act.setVisible(true);
+        Activity act = new Activity();
+        act.setVisible(true);
     }//GEN-LAST:event_btnActivitiesActionPerformed
 
     private void btnStadisticsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStadisticsActionPerformed
         s.reproduce("bep.mp3");
-		Stadistics st = new Stadistics();
-		st.setVisible(true);
+        Stadistics st = new Stadistics();
+        st.setVisible(true);
     }//GEN-LAST:event_btnStadisticsActionPerformed
 
     private void btnTeacherAttendancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTeacherAttendancesActionPerformed
         s.reproduce("bep.mp3");
-		Attendance a = new Attendance();
-		a.setVisible(true);
+        Attendance a = new Attendance();
+        a.setVisible(true);
     }//GEN-LAST:event_btnTeacherAttendancesActionPerformed
 
     private void btnVoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoiceActionPerformed

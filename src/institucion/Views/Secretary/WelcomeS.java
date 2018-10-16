@@ -106,6 +106,11 @@ public class WelcomeS extends javax.swing.JFrame {
         btnTeachers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTeachers.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnTeachers.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnTeachers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTeachersMouseClicked(evt);
+            }
+        });
 
         btnProfile.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
         btnProfile.setForeground(new java.awt.Color(255, 255, 255));
@@ -185,8 +190,8 @@ public class WelcomeS extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseMouseClicked
 
     private void btnPrincipalProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrincipalProfileMouseClicked
-        ProfilePrincipal principal = new ProfilePrincipal();
-        principal.setVisible(true);
+        institucion.Views.Principal.Profile pp = new institucion.Views.Principal.Profile();
+        pp.setVisible(true);
     }//GEN-LAST:event_btnPrincipalProfileMouseClicked
 
     private void btnProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfileMouseClicked
@@ -194,6 +199,11 @@ public class WelcomeS extends javax.swing.JFrame {
         secretary.secretary_id = this.secretary_id;
         secretary.setVisible(true);
     }//GEN-LAST:event_btnProfileMouseClicked
+
+    private void btnTeachersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTeachersMouseClicked
+        TeachersList tl = new TeachersList();
+        tl.setVisible(true);
+    }//GEN-LAST:event_btnTeachersMouseClicked
 
     /**
      * @param args the command line arguments

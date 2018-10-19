@@ -56,11 +56,16 @@ public class CtrlTeacher {
         return teachers_name;
     }
     public Object[][] getTeacherAttendances(int id, int month){
-        Object[][] attendances= null;
+        Object[][] attendances = null;
         if( id > 0 ){
             attendances = mod.getAttendances(id, month);
         }
         return attendances;
+    }
+    public Object[][] getAllTeachers(){
+        Object[][] teachers = null;
+        teachers = mod.getAllTeachers();
+        return teachers;
     }
     public HashMap getClassRooms(){
         HashMap classrooms = new HashMap();

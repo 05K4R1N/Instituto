@@ -6,12 +6,16 @@
 
 package institucion.Views.Secretary;
 
+import institucion.Controllers.CtrlTeacher;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author OscarT
  */
 public class TeachersList extends javax.swing.JFrame {
 
+    private CtrlTeacher ctrlT;
     /**
      * Creates new form ProfilePrincipal
      */
@@ -19,6 +23,8 @@ public class TeachersList extends javax.swing.JFrame {
         this.setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        ctrlT = new CtrlTeacher();
     }
 
     /**
@@ -35,11 +41,16 @@ public class TeachersList extends javax.swing.JFrame {
         txtSearchTeacher = new javax.swing.JTextField();
         lblSearchTeacher = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabTeachers = new javax.swing.JTable();
         btnClose = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -52,7 +63,7 @@ public class TeachersList extends javax.swing.JFrame {
         lblSearchTeacher.setForeground(new java.awt.Color(255, 255, 255));
         lblSearchTeacher.setText("CI:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabTeachers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -63,7 +74,7 @@ public class TeachersList extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabTeachers);
 
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
         btnClose.setBorderPainted(false);
@@ -142,6 +153,20 @@ public class TeachersList extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnCloseMouseClicked
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        Object[][] teachers = ctrlT.getAllTeachers();
+        Object[] head = {"Apellidos", "Nombres", "Fecha de Nac.", "Usuario"};
+        DefaultTableModel teachers_model = new DefaultTableModel(teachers, head){
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+            
+        };
+        tabTeachers.setModel(teachers_model);
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -183,8 +208,8 @@ public class TeachersList extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblSearchTeacher;
+    private javax.swing.JTable tabTeachers;
     private javax.swing.JTextField txtSearchTeacher;
     // End of variables declaration//GEN-END:variables
 }

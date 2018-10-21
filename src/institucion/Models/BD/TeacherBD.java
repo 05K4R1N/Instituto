@@ -39,13 +39,14 @@ public class TeacherBD {
             rs.beforeFirst();
             rs.last();
             tam = rs.getRow();
-            teachers = new Object[tam][4];
+            teachers = new Object[tam][5];
             rs = ptmt.executeQuery();
             while(rs.next()){
-                teachers[i][0] = rs.getString("first_name");
-                teachers[i][1] = rs.getString("last_name");
-                teachers[i][2] = rs.getDate("birthday");
-                teachers[i][3] = rs.getString("username");
+                teachers[i][0] = rs.getInt("id");
+                teachers[i][1] = rs.getString("first_name");
+                teachers[i][2] = rs.getString("last_name");
+                teachers[i][3] = rs.getDate("birthday");
+                teachers[i][4] = rs.getString("username");
                 i++;
             }
             rs.close();
@@ -70,13 +71,14 @@ public class TeacherBD {
             rs.beforeFirst();  
             rs.last();  
             int tam = rs.getRow();
-            teachers = new Object[tam][4];
+            teachers = new Object[tam][5];
             rs = ptmt.executeQuery();
             while(rs.next()){
-                teachers[i][0] = rs.getString("first_name");
-                teachers[i][1] = rs.getString("last_name");
-                teachers[i][2] = rs.getDate("birthday");
-                teachers[i][3] = rs.getString("username");
+                teachers[i][0] = rs.getInt("id");
+                teachers[i][1] = rs.getString("first_name");
+                teachers[i][2] = rs.getString("last_name");
+                teachers[i][3] = rs.getDate("birthday");
+                teachers[i][4] = rs.getString("username");
                 i++;
             }
             rs.close();

@@ -7,6 +7,7 @@
 package institucion.Views.Secretary;
 
 import institucion.Controllers.CtrlTeacher;
+import institucion.Views.Teacher.Edit;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JMenu;
@@ -171,7 +172,7 @@ public class TeachersList extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Object[][] teachers = ctrlT.getAllTeachers();
-        Object[] head = {"Apellidos", "Nombres", "Fecha de Nac.", "Usuario"};
+        Object[] head = {"id","Apellidos", "Nombres", "Fecha de Nac.", "Usuario"};
         DefaultTableModel teachers_model = new DefaultTableModel(teachers, head){
 
             @Override
@@ -181,6 +182,9 @@ public class TeachersList extends javax.swing.JFrame {
             
         };
         tabTeachers.setModel(teachers_model);
+        tabTeachers.getColumnModel().getColumn(0).setMinWidth(0);
+        tabTeachers.getColumnModel().getColumn(0).setMaxWidth(0);
+        tabTeachers.getColumnModel().getColumn(0).setWidth(0);
     }//GEN-LAST:event_formWindowOpened
 
     private void txtSearchTeacherKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchTeacherKeyReleased
@@ -188,7 +192,7 @@ public class TeachersList extends javax.swing.JFrame {
         ci = txtSearchTeacher.getText();
         
         Object[][] teachers = ctrlT.getTeachersByCI(ci);
-        Object[] head = {"Apellidos", "Nombres", "Fecha de Nac.", "Usuario"};
+        Object[] head = {"id", "Apellidos", "Nombres", "Fecha de Nac.", "Usuario"};
         DefaultTableModel tabEmpty = new DefaultTableModel();
         tabTeachers.setModel(tabEmpty);
         if(ci.length() == 0){
@@ -202,6 +206,9 @@ public class TeachersList extends javax.swing.JFrame {
                 } 
             };
             tabTeachers.setModel(allTeachers_model);
+            tabTeachers.getColumnModel().getColumn(0).setMinWidth(0);
+            tabTeachers.getColumnModel().getColumn(0).setMaxWidth(0);
+            tabTeachers.getColumnModel().getColumn(0).setWidth(0);
             return;
         }
         DefaultTableModel teachers_model = new DefaultTableModel(teachers, head){
@@ -212,14 +219,23 @@ public class TeachersList extends javax.swing.JFrame {
             }
         };
         tabTeachers.setModel(teachers_model);
+        tabTeachers.getColumnModel().getColumn(0).setMinWidth(0);
+        tabTeachers.getColumnModel().getColumn(0).setMaxWidth(0);
+        tabTeachers.getColumnModel().getColumn(0).setWidth(0);
     }//GEN-LAST:event_txtSearchTeacherKeyReleased
 
     private void tabTeachersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabTeachersMouseClicked
+        int teacher_id = Integer.parseInt(tabTeachers.getValueAt(tabTeachers.getSelectedRow(), 0).toString());
         JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem teacherEdit = new JMenuItem(new AbstractAction("Editar"){
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                try{
+                    Edit teacher_edit = new Edit();
+                    teacher_edit.teacher_id = teacher_id;
+                    teacher_edit.setVisible(true);
+                }catch(ArrayIndexOutOfBoundsException ex){}
             }
             
         });

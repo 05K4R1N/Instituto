@@ -22,11 +22,11 @@ public class Edit extends javax.swing.JFrame{
      * Creates new form edit_profile
      */
     private CtrlTeacher control;
-    private int teacher_id;
+    public int teacher_id;
     public Edit() {
         this.setUndecorated(true);
         initComponents();
-		this.teacher_id = 1;
+        this.teacher_id = 1;
         this.setSize(777,503);
         this.setLocationRelativeTo(null);
         control = new CtrlTeacher();

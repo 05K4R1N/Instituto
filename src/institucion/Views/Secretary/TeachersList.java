@@ -7,6 +7,11 @@
 package institucion.Views.Secretary;
 
 import institucion.Controllers.CtrlTeacher;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -59,6 +64,12 @@ public class TeachersList extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("PROFESORES REGISTRADOS");
 
+        txtSearchTeacher.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchTeacherKeyReleased(evt);
+            }
+        });
+
         lblSearchTeacher.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
         lblSearchTeacher.setForeground(new java.awt.Color(255, 255, 255));
         lblSearchTeacher.setText("CI:");
@@ -74,6 +85,11 @@ public class TeachersList extends javax.swing.JFrame {
 
             }
         ));
+        tabTeachers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabTeachersMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabTeachers);
 
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
@@ -166,6 +182,66 @@ public class TeachersList extends javax.swing.JFrame {
         };
         tabTeachers.setModel(teachers_model);
     }//GEN-LAST:event_formWindowOpened
+
+    private void txtSearchTeacherKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchTeacherKeyReleased
+        String ci = "";
+        ci = txtSearchTeacher.getText();
+        
+        Object[][] teachers = ctrlT.getTeachersByCI(ci);
+        Object[] head = {"Apellidos", "Nombres", "Fecha de Nac.", "Usuario"};
+        DefaultTableModel tabEmpty = new DefaultTableModel();
+        tabTeachers.setModel(tabEmpty);
+        if(ci.length() == 0){
+            teachers = null;
+            teachers = ctrlT.getAllTeachers();
+            DefaultTableModel allTeachers_model = new DefaultTableModel(teachers, head){
+
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                } 
+            };
+            tabTeachers.setModel(allTeachers_model);
+            return;
+        }
+        DefaultTableModel teachers_model = new DefaultTableModel(teachers, head){
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        tabTeachers.setModel(teachers_model);
+    }//GEN-LAST:event_txtSearchTeacherKeyReleased
+
+    private void tabTeachersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabTeachersMouseClicked
+        JPopupMenu popupMenu = new JPopupMenu();
+        JMenuItem teacherEdit = new JMenuItem(new AbstractAction("Editar"){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+            
+        });
+        JMenuItem uploadData = new JMenuItem(new AbstractAction("Subir Notas") {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+        JMenuItem teacherDelete = new JMenuItem(new AbstractAction("Eliminar") {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+        popupMenu.add(teacherEdit);
+        popupMenu.add(uploadData);
+        popupMenu.add(teacherDelete);
+        tabTeachers.setComponentPopupMenu(popupMenu);
+    }//GEN-LAST:event_tabTeachersMouseClicked
 
     /**
      * @param args the command line arguments

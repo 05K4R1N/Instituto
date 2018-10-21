@@ -67,6 +67,14 @@ public class CtrlTeacher {
         teachers = mod.getAllTeachers();
         return teachers;
     }
+    
+    public Object[][] getTeachersByCI(String ci){
+        Object[][] teachers = null;
+        if(ci.length() > 0){
+            teachers = mod.searchTeachersByCI(ci);
+        }
+        return teachers;
+    }
     public HashMap getClassRooms(){
         HashMap classrooms = new HashMap();
         classrooms = mod.getClassRooms();

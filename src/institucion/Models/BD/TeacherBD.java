@@ -22,6 +22,40 @@ import java.util.Hashtable;
  * @author master
  */
 public class TeacherBD {
+    public Object[][] searchTeachersByCI(String ci){
+        Object[][] teachers     =   null;
+        Connection conn         =   null;
+        PreparedStatement ptmt  =   null;
+        ResultSet rs            =   null;
+        int i = 0;
+        int tam = 0;
+        try{
+            String query = "SELECT * "
+                        + "FROM teacher "
+                        + "WHERE ci LIKE '%"+ci+"%'";
+            conn = Conexion.getInstance().getConnection();
+            ptmt = conn.prepareStatement(query);
+            rs = ptmt.executeQuery();
+            rs.beforeFirst();
+            rs.last();
+            tam = rs.getRow();
+            teachers = new Object[tam][4];
+            rs = ptmt.executeQuery();
+            while(rs.next()){
+                teachers[i][0] = rs.getString("first_name");
+                teachers[i][1] = rs.getString("last_name");
+                teachers[i][2] = rs.getDate("birthday");
+                teachers[i][3] = rs.getString("username");
+                i++;
+            }
+            rs.close();
+            ptmt.close();
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return teachers;
+    }
     public Object[][] getAllTeachers(){
         Object[][] teachers = null;
         Connection conn = null;
@@ -39,7 +73,6 @@ public class TeacherBD {
             teachers = new Object[tam][4];
             rs = ptmt.executeQuery();
             while(rs.next()){
-                System.out.println(rs.getString("first_name") + " --" + rs.getString("username"));
                 teachers[i][0] = rs.getString("first_name");
                 teachers[i][1] = rs.getString("last_name");
                 teachers[i][2] = rs.getDate("birthday");

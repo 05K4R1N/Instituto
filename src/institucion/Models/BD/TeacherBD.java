@@ -22,6 +22,31 @@ import java.util.Hashtable;
  * @author master
  */
 public class TeacherBD {
+    public boolean deleteTeacherById(int teacher_id){
+        Connection conn         =   null;
+        PreparedStatement ptmt  =   null;
+        boolean res             =   false;
+        try{
+            String[] queries ={ "DELETE FROM subject WHERE teacher_id = ?",
+                                "DELETE FROM teacher_classroom WHERE teacher_id = ?",
+                                "DELETE FROM message WHERE teacher_id = ?",
+                                "DELETE FROM teacher WHERE id = ?"};
+            
+            conn = Conexion.getInstance().getConnection();
+            for(String q: queries){
+                ptmt = conn.prepareStatement(q);
+                ptmt.setInt(1, teacher_id);
+                ptmt.executeUpdate();
+            }
+            res = true;
+            
+            ptmt.close();
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return res;
+    }
     public Object[][] searchTeachersByCI(String ci){
         Object[][] teachers     =   null;
         Connection conn         =   null;

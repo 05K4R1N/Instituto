@@ -23,6 +23,13 @@ public class CtrlTeacher {
         mod = new TeacherBD();
     }
 
+    public boolean deleteById(int teacher_id){
+        boolean res = false;
+        if( teacher_id > 0 ){
+            res = mod.deleteTeacherById(teacher_id);
+        }
+        return res;
+    }
     public boolean add(Teacher t){
         boolean added = false;
         if( t.getFirst_name().length() > 0  && 

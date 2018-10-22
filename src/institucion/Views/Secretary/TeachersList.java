@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 
@@ -225,38 +226,54 @@ public class TeachersList extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSearchTeacherKeyReleased
 
     private void tabTeachersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabTeachersMouseClicked
-        int teacher_id = Integer.parseInt(tabTeachers.getValueAt(tabTeachers.getSelectedRow(), 0).toString());
-        JPopupMenu popupMenu = new JPopupMenu();
-        JMenuItem teacherEdit = new JMenuItem(new AbstractAction("Editar"){
+        int row = tabTeachers.getSelectedRow();
+        if( row > -1 ){
+            int teacher_id = Integer.parseInt(tabTeachers.getValueAt(tabTeachers.getSelectedRow(), 0).toString());
+            JPopupMenu popupMenu = new JPopupMenu();
+            JMenuItem teacherEdit = new JMenuItem(new AbstractAction("Editar"){
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try{
-                    Edit teacher_edit = new Edit();
-                    teacher_edit.teacher_id = teacher_id;
-                    teacher_edit.setVisible(true);
-                }catch(ArrayIndexOutOfBoundsException ex){}
-            }
-            
-        });
-        JMenuItem uploadData = new JMenuItem(new AbstractAction("Subir Notas") {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try{
+                        Edit teacher_edit = new Edit();
+                        teacher_edit.teacher_id = teacher_id;
+                        teacher_edit.setVisible(true);
+                    }catch(ArrayIndexOutOfBoundsException ex){}
+                }
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-            }
-        });
-        JMenuItem teacherDelete = new JMenuItem(new AbstractAction("Eliminar") {
+            });
+            JMenuItem uploadData = new JMenuItem(new AbstractAction("Subir Notas") {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-            }
-        });
-        popupMenu.add(teacherEdit);
-        popupMenu.add(uploadData);
-        popupMenu.add(teacherDelete);
-        tabTeachers.setComponentPopupMenu(popupMenu);
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                }
+            });
+            JMenuItem teacherDelete = new JMenuItem(new AbstractAction("Eliminar") {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    int resp = JOptionPane.showConfirmDialog(null, 
+                                                            "Seguro de Eliminar Profesor(a)?", 
+                                                            "Eliminar", 
+                                                            JOptionPane.YES_NO_OPTION);
+                    if(resp == 0) //Si presiona opcion SI
+                    {
+                        boolean deleted = ctrlT.deleteById(teacher_id);
+                        if(deleted){
+                            JOptionPane.showMessageDialog(null, 
+                                                        "Profesor(a) eliminado",
+                                                        "Eliminar",
+                                                        JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    }
+                }
+            });
+            popupMenu.add(teacherEdit);
+            popupMenu.add(uploadData);
+            popupMenu.add(teacherDelete);
+            tabTeachers.setComponentPopupMenu(popupMenu);
+        }
     }//GEN-LAST:event_tabTeachersMouseClicked
 
     /**

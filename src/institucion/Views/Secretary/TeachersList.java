@@ -269,9 +269,17 @@ public class TeachersList extends javax.swing.JFrame {
                     }
                 }
             });
+            JMenuItem assignSubject = new JMenuItem(new AbstractAction("Asignar Materia") {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+            });
             popupMenu.add(teacherEdit);
             popupMenu.add(uploadData);
             popupMenu.add(teacherDelete);
+            popupMenu.add(assignSubject);
             tabTeachers.setComponentPopupMenu(popupMenu);
         }
     }//GEN-LAST:event_tabTeachersMouseClicked

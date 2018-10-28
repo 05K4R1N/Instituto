@@ -42,6 +42,7 @@ public class WelcomeS extends javax.swing.JFrame {
         btnProfile = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        btnSubject = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -150,13 +151,13 @@ public class WelcomeS extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(27, 27, 27)
                 .addComponent(btnPrincipalProfile)
                 .addGap(36, 36, 36)
                 .addComponent(btnTeachers, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(47, 47, 47)
                 .addComponent(btnProfile)
-                .addGap(153, 153, 153)
+                .addGap(171, 171, 171)
                 .addComponent(jButton5)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -166,15 +167,33 @@ public class WelcomeS extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(102, 0, 0));
 
+        btnSubject.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
+        btnSubject.setForeground(new java.awt.Color(255, 255, 255));
+        btnSubject.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/subject.png"))); // NOI18N
+        btnSubject.setText("Materias");
+        btnSubject.setBorder(null);
+        btnSubject.setBorderPainted(false);
+        btnSubject.setContentAreaFilled(false);
+        btnSubject.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSubject.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSubject.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnSubject.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1170, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(btnSubject)
+                .addContainerGap(1005, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(btnSubject)
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2);
@@ -244,6 +263,7 @@ public class WelcomeS extends javax.swing.JFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnPrincipalProfile;
     private javax.swing.JButton btnProfile;
+    private javax.swing.JButton btnSubject;
     private javax.swing.JButton btnTeachers;
     private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;

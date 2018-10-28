@@ -8,6 +8,7 @@ package institucion.Models.BD;
 
 import config.Conexion;
 import institucion.Models.Users.Teacher;
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -22,6 +23,65 @@ import java.util.Hashtable;
  * @author master
  */
 public class TeacherBD {
+    public ArrayList<Integer> getSubjectsAssigned(int teacher_id, int year){
+        ArrayList<Integer> subjects = new ArrayList<Integer>();
+        Connection conn         =   null;
+        PreparedStatement ptmt  =   null;
+        ResultSet rs            =   null;
+        try{
+            conn            =   Conexion.getInstance().getConnection();
+            String query    = "SELECT subject_id "
+                            + "FROM teacher_subject "
+                            + "WHERE teacher_id = ? AND year = ?";
+            ptmt            =   conn.prepareStatement(query);
+            ptmt.setInt(1, teacher_id);
+            ptmt.setInt(2, year);
+            rs              =   ptmt.executeQuery();
+            while(rs.next()){
+                subjects.add(rs.getInt("subject_id"));
+            }
+            rs.close();
+            ptmt.close();
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return subjects;
+    }
+    public Object[][] getTeachersSubject(ArrayList<Integer> subjects){
+        Object assigned[][] = {};
+        Connection conn         =   null;
+        PreparedStatement ptmt  =   null;
+        ResultSet rs            =   null;
+        Object[] subjectAux = subjects.toArray();
+        try{
+            conn = Conexion.getInstance().getConnection();
+            Array arr= conn.createArrayOf("int", subjectAux);
+            String query = "SELECT * "
+                        + "FROM subject "
+                        + "WHERE id IN ?";
+            ptmt = conn.prepareStatement(query);
+            ptmt.setArray(1, arr);
+            rs = ptmt.executeQuery();
+            rs.beforeFirst();  
+            rs.last();  
+            int tam = rs.getRow();
+            assigned = new Object[tam][3];
+            rs = ptmt.executeQuery();
+            int i = 0;
+            while(rs.next()){
+                assigned[i][0]  =   rs.getInt("id");
+                assigned[i][1]  =   rs.getString("name");
+                assigned[i][2]  =   rs.getString("schedules");
+            }
+            rs.close();
+            ptmt.close();
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return assigned;
+    }
     public boolean deleteTeacherById(int teacher_id){
         Connection conn         =   null;
         PreparedStatement ptmt  =   null;

@@ -23,6 +23,15 @@ public class CtrlTeacher {
         mod = new TeacherBD();
     }
 
+    public Object[][] getSubjectsAssigned(int teacher_id, int year){
+        Object[][] subjects = {};
+        ArrayList<Integer> assigned = new ArrayList<Integer>();
+        if( teacher_id > 0 && year > 0 ){
+            assigned = mod.getSubjectsAssigned(teacher_id, year);
+            subjects = mod.getTeachersSubject(assigned);
+        }
+        return subjects;
+    }
     public boolean deleteById(int teacher_id){
         boolean res = false;
         if( teacher_id > 0 ){

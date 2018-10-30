@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Proyectos/Instituto/src/institucion/Models/BD/MessageBD.java</file>
-            <file>file:/D:/Proyectos/Instituto/src/institucion/Models/BD/ClassroomBD.java</file>
-            <file>file:/D:/Proyectos/Instituto/src/institucion/Controllers/CtrlLoggin.java</file>
-            <file>file:/D:/Proyectos/Instituto/src/institucion/Views/Principal/Inbox.java</file>
-            <file>file:/D:/Proyectos/Instituto/src/institucion/Controllers/CtrlMessage.java</file>
-            <file>file:/D:/Proyectos/Instituto/src/institucion/Views/Principal/Activity.java</file>
+            <file>file:/D:/Proyectos/Instituto/src/institucion/Views/Secretary/WelcomeS.java</file>
+            <file>file:/D:/Proyectos/Instituto/src/institucion/Views/Secretary/Assignation.java</file>
+            <file>file:/D:/Proyectos/Instituto/src/institucion/Controllers/CtrlTeacher.java</file>
+            <file>file:/D:/Proyectos/Instituto/src/institucion/Views/Teacher/Edit.java</file>
+            <file>file:/D:/Proyectos/Instituto/src/institucion/Models/BD/TeacherBD.java</file>
+            <file>file:/D:/Proyectos/Instituto/src/institucion/Views/Secretary/TeachersList.java</file>
         </group>
     </open-files>
 </project-private>

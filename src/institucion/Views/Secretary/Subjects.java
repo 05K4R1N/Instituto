@@ -6,12 +6,20 @@
 
 package institucion.Views.Secretary;
 
+import institucion.Controllers.CtrlSubject;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author OscarT
  */
 public class Subjects extends javax.swing.JFrame {
 
+    private CtrlSubject ctrlS;
     /**
      * Creates new form Subjects
      */
@@ -19,6 +27,8 @@ public class Subjects extends javax.swing.JFrame {
         this.setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        ctrlS = new CtrlSubject();
     }
 
     /**
@@ -41,6 +51,11 @@ public class Subjects extends javax.swing.JFrame {
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -93,6 +108,11 @@ public class Subjects extends javax.swing.JFrame {
 
             }
         ));
+        tabSubjects.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabSubjectsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabSubjects);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -121,6 +141,41 @@ public class Subjects extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tabSubjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabSubjectsMouseClicked
+        JPopupMenu menu = new JPopupMenu();
+        JMenuItem editItem = new JMenuItem(new AbstractAction("Editar Materia") {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+        JMenuItem deleteItem = new JMenuItem(new AbstractAction("Eliminar Materia") {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+        menu.add(editItem);
+        menu.add(deleteItem);
+        tabSubjects.setComponentPopupMenu(menu);
+    }//GEN-LAST:event_tabSubjectsMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        Object[][] subjects = ctrlS.getAllSubjects();
+        String title[] = {"id", "Nombre", "Horarios"};
+        DefaultTableModel tabModel = new DefaultTableModel(subjects, title){
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+            
+        };
+        tabSubjects.setModel(tabModel);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

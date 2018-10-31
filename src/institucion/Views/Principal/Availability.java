@@ -249,7 +249,7 @@ public class Availability extends javax.swing.JFrame {
             cmbClassrooms.addItem(clasroom);
         }
         cmbSubject.addItem("Seleccione Materia");
-        ArrayList<String> subjects = ctrlS.getSubjects();
+        ArrayList<String> subjects = ctrlS.getNameSubjects();
         for(String subject: subjects){
             cmbSubject.addItem(subject);
         }

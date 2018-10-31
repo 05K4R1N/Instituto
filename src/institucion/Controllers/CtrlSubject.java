@@ -29,8 +29,8 @@ public class CtrlSubject {
         return subject;
     }
 
-    public ArrayList<String> getSubjects(){
-        return mod.getAllSubjects();
+    public ArrayList<String> getNameSubjects(){
+        return mod.getAllNameSubjects();
     }
     
     public ArrayList<String> getSubjectShifts(String name){
@@ -39,5 +39,9 @@ public class CtrlSubject {
             shifts = mod.getShiftsByName(name);
         }
         return shifts;
+    }
+    
+    public Object[][] getAllSubjects(){
+        return mod.getAllSubjects();
     }
 }

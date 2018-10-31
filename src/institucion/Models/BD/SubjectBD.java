@@ -44,7 +44,7 @@ public class SubjectBD {
         return subject;
     }
     
-    public ArrayList<String> getAllSubjects(){
+    public ArrayList<String> getAllNameSubjects(){
         ArrayList<String> subjects  =   new ArrayList<String>();
         Connection conn             =   null;
         PreparedStatement ptmt      =   null;
@@ -89,5 +89,37 @@ public class SubjectBD {
             System.out.println(e);
         }
         return shifts;
+    }
+    
+    public Object[][] getAllSubjects(){
+        Object[][] subjects     =   {};
+        Connection conn         =   null;
+        PreparedStatement ptmt  =   null;
+        ResultSet rs            =   null;
+        try{
+            conn = Conexion.getInstance().getConnection();
+            String query = "SELECT * FROM subjects";
+            ptmt = conn.prepareStatement(query);
+            rs = ptmt.executeQuery();
+            rs.beforeFirst();
+            rs.beforeFirst();  
+            rs.last();  
+            int tam = rs.getRow();
+            subjects = new Object[tam][3];
+            rs = ptmt.executeQuery();
+            int i = 0;
+            while(rs.next()){
+                subjects[i][0] = rs.getInt("id");
+                subjects[i][1] = rs.getString("name");
+                subjects[i][2] = rs.getString("schedules");
+                i++;
+            }
+            rs.close();
+            ptmt.close();
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return subjects;
     }
 }

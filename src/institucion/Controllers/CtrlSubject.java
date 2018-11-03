@@ -44,4 +44,13 @@ public class CtrlSubject {
     public Object[][] getAllSubjects(){
         return mod.getAllSubjects();
     }
+    
+    public boolean validateRegistration(Subject subject){
+        boolean res = false;
+        if(subject.getName().length() > 0 && 
+                subject.getSchedule().length > 0){
+            res = mod.register(subject);
+        }
+        return res;
+    }
 }

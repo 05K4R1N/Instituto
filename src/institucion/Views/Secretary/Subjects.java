@@ -26,8 +26,8 @@ public class Subjects extends javax.swing.JFrame {
     public Subjects() {
         this.setUndecorated(true);
         initComponents();
+        this.setSize(700, 510);
         this.setLocationRelativeTo(null);
-        
         ctrlS = new CtrlSubject();
     }
 
@@ -97,6 +97,11 @@ public class Subjects extends javax.swing.JFrame {
         btnClose.setBorderPainted(false);
         btnClose.setContentAreaFilled(false);
         btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCloseMouseClicked(evt);
+            }
+        });
 
         tabSubjects.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -198,6 +203,10 @@ public class Subjects extends javax.swing.JFrame {
         FormSubject add = new FormSubject();
         add.setVisible(true);
     }//GEN-LAST:event_btnAddMouseClicked
+
+    private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCloseMouseClicked
 
     /**
      * @param args the command line arguments

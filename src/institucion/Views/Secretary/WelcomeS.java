@@ -178,22 +178,27 @@ public class WelcomeS extends javax.swing.JFrame {
         btnSubject.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSubject.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnSubject.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnSubject.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSubjectMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(56, 56, 56)
                 .addComponent(btnSubject)
-                .addContainerGap(1005, Short.MAX_VALUE))
+                .addContainerGap(985, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(89, Short.MAX_VALUE)
                 .addComponent(btnSubject)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addGap(74, 74, 74))
         );
 
         getContentPane().add(jPanel2);
@@ -223,6 +228,11 @@ public class WelcomeS extends javax.swing.JFrame {
         TeachersList tl = new TeachersList();
         tl.setVisible(true);
     }//GEN-LAST:event_btnTeachersMouseClicked
+
+    private void btnSubjectMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSubjectMouseClicked
+        Subjects subject = new Subjects();
+        subject.setVisible(true);
+    }//GEN-LAST:event_btnSubjectMouseClicked
 
     /**
      * @param args the command line arguments

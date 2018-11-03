@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,6 +19,32 @@ import java.util.ArrayList;
  * @author o5k4r1n
  */
 public class SubjectBD {
+    
+    public boolean register(Subject subject){
+        boolean res             =   false;
+        Connection conn         =   null;
+        PreparedStatement ptmt  =   null;
+        ResultSet rs            =   null;
+        try{
+            conn = Conexion.getInstance().getConnection();
+            String query = "INSERT INTO subject(name,description,schedules) "
+                        + "VALUES (?,?,?)";
+            String subjectList = String.join(",",subject.getSchedule());
+            ptmt = conn.prepareStatement(query);
+            ptmt.setString(1, subject.getName());
+            ptmt.setString(2, subject.getDescription());
+            ptmt.setString(3, subjectList);
+            
+            ptmt.executeUpdate();
+            res = true;
+            
+            ptmt.close();
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+        } 
+        return res;
+    }
 	
     public Subject getSubjectById(int id){
         Subject subject = new Subject();
@@ -98,7 +125,7 @@ public class SubjectBD {
         ResultSet rs            =   null;
         try{
             conn = Conexion.getInstance().getConnection();
-            String query = "SELECT * FROM subjects";
+            String query = "SELECT * FROM subject";
             ptmt = conn.prepareStatement(query);
             rs = ptmt.executeQuery();
             rs.beforeFirst();

@@ -6,19 +6,27 @@
 
 package institucion.Views.Secretary;
 
+import institucion.Controllers.CtrlSubject;
+import institucion.Models.Users.Subject;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author OscarT
  */
 public class FormSubject extends javax.swing.JFrame {
 
+    private CtrlSubject ctrlS;
     /**
      * Creates new form FormSubject
      */
     public FormSubject() {
         this.setUndecorated(true);
         initComponents();
+        this.setSize(481, 450);
         this.setLocationRelativeTo(null);
+        
+        ctrlS = new CtrlSubject();
     }
 
     /**
@@ -36,8 +44,8 @@ public class FormSubject extends javax.swing.JFrame {
         lblName = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         lblDescription = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
         jSeparator1 = new javax.swing.JSeparator();
@@ -53,6 +61,11 @@ public class FormSubject extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
@@ -77,13 +90,13 @@ public class FormSubject extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(174, Short.MAX_VALUE)
+                .addContainerGap(193, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(164, 164, 164))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 193, 431);
+        jPanel1.setBounds(0, 0, 193, 450);
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -100,17 +113,27 @@ public class FormSubject extends javax.swing.JFrame {
         lblDescription.setForeground(new java.awt.Color(255, 255, 255));
         lblDescription.setText("Descripcion:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/add.png"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setDefaultCapable(false);
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/add.png"))); // NOI18N
+        btnAdd.setBorder(null);
+        btnAdd.setContentAreaFilled(false);
+        btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAdd.setDefaultCapable(false);
+        btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAddMouseClicked(evt);
+            }
+        });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
-        jButton2.setBorder(null);
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
+        btnClose.setBorder(null);
+        btnClose.setBorderPainted(false);
+        btnClose.setContentAreaFilled(false);
+        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCloseMouseClicked(evt);
+            }
+        });
 
         txtDescription.setBackground(new java.awt.Color(102, 102, 102));
         txtDescription.setColumns(20);
@@ -150,9 +173,9 @@ public class FormSubject extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnAdd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                        .addComponent(btnClose))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -213,9 +236,9 @@ public class FormSubject extends javax.swing.JFrame {
                             .addComponent(cmbHourNight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAdd)
+                            .addComponent(btnClose))
                         .addGap(20, 20, 20))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(cmbMinNight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -223,7 +246,7 @@ public class FormSubject extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(183, 0, 300, 431);
+        jPanel2.setBounds(183, 0, 300, 450);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -231,6 +254,88 @@ public class FormSubject extends javax.swing.JFrame {
     private void cmbMinAfternoonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMinAfternoonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbMinAfternoonActionPerformed
+
+    private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
+        String name = txtName.getText();
+        String desc = txtDescription.getText();
+        String[] schedules = new String[3];
+        //Morning
+        String hr, min = "";
+        hr = cmbHourMorning.getSelectedItem().toString();
+        min = cmbMinMorning.getSelectedItem().toString();
+        if( !hr.equals("--") || !min.equals("--"))
+            schedules[0] = hr+":"+min;
+        //Afternoon
+        hr = cmbHourAfternoon.getSelectedItem().toString();
+        min = cmbMinAfternoon.getSelectedItem().toString();
+        if( !hr.equals("--") || !min.equals("--"))
+            schedules[1] = hr+":"+min;
+        //Night
+        hr = cmbHourNight.getSelectedItem().toString();
+        min = cmbMinNight.getSelectedItem().toString();
+        if( !hr.equals("--") || !min.equals("--"))
+            schedules[2] = hr+":"+min;
+        /*String data = "";
+        boolean flag = false;
+        for(String schedule: schedules){
+            if(flag){
+                data += "|";
+            }
+            data += schedule;
+            flag = true;
+        }*/
+        Subject subject = new Subject();
+        subject.setName(name);
+        subject.setDescription(desc);
+        subject.setSchedule(schedules);
+        
+        boolean flag = ctrlS.validateRegistration(subject);
+        if(flag){
+            JOptionPane.showMessageDialog(null, 
+                                            "Materia ha sido registrada",
+                                            "Agregar", 
+                                            JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+        JOptionPane.showMessageDialog(null, 
+                                    "Error, Llene todos los campos", 
+                                    "ERROR", 
+                                    JOptionPane.ERROR_MESSAGE);
+        
+    }//GEN-LAST:event_btnAddMouseClicked
+
+    private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCloseMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        String minute = "";
+        cmbMinMorning.addItem("--");
+        cmbMinAfternoon.addItem("--");
+        cmbMinNight.addItem("--");
+        cmbHourMorning.addItem("--");
+        cmbHourAfternoon.addItem("--");
+        cmbHourNight.addItem("--");
+        
+        for(int min = 0; min < 50; min+=5){
+            minute = min+"";
+            if(min < 10){
+                minute = "0"+min;
+            }
+            cmbMinNight.addItem(minute);
+            cmbMinAfternoon.addItem(minute);
+            cmbMinMorning.addItem(minute);
+        }
+        String[] morningH = {"07", "08", "09", "10", "11"};
+        String[] afternoonH = {"14", "15", "16", "17"};
+        String[] nightH =   {"20", "21", "22"};
+        for(String mH: morningH)
+            cmbHourMorning.addItem(mH);
+        for(String aH: afternoonH)
+            cmbHourAfternoon.addItem(aH);
+        for(String nH: nightH)
+            cmbHourNight.addItem(nH);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -268,14 +373,14 @@ public class FormSubject extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnClose;
     private javax.swing.JComboBox cmbHourAfternoon;
     private javax.swing.JComboBox cmbHourMorning;
     private javax.swing.JComboBox cmbHourNight;
     private javax.swing.JComboBox cmbMinAfternoon;
     private javax.swing.JComboBox cmbMinMorning;
     private javax.swing.JComboBox cmbMinNight;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

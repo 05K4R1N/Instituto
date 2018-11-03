@@ -8,6 +8,7 @@ package institucion.Views.Secretary;
 
 import institucion.Controllers.CtrlSubject;
 import institucion.Models.Users.Subject;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -258,32 +259,31 @@ public class FormSubject extends javax.swing.JFrame {
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
         String name = txtName.getText();
         String desc = txtDescription.getText();
-        String[] schedules = new String[3];
+        ArrayList<String> schedules = new ArrayList<String>();
         //Morning
         String hr, min = "";
         hr = cmbHourMorning.getSelectedItem().toString();
         min = cmbMinMorning.getSelectedItem().toString();
-        if( !hr.equals("--") || !min.equals("--"))
-            schedules[0] = hr+":"+min;
+        if( !hr.equals("--") && !min.equals("--"))
+            //schedules[0] = hr+":"+min;
+            schedules.add(hr+":"+min);
         //Afternoon
         hr = cmbHourAfternoon.getSelectedItem().toString();
         min = cmbMinAfternoon.getSelectedItem().toString();
-        if( !hr.equals("--") || !min.equals("--"))
-            schedules[1] = hr+":"+min;
+        if( !hr.equals("--") && !min.equals("--"))
+            schedules.add(hr+":"+min);
         //Night
         hr = cmbHourNight.getSelectedItem().toString();
         min = cmbMinNight.getSelectedItem().toString();
-        if( !hr.equals("--") || !min.equals("--"))
-            schedules[2] = hr+":"+min;
-        /*String data = "";
-        boolean flag = false;
-        for(String schedule: schedules){
-            if(flag){
-                data += "|";
+        if( !hr.equals("--") && !min.equals("--"))
+            schedules.add(hr+":"+min);
+        
+        for(int i = 0; i < schedules.size(); i++){
+            if(schedules.get(i) == null){
+                schedules.remove(i);
             }
-            data += schedule;
-            flag = true;
-        }*/
+        }
+        
         Subject subject = new Subject();
         subject.setName(name);
         subject.setDescription(desc);
@@ -294,7 +294,8 @@ public class FormSubject extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, 
                                             "Materia ha sido registrada",
                                             "Agregar", 
-                                            JOptionPane.PLAIN_MESSAGE);
+                                            JOptionPane.INFORMATION_MESSAGE);
+            this.setVisible(false);
             return;
         }
         JOptionPane.showMessageDialog(null, 
@@ -309,6 +310,11 @@ public class FormSubject extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       this.fillingTimes();
+        txtDescription.setLineWrap(true);
+    }//GEN-LAST:event_formWindowOpened
+
+    public void fillingTimes(){
         String minute = "";
         cmbMinMorning.addItem("--");
         cmbMinAfternoon.addItem("--");
@@ -335,8 +341,7 @@ public class FormSubject extends javax.swing.JFrame {
             cmbHourAfternoon.addItem(aH);
         for(String nH: nightH)
             cmbHourNight.addItem(nH);
-    }//GEN-LAST:event_formWindowOpened
-
+    }
     /**
      * @param args the command line arguments
      */

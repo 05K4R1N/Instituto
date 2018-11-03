@@ -197,6 +197,9 @@ public class Subjects extends javax.swing.JFrame {
             
         };
         tabSubjects.setModel(tabModel);
+        tabSubjects.getColumnModel().getColumn(0).setMinWidth(0);
+        tabSubjects.getColumnModel().getColumn(0).setMaxWidth(0);
+        tabSubjects.getColumnModel().getColumn(0).setWidth(0);
     }//GEN-LAST:event_formWindowOpened
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked

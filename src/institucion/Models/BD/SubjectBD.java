@@ -6,6 +6,7 @@
  */
 package institucion.Models.BD;
 
+import com.mysql.jdbc.StringUtils;
 import config.Conexion;
 import institucion.Models.Users.Subject;
 import java.sql.Connection;
@@ -13,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -25,11 +27,12 @@ public class SubjectBD {
         Connection conn         =   null;
         PreparedStatement ptmt  =   null;
         ResultSet rs            =   null;
+        System.out.println(subject.getSchedule());
         try{
             conn = Conexion.getInstance().getConnection();
             String query = "INSERT INTO subject(name,description,schedules) "
                         + "VALUES (?,?,?)";
-            String subjectList = String.join(",",subject.getSchedule());
+            String subjectList = String.join(",", subject.getSchedule().values());
             ptmt = conn.prepareStatement(query);
             ptmt.setString(1, subject.getName());
             ptmt.setString(2, subject.getDescription());
@@ -62,6 +65,14 @@ public class SubjectBD {
             rs.next();
             subject.setName(rs.getString("name"));
             subject.setDescription(rs.getString("description"));
+            String[] schedulesArr = rs.getString("schedules").split(",");
+            HashMap<String, String> schedules = new HashMap<String, String>();
+            schedules.put("Morning", schedulesArr[2]);
+            schedules.put("Afternoon", schedulesArr[0]);
+            schedules.put("Night", schedulesArr[1]);
+            
+            subject.setSchedule(schedules);
+            
             rs.close();
             ptmt.close();
             conn.close();

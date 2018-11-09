@@ -165,24 +165,30 @@ public class Subjects extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabSubjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabSubjectsMouseClicked
-        JPopupMenu menu = new JPopupMenu();
-        JMenuItem editItem = new JMenuItem(new AbstractAction("Editar Materia") {
-            
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-            }
-        });
-        JMenuItem deleteItem = new JMenuItem(new AbstractAction("Eliminar Materia") {
-            
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-            }
-        });
-        menu.add(editItem);
-        menu.add(deleteItem);
-        tabSubjects.setComponentPopupMenu(menu);
+        int row = tabSubjects.getSelectedRow();
+        if( row > -1 ){
+            int subject_id = Integer.parseInt(tabSubjects.getValueAt(tabSubjects.getSelectedRow(), 0).toString());
+            JPopupMenu menu = new JPopupMenu();
+            JMenuItem editItem = new JMenuItem(new AbstractAction("Editar Materia") {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    FormSubject form = new FormSubject();
+                    form.setSubjectId(subject_id);
+                    form.setVisible(true);
+                }
+            });
+            JMenuItem deleteItem = new JMenuItem(new AbstractAction("Eliminar Materia") {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+
+                }
+            });
+            menu.add(editItem);
+            menu.add(deleteItem);
+            tabSubjects.setComponentPopupMenu(menu);
+        }
     }//GEN-LAST:event_tabSubjectsMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

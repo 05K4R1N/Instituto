@@ -1,6 +1,6 @@
 package institucion.Models.Users;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,9 +15,9 @@ import java.util.ArrayList;
 public class Subject {
 	private String name;
 	private String description;
-	private ArrayList<String> schedule;
+	private HashMap<String,String> schedule;
 	
-	public Subject(String name, String description, ArrayList schedule){
+	public Subject(String name, String description, HashMap schedule){
 		this.name = name;
 		this.description = description;
 		this.schedule = schedule;
@@ -43,11 +43,11 @@ public class Subject {
 		this.description = description;
 	}
 
-	public ArrayList<String> getSchedule() {
+	public HashMap<String, String> getSchedule() {
 		return schedule;
 	}
 
-	public void setSchedule(ArrayList<String> schedule) {
+	public void setSchedule(HashMap<String, String> schedule) {
 		this.schedule = schedule;
 	}
 	

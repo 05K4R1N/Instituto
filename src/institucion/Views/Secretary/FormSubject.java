@@ -9,6 +9,8 @@ package institucion.Views.Secretary;
 import institucion.Controllers.CtrlSubject;
 import institucion.Models.Users.Subject;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +20,7 @@ import javax.swing.JOptionPane;
 public class FormSubject extends javax.swing.JFrame {
 
     private CtrlSubject ctrlS;
+    private int subjectId;
     /**
      * Creates new form FormSubject
      */
@@ -28,6 +31,7 @@ public class FormSubject extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
         ctrlS = new CtrlSubject();
+        this.subjectId = 0;
     }
 
     /**
@@ -259,36 +263,31 @@ public class FormSubject extends javax.swing.JFrame {
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
         String name = txtName.getText();
         String desc = txtDescription.getText();
-        ArrayList<String> schedules = new ArrayList<String>();
+        HashMap<String, String> schedules = new HashMap<String, String>();
+        schedules.put("Morning", "--:--");
+        schedules.put("Afternoon", "--:--");
+        schedules.put("Night","--:--");
         //Morning
         String hr, min = "";
         hr = cmbHourMorning.getSelectedItem().toString();
         min = cmbMinMorning.getSelectedItem().toString();
         if( !hr.equals("--") && !min.equals("--"))
-            //schedules[0] = hr+":"+min;
-            schedules.add(hr+":"+min);
+            schedules.put("Morning", hr+":"+min);
         //Afternoon
         hr = cmbHourAfternoon.getSelectedItem().toString();
         min = cmbMinAfternoon.getSelectedItem().toString();
         if( !hr.equals("--") && !min.equals("--"))
-            schedules.add(hr+":"+min);
+            schedules.put("Afternoon", hr+":"+min);
         //Night
         hr = cmbHourNight.getSelectedItem().toString();
         min = cmbMinNight.getSelectedItem().toString();
         if( !hr.equals("--") && !min.equals("--"))
-            schedules.add(hr+":"+min);
-        
-        for(int i = 0; i < schedules.size(); i++){
-            if(schedules.get(i) == null){
-                schedules.remove(i);
-            }
-        }
+            schedules.put("Night", hr+":"+min);
         
         Subject subject = new Subject();
         subject.setName(name);
         subject.setDescription(desc);
-        subject.setSchedule(schedules);
-        
+        subject.setSchedule(schedules);        
         boolean flag = ctrlS.validateRegistration(subject);
         if(flag){
             JOptionPane.showMessageDialog(null, 
@@ -311,7 +310,28 @@ public class FormSubject extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        this.fillingTimes();
+       int subjectId = this.subjectId;
         txtDescription.setLineWrap(true);
+        if( subjectId > 0 ){
+           Subject subject = ctrlS.getSubjectById(subjectId);
+           txtName.setText(subject.getName());
+           txtDescription.setText(subject.getDescription());
+           HashMap<String, String> schedules = subject.getSchedule();
+           System.out.println(schedules);
+           String morning[] = schedules.get("Morning").split(":");
+           String afternoon[] = schedules.get("Afternoon").split(":");
+           String night[] = schedules.get("Night").split(":");
+           System.out.println(Arrays.toString(morning));
+           System.out.println(Arrays.toString(afternoon));
+           System.out.println(Arrays.toString(night));
+           
+           cmbHourMorning.setSelectedItem(morning[0]);
+           cmbMinMorning.setSelectedItem(morning[1]);
+           cmbHourAfternoon.setSelectedItem(afternoon[0]);
+           cmbMinAfternoon.setSelectedItem(afternoon[1]);
+           cmbHourNight.setSelectedItem(night[0]);
+           cmbMinNight.setSelectedItem(night[1]);
+       }
     }//GEN-LAST:event_formWindowOpened
 
     public void fillingTimes(){
@@ -342,6 +362,15 @@ public class FormSubject extends javax.swing.JFrame {
         for(String nH: nightH)
             cmbHourNight.addItem(nH);
     }
+    
+    public int getSubjectId(){
+        return this.subjectId;
+    }
+    
+    public void setSubjectId(int subjectId){
+        this.subjectId = subjectId;
+    }
+    
     /**
      * @param args the command line arguments
      */

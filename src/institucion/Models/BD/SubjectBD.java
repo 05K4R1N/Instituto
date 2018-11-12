@@ -175,4 +175,25 @@ public class SubjectBD {
         }
         return subjects;
     }
+    
+    public boolean delete(int subjectId){
+        Connection conn         =   null;
+        PreparedStatement ptmt  =   null;
+        boolean res             =   false;
+        try{
+            conn = Conexion.getInstance().getConnection();
+            String query = "DELETE FROM subject WHERE id = ?";
+            ptmt = conn.prepareStatement(query);
+            ptmt.setInt(1, subjectId);
+            
+            ptmt.executeUpdate();
+            res = true;
+            
+            ptmt.close();
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return res;
+    }
 }

@@ -24,9 +24,17 @@ public class CtrlSubject {
     public Subject getSubjectById(int id){
         Subject subject = null;
         if( id > 0 ){
-                subject = mod.getSubjectById(id);
+            subject = mod.getSubjectById(id);
         }
         return subject;
+    }
+    
+    public boolean validateSubjectId(int subjectId){
+        boolean res = false;
+        if( subjectId > 0 ){
+            res = mod.delete(subjectId);
+        }
+        return res;
     }
 
     public ArrayList<String> getNameSubjects(){

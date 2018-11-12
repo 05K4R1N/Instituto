@@ -10,6 +10,7 @@ import institucion.Controllers.CtrlSubject;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 
@@ -195,7 +196,14 @@ public class Subjects extends javax.swing.JFrame {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
+                    boolean res = ctrlS.validateSubjectId(subject_id);
+                    if(res){
+                        JOptionPane.showMessageDialog(null, 
+                                                    "Materia Eliminado exitosamente", 
+                                                    "Eliminar", 
+                                                    JOptionPane.INFORMATION_MESSAGE);
+                        updateTable();
+                    }
                 }
             });
             menu.add(editItem);
@@ -230,7 +238,26 @@ public class Subjects extends javax.swing.JFrame {
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
         this.setVisible(false);
     }//GEN-LAST:event_btnCloseMouseClicked
+    
+    public void updateTable(){
+        DefaultTableModel emptyTable = new DefaultTableModel();
+        tabSubjects.setModel(emptyTable);
+        
+        Object[][] subjects = ctrlS.getAllSubjects();
+        String title[] = {"id", "Nombre", "Horarios"};
+        DefaultTableModel tabModel = new DefaultTableModel(subjects, title){
 
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+            
+        };
+        tabSubjects.setModel(tabModel);
+        tabSubjects.getColumnModel().getColumn(0).setMinWidth(0);
+        tabSubjects.getColumnModel().getColumn(0).setMaxWidth(0);
+        tabSubjects.getColumnModel().getColumn(0).setWidth(0);
+    }
     /**
      * @param args the command line arguments
      */

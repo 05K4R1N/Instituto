@@ -22,21 +22,37 @@ import java.util.HashMap;
  */
 public class SubjectBD {
     
-    public boolean register(Subject subject){
+    public boolean processData(Subject subject, String action){
         boolean res             =   false;
         Connection conn         =   null;
         PreparedStatement ptmt  =   null;
         ResultSet rs            =   null;
         try{
             conn = Conexion.getInstance().getConnection();
-            String query = "INSERT INTO subject(name,description,schedules) "
+            String query = "";
+            String subjectList = "";
+            switch(action){
+                case "add":
+                    query = "INSERT INTO subject(name,description,schedules) "
                         + "VALUES (?,?,?)";
-            String subjectList = String.join(",", subject.getSchedule().values());
-            ptmt = conn.prepareStatement(query);
-            ptmt.setString(1, subject.getName());
-            ptmt.setString(2, subject.getDescription());
-            ptmt.setString(3, subjectList);
-            
+                    subjectList = String.join(",", subject.getSchedule().values());
+                    ptmt = conn.prepareStatement(query);
+                    ptmt.setString(1, subject.getName());
+                    ptmt.setString(2, subject.getDescription());
+                    ptmt.setString(3, subjectList);
+                    break;
+                case "update":
+                    query = "UPDATE subject "
+                            + "set name=?, description = ?, schedules=? "
+                            + "WHERE id = ?";
+                    subjectList = String.join(",", subject.getSchedule().values());
+                    ptmt = conn.prepareStatement(query);
+                    ptmt.setString(1, subject.getName());
+                    ptmt.setString(2, subject.getDescription());
+                    ptmt.setString(3, subjectList);
+                    ptmt.setInt(4, subject.getSubjectId());
+                    break;
+            }
             ptmt.executeUpdate();
             res = true;
             

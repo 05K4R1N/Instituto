@@ -13,43 +13,51 @@ import java.util.HashMap;
  * @author o5k4r1n
  */
 public class Subject {
+        private int subjectId;
 	private String name;
 	private String description;
 	private HashMap<String,String> schedule;
 	
 	public Subject(String name, String description, HashMap schedule){
-		this.name = name;
-		this.description = description;
-		this.schedule = schedule;
+            this.name = name;
+            this.description = description;
+            this.schedule = schedule;
 	}
 	public Subject(){
-		this.name = "";
-		this.description = "";
+            this.name = "";
+            this.description = "";
 	}
-
+        
+        public int getSubjectId(){
+            return subjectId;
+        }
+        
+        public void setSubjectId(int subjectId){
+            this.subjectId = subjectId;
+        }
+        
 	public String getName() {
-		return name;
+            return name;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+            this.name = name;
 	}
 
 	public String getDescription() {
-		return description;
+            return description;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+            this.description = description;
 	}
 
 	public HashMap<String, String> getSchedule() {
-		return schedule;
+            return schedule;
 	}
 
 	public void setSchedule(HashMap<String, String> schedule) {
-		this.schedule = schedule;
+            this.schedule = schedule;
 	}
-	
-	
+        
 }

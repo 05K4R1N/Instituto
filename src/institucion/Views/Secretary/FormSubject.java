@@ -27,7 +27,7 @@ public class FormSubject extends javax.swing.JFrame {
     public FormSubject() {
         this.setUndecorated(true);
         initComponents();
-        this.setSize(481, 450);
+        this.setSize(481, 457);
         this.setLocationRelativeTo(null);
         
         ctrlS = new CtrlSubject();
@@ -95,13 +95,13 @@ public class FormSubject extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(193, Short.MAX_VALUE)
+                .addContainerGap(203, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(164, 164, 164))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 193, 450);
+        jPanel1.setBounds(0, 0, 193, 460);
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -259,7 +259,7 @@ public class FormSubject extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(183, 0, 300, 450);
+        jPanel2.setBounds(183, 0, 300, 460);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -292,11 +292,14 @@ public class FormSubject extends javax.swing.JFrame {
         if( !hr.equals("--") && !min.equals("--"))
             schedules.put("Night", hr+":"+min);
         
+        int subjectId = this.subjectId;
         Subject subject = new Subject();
+        subject.setSubjectId(subjectId);
         subject.setName(name);
         subject.setDescription(desc);
-        subject.setSchedule(schedules);        
-        boolean flag = ctrlS.validateRegistration(subject);
+        subject.setSchedule(schedules);
+        boolean flag = (subjectId == 0)?ctrlS.validateSubjectData(subject, "add"):
+                                        ctrlS.validateSubjectData(subject, "update");
         if(flag){
             JOptionPane.showMessageDialog(null, 
                                             "Materia ha sido registrada",
@@ -333,9 +336,6 @@ public class FormSubject extends javax.swing.JFrame {
            String morning[] = schedules.get("Morning").split(":");
            String afternoon[] = schedules.get("Afternoon").split(":");
            String night[] = schedules.get("Night").split(":");
-           System.out.println(Arrays.toString(morning));
-           System.out.println(Arrays.toString(afternoon));
-           System.out.println(Arrays.toString(night));
            
            cmbHourMorning.setSelectedItem(morning[0]);
            cmbMinMorning.setSelectedItem(morning[1]);
@@ -364,9 +364,9 @@ public class FormSubject extends javax.swing.JFrame {
             cmbMinAfternoon.addItem(minute);
             cmbMinMorning.addItem(minute);
         }
-        String[] morningH = {"07", "08", "09", "10", "11"};
-        String[] afternoonH = {"14", "15", "16", "17"};
-        String[] nightH =   {"20", "21", "22"};
+        String[] morningH   =   {"07", "08", "09", "10", "11"};
+        String[] afternoonH =   {"14", "15", "16", "17"};
+        String[] nightH     =   {"20", "21", "22"};
         for(String mH: morningH)
             cmbHourMorning.addItem(mH);
         for(String aH: afternoonH)

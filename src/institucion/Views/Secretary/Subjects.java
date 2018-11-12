@@ -92,11 +92,16 @@ public class Subjects extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(102, 0, 0));
 
+        btnClose.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
+        btnClose.setForeground(new java.awt.Color(255, 255, 255));
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
+        btnClose.setText("Salir");
         btnClose.setBorder(null);
         btnClose.setBorderPainted(false);
         btnClose.setContentAreaFilled(false);
         btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnClose.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCloseMouseClicked(evt);
@@ -121,11 +126,16 @@ public class Subjects extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabSubjects);
 
+        btnAdd.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(255, 255, 255));
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/add.png"))); // NOI18N
+        btnAdd.setText("Agregar");
         btnAdd.setBorder(null);
         btnAdd.setBorderPainted(false);
         btnAdd.setContentAreaFilled(false);
         btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAddMouseClicked(evt);
@@ -150,7 +160,7 @@ public class Subjects extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnClose)
@@ -166,6 +176,7 @@ public class Subjects extends javax.swing.JFrame {
 
     private void tabSubjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabSubjectsMouseClicked
         int row = tabSubjects.getSelectedRow();
+        Subjects subjects = this;
         if( row > -1 ){
             int subject_id = Integer.parseInt(tabSubjects.getValueAt(tabSubjects.getSelectedRow(), 0).toString());
             JPopupMenu menu = new JPopupMenu();
@@ -176,6 +187,8 @@ public class Subjects extends javax.swing.JFrame {
                     FormSubject form = new FormSubject();
                     form.setSubjectId(subject_id);
                     form.setVisible(true);
+                    subjects.setVisible(false);
+                    
                 }
             });
             JMenuItem deleteItem = new JMenuItem(new AbstractAction("Eliminar Materia") {

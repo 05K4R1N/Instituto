@@ -45,11 +45,21 @@ public class CtrlSubject {
         return mod.getAllSubjects();
     }
     
-    public boolean validateRegistration(Subject subject){
+    public boolean validateSubjectData(Subject subject, String action){
         boolean res = false;
-        if(subject.getName().length() > 0 && 
-                !subject.getSchedule().containsValue("--:--")){
-            res = mod.register(subject);
+        switch(action){
+            case "add":
+                if(subject.getName().length() > 0 && 
+                    !subject.getSchedule().containsValue("--:--")){
+                    res = mod.processData(subject, action);
+                }
+                break;
+            case "update":
+                if( subject.getName().length() > 0 && 
+                    !subject.getSchedule().containsValue("--:--") && 
+                    subject.getSubjectId() > 0 ){
+                    res = mod.processData(subject, action);
+                }
         }
         return res;
     }

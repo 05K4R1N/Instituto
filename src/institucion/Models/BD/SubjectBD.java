@@ -27,7 +27,6 @@ public class SubjectBD {
         Connection conn         =   null;
         PreparedStatement ptmt  =   null;
         ResultSet rs            =   null;
-        System.out.println(subject.getSchedule());
         try{
             conn = Conexion.getInstance().getConnection();
             String query = "INSERT INTO subject(name,description,schedules) "

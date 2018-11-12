@@ -48,7 +48,7 @@ public class CtrlSubject {
     public boolean validateRegistration(Subject subject){
         boolean res = false;
         if(subject.getName().length() > 0 && 
-                subject.getSchedule().size() > 0){
+                !subject.getSchedule().containsValue("--:--")){
             res = mod.register(subject);
         }
         return res;

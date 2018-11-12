@@ -211,6 +211,7 @@ public class Subjects extends javax.swing.JFrame {
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
         FormSubject add = new FormSubject();
         add.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnAddMouseClicked
 
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked

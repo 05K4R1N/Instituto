@@ -8,9 +8,12 @@ package institucion.Views.Secretary;
 
 import institucion.Controllers.CtrlSubject;
 import institucion.Models.Users.Subject;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -343,6 +346,14 @@ public class FormSubject extends javax.swing.JFrame {
            cmbMinAfternoon.setSelectedItem(afternoon[1]);
            cmbHourNight.setSelectedItem(night[0]);
            cmbMinNight.setSelectedItem(night[1]);
+           
+           btnAdd.setText("Editar");
+           try{
+               Image img = ImageIO.read(getClass().getResource("/images/icons/edit.png"));
+               btnAdd.setIcon(new ImageIcon(img));
+           }catch(Exception e){
+               System.out.println(e);
+           }
        }
     }//GEN-LAST:event_formWindowOpened
 

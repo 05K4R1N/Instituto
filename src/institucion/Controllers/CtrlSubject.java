@@ -55,16 +55,19 @@ public class CtrlSubject {
     
     public boolean validateSubjectData(Subject subject, String action){
         boolean res = false;
+        boolean allEmpty = (subject.getSchedule().get("Morning").equals("--:--") &&
+                            subject.getSchedule().get("Afternoon").equals("--:--") && 
+                            subject.getSchedule().get("Night").equals("--:--"));
         switch(action){
             case "add":
                 if(subject.getName().length() > 0 && 
-                    !subject.getSchedule().containsValue("--:--")){
+                    !allEmpty){
                     res = mod.processData(subject, action);
                 }
                 break;
             case "update":
                 if( subject.getName().length() > 0 && 
-                    !subject.getSchedule().containsValue("--:--") && 
+                    !allEmpty && 
                     subject.getSubjectId() > 0 ){
                     res = mod.processData(subject, action);
                 }

@@ -165,12 +165,6 @@ public class FormSubject extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Horarios (Maniana - Tarde - Noche):");
 
-        cmbMinAfternoon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbMinAfternoonActionPerformed(evt);
-            }
-        });
-
         jLabel2.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText(":");
@@ -266,10 +260,6 @@ public class FormSubject extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cmbMinAfternoonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMinAfternoonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbMinAfternoonActionPerformed
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
         String name = txtName.getText();

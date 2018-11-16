@@ -14,10 +14,15 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author master
@@ -174,7 +179,7 @@ public class TeacherBD {
         }
         return teachers;
     }
-    public  boolean add(Teacher t){
+    public  boolean update(Teacher t){
         boolean res = false;
         Connection conn = null;
         PreparedStatement ptmt = null;
@@ -205,6 +210,48 @@ public class TeacherBD {
         
         return res;
     }
+    
+    public boolean add(Teacher t){
+        Connection conn = null;
+        PreparedStatement ptmt = null;
+        boolean res = false;
+        try{
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date date = null;
+            try {
+                date = format.parse(t.getBirthday().toString());
+            } catch (ParseException ex) {
+                System.out.println(ex);
+            }
+            conn = Conexion.getInstance().getConnection();
+            String query = "INSERT INTO teacher (first_name, last_name, address, ci,"
+                                            + "birthday, code, place_birth, photo, "
+                                            + "username, password) VALUES "
+                                            + "(?,?,?,?,?,?,?,?,?,?)";
+            ptmt = conn.prepareStatement(query);
+            ptmt.setString(1, t.getFirst_name());
+            ptmt.setString(2, t.getLast_name());
+            ptmt.setString(3, t.getAddress());
+            ptmt.setInt(4, t.getCi());
+            ptmt.setDate(5, (Date) date);
+            ptmt.setString(6, t.getCode());
+            ptmt.setString(7, t.getPlace_birth());
+            ptmt.setString(8, t.getPhoto());
+            ptmt.setString(9, t.getUsnername());
+            ptmt.setString(10, t.getPassword());
+            
+            ptmt.executeUpdate();
+            res = true;
+            
+            ptmt.close();
+            conn.close();
+            
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return res;
+    }
+    
     public Teacher getTeacherByID(int id){
         Teacher t = new Teacher();
         Connection conn = null;

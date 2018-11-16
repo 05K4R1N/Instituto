@@ -45,7 +45,11 @@ public class CtrlTeacher {
                 t.getLast_name().length() > 0 && 
                 t.getAddress().length() > 0 && 
                 t.getPlace_birth().length() > 0 && 
-                t.getBirthday() != null){
+                t.getBirthday() != null && 
+                t.getCi() > 0 &&
+                t.getCode().length() > 0 && 
+                t.getUsnername().length() > 0 && 
+                t.getPassword().length() > 0){
             mod.add(t);
             added = true;
         }

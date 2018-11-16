@@ -18,7 +18,47 @@ public class Teacher {
     private String address;
     private Date birthday;
     private String place_birth;
-	private String photo;
+    private String photo;
+    private int ci;
+    private String code;
+    private String usnername;
+    private String password;
+
+    public Teacher(){
+    }
+    
+    public int getCi() {
+        return ci;
+    }
+
+    public void setCi(int ci) {
+        this.ci = ci;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getUsnername() {
+        return usnername;
+    }
+
+    public void setUsnername(String usnername) {
+        this.usnername = usnername;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
 
     public String getFirst_name() {
         return first_name;

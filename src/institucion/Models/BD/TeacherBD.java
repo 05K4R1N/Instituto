@@ -216,13 +216,6 @@ public class TeacherBD {
         PreparedStatement ptmt = null;
         boolean res = false;
         try{
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            java.util.Date date = null;
-            try {
-                date = format.parse(t.getBirthday().toString());
-            } catch (ParseException ex) {
-                System.out.println(ex);
-            }
             conn = Conexion.getInstance().getConnection();
             String query = "INSERT INTO teacher (first_name, last_name, address, ci,"
                                             + "birthday, code, place_birth, photo, "
@@ -233,7 +226,7 @@ public class TeacherBD {
             ptmt.setString(2, t.getLast_name());
             ptmt.setString(3, t.getAddress());
             ptmt.setInt(4, t.getCi());
-            ptmt.setDate(5, (Date) date);
+            ptmt.setDate(5, new Date(t.getBirthday().getTime()));
             ptmt.setString(6, t.getCode());
             ptmt.setString(7, t.getPlace_birth());
             ptmt.setString(8, t.getPhoto());

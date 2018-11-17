@@ -214,6 +214,8 @@ public class FormTeacher extends javax.swing.JFrame {
         });
 
         txtBirthday.setBackground(new java.awt.Color(0, 0, 0));
+        txtBirthday.setDateFormatString("yyyy-MM-dd");
+        txtBirthday.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -355,9 +357,6 @@ public class FormTeacher extends javax.swing.JFrame {
 
     private void btnActionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActionMouseClicked
         String code = this.generateCode(8);
-        Date date = txtBirthday.getDate();
-        //System.out.println(date);
-        //System.out.println(new SimpleDateFormat("yyyy-MM-dd").format(date));
         Teacher t = new Teacher();        
         t.setFirst_name(txtFirstname.getText());
         t.setLast_name(txtLastname.getText());
@@ -374,7 +373,15 @@ public class FormTeacher extends javax.swing.JFrame {
                                         "Profesor registrado con exito", 
                                         "Registro", 
                                         JOptionPane.INFORMATION_MESSAGE);
+            this.setVisible(false);
+            TeachersList list = new TeachersList();
+            list.setVisible(true);
+            return;
         }
+        JOptionPane.showMessageDialog(null, 
+                                    "Llene todo los campos correctamente.",
+                                    "Error",
+                                    JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnActionMouseClicked
 
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked

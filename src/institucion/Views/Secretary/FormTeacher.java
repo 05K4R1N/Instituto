@@ -357,31 +357,46 @@ public class FormTeacher extends javax.swing.JFrame {
 
     private void btnActionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActionMouseClicked
         String code = this.generateCode(8);
-        Teacher t = new Teacher();        
-        t.setFirst_name(txtFirstname.getText());
-        t.setLast_name(txtLastname.getText());
-        t.setAddress(txtAddress.getText());
-        t.setCi(Integer.parseInt(txtCI.getText()));
-        t.setBirthday(txtBirthday.getDate());
-        t.setCode(code);
-        t.setPlace_birth(txtPlace.getText());
-        t.setUsnername(txtUser.getText());
-        t.setPassword(txtPass.getText());
-        
-        if(ctrlT.add(t)){
+        String pass1 = txtPass.getText();
+        String pass2 = txtPassConfirm.getText();
+        int ci = 0;
+        try{
+            ci = Integer.parseInt(txtCI.getText());
+        }catch(NumberFormatException e){
+            ci = 0;
+        }
+        if(pass1.equals(pass2)){
+            Teacher t = new Teacher();        
+            t.setFirst_name(txtFirstname.getText());
+            t.setLast_name(txtLastname.getText());
+            t.setAddress(txtAddress.getText());
+            t.setCi(ci);
+            t.setBirthday(txtBirthday.getDate());
+            t.setCode(code);
+            t.setPlace_birth(txtPlace.getText());
+            t.setUsnername(txtUser.getText());
+            t.setPassword(txtPass.getText());
+
+            if(ctrlT.add(t)){
+                JOptionPane.showMessageDialog(null, 
+                                            "Profesor registrado con exito", 
+                                            "Registro", 
+                                            JOptionPane.INFORMATION_MESSAGE);
+                this.setVisible(false);
+                TeachersList list = new TeachersList();
+                list.setVisible(true);
+                return;
+            }
             JOptionPane.showMessageDialog(null, 
-                                        "Profesor registrado con exito", 
-                                        "Registro", 
-                                        JOptionPane.INFORMATION_MESSAGE);
-            this.setVisible(false);
-            TeachersList list = new TeachersList();
-            list.setVisible(true);
+                                        "Llene todo los campos correctamente.",
+                                        "Error",
+                                        JOptionPane.ERROR_MESSAGE);
             return;
         }
         JOptionPane.showMessageDialog(null, 
-                                    "Llene todo los campos correctamente.",
-                                    "Error",
-                                    JOptionPane.ERROR_MESSAGE);
+                                    "Contrasenias no coinciden", 
+                                    "Contrasenia", 
+                                    JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_btnActionMouseClicked
 
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked

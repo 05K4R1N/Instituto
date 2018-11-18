@@ -8,8 +8,6 @@ package institucion.Views.Secretary;
 
 import institucion.Controllers.CtrlTeacher;
 import institucion.Models.Users.Teacher;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -25,10 +23,7 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 
 /**
  *
@@ -49,6 +44,7 @@ public class FormTeacher extends javax.swing.JFrame {
         ctrlT = new CtrlTeacher();
         txtPhoto.setVisible(false);
         txtPhotoAddress.setVisible(false);
+        txtPhoto.setText("no_photo.jpg");
     }
 
     /**
@@ -257,8 +253,6 @@ public class FormTeacher extends javax.swing.JFrame {
         lblFlag.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panelPhoto.add(lblFlag, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 91, 30));
 
-        txtPhotoAddress.setText("jTextField1");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -313,7 +307,7 @@ public class FormTeacher extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(txtPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPhotoAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtPhotoAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -356,8 +350,8 @@ public class FormTeacher extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblPass1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -451,32 +445,24 @@ public class FormTeacher extends javax.swing.JFrame {
             String format_file      =   new MimetypesFileTypeMap().getContentType(file);
             String type             =   format_file.split("/")[0];
             boolean isPhoto         =   true;
-            /*System.out.println(format_file);
-            System.out.println(type);
-            System.out.println(f.getName());
-            System.out.println(new MimetypesFileTypeMap().getContentType(file));*/
             boolean valid = true;
             String format = "";
             try {
                 Image image = ImageIO.read(new File(fileName));
                 ImageInputStream iis = ImageIO.createImageInputStream(file);
-
                 Iterator<ImageReader> imageReaders = ImageIO.getImageReaders(iis);
 
                 while (imageReaders.hasNext()) {
                     ImageReader reader = (ImageReader) imageReaders.next();
-                    //System.out.printf("formatName: %s%n", reader.getFormatName());
                     format = reader.getFormatName();
                 }
                 if (image == null) {
                     valid = false;
-                    //System.out.println("The file"+f.getName()+"could not be opened , it is not an image");
+                    lblFlag.setText("Archivo No Valido");
                 }
             } catch(IOException ex) {
                 valid = false;
-                //System.out.println("The file"+f.getName()+"could not be opened , an error occurred.");
             }
-            //System.out.println(valid);
             if(valid){
                 String photo = "";
                 lblFlag.setText(f.getName());
@@ -484,7 +470,6 @@ public class FormTeacher extends javax.swing.JFrame {
                 Date now = new Date();
                 photo = (isPhoto)?txtLastname.getText()+"_"+txtFirstname.getText()
                                     +"_"+sdfDate.format(now)+"."+format:"no_image.jpg";
-                System.out.println(photo);
                 txtPhoto.setText(photo);
                 txtPhotoAddress.setText(f.getAbsolutePath());
             }

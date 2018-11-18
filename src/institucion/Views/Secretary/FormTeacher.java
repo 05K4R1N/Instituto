@@ -10,10 +10,20 @@ import institucion.Controllers.CtrlTeacher;
 import institucion.Models.Users.Teacher;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Random;
+import javax.activation.MimetypesFileTypeMap;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -37,8 +47,8 @@ public class FormTeacher extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
         ctrlT = new CtrlTeacher();
-        //lblNamePhoto.setVisible(false);
-        //this.setResizable(false);
+        txtPhoto.setVisible(false);
+        txtPhotoAddress.setVisible(false);
     }
 
     /**
@@ -77,6 +87,8 @@ public class FormTeacher extends javax.swing.JFrame {
         lblPhoto = new javax.swing.JLabel();
         panelPhoto = new javax.swing.JPanel();
         lblFlag = new javax.swing.JLabel();
+        txtPhoto = new javax.swing.JTextField();
+        txtPhotoAddress = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -238,12 +250,14 @@ public class FormTeacher extends javax.swing.JFrame {
         });
         panelPhoto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblFlag.setFont(new java.awt.Font("Lao UI", 1, 12)); // NOI18N
+        lblFlag.setFont(new java.awt.Font("Lao UI", 1, 10)); // NOI18N
         lblFlag.setForeground(new java.awt.Color(255, 255, 255));
         lblFlag.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFlag.setText("Clic aqui");
         lblFlag.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         panelPhoto.add(lblFlag, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 91, 30));
+
+        txtPhotoAddress.setText("jTextField1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -255,8 +269,23 @@ public class FormTeacher extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addGap(145, 145, 145)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(0, 9, Short.MAX_VALUE))
+                                    .addComponent(txtPassConfirm)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnAction)
+                                .addGap(58, 58, 58)
+                                .addComponent(btnClose)))
+                        .addGap(24, 24, 24))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblUser)
                             .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,23 +309,12 @@ public class FormTeacher extends javax.swing.JFrame {
                                         .addComponent(txtCI, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                                         .addComponent(txtPlace))
                                     .addComponent(lblPhoto)
-                                    .addComponent(panelPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addGap(145, 145, 145)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(0, 9, Short.MAX_VALUE))
-                                    .addComponent(txtPassConfirm)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnAction)
-                                .addGap(58, 58, 58)
-                                .addComponent(btnClose)))
-                        .addGap(24, 24, 24))))
+                                    .addComponent(panelPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(txtPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPhotoAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,7 +363,11 @@ public class FormTeacher extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPassConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPhotoAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAction, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnClose, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -374,6 +396,7 @@ public class FormTeacher extends javax.swing.JFrame {
             t.setLast_name(txtLastname.getText());
             t.setAddress(txtAddress.getText());
             t.setCi(ci);
+            t.setPhoto(txtPhoto.getText());
             t.setBirthday(txtBirthday.getDate());
             t.setCode(code);
             t.setPlace_birth(txtPlace.getText());
@@ -385,6 +408,16 @@ public class FormTeacher extends javax.swing.JFrame {
                                             "Profesor registrado con exito", 
                                             "Registro", 
                                             JOptionPane.INFORMATION_MESSAGE);
+                try {
+                    Files.copy(
+                            Paths.get(txtPhotoAddress.getText()), 
+                            Paths.get(System.getProperty("user.dir")
+                                        +"/src/images/photos/teacher/" + txtPhoto.getText()),
+                            StandardCopyOption.REPLACE_EXISTING);
+                        this.setVisible(false);
+                        return;
+                } catch (IOException ex) {
+                }
                 this.setVisible(false);
                 TeachersList list = new TeachersList();
                 list.setVisible(true);
@@ -413,8 +446,48 @@ public class FormTeacher extends javax.swing.JFrame {
         imageFile.showOpenDialog(null);
         File f = imageFile.getSelectedFile();
         try{
-            String fileName = f.getAbsolutePath();
-            lblFlag.setText(fileName);
+            String fileName         =   f.getAbsolutePath();
+            File file               =   new File(fileName);
+            String format_file      =   new MimetypesFileTypeMap().getContentType(file);
+            String type             =   format_file.split("/")[0];
+            boolean isPhoto         =   true;
+            /*System.out.println(format_file);
+            System.out.println(type);
+            System.out.println(f.getName());
+            System.out.println(new MimetypesFileTypeMap().getContentType(file));*/
+            boolean valid = true;
+            String format = "";
+            try {
+                Image image = ImageIO.read(new File(fileName));
+                ImageInputStream iis = ImageIO.createImageInputStream(file);
+
+                Iterator<ImageReader> imageReaders = ImageIO.getImageReaders(iis);
+
+                while (imageReaders.hasNext()) {
+                    ImageReader reader = (ImageReader) imageReaders.next();
+                    //System.out.printf("formatName: %s%n", reader.getFormatName());
+                    format = reader.getFormatName();
+                }
+                if (image == null) {
+                    valid = false;
+                    //System.out.println("The file"+f.getName()+"could not be opened , it is not an image");
+                }
+            } catch(IOException ex) {
+                valid = false;
+                //System.out.println("The file"+f.getName()+"could not be opened , an error occurred.");
+            }
+            //System.out.println(valid);
+            if(valid){
+                String photo = "";
+                lblFlag.setText(f.getName());
+                SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+                Date now = new Date();
+                photo = (isPhoto)?txtLastname.getText()+"_"+txtFirstname.getText()
+                                    +"_"+sdfDate.format(now)+"."+format:"no_image.jpg";
+                System.out.println(photo);
+                txtPhoto.setText(photo);
+                txtPhotoAddress.setText(f.getAbsolutePath());
+            }
         }catch(NullPointerException e){
         }
     }//GEN-LAST:event_panelPhotoMouseClicked
@@ -496,6 +569,8 @@ public class FormTeacher extends javax.swing.JFrame {
     private javax.swing.JTextField txtLastname;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JPasswordField txtPassConfirm;
+    private javax.swing.JTextField txtPhoto;
+    private javax.swing.JTextField txtPhotoAddress;
     private javax.swing.JTextField txtPlace;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables

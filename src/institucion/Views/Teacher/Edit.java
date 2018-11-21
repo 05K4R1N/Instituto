@@ -95,11 +95,11 @@ public class Edit extends javax.swing.JFrame{
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(149, 149, 149)
                 .addComponent(jLabel6)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 368, 503);
+        jPanel1.setBounds(0, 0, 370, 510);
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -123,16 +123,6 @@ public class Edit extends javax.swing.JFrame{
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Direccion:");
 
-        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
-
-        jSeparator5.setBackground(new java.awt.Color(255, 255, 255));
-
-        jSeparator6.setBackground(new java.awt.Color(255, 255, 255));
-
         btnEdit.setBackground(new java.awt.Color(0, 0, 0));
         btnEdit.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         btnEdit.setForeground(new java.awt.Color(255, 255, 255));
@@ -141,7 +131,7 @@ public class Edit extends javax.swing.JFrame{
         btnEdit.setBorder(null);
         btnEdit.setBorderPainted(false);
         btnEdit.setContentAreaFilled(false);
-        btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEdit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEdit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEdit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnEdit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -157,7 +147,7 @@ public class Edit extends javax.swing.JFrame{
         btnCancel.setText("Cancelar");
         btnCancel.setBorder(null);
         btnCancel.setBorderPainted(false);
-        btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCancel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCancel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -171,19 +161,15 @@ public class Edit extends javax.swing.JFrame{
             }
         });
 
-        txtName.setBackground(new java.awt.Color(0, 0, 0));
         txtName.setForeground(new java.awt.Color(255, 255, 255));
         txtName.setBorder(null);
 
-        txtLast_Name.setBackground(new java.awt.Color(0, 0, 0));
         txtLast_Name.setForeground(new java.awt.Color(255, 255, 255));
         txtLast_Name.setBorder(null);
 
-        txtplace_birthday.setBackground(new java.awt.Color(0, 0, 0));
         txtplace_birthday.setForeground(new java.awt.Color(255, 255, 255));
         txtplace_birthday.setBorder(null);
 
-        txtAddress.setBackground(new java.awt.Color(0, 0, 0));
         txtAddress.setForeground(new java.awt.Color(255, 255, 255));
         txtAddress.setBorder(null);
 

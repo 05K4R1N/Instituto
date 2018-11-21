@@ -187,20 +187,29 @@ public class TeacherBD {
         String query = "UPDATE Teacher "
                     + "SET first_name=?, "
                     + "last_name=?, "
+                    + "ci = ?, "
                     + "birthday=?, "
                     + "address=?, "
-                    + "place_birth=? "
+                    + "place_birth=?, "
+                    + "username=?, "
+                    + "password=? "
                     + "WHERE id=?";
         try {
             conn = Conexion.getInstance().getConnection();
             ptmt = conn.prepareStatement(query);
             ptmt.setString(1, t.getFirst_name());
             ptmt.setString(2, t.getLast_name());
-            ptmt.setDate(3, sql_date);
-            ptmt.setString(4, t.getAddress());
-            ptmt.setString(5, t.getPlace_birth());
-            ptmt.setInt(6, 1);
+            ptmt.setInt(3, t.getCi());
+            ptmt.setDate(4, sql_date);
+            ptmt.setString(5, t.getAddress());
+            ptmt.setString(6, t.getPlace_birth());
+            ptmt.setString(7, t.getUsnername());
+            ptmt.setString(8, t.getPassword());
+            ptmt.setInt(9, t.getId());
+            
             ptmt.executeUpdate();
+            
+            res = true;
             
             ptmt.close();
             conn.close();

@@ -54,7 +54,7 @@ public class Profile extends javax.swing.JFrame {
         txtPBirth = new javax.swing.JTextField();
         UsersPhoto = new javax.swing.JPanel();
         txtbirthdate = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -85,14 +85,6 @@ public class Profile extends javax.swing.JFrame {
         lbl_placebirth.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
         lbl_placebirth.setForeground(new java.awt.Color(204, 204, 204));
         lbl_placebirth.setText("Lugar de Nacimiento:");
-
-        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jSeparator3.setBackground(new java.awt.Color(255, 255, 255));
-
-        jSeparator4.setBackground(new java.awt.Color(255, 255, 255));
 
         txtFName.setBackground(new java.awt.Color(51, 51, 51));
         txtFName.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
@@ -134,27 +126,22 @@ public class Profile extends javax.swing.JFrame {
         txtbirthdate.setForeground(new java.awt.Color(255, 255, 255));
         txtbirthdate.setBorder(null);
         txtbirthdate.setEnabled(false);
-        txtbirthdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtbirthdateActionPerformed(evt);
-            }
-        });
 
-        jButton1.setBackground(new java.awt.Color(51, 51, 51));
-        jButton1.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(204, 204, 204));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
-        jButton1.setText("SALIR");
-        jButton1.setActionCommand("btnQuit");
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnClose.setBackground(new java.awt.Color(51, 51, 51));
+        btnClose.setFont(new java.awt.Font("Loma", 1, 18)); // NOI18N
+        btnClose.setForeground(new java.awt.Color(204, 204, 204));
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
+        btnClose.setText("SALIR");
+        btnClose.setActionCommand("btnQuit");
+        btnClose.setBorder(null);
+        btnClose.setBorderPainted(false);
+        btnClose.setContentAreaFilled(false);
+        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnClose.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCloseActionPerformed(evt);
             }
         });
 
@@ -181,7 +168,7 @@ public class Profile extends javax.swing.JFrame {
                                     .addComponent(lbl_firstname)
                                     .addComponent(txtFName, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lbl_lastname))
-                                .addGap(0, 2, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,7 +180,7 @@ public class Profile extends javax.swing.JFrame {
                                     .addComponent(txtLName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(btnClose)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -232,7 +219,7 @@ public class Profile extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btnClose)
                 .addGap(107, 107, 107))
         );
 
@@ -260,13 +247,9 @@ public class Profile extends javax.swing.JFrame {
         UsersPhoto.repaint();
     }//GEN-LAST:event_formWindowOpened
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void txtbirthdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbirthdateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtbirthdateActionPerformed
+    }//GEN-LAST:event_btnCloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,7 +288,7 @@ public class Profile extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel UsersPhoto;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnClose;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

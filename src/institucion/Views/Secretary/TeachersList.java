@@ -10,7 +10,6 @@ import institucion.Controllers.CtrlTeacher;
 import institucion.Views.Teacher.Edit;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
-import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -265,6 +264,7 @@ public class TeachersList extends javax.swing.JFrame {
 
     private void tabTeachersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabTeachersMouseClicked
         int row = tabTeachers.getSelectedRow();
+        TeachersList teacher = this;
         if( row > -1 ){
             int teacher_id = Integer.parseInt(tabTeachers.getValueAt(tabTeachers.getSelectedRow(), 0).toString());
             JPopupMenu popupMenu = new JPopupMenu();
@@ -273,8 +273,8 @@ public class TeachersList extends javax.swing.JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try{
-                        Edit teacher_edit = new Edit();
-                        teacher_edit.teacher_id = teacher_id;
+                        FormTeacher teacher_edit = new FormTeacher();
+                        teacher_edit.teacherId = teacher_id;
                         teacher_edit.setVisible(true);
                     }catch(ArrayIndexOutOfBoundsException ex){}
                 }
@@ -284,7 +284,11 @@ public class TeachersList extends javax.swing.JFrame {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-
+                    FormTeacher form = new FormTeacher();
+                    teacher.setVisible(false);
+                    form.setTeacherId(teacher_id);
+                    form.setVisible(true);
+                    
                 }
             });
             JMenuItem teacherDelete = new JMenuItem(new AbstractAction("Eliminar") {

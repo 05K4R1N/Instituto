@@ -39,8 +39,8 @@ public class CtrlTeacher {
         }
         return res;
     }
-    public boolean add(Teacher t){
-        boolean added = false;
+    public boolean action(String action, Teacher t){
+        boolean processed = false;
         if( t.getFirst_name().length() > 0  && 
                 t.getLast_name().length() > 0 && 
                 t.getAddress().length() > 0 && 
@@ -50,10 +50,16 @@ public class CtrlTeacher {
                 t.getCode().length() > 0 && 
                 t.getUsnername().length() > 0 && 
                 t.getPassword().length() > 0){
-            mod.add(t);
-            added = true;
+            switch(action){
+                case "add":
+                    processed = mod.add(t);
+                    break;
+                case "update":
+                    processed = mod.update(t);
+                    break;
+            }
         }
-        return added;
+        return processed;
     }
     public Hashtable getTeacherData(int id){
         Hashtable teacher = new Hashtable();

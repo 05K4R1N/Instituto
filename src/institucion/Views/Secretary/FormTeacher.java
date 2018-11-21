@@ -22,6 +22,7 @@ import javax.activation.MimetypesFileTypeMap;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -32,6 +33,7 @@ import javax.swing.JOptionPane;
 public class FormTeacher extends javax.swing.JFrame {
 
     private CtrlTeacher ctrlT;
+    public int teacherId;
     /**
      * Creates new form FormTeacher
      */
@@ -87,6 +89,11 @@ public class FormTeacher extends javax.swing.JFrame {
         txtPhotoAddress = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(153, 0, 0));
@@ -378,6 +385,7 @@ public class FormTeacher extends javax.swing.JFrame {
         String code = this.generateCode(8);
         String pass1 = txtPass.getText();
         String pass2 = txtPassConfirm.getText();
+        int teacher_id = 0;
         int ci = 0;
         try{
             ci = Integer.parseInt(txtCI.getText());
@@ -385,7 +393,10 @@ public class FormTeacher extends javax.swing.JFrame {
             ci = 0;
         }
         if(pass1.equals(pass2)){
-            Teacher t = new Teacher();        
+            teacher_id = this.getTeacherId();
+            Teacher t = new Teacher();
+            if(teacher_id > 0)
+                t.setId(teacher_id);
             t.setFirst_name(txtFirstname.getText());
             t.setLast_name(txtLastname.getText());
             t.setAddress(txtAddress.getText());
@@ -397,9 +408,10 @@ public class FormTeacher extends javax.swing.JFrame {
             t.setUsnername(txtUser.getText());
             t.setPassword(txtPass.getText());
 
-            if(ctrlT.add(t)){
+            boolean flag = (teacher_id > 0)?ctrlT.action("update", t):ctrlT.action("add", t);
+            if(flag){
                 JOptionPane.showMessageDialog(null, 
-                                            "Profesor registrado con exito", 
+                                            "Datos de Profesor/a procesados con exito", 
                                             "Registro", 
                                             JOptionPane.INFORMATION_MESSAGE);
                 try {
@@ -443,7 +455,6 @@ public class FormTeacher extends javax.swing.JFrame {
             String fileName         =   f.getAbsolutePath();
             File file               =   new File(fileName);
             String format_file      =   new MimetypesFileTypeMap().getContentType(file);
-            String type             =   format_file.split("/")[0];
             boolean isPhoto         =   true;
             boolean valid = true;
             String format = "";
@@ -477,6 +488,19 @@ public class FormTeacher extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_panelPhotoMouseClicked
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        int teacher_id = this.getTeacherId();
+        if(teacher_id > 0){
+            btnAction.setText("Actualizar");
+            try{
+               Image img = ImageIO.read(getClass().getResource("/images/icons/edit.png"));
+               btnAction.setIcon(new ImageIcon(img));
+           }catch(Exception e){
+               System.out.println(e);
+           }
+        }
+    }//GEN-LAST:event_formWindowOpened
+
     private String generateCode(int len){
         char[] ch = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
@@ -492,6 +516,14 @@ public class FormTeacher extends javax.swing.JFrame {
         }
 
         return new String(c);
+    }
+    
+    public int getTeacherId(){
+        return this.teacherId;
+    }
+    
+    public void setTeacherId(int teacherId){
+        this.teacherId = teacherId;
     }
     /**
      * @param args the command line arguments

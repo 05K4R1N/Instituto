@@ -13,6 +13,7 @@ import java.util.Date;
  * @author master
  */
 public class Teacher {
+    private int id;
     private String first_name;
     private String last_name;
     private String address;
@@ -25,6 +26,14 @@ public class Teacher {
     private String password;
 
     public Teacher(){
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     public int getCi() {

@@ -67,10 +67,12 @@ public class CtrlTeacher {
             Teacher data = mod.getTeacherByID(id);
             teacher.put("first_name", data.getFirst_name());
             teacher.put("last_name", data.getLast_name());
+            teacher.put("address", data.getAddress());
+            teacher.put("ci", data.getCi());
             teacher.put("birthday", data.getBirthday());
             teacher.put("place_birth", data.getPlace_birth());
-            teacher.put("address", data.getAddress());
-            teacher.put("photo", data.getPhoto());
+            //teacher.put("photo", data.getPhoto());
+            teacher.put("username", data.getUsnername());
         }
         return teacher;
     }

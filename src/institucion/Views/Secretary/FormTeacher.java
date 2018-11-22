@@ -16,6 +16,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Random;
 import javax.activation.MimetypesFileTypeMap;
@@ -491,6 +492,14 @@ public class FormTeacher extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         int teacher_id = this.getTeacherId();
         if(teacher_id > 0){
+            Hashtable t = ctrlT.getTeacherData(teacher_id);
+            txtFirstname.setText(t.get("first_name").toString());
+            txtLastname.setText(t.get("last_name").toString());
+            txtAddress.setText(t.get("address").toString());
+            txtCI.setText(t.get("ci").toString());
+            txtBirthday.setDate((Date)t.get("birthday"));
+            txtPlace.setText(t.get("place_birth").toString());
+            txtUser.setText(t.get("username").toString());
             btnAction.setText("Actualizar");
             try{
                Image img = ImageIO.read(getClass().getResource("/images/icons/edit.png"));

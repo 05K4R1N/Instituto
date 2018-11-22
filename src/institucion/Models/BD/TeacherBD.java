@@ -268,10 +268,13 @@ public class TeacherBD {
             rs.next();
             t.setFirst_name(rs.getString("first_name"));
             t.setLast_name(rs.getString("last_name"));
+            t.setAddress(rs.getString("address"));
+            t.setCi(rs.getInt("ci"));
             t.setBirthday(rs.getDate("birthday"));
             t.setPlace_birth(rs.getString("place_birth"));
-            t.setAddress(rs.getString("address"));
-			t.setPhoto(rs.getString("photo"));
+            t.setPhoto(rs.getString("photo"));
+            t.setUsnername(rs.getString("username"));
+            
             rs.close();
             ptmt.close();
             conn.close();

@@ -71,7 +71,7 @@ public class CtrlTeacher {
             teacher.put("ci", data.getCi());
             teacher.put("birthday", data.getBirthday());
             teacher.put("place_birth", data.getPlace_birth());
-            //teacher.put("photo", data.getPhoto());
+            teacher.put("photo", data.getPhoto());
             teacher.put("username", data.getUsnername());
         }
         return teacher;

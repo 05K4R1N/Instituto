@@ -7,7 +7,6 @@
 package institucion.Views.Secretary;
 
 import institucion.Controllers.CtrlTeacher;
-import institucion.Views.Teacher.Edit;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JMenuItem;
@@ -276,6 +275,7 @@ public class TeachersList extends javax.swing.JFrame {
                         FormTeacher teacher_edit = new FormTeacher();
                         teacher_edit.teacherId = teacher_id;
                         teacher_edit.setVisible(true);
+                        teacher.setVisible(false);
                     }catch(ArrayIndexOutOfBoundsException ex){}
                 }
 

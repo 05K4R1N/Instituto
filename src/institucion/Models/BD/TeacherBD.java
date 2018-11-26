@@ -14,20 +14,40 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 /**
  *
  * @author master
  */
 public class TeacherBD {
+    
+    public String getPhotoName(int teacherId){
+        String photo = "";
+        Connection conn = null;
+        PreparedStatement ptmt = null;
+        ResultSet rs = null;
+        try{
+            conn = Conexion.getInstance().getConnection();
+            String query = "SELECT photo FROM teacher WHERE id = ?";
+            ptmt = conn.prepareStatement(query);
+            ptmt.setInt(1, teacherId);
+            rs = ptmt.executeQuery();
+            if(rs.next()){
+                photo = rs.getString("photo");
+            }
+            
+            rs.close();
+            ptmt.close();
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return photo;
+    }
+    
     public ArrayList<Integer> getSubjectsAssigned(int teacher_id, int year){
         ArrayList<Integer> subjects = new ArrayList<Integer>();
         Connection conn         =   null;

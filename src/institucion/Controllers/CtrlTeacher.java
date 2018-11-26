@@ -96,6 +96,14 @@ public class CtrlTeacher {
         return teachers;
     }
     
+    public String getPhotoById(int teacherId){
+        String photo = "";
+        if( teacherId > 0 ){
+            photo = mod.getPhotoName(teacherId);
+        }
+        return photo;
+    }
+    
     public Object[][] getTeachersByCI(String ci){
         Object[][] teachers = null;
         if(ci.length() > 0){

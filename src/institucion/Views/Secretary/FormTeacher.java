@@ -416,6 +416,7 @@ public class FormTeacher extends javax.swing.JFrame {
             t.setPhoto(txtPhoto.getText());
             t.setUsnername(txtUser.getText());
             t.setPassword(txtPass.getText());
+            String photoTeacher=ctrlT.getPhotoById(teacher_id);
             boolean flagFile = (lblFlag.getText().equals("Archivo No Valido"))?false:true;
             boolean flag = (teacher_id > 0)?ctrlT.action("update", t):ctrlT.action("add", t);
             if(!flagFile){
@@ -426,6 +427,10 @@ public class FormTeacher extends javax.swing.JFrame {
                 return;
             }
             if(flag){
+                if( txtPhotoAddress.getText().length() > 0 ){
+                    File image = new File(System.getProperty("user.dir")+"\\src\\images\\photos\\teacher\\"+photoTeacher);
+                    image.delete();
+                }
                 JOptionPane.showMessageDialog(null, 
                                             "Datos de Profesor/a procesados con exito", 
                                             "Registro", 

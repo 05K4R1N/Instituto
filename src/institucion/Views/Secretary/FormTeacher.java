@@ -404,6 +404,7 @@ public class FormTeacher extends javax.swing.JFrame {
             Teacher t = new Teacher();
             if(teacher_id > 0)
                 t.setId(teacher_id);
+            
             t.setFirst_name(txtFirstname.getText());
             t.setLast_name(txtLastname.getText());
             t.setAddress(txtAddress.getText());
@@ -412,10 +413,18 @@ public class FormTeacher extends javax.swing.JFrame {
             t.setBirthday(txtBirthday.getDate());
             t.setCode(code);
             t.setPlace_birth(txtPlace.getText());
+            t.setPhoto(txtPhoto.getText());
             t.setUsnername(txtUser.getText());
             t.setPassword(txtPass.getText());
-
+            boolean flagFile = (lblFlag.getText().equals("Archivo No Valido"))?false:true;
             boolean flag = (teacher_id > 0)?ctrlT.action("update", t):ctrlT.action("add", t);
+            if(!flagFile){
+                JOptionPane.showMessageDialog(null,
+                                                "Formato no valido para una imagen",
+                                                "Error",
+                                                JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             if(flag){
                 JOptionPane.showMessageDialog(null, 
                                             "Datos de Profesor/a procesados con exito", 
@@ -431,9 +440,9 @@ public class FormTeacher extends javax.swing.JFrame {
                         return;
                 } catch (IOException ex) {
                 }
-                this.setVisible(false);
                 TeachersList list = new TeachersList();
                 list.setVisible(true);
+                this.setVisible(false);
                 return;
             }
             JOptionPane.showMessageDialog(null, 
@@ -461,7 +470,6 @@ public class FormTeacher extends javax.swing.JFrame {
         try{
             String fileName         =   f.getAbsolutePath();
             File file               =   new File(fileName);
-            //String format_file      =   new MimetypesFileTypeMap().getContentType(file);
             boolean isPhoto         =   true;
             boolean valid = true;
             String format = "";
@@ -482,8 +490,6 @@ public class FormTeacher extends javax.swing.JFrame {
                 valid = false;
             }
             if(valid){
-                /*panelPhoto.removeAll();
-                panelPhoto.repaint();*/
                 panelPhoto.remove(this.getImagePanel());
                 panelPhoto.revalidate();
                 lblFlag.setVisible(true);
@@ -511,9 +517,17 @@ public class FormTeacher extends javax.swing.JFrame {
             txtBirthday.setDate((Date)t.get("birthday"));
             txtPlace.setText(t.get("place_birth").toString());
             txtUser.setText(t.get("username").toString());
+            txtPhoto.setText(t.get("photo").toString());
             btnAction.setText("Actualizar");
+            lblFlag.setText(t.get("photo").toString());
             lblFlag.setVisible(false);
-            ImageIcon photo = new ImageIcon(getClass().getResource("/images/photos/teacher/"+t.get("photo").toString()));
+            String teacherPhoto = t.get("photo").toString();
+            String address = "";
+            address = "/images/photos/teacher/"+t.get("photo").toString();
+            if(teacherPhoto.equals("no_photo.jpg")){
+                address = "/images/photos/no_photo.jpg";
+            }
+            ImageIcon photo = new ImageIcon(getClass().getResource(address));
             ImagenPanel Imagen = new ImagenPanel(photo, 2, 2);
             this.setImagenPanel(Imagen);
             panelPhoto.add(Imagen);

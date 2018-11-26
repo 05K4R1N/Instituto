@@ -191,6 +191,7 @@ public class TeacherBD {
                     + "birthday=?, "
                     + "address=?, "
                     + "place_birth=?, "
+                    + "photo=?, "
                     + "username=?, "
                     + "password=? "
                     + "WHERE id=?";
@@ -203,9 +204,10 @@ public class TeacherBD {
             ptmt.setDate(4, sql_date);
             ptmt.setString(5, t.getAddress());
             ptmt.setString(6, t.getPlace_birth());
-            ptmt.setString(7, t.getUsnername());
-            ptmt.setString(8, t.getPassword());
-            ptmt.setInt(9, t.getId());
+            ptmt.setString(7, t.getPhoto());
+            ptmt.setString(8, t.getUsnername());
+            ptmt.setString(9, t.getPassword());
+            ptmt.setInt(10, t.getId());
             
             ptmt.executeUpdate();
             

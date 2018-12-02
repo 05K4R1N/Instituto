@@ -49,8 +49,7 @@ public class CtrlTeacher {
                 t.getPlace_birth().length() > 0 && 
                 t.getBirthday() != null && 
                 t.getCi() > 0 &&
-                t.getCode().length() > 0 && 
-                t.getUsnername().length() > 0 && 
+                t.getUsername().length() > 0 && 
                 t.getPassword().length() > 0){
             switch(action){
                 case "add":
@@ -75,7 +74,7 @@ public class CtrlTeacher {
             teacher.put("birthday", data.getBirthday());
             teacher.put("place_birth", data.getPlace_birth());
             teacher.put("photo", data.getPhoto());
-            teacher.put("username", data.getUsnername());
+            teacher.put("username", data.getUsername());
         }
         return teacher;
     }

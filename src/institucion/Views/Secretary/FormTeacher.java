@@ -410,7 +410,7 @@ public class FormTeacher extends javax.swing.JFrame {
             t.setCode(code);
             t.setPlace_birth(txtPlace.getText());
             t.setPhoto(txtPhoto.getText());
-            t.setUsnername(txtUser.getText());
+            t.setUsername(txtUser.getText());
             t.setPassword(txtPass.getText());
             String photoTeacher=ctrlT.getPhotoById(teacher_id);
             boolean flagFile = (lblFlag.getText().equals("Archivo No Valido"))?false:true;
@@ -428,12 +428,10 @@ public class FormTeacher extends javax.swing.JFrame {
                     image.delete();
                     try {
                         Files.copy(
-                                Paths.get(txtPhotoAddress.getText()), 
-                                Paths.get(System.getProperty("user.dir")
-                                            +"/src/images/photos/teacher/" + txtPhoto.getText()),
-                                StandardCopyOption.REPLACE_EXISTING);
-                            //this.setVisible(false);
-                            //return;
+                            Paths.get(txtPhotoAddress.getText()), 
+                            Paths.get(System.getProperty("user.dir")
+                                        +"/src/images/photos/teacher/" + txtPhoto.getText()),
+                            StandardCopyOption.REPLACE_EXISTING);
                     } catch (IOException ex) {
                     }
                 }

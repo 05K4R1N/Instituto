@@ -113,29 +113,38 @@
                                           <EmptySpace min="0" pref="272" max="32767" attributes="0"/>
                                           <Component id="btnCancel" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtAddress" min="-2" pref="139" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="lblPic" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblCI" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="txtCI" alignment="0" pref="128" max="32767" attributes="0"/>
-                                                  <Component id="panPhoto" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Component id="txtplace_birthday" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Component id="txtLast_Name" min="-2" pref="139" max="-2" attributes="0"/>
                                       <Component id="txtName" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
-                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txtBirthday" min="-2" pref="111" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txtAddress" min="-2" pref="139" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="txtLast_Name" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
+                                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace pref="50" max="32767" attributes="0"/>
+                                                  <Component id="lblPic" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="lblCI" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="txtCI" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
+                                                      <Component id="jLabel4" max="32767" attributes="0"/>
+                                                      <Component id="txtplace_birthday" alignment="0" min="-2" pref="129" max="-2" attributes="0"/>
+                                                      <Component id="panPhoto" alignment="0" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -152,6 +161,11 @@
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="lblPassConfirmation" max="32767" attributes="0"/>
                                           <Component id="txtPassConfirmation" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="txtPhoto" min="-2" pref="26" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtPhotoAddress" min="-2" pref="33" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -180,19 +194,19 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="txtLast_Name" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="panPhoto" min="-2" max="-2" attributes="0"/>
+                      <Component id="panPhoto" min="-2" pref="133" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblCI" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCI" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtCI" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCI" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="txtAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="14" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -207,7 +221,11 @@
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="lblUser" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtUser" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtUser" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtPhoto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtPhotoAddress" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblPass" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -404,9 +422,6 @@
               </Border>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtplace_birthdayActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtAddress">
           <Properties>
@@ -451,19 +466,35 @@
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="panPhoto">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panPhotoMouseClicked"/>
+          </Events>
 
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="130" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+            <Property name="useNullLayout" type="boolean" value="true"/>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="lblFlag">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Lao UI" size="12" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="0" y="0" width="150" height="130"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+          </SubComponents>
         </Container>
         <Component class="javax.swing.JLabel" name="lblCI">
           <Properties>
@@ -590,6 +621,10 @@
               </Border>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtPhoto">
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtPhotoAddress">
         </Component>
       </SubComponents>
     </Container>

@@ -22,7 +22,7 @@ public class Teacher {
     private String photo;
     private int ci;
     private String code;
-    private String usnername;
+    private String username;
     private String password;
 
     public Teacher(){
@@ -52,12 +52,12 @@ public class Teacher {
         this.code = code;
     }
 
-    public String getUsnername() {
-        return usnername;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUsnername(String usnername) {
-        this.usnername = usnername;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

@@ -225,7 +225,7 @@ public class TeacherBD {
             ptmt.setString(5, t.getAddress());
             ptmt.setString(6, t.getPlace_birth());
             ptmt.setString(7, t.getPhoto());
-            ptmt.setString(8, t.getUsnername());
+            ptmt.setString(8, t.getUsername());
             ptmt.setString(9, t.getPassword());
             ptmt.setInt(10, t.getId());
             
@@ -261,7 +261,7 @@ public class TeacherBD {
             ptmt.setString(6, t.getCode());
             ptmt.setString(7, t.getPlace_birth());
             ptmt.setString(8, t.getPhoto());
-            ptmt.setString(9, t.getUsnername());
+            ptmt.setString(9, t.getUsername());
             ptmt.setString(10, t.getPassword());
             
             ptmt.executeUpdate();
@@ -295,7 +295,7 @@ public class TeacherBD {
             t.setBirthday(rs.getDate("birthday"));
             t.setPlace_birth(rs.getString("place_birth"));
             t.setPhoto(rs.getString("photo"));
-            t.setUsnername(rs.getString("username"));
+            t.setUsername(rs.getString("username"));
             
             rs.close();
             ptmt.close();

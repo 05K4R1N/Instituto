@@ -1,9 +1,24 @@
 package institucion.Views.Teacher;
 
+import config.ImagenPanel;
 import institucion.Controllers.CtrlTeacher;
 import institucion.Models.Users.Teacher;
+import institucion.Views.Secretary.TeachersList;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Hashtable;
+import java.util.Iterator;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /*
@@ -23,6 +38,8 @@ public class Edit extends javax.swing.JFrame{
      */
     private CtrlTeacher control;
     public int teacher_id;
+    private ImagenPanel imagePhoto;
+    
     public Edit() {
         this.setUndecorated(true);
         initComponents();
@@ -58,6 +75,7 @@ public class Edit extends javax.swing.JFrame{
         txtBirthday = new com.toedter.calendar.JDateChooser();
         lblPic = new javax.swing.JLabel();
         panPhoto = new javax.swing.JPanel();
+        lblFlag = new javax.swing.JLabel();
         lblCI = new javax.swing.JLabel();
         txtCI = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
@@ -67,6 +85,8 @@ public class Edit extends javax.swing.JFrame{
         txtPass = new javax.swing.JPasswordField();
         lblPassConfirmation = new javax.swing.JLabel();
         txtPassConfirmation = new javax.swing.JPasswordField();
+        txtPhoto = new javax.swing.JTextField();
+        txtPhotoAddress = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -181,11 +201,6 @@ public class Edit extends javax.swing.JFrame{
         txtplace_birthday.setFont(new java.awt.Font("Lao UI", 1, 12)); // NOI18N
         txtplace_birthday.setForeground(new java.awt.Color(255, 255, 255));
         txtplace_birthday.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        txtplace_birthday.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtplace_birthdayActionPerformed(evt);
-            }
-        });
 
         txtAddress.setBackground(new java.awt.Color(0, 0, 0));
         txtAddress.setFont(new java.awt.Font("Lao UI", 1, 12)); // NOI18N
@@ -200,16 +215,18 @@ public class Edit extends javax.swing.JFrame{
         lblPic.setForeground(new java.awt.Color(255, 255, 255));
         lblPic.setText("Foto:");
 
-        javax.swing.GroupLayout panPhotoLayout = new javax.swing.GroupLayout(panPhoto);
-        panPhoto.setLayout(panPhotoLayout);
-        panPhotoLayout.setHorizontalGroup(
-            panPhotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        panPhotoLayout.setVerticalGroup(
-            panPhotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 130, Short.MAX_VALUE)
-        );
+        panPhoto.setBackground(new java.awt.Color(0, 0, 0));
+        panPhoto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panPhotoMouseClicked(evt);
+            }
+        });
+        panPhoto.setLayout(null);
+
+        lblFlag.setFont(new java.awt.Font("Lao UI", 1, 12)); // NOI18N
+        lblFlag.setForeground(new java.awt.Color(255, 255, 255));
+        panPhoto.add(lblFlag);
+        lblFlag.setBounds(0, 0, 150, 130);
 
         lblCI.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
         lblCI.setForeground(new java.awt.Color(255, 255, 255));
@@ -262,25 +279,31 @@ public class Edit extends javax.swing.JFrame{
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                         .addGap(0, 272, Short.MAX_VALUE)
                                         .addComponent(btnCancel))
+                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(txtBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
-                                            .addComponent(jLabel5)
-                                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(42, 42, 42)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel1)
+                                                .addComponent(jLabel5)
+                                                .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtLast_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel2))
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblPic)
-                                            .addComponent(lblCI)
-                                            .addComponent(jLabel4)
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(txtCI, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                                                .addComponent(panPhoto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addComponent(txtplace_birthday, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(txtLast_Name, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(txtBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                                                .addComponent(lblPic)
+                                                .addGap(114, 114, 114))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(42, 42, 42)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(lblCI)
+                                                    .addComponent(txtCI, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(txtplace_birthday, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(panPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addGap(0, 0, Short.MAX_VALUE))))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(39, 39, 39)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -293,7 +316,11 @@ public class Edit extends javax.swing.JFrame{
                                     .addComponent(btnEdit)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(lblPassConfirmation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtPassConfirmation)))))
+                                        .addComponent(txtPassConfirmation))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(txtPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtPhotoAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 33, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -312,16 +339,16 @@ public class Edit extends javax.swing.JFrame{
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtLast_Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCI)
-                    .addComponent(jLabel5))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(lblCI))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
@@ -334,7 +361,10 @@ public class Edit extends javax.swing.JFrame{
                 .addGap(27, 27, 27)
                 .addComponent(lblUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPhotoAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPass)
@@ -357,19 +387,67 @@ public class Edit extends javax.swing.JFrame{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditMouseClicked
+        int ci = 0;
+        try{
+            ci = Integer.parseInt(txtCI.getText());
+        }catch(NumberFormatException e){
+            ci = 0;
+        }
         Teacher t = new Teacher();
         t.setFirst_name(txtName.getText());
         t.setLast_name(txtLast_Name.getText());
+        t.setCi(ci);
         t.setAddress(txtAddress.getText());
         t.setBirthday(txtBirthday.getDate());
         t.setPlace_birth(txtplace_birthday.getText());
+        t.setUsername(txtUser.getText());
+        t.setPassword(txtPass.getText());
+        if(!txtPass.getText().equals(txtPassConfirmation.getText())){
+            JOptionPane.showMessageDialog(null, 
+                                    "Contrasenias no coinciden", 
+                                    "Contrasenia", 
+                                    JOptionPane.WARNING_MESSAGE);
+        }
+        String photoTeacher=control.getPhotoById(teacher_id);
+        boolean flagFile = (lblFlag.getText().equals("Archivo No Valido"))?false:true;
+        boolean flag = control.action("update", t);
+        if(!flagFile){
+            JOptionPane.showMessageDialog(null,
+                                            "Formato no valido para una imagen",
+                                            "Error",
+                                            JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(flag){
+            if( txtPhotoAddress.getText().length() > 0 ){
+                File image = new File(System.getProperty("user.dir")+"\\src\\images\\photos\\teacher\\"+photoTeacher);
+                image.delete();
+                try {
+                    Files.copy(
+                            Paths.get(txtPhotoAddress.getText()), 
+                            Paths.get(System.getProperty("user.dir")
+                                        +"/src/images/photos/teacher/" + txtPhoto.getText()),
+                            StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+                }
+            }
+            JOptionPane.showMessageDialog(null, 
+                                        "Datos de Profesor/a procesados con exito", 
+                                        "Registro", 
+                                        JOptionPane.INFORMATION_MESSAGE);
+            this.setVisible(false);
+            return;
+        }
         if(control.action("update", t)){
             JOptionPane.showMessageDialog(this, "Datos de Profesor Actualizados");
             this.setVisible(false);
             return;
         }
 
-        JOptionPane.showMessageDialog(this, "Uno de sus campos se encuentran vacios. Verifique por favor.", "Error al editar", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this, 
+                                    "Uno de sus campos se encuentran vacios. Verifique por favor.",
+                                    "Error al editar", 
+                                    JOptionPane.WARNING_MESSAGE);
 			
     }//GEN-LAST:event_btnEditMouseClicked
 
@@ -378,22 +456,86 @@ public class Edit extends javax.swing.JFrame{
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        txtPhoto.setVisible(false);
+        txtPhotoAddress.setVisible(false);
+        lblFlag.setVisible(false);
         Hashtable teacher_data = control.getTeacherData(teacher_id);
         txtName.setText(teacher_data.get("first_name").toString());
         txtLast_Name.setText(teacher_data.get("last_name").toString());
+        txtCI.setText(teacher_data.get("ci").toString());
         txtplace_birthday.setText(teacher_data.get("place_birth").toString());
         txtBirthday.setDate((Date)teacher_data.get("birthday"));
         txtAddress.setText(teacher_data.get("address").toString());
+        txtUser.setText(teacher_data.get("username").toString());
+        txtPhoto.setText(teacher_data.get("photo").toString());
+        String teacherPhoto = teacher_data.get("photo").toString();
+        String address = "";
+        address = "/images/photos/teacher/"+teacher_data.get("photo").toString();
+        if(teacherPhoto.equals("no_photo.jpg")){
+            address = "/images/photos/no_photo.jpg";
+        }
+        ImageIcon photo = new ImageIcon(getClass().getResource(address));
+        ImagenPanel Imagen = new ImagenPanel(photo, 2, 2);
+        this.setImagenPanel(Imagen);
+        panPhoto.add(Imagen);
+        panPhoto.repaint();
     }//GEN-LAST:event_formWindowOpened
 
     private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelMouseClicked
 
-    private void txtplace_birthdayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtplace_birthdayActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtplace_birthdayActionPerformed
+    private void panPhotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panPhotoMouseClicked
+        JFileChooser imageFile = new JFileChooser();
+        imageFile.showOpenDialog(null);
+        File f = imageFile.getSelectedFile();
+        try{
+            String fileName         =   f.getAbsolutePath();
+            File file               =   new File(fileName);
+            boolean isPhoto         =   true;
+            boolean valid = true;
+            String format = "";
+            try {
+                Image image = ImageIO.read(new File(fileName));
+                ImageInputStream iis = ImageIO.createImageInputStream(file);
+                Iterator<ImageReader> imageReaders = ImageIO.getImageReaders(iis);
 
+                while (imageReaders.hasNext()) {
+                    ImageReader reader = (ImageReader) imageReaders.next();
+                    format = reader.getFormatName();
+                }
+                if (image == null) {
+                    valid = false;
+                    lblFlag.setText("Archivo No Valido");
+                }
+            } catch(IOException ex) {
+                valid = false;
+            }
+            if(valid){
+                panPhoto.remove(this.getImagePanel());
+                panPhoto.revalidate();
+                lblFlag.setVisible(true);
+                String photo = "";
+                lblFlag.setText(f.getName());
+                SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+                Date now = new Date();
+                photo = (isPhoto)?txtName.getText()+"_"+txtLast_Name.getText()
+                                    +"_"+sdfDate.format(now)+"."+format:"no_image.jpg";
+                txtPhoto.setText(photo);
+                txtPhotoAddress.setText(f.getAbsolutePath());
+            }
+        }catch(NullPointerException e){
+        }
+    }//GEN-LAST:event_panPhotoMouseClicked
+
+    public ImagenPanel getImagePanel(){
+        return this.imagePhoto;
+    }
+    
+    public void setImagenPanel(ImagenPanel img){
+        this.imagePhoto = img;
+    }
+    
     public int getTeacherId(){
         return this.teacher_id;
     }
@@ -450,6 +592,7 @@ public class Edit extends javax.swing.JFrame{
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JLabel lblCI;
+    private javax.swing.JLabel lblFlag;
     private javax.swing.JLabel lblPass;
     private javax.swing.JLabel lblPassConfirmation;
     private javax.swing.JLabel lblPic;
@@ -462,6 +605,8 @@ public class Edit extends javax.swing.JFrame{
     private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JPasswordField txtPassConfirmation;
+    private javax.swing.JTextField txtPhoto;
+    private javax.swing.JTextField txtPhotoAddress;
     private javax.swing.JTextField txtUser;
     private javax.swing.JTextField txtplace_birthday;
     // End of variables declaration//GEN-END:variables

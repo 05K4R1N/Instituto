@@ -171,7 +171,7 @@ public class FormTeacher extends javax.swing.JFrame {
 
         lblPlace.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
         lblPlace.setForeground(new java.awt.Color(255, 255, 255));
-        lblPlace.setText("Ciudad:");
+        lblPlace.setText("Lugar de Nacimiento:");
 
         txtPlace.setBackground(new java.awt.Color(51, 51, 51));
         txtPlace.setFont(new java.awt.Font("Lao UI", 1, 13)); // NOI18N
@@ -306,9 +306,7 @@ public class FormTeacher extends javax.swing.JFrame {
                                     .addComponent(txtLastname, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(21, 21, 21)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(lblPhoto)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(lblPhoto)
                                     .addComponent(panelPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(lblUser, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()

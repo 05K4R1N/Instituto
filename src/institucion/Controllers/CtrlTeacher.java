@@ -32,6 +32,7 @@ public class CtrlTeacher {
         }
         return subjects;
     }
+    
     public boolean deleteById(int teacher_id){
         boolean res = false;
         if( teacher_id > 0 ){
@@ -39,6 +40,7 @@ public class CtrlTeacher {
         }
         return res;
     }
+    
     public boolean action(String action, Teacher t){
         boolean processed = false;
         if( t.getFirst_name().length() > 0  && 
@@ -61,6 +63,7 @@ public class CtrlTeacher {
         }
         return processed;
     }
+    
     public Hashtable getTeacherData(int id){
         Hashtable teacher = new Hashtable();
         if( id > 0 ){
@@ -76,6 +79,7 @@ public class CtrlTeacher {
         }
         return teacher;
     }
+    
     public String getTeacherNameByID(int teacher_id){
         String teachers_name = "";
         if(teacher_id > 0){
@@ -83,6 +87,7 @@ public class CtrlTeacher {
         }
         return teachers_name;
     }
+    
     public Object[][] getTeacherAttendances(int id, int month){
         Object[][] attendances = null;
         if( id > 0 ){
@@ -90,6 +95,7 @@ public class CtrlTeacher {
         }
         return attendances;
     }
+    
     public Object[][] getAllTeachers(){
         Object[][] teachers = null;
         teachers = mod.getAllTeachers();

@@ -315,8 +315,10 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        int teacher_id = this.teacher_id;
         s.reproduce("bep.mp3");
         Edit e = new Edit();
+        e.setTeacherId(teacher_id);
         e.setVisible(true);
     }//GEN-LAST:event_btnActualizarActionPerformed
 

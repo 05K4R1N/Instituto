@@ -345,7 +345,7 @@ public class Edit extends javax.swing.JFrame{
                     .addComponent(jLabel5)
                     .addComponent(lblCI))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtCI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
@@ -394,6 +394,7 @@ public class Edit extends javax.swing.JFrame{
             ci = 0;
         }
         Teacher t = new Teacher();
+        t.setId(teacher_id);
         t.setFirst_name(txtName.getText());
         t.setLast_name(txtLast_Name.getText());
         t.setCi(ci);
@@ -402,11 +403,13 @@ public class Edit extends javax.swing.JFrame{
         t.setPlace_birth(txtplace_birthday.getText());
         t.setUsername(txtUser.getText());
         t.setPassword(txtPass.getText());
+        t.setPhoto(txtPhoto.getText());
         if(!txtPass.getText().equals(txtPassConfirmation.getText())){
             JOptionPane.showMessageDialog(null, 
                                     "Contrasenias no coinciden", 
                                     "Contrasenia", 
                                     JOptionPane.WARNING_MESSAGE);
+            return;
         }
         String photoTeacher=control.getPhotoById(teacher_id);
         boolean flagFile = (lblFlag.getText().equals("Archivo No Valido"))?false:true;
@@ -438,11 +441,6 @@ public class Edit extends javax.swing.JFrame{
             this.setVisible(false);
             return;
         }
-        if(control.action("update", t)){
-            JOptionPane.showMessageDialog(this, "Datos de Profesor Actualizados");
-            this.setVisible(false);
-            return;
-        }
 
         JOptionPane.showMessageDialog(this, 
                                     "Uno de sus campos se encuentran vacios. Verifique por favor.",
@@ -459,6 +457,8 @@ public class Edit extends javax.swing.JFrame{
         txtPhoto.setVisible(false);
         txtPhotoAddress.setVisible(false);
         lblFlag.setVisible(false);
+        txtPhoto.setText("no_photo.jpg");
+        
         Hashtable teacher_data = control.getTeacherData(teacher_id);
         txtName.setText(teacher_data.get("first_name").toString());
         txtLast_Name.setText(teacher_data.get("last_name").toString());

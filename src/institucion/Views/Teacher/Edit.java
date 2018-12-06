@@ -3,7 +3,6 @@ package institucion.Views.Teacher;
 import config.ImagenPanel;
 import institucion.Controllers.CtrlTeacher;
 import institucion.Models.Users.Teacher;
-import institucion.Views.Secretary.TeachersList;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;

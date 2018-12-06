@@ -311,6 +311,7 @@ public class WelcomeT extends javax.swing.JFrame implements Runnable {
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
         s.reproduce("bep.mp3");
         Profile p = new Profile();
+        p.setTeacherId(this.teacher_id);
         p.setVisible(true);
     }//GEN-LAST:event_btnPerfilActionPerformed
 

@@ -21,10 +21,12 @@ public class Profile extends javax.swing.JFrame {
      * Creates new form profile
      */
     private CtrlTeacher ctrl;
+    private int teacher_id;
+    
     public Profile() {
         this.setUndecorated(true);
         initComponents();
-        this.setSize(407,535);
+        this.setSize(409,517);
         this.setLocationRelativeTo(null);
         ctrl = new CtrlTeacher();
     }
@@ -44,17 +46,18 @@ public class Profile extends javax.swing.JFrame {
         lbl_dateofbirth = new javax.swing.JLabel();
         lbl_address = new javax.swing.JLabel();
         lbl_placebirth = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
         txtFName = new javax.swing.JTextField();
         txtLName = new javax.swing.JTextField();
         txtAddress = new javax.swing.JTextField();
-        txtPBirth = new javax.swing.JTextField();
         UsersPhoto = new javax.swing.JPanel();
         txtbirthdate = new javax.swing.JTextField();
         btnClose = new javax.swing.JButton();
+        lblCI = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtCI = new javax.swing.JTextField();
+        txtPlaceBirth = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -67,19 +70,19 @@ public class Profile extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
         lbl_firstname.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
-        lbl_firstname.setForeground(new java.awt.Color(204, 204, 204));
+        lbl_firstname.setForeground(new java.awt.Color(255, 255, 255));
         lbl_firstname.setText("Nombre:");
 
         lbl_lastname.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
-        lbl_lastname.setForeground(new java.awt.Color(204, 204, 204));
+        lbl_lastname.setForeground(new java.awt.Color(255, 255, 255));
         lbl_lastname.setText("Apellidos:");
 
         lbl_dateofbirth.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
-        lbl_dateofbirth.setForeground(new java.awt.Color(204, 204, 204));
+        lbl_dateofbirth.setForeground(new java.awt.Color(255, 255, 255));
         lbl_dateofbirth.setText("Fecha de Nacimiento:");
 
         lbl_address.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
-        lbl_address.setForeground(new java.awt.Color(204, 204, 204));
+        lbl_address.setForeground(new java.awt.Color(255, 255, 255));
         lbl_address.setText("Direccion:");
 
         lbl_placebirth.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
@@ -87,28 +90,22 @@ public class Profile extends javax.swing.JFrame {
         lbl_placebirth.setText("Lugar de Nacimiento:");
 
         txtFName.setBackground(new java.awt.Color(51, 51, 51));
-        txtFName.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
+        txtFName.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
         txtFName.setForeground(new java.awt.Color(255, 255, 255));
-        txtFName.setBorder(null);
+        txtFName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
         txtFName.setEnabled(false);
 
         txtLName.setBackground(new java.awt.Color(51, 51, 51));
-        txtLName.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
+        txtLName.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
         txtLName.setForeground(new java.awt.Color(255, 255, 255));
-        txtLName.setBorder(null);
+        txtLName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
         txtLName.setEnabled(false);
 
         txtAddress.setBackground(new java.awt.Color(51, 51, 51));
-        txtAddress.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
+        txtAddress.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
         txtAddress.setForeground(new java.awt.Color(255, 255, 255));
-        txtAddress.setBorder(null);
+        txtAddress.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
         txtAddress.setEnabled(false);
-
-        txtPBirth.setBackground(new java.awt.Color(51, 51, 51));
-        txtPBirth.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
-        txtPBirth.setForeground(new java.awt.Color(255, 255, 255));
-        txtPBirth.setBorder(null);
-        txtPBirth.setEnabled(false);
 
         javax.swing.GroupLayout UsersPhotoLayout = new javax.swing.GroupLayout(UsersPhoto);
         UsersPhoto.setLayout(UsersPhotoLayout);
@@ -118,13 +115,13 @@ public class Profile extends javax.swing.JFrame {
         );
         UsersPhotoLayout.setVerticalGroup(
             UsersPhotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 137, Short.MAX_VALUE)
         );
 
         txtbirthdate.setBackground(new java.awt.Color(51, 51, 51));
-        txtbirthdate.setFont(new java.awt.Font("Loma", 1, 14)); // NOI18N
+        txtbirthdate.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
         txtbirthdate.setForeground(new java.awt.Color(255, 255, 255));
-        txtbirthdate.setBorder(null);
+        txtbirthdate.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
         txtbirthdate.setEnabled(false);
 
         btnClose.setBackground(new java.awt.Color(51, 51, 51));
@@ -145,103 +142,144 @@ public class Profile extends javax.swing.JFrame {
             }
         });
 
+        lblCI.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
+        lblCI.setForeground(new java.awt.Color(255, 255, 255));
+        lblCI.setText("CI:");
+
+        jLabel3.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Lugar de Nacimiento:");
+
+        txtCI.setBackground(new java.awt.Color(51, 51, 51));
+        txtCI.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
+        txtCI.setForeground(new java.awt.Color(255, 255, 255));
+        txtCI.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        txtCI.setEnabled(false);
+
+        txtPlaceBirth.setBackground(new java.awt.Color(51, 51, 51));
+        txtPlaceBirth.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
+        txtPlaceBirth.setForeground(new java.awt.Color(255, 255, 255));
+        txtPlaceBirth.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        txtPlaceBirth.setEnabled(false);
+
+        jLabel1.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Usuario:");
+
+        txtUsername.setBackground(new java.awt.Color(51, 51, 51));
+        txtUsername.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
+        txtUsername.setForeground(new java.awt.Color(255, 255, 255));
+        txtUsername.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 255, 255)));
+        txtUsername.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(UsersPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtbirthdate)
-                            .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator3)
-                            .addComponent(txtAddress)
-                            .addComponent(txtPBirth)
+                        .addComponent(lbl_placebirth)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbl_address)
-                                    .addComponent(lbl_placebirth)
                                     .addComponent(lbl_firstname)
                                     .addComponent(txtFName, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbl_lastname))
+                                    .addComponent(lbl_lastname)
+                                    .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(UsersPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lbl_dateofbirth)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtbirthdate, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lbl_dateofbirth, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(lblCI)
+                                    .addComponent(txtCI, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(33, 33, 33)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtAddress)
+                                    .addComponent(txtPlaceBirth)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(txtLName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnClose)))
-                .addContainerGap())
+                                            .addComponent(jLabel3)
+                                            .addComponent(lbl_address)
+                                            .addComponent(jLabel1)
+                                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnClose)))
+                        .addGap(26, 26, 26))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lbl_firstname)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtFName, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(lbl_lastname)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6))
-                    .addComponent(UsersPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_dateofbirth)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtbirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_address)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_placebirth, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtLName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(UsersPhoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_dateofbirth)
+                    .addComponent(lbl_address))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtbirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCI)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCI, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPlaceBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addComponent(btnClose)
-                .addGap(107, 107, 107))
+                .addGap(30, 30, 30)
+                .addComponent(lbl_placebirth, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 410, 510);
+        jPanel1.setBounds(0, 0, 410, 520);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        int id = 1;
-        Hashtable teacher_data = ctrl.getTeacherData(id);
+        int teacher_id = this.getTeacherId();
+        Hashtable teacher_data = ctrl.getTeacherData(teacher_id);
         txtFName.setText(teacher_data.get("first_name").toString());
         txtLName.setText(teacher_data.get("last_name").toString());
         txtAddress.setText(teacher_data.get("address").toString());
-        txtPBirth.setText(teacher_data.get("place_birth").toString());
         txtbirthdate.setText(teacher_data.get("birthday").toString());
-        String photo_name = "teacher/"+teacher_data.get("photo").toString();
-        if(photo_name.equals("") || photo_name.length() == 0){
-                photo_name = "no_photo.jpg";
+        txtCI.setText(teacher_data.get("ci").toString());
+        txtPlaceBirth.setText(teacher_data.get("place_birth").toString());
+        txtUsername.setText(teacher_data.get("username").toString());
+        String photo_name = "/images/photos/teacher/"+teacher_data.get("photo").toString();
+        String photoTeacher = teacher_data.get("photo").toString();
+        if(photoTeacher.equals("no_photo.jpg")){
+                photo_name = "/images/photos/no_photo.jpg";
         }
-        ImageIcon photo = new ImageIcon(getClass().getResource("/images/photos/"+photo_name));
+        System.out.println(photo_name);
+        ImageIcon photo = new ImageIcon(getClass().getResource(photo_name));
         ImagenPanel Imagen = new ImagenPanel(photo, UsersPhoto.getWidth(), UsersPhoto.getHeight());
         UsersPhoto.add(Imagen);
         UsersPhoto.repaint();
@@ -251,6 +289,13 @@ public class Profile extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnCloseActionPerformed
 
+    public int getTeacherId(){
+        return this.teacher_id;
+    }
+    
+    public void setTeacherId(int teacherId){
+        this.teacher_id = teacherId;
+    }
     /**
      * @param args the command line arguments
      */
@@ -289,20 +334,21 @@ public class Profile extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel UsersPhoto;
     private javax.swing.JButton btnClose;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JLabel lblCI;
     private javax.swing.JLabel lbl_address;
     private javax.swing.JLabel lbl_dateofbirth;
     private javax.swing.JLabel lbl_firstname;
     private javax.swing.JLabel lbl_lastname;
     private javax.swing.JLabel lbl_placebirth;
     private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextField txtCI;
     private javax.swing.JTextField txtFName;
     private javax.swing.JTextField txtLName;
-    private javax.swing.JTextField txtPBirth;
+    private javax.swing.JTextField txtPlaceBirth;
+    private javax.swing.JTextField txtUsername;
     private javax.swing.JTextField txtbirthdate;
     // End of variables declaration//GEN-END:variables
 }

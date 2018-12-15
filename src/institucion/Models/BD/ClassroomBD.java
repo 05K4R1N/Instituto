@@ -12,6 +12,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import static java.util.Map.Entry.comparingByValue;
+import java.util.stream.Collectors;
 /**
  *
  * @author o5k4r1n
@@ -43,15 +47,31 @@ public class ClassroomBD {
         Connection conn = null;
         PreparedStatement ptmt = null;
         ResultSet rs = null;
-        String query = "SELECT id, name, lastname FROM student WHERE classroom = ?";
+        String query = "SELECT id, name, lastname "
+                    + "FROM student "
+                    + "WHERE classroom = ? "
+                    + "ORDER BY student.lastname ASC";
         try{
             conn = Conexion.getInstance().getConnection();
             ptmt = conn.prepareStatement(query);
             ptmt.setString(1, classroom);
             rs = ptmt.executeQuery();
             while(rs.next()){
-                    students.put(rs.getInt("id"), rs.getString("lastname") + " "+rs.getString("name"));
+                students.put(rs.getInt("id"), rs.getString("lastname") + " "+rs.getString("name"));
             }
+            students = students.entrySet()
+                                                    .stream()
+                                                    .sorted(comparingByValue())
+                                                    .collect(
+                                                        Collectors.toMap(e -> e.getKey(), 
+                                                                        e -> e.getValue(), 
+                                                                        (e1, e2) -> e2, LinkedHashMap::new)
+                                                    );
+            /*students.entrySet().stream()
+                    .sorted(Map.Entry.<Integer, String>comparingByValue()
+                        .thenComparing(Map.Entry.comparingByKey()))
+                    .forEach(System.out::println);*/
+            //System.out.println(students.entrySet().stream().sorted());
             rs.close();
             ptmt.close();
             conn.close();

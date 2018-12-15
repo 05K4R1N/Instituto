@@ -188,7 +188,6 @@ public class Classmate extends javax.swing.JFrame {
             int x = 0;
             
             Map<Integer,String>  students = ctrlC.getStudents_of_classroom(classroom);
-            System.out.println(students);
             for(Map.Entry<Integer,String> student: students.entrySet()){
                 JButton button = new JButton();
                 button.setText(student.getValue());

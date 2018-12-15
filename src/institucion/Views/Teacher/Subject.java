@@ -27,15 +27,14 @@ public class Subject extends javax.swing.JFrame {
      */
 	private CtrlTeacher ctrlT;
 	private CtrlSubject ctrlS;
-	private int id;
+	private int teacher_id;
     public Subject() {
         this.setUndecorated(true);
         initComponents();
-        this.setSize(723,498);
+        this.setSize(784,547);
         this.setLocationRelativeTo(null);
 		ctrlT = new CtrlTeacher();
 		ctrlS = new CtrlSubject();
-		id = 1; //pronto modificado
     }
 
     /**
@@ -52,6 +51,11 @@ public class Subject extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         panelSubjects = new javax.swing.JPanel();
         btnExit = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        cmbAnio = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        cmbGestion = new javax.swing.JComboBox();
+        btnSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -59,7 +63,7 @@ public class Subject extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 153));
 
@@ -70,25 +74,6 @@ public class Subject extends javax.swing.JFrame {
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addComponent(jLabel1)
-                .addContainerGap(100, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(jLabel1)
-                .addContainerGap(168, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel1);
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 255));
 
@@ -109,7 +94,7 @@ public class Subject extends javax.swing.JFrame {
         btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
         btnExit.setText("Salir");
         btnExit.setBorder(null);
-        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnExit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnExit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -118,30 +103,80 @@ public class Subject extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Anio:");
+
+        jLabel3.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Gestion:");
+
+        btnSearch.setText("Buscar");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(panelSubjects, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelSubjects, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbGestion, 0, 129, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnSearch))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(146, Short.MAX_VALUE)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cmbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(cmbGestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(panelSubjects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExit)
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel2);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(167, 167, 167)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        getContentPane().add(jPanel1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -151,34 +186,41 @@ public class Subject extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        Map<Integer, String> subjects = ctrlT.getSubjectsTeacher(id);
-		int y = 0;
-		for(Map.Entry<Integer, String> subject: subjects.entrySet()){
-			JButton button_subject = new JButton();
-			button_subject.setText(subject.getValue());
-			button_subject.setBackground(Color.DARK_GRAY);
-			button_subject.setForeground(Color.WHITE);
-			button_subject.setCursor(new Cursor(HAND_CURSOR));
-			button_subject.setBounds(0, y, panelSubjects.getWidth(), 40);
-			button_subject.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					int subject_id = subject.getKey();
-					institucion.Models.Users.Subject materia = ctrlS.getSubjectById(subject_id);
-					JOptionPane.showMessageDialog(null,
-												"Materia: "+materia.getName()+"\nDescripcion: "+materia.getDescription(),
-												"MATERIA: "+materia.getName(),
-												JOptionPane.PLAIN_MESSAGE);
-				}
-			});
-			panelSubjects.add(button_subject);
-			panelSubjects.revalidate();
-			panelSubjects.repaint();
-			y+=40;
-			
-		}
+        int teacherId = this.teacher_id;
+        Map<Integer, String> subjects = ctrlT.getSubjectsTeacher(teacherId);
+        int y = 0;
+        for(Map.Entry<Integer, String> subject: subjects.entrySet()){
+            JButton button_subject = new JButton();
+            button_subject.setText(subject.getValue());
+            button_subject.setBackground(Color.DARK_GRAY);
+            button_subject.setForeground(Color.WHITE);
+            button_subject.setCursor(new Cursor(HAND_CURSOR));
+            button_subject.setBounds(0, y, panelSubjects.getWidth(), 40);
+            button_subject.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    int subject_id = subject.getKey();
+                    institucion.Models.Users.Subject materia = ctrlS.getSubjectById(subject_id);
+                    JOptionPane.showMessageDialog(null,
+                                                    "Materia: "+materia.getName()+"\nDescripcion: "+materia.getDescription(),
+                                                    "MATERIA: "+materia.getName(),
+                                                    JOptionPane.PLAIN_MESSAGE);
+                }
+            });
+            panelSubjects.add(button_subject);
+            panelSubjects.revalidate();
+            panelSubjects.repaint();
+            y+=40;
+        }
     }//GEN-LAST:event_formWindowOpened
 
+    public int getTeacherId(){
+        return this.teacher_id;
+    }
+    
+    public void setTeacherId(int teacherId){
+        this.teacher_id = teacherId;
+    }
     /**
      * @param args the command line arguments
      */
@@ -216,7 +258,12 @@ public class Subject extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JComboBox cmbAnio;
+    private javax.swing.JComboBox cmbGestion;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel panelSubjects;

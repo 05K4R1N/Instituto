@@ -9,6 +9,7 @@ package institucion.Views.Secretary;
 import institucion.Controllers.CtrlSubject;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
+import javax.swing.JComboBox;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -181,7 +182,7 @@ public class Subjects extends javax.swing.JFrame {
         if( row > -1 ){
             int subject_id = Integer.parseInt(tabSubjects.getValueAt(tabSubjects.getSelectedRow(), 0).toString());
             JPopupMenu menu = new JPopupMenu();
-            JMenuItem editItem = new JMenuItem(new AbstractAction("Editar Materia") {
+            JMenuItem editItem = new JMenuItem(new AbstractAction("Editar") {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {

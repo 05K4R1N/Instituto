@@ -10,6 +10,7 @@ import institucion.Controllers.CtrlSubject;
 import institucion.Controllers.CtrlTeacher;
 import java.awt.event.ItemEvent;
 import java.util.Calendar;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -59,9 +60,7 @@ public class Assignation extends javax.swing.JFrame {
         lblSubtitle_two = new javax.swing.JLabel();
         lblYear = new javax.swing.JLabel();
         cmbYear = new javax.swing.JComboBox();
-        lblTeacher = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tabTeachers = new javax.swing.JTable();
+        btnAssign = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -114,7 +113,7 @@ public class Assignation extends javax.swing.JFrame {
 
         lblSubtitle_one.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
         lblSubtitle_one.setForeground(new java.awt.Color(255, 255, 255));
-        lblSubtitle_one.setText("Materias ya asignadas a: ");
+        lblSubtitle_one.setText("Materias asignadas: ");
 
         lblSubtitle_two.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
         lblSubtitle_two.setForeground(new java.awt.Color(255, 255, 255));
@@ -130,31 +129,21 @@ public class Assignation extends javax.swing.JFrame {
             }
         });
 
-        lblTeacher.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
-        lblTeacher.setForeground(new java.awt.Color(255, 255, 255));
-        lblTeacher.setText("Profesores:");
-
-        tabTeachers.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane3.setViewportView(tabTeachers);
+        btnAssign.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
+        btnAssign.setForeground(new java.awt.Color(255, 255, 255));
+        btnAssign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/add.png"))); // NOI18N
+        btnAssign.setText("Asignar");
+        btnAssign.setBorder(null);
+        btnAssign.setBorderPainted(false);
+        btnAssign.setContentAreaFilled(false);
+        btnAssign.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAssign.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAssign.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTitle)
-                .addGap(68, 68, 68))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,17 +154,14 @@ public class Assignation extends javax.swing.JFrame {
                                 .addComponent(btnClose))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblTeacher)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
-                        .addGap(419, 419, 419))
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnAssign)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(692, 692, 692))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -184,14 +170,14 @@ public class Assignation extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(lblYear)
                                         .addGap(18, 18, 18)
-                                        .addComponent(cmbYear, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(72, 72, 72))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblSubtitle_two)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                                        .addComponent(cmbYear, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblSubtitle_two)))
                             .addComponent(lblSubtitle_one))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(273, 273, 273))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(87, 87, 87)
+                .addComponent(lblTitle)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,17 +189,12 @@ public class Assignation extends javax.swing.JFrame {
                     .addComponent(cmbYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblYear))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblSubtitle_two)
+                .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblSubtitle_two)
-                        .addGap(8, 8, 8)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(lblTeacher)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAssign, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(lblSubtitle_one)
@@ -239,6 +220,7 @@ public class Assignation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        tabSubjects.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         /*int teacherID = this.teacherID;
         String fullName = ctrlT.getTeacherNameByID(teacherID);
         lblTeacher.setText(fullName);*/
@@ -270,29 +252,6 @@ public class Assignation extends javax.swing.JFrame {
         DefaultTableCellRenderer centerSubject = new DefaultTableCellRenderer();
         centerSubject.setHorizontalAlignment( jLabel1.CENTER );
         tabSubjects.getColumnModel().getColumn(1).setCellRenderer( centerSubject );
-        
-        Object[][] teachers = {};
-        Object[][] teachersData = ctrlT.getAllTeachers();
-        teachers = new Object[teachersData.length][2];
-        for(int i = 0; i < teachersData.length; i++){
-            teachers[i][0] = teachersData[i][0];
-            teachers[i][1] = teachersData[i][2] + ", " + teachersData[i][1];
-        }
-        String titlesT[] = {"id", "Profesor"};
-        DefaultTableModel teacherMod = new DefaultTableModel(teachers, titlesT){
-
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-        tabTeachers.setModel(teacherMod);
-        tabTeachers.getColumnModel().getColumn(0).setMinWidth(0);
-        tabTeachers.getColumnModel().getColumn(0).setMaxWidth(0);
-        tabTeachers.getColumnModel().getColumn(0).setWidth(0);
-        DefaultTableCellRenderer centerTeacher = new DefaultTableCellRenderer();
-        centerTeacher.setHorizontalAlignment( jLabel1.CENTER );
-        tabSubjects.getColumnModel().getColumn(1).setCellRenderer( centerTeacher );
     }//GEN-LAST:event_formWindowOpened
 
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
@@ -363,21 +322,19 @@ public class Assignation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAssign;
     private javax.swing.JButton btnClose;
     private javax.swing.JComboBox cmbYear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblSubtitle_one;
     private javax.swing.JLabel lblSubtitle_two;
-    private javax.swing.JLabel lblTeacher;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblYear;
     private javax.swing.JTable tabAssigned;
     private javax.swing.JTable tabSubjects;
-    private javax.swing.JTable tabTeachers;
     // End of variables declaration//GEN-END:variables
 }

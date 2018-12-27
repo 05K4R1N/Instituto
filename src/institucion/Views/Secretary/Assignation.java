@@ -10,6 +10,7 @@ import institucion.Controllers.CtrlSubject;
 import institucion.Controllers.CtrlTeacher;
 import java.awt.event.ItemEvent;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -61,6 +62,8 @@ public class Assignation extends javax.swing.JFrame {
         lblYear = new javax.swing.JLabel();
         cmbYear = new javax.swing.JComboBox();
         btnAssign = new javax.swing.JButton();
+        lblGestion = new javax.swing.JLabel();
+        cmbGestion = new javax.swing.JComboBox();
 
         jLabel1.setText("jLabel1");
 
@@ -139,6 +142,15 @@ public class Assignation extends javax.swing.JFrame {
         btnAssign.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAssign.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAssign.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAssign.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAssignMouseClicked(evt);
+            }
+        });
+
+        lblGestion.setFont(new java.awt.Font("Lao UI", 1, 14)); // NOI18N
+        lblGestion.setForeground(new java.awt.Color(255, 255, 255));
+        lblGestion.setText("Gestion:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -164,15 +176,19 @@ public class Assignation extends javax.swing.JFrame {
                         .addGap(692, 692, 692))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblSubtitle_one)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(lblYear)
                                         .addGap(18, 18, 18)
-                                        .addComponent(cmbYear, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lblSubtitle_two)))
-                            .addComponent(lblSubtitle_one))
+                                        .addComponent(cmbYear, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblGestion)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cmbGestion, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblSubtitle_two))))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(87, 87, 87)
@@ -182,12 +198,14 @@ public class Assignation extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(lblTitle)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblYear))
+                    .addComponent(lblYear)
+                    .addComponent(lblGestion)
+                    .addComponent(cmbGestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblSubtitle_two)
                 .addGap(8, 8, 8)
@@ -220,11 +238,7 @@ public class Assignation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        tabSubjects.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        /*int teacherID = this.teacherID;
-        String fullName = ctrlT.getTeacherNameByID(teacherID);
-        lblTeacher.setText(fullName);*/
-        
+        //tabSubjects.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         int year = Calendar.getInstance().get(Calendar.YEAR);
         //this.generateAssignedSubjects(year);
         
@@ -233,6 +247,9 @@ public class Assignation extends javax.swing.JFrame {
         for(int i = year; i < year+3; i++){
             cmbYear.addItem(i);
         }
+        cmbGestion.addItem("Seleccionar");
+        cmbGestion.addItem("I");
+        cmbGestion.addItem("II");
         
         Object[][] subjects = {};
         subjects = ctrlS.getAllSubjects();
@@ -260,13 +277,49 @@ public class Assignation extends javax.swing.JFrame {
 
     private void cmbYearItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbYearItemStateChanged
         int year = 0;
-        if(evt.getStateChange() == ItemEvent.SELECTED){
+        /*if(evt.getStateChange() == ItemEvent.SELECTED){
             if(!(evt.getItem().toString().equals("Seleccionar"))){
                 year = Integer.parseInt(evt.getItem().toString());
                 this.generateAssignedSubjects(year);
             }
-        }
+        }*/
     }//GEN-LAST:event_cmbYearItemStateChanged
+
+    private void btnAssignMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAssignMouseClicked
+        int teacherId = this.teacherID;
+        int year = 0;
+        String gestion = cmbGestion.getSelectedItem().toString();
+        if(gestion.equals("Seleccionar")){
+            gestion = "";
+        }
+        String subjects[] = {}; 
+        try{
+            year = Integer.parseInt(cmbYear.getSelectedItem().toString());
+        }catch(NumberFormatException e){
+            year = 0;
+        }
+        if(tabSubjects.getSelectedRowCount() > 0){
+            int selectedRow[] = tabSubjects.getSelectedRows();
+            subjects = new String[tabSubjects.getSelectedRowCount()];
+            int i = 0;
+            for(int row: selectedRow){
+                //System.out.println(tabSubjects.getValueAt(i, 0).toString()+" "+tabSubjects.getValueAt(i, 1).toString());
+                subjects[i] = tabSubjects.getValueAt(row, 0).toString();
+                i++;
+            }
+            boolean flag = ctrlT.assignTeacher(teacherId, subjects, year, gestion, true);
+            if(flag){
+                System.out.println(true);
+            }else{
+                System.out.println(false);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, 
+                                        "Seleccione una materia.",
+                                        "Error", 
+                                        JOptionPane.ERROR_MESSAGE);  
+        }
+    }//GEN-LAST:event_btnAssignMouseClicked
 
     private void generateAssignedSubjects(int year){
         int count = tabAssigned.getModel().getRowCount();
@@ -324,12 +377,14 @@ public class Assignation extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAssign;
     private javax.swing.JButton btnClose;
+    private javax.swing.JComboBox cmbGestion;
     private javax.swing.JComboBox cmbYear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblGestion;
     private javax.swing.JLabel lblSubtitle_one;
     private javax.swing.JLabel lblSubtitle_two;
     private javax.swing.JLabel lblTitle;

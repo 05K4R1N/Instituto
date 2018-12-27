@@ -319,9 +319,9 @@ public class TeachersList extends javax.swing.JFrame {
                 }
             });
             popupMenu.add(teacherEdit);
+            popupMenu.add(assignSubject);
             popupMenu.add(uploadData);
             popupMenu.add(teacherDelete);
-            popupMenu.add(assignSubject);
             tabTeachers.setComponentPopupMenu(popupMenu);
         }
     }//GEN-LAST:event_tabTeachersMouseClicked

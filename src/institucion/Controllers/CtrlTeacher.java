@@ -23,6 +23,17 @@ public class CtrlTeacher {
         mod = new TeacherBD();
     }
 
+    public boolean assignTeacher(int teacherId, String subjects[], int year, 
+                                String gestion, boolean available){
+        boolean res = false;
+        if( teacherId != 0 && 
+                subjects.length > 0 && 
+                year != 0 && 
+                gestion.length()!= 0 ){
+            res = true;
+        }
+        return res;
+    }
     public Object[][] getSubjectsAssigned(int teacher_id, int year){
         Object[][] subjects = {};
         ArrayList<Integer> assigned = new ArrayList<Integer>();

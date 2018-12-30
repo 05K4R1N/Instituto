@@ -24,6 +24,35 @@ import java.util.Hashtable;
  */
 public class TeacherBD {
     
+    public boolean assignSubject(int teacher_id, int year, String gestion, 
+                                boolean available, String[] subjects){
+        boolean res             =   false;
+        Connection conn         =   null;
+        PreparedStatement ptmt  =   null;
+        try{
+            conn = Conexion.getInstance().getConnection();
+            String query = "INSERT INTO teacher_subject "
+                    + "(teacher_id, subject_id, year, gestion, available) VALUES ";
+            int tam = subjects.length, i = 0;
+            for(String subject_id: subjects){
+                query += "('"+teacher_id+"','"+subject_id+"','"+year+"','"+gestion+"','"+1+"')";
+                i++;
+                if( i < tam){
+                    query += ", ";
+                }
+            }
+            ptmt = conn.prepareStatement(query);
+            
+            ptmt.executeUpdate();
+            res = true;
+            ptmt.close();
+            conn.close();
+        }
+        catch(SQLException e){
+            System.out.println(e);
+        }
+        return res;
+    }
     public String getPhotoName(int teacherId){
         String photo = "";
         Connection conn = null;

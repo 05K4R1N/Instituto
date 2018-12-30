@@ -30,7 +30,7 @@ public class CtrlTeacher {
                 subjects.length > 0 && 
                 year != 0 && 
                 gestion.length()!= 0 ){
-            res = true;
+            res = mod.assignSubject(teacherId, year, gestion, available, subjects);
         }
         return res;
     }

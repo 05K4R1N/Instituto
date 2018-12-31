@@ -8,7 +8,6 @@ package institucion.Models.BD;
 
 import config.Conexion;
 import institucion.Models.Users.Teacher;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -77,8 +76,8 @@ public class TeacherBD {
         return photo;
     }
     
-    public ArrayList<Integer> getSubjectsAssigned(int teacher_id, int year){
-        ArrayList<Integer> subjects = new ArrayList<Integer>();
+    public String[] getSubjectsAssigned(int teacher_id, int year){
+        String[] subjects = {};
         Connection conn         =   null;
         PreparedStatement ptmt  =   null;
         ResultSet rs            =   null;
@@ -91,8 +90,15 @@ public class TeacherBD {
             ptmt.setInt(1, teacher_id);
             ptmt.setInt(2, year);
             rs              =   ptmt.executeQuery();
+            rs.beforeFirst();  
+            rs.last();  
+            int tam = rs.getRow();
+            subjects = new String[tam];
+            rs = ptmt.executeQuery();
+            int i = 0;
             while(rs.next()){
-                subjects.add(rs.getInt("subject_id"));
+                subjects[i] = rs.getString("subject_id");
+                i++;
             }
             rs.close();
             ptmt.close();
@@ -102,20 +108,26 @@ public class TeacherBD {
         }
         return subjects;
     }
-    public Object[][] getTeachersSubject(ArrayList<Integer> subjects){
+    public Object[][] getTeachersSubject(String[] subjects){
         Object assigned[][] = {};
         Connection conn         =   null;
         PreparedStatement ptmt  =   null;
         ResultSet rs            =   null;
-        Object[] subjectAux = subjects.toArray();
         try{
             conn = Conexion.getInstance().getConnection();
-            Array arr= conn.createArrayOf("int", subjectAux);
+            int size = subjects.length;
             String query = "SELECT * "
                         + "FROM subject "
-                        + "WHERE id IN ?";
+                        + "WHERE id IN (";
+            String cond = "";
+            for(int i = 0; i < size; i++){
+                cond += ","+subjects[i];
+            }
+            cond = cond.replaceFirst(",", "");
+            cond += ")";
+            query += cond;
+            System.out.println(query);
             ptmt = conn.prepareStatement(query);
-            ptmt.setArray(1, arr);
             rs = ptmt.executeQuery();
             rs.beforeFirst();  
             rs.last();  
@@ -127,6 +139,7 @@ public class TeacherBD {
                 assigned[i][0]  =   rs.getInt("id");
                 assigned[i][1]  =   rs.getString("name");
                 assigned[i][2]  =   rs.getString("schedules");
+                i++;
             }
             rs.close();
             ptmt.close();

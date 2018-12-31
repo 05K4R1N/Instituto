@@ -6,7 +6,6 @@
  */
 package institucion.Models.BD;
 
-import com.mysql.jdbc.StringUtils;
 import config.Conexion;
 import institucion.Models.Users.Subject;
 import java.sql.Connection;

@@ -238,10 +238,25 @@ public class Assignation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        int teacherId = this.teacherID;
+        
         //tabSubjects.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         int year = Calendar.getInstance().get(Calendar.YEAR);
         //this.generateAssignedSubjects(year);
-        
+        Object[][] subjectsAssigened = ctrlT.getSubjectsAssigned(teacherId, year);
+        String[] titlesA = {"id", "Nombre"};
+        DefaultTableModel modelAssigned = new DefaultTableModel(subjectsAssigened, titlesA){
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+          
+        };
+        tabAssigned.setModel(modelAssigned);
+        tabAssigned.getColumnModel().getColumn(0).setMinWidth(0);
+        tabAssigned.getColumnModel().getColumn(0).setMaxWidth(0);
+        tabAssigned.getColumnModel().getColumn(0).setWidth(0);
         year--;
         cmbYear.addItem("Seleccionar");
         for(int i = year; i < year+3; i++){

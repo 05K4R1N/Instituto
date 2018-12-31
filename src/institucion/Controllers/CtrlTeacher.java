@@ -36,10 +36,11 @@ public class CtrlTeacher {
     }
     public Object[][] getSubjectsAssigned(int teacher_id, int year){
         Object[][] subjects = {};
-        ArrayList<Integer> assigned = new ArrayList<Integer>();
+        String assigned[] = {};
         if( teacher_id > 0 && year > 0 ){
             assigned = mod.getSubjectsAssigned(teacher_id, year);
-            subjects = mod.getTeachersSubject(assigned);
+            if(assigned.length > 0)
+                subjects = mod.getTeachersSubject(assigned);
         }
         return subjects;
     }

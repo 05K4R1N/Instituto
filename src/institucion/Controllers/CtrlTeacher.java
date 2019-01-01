@@ -34,13 +34,13 @@ public class CtrlTeacher {
         }
         return res;
     }
-    public Object[][] getSubjectsAssigned(int teacher_id, int year){
+    public Object[][] getSubjectsAssigned(int teacher_id, int year, String negative){
         Object[][] subjects = {};
         String assigned[] = {};
         if( teacher_id > 0 && year > 0 ){
             assigned = mod.getSubjectsAssigned(teacher_id, year);
             if(assigned.length > 0)
-                subjects = mod.getTeachersSubject(assigned);
+                subjects = mod.getTeachersSubject(assigned, negative);
         }
         return subjects;
     }

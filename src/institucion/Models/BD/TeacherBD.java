@@ -108,7 +108,7 @@ public class TeacherBD {
         }
         return subjects;
     }
-    public Object[][] getTeachersSubject(String[] subjects){
+    public Object[][] getTeachersSubject(String[] subjects, String negative){
         Object assigned[][] = {};
         Connection conn         =   null;
         PreparedStatement ptmt  =   null;
@@ -118,7 +118,7 @@ public class TeacherBD {
             int size = subjects.length;
             String query = "SELECT * "
                         + "FROM subject "
-                        + "WHERE id IN (";
+                        + "WHERE id "+negative+" IN (";
             String cond = "";
             for(int i = 0; i < size; i++){
                 cond += ","+subjects[i];

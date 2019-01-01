@@ -126,12 +126,6 @@ public class Assignation extends javax.swing.JFrame {
         lblYear.setForeground(new java.awt.Color(255, 255, 255));
         lblYear.setText("Anio:");
 
-        cmbYear.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbYearItemStateChanged(evt);
-            }
-        });
-
         btnAssign.setFont(new java.awt.Font("Lao UI", 1, 18)); // NOI18N
         btnAssign.setForeground(new java.awt.Color(255, 255, 255));
         btnAssign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/add.png"))); // NOI18N
@@ -239,24 +233,8 @@ public class Assignation extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         int teacherId = this.teacherID;
-        
-        //tabSubjects.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         int year = Calendar.getInstance().get(Calendar.YEAR);
-        //this.generateAssignedSubjects(year);
-        Object[][] subjectsAssigened = ctrlT.getSubjectsAssigned(teacherId, year);
-        String[] titlesA = {"id", "Nombre"};
-        DefaultTableModel modelAssigned = new DefaultTableModel(subjectsAssigened, titlesA){
-
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-          
-        };
-        tabAssigned.setModel(modelAssigned);
-        tabAssigned.getColumnModel().getColumn(0).setMinWidth(0);
-        tabAssigned.getColumnModel().getColumn(0).setMaxWidth(0);
-        tabAssigned.getColumnModel().getColumn(0).setWidth(0);
+        this.setDataToTables(teacherId, year);
         year--;
         cmbYear.addItem("Seleccionar");
         for(int i = year; i < year+3; i++){
@@ -264,41 +242,12 @@ public class Assignation extends javax.swing.JFrame {
         }
         cmbGestion.addItem("Seleccionar");
         cmbGestion.addItem("I");
-        cmbGestion.addItem("II");
-        
-        Object[][] subjects = {};
-        subjects = ctrlS.getAllSubjects();
-        String titlesS[] = {"id", "Nombre"};
-        DefaultTableModel subjectMod = new DefaultTableModel(subjects, titlesS){
-
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-            
-        };
-        tabSubjects.setModel(subjectMod);
-        tabSubjects.getColumnModel().getColumn(0).setMinWidth(0);
-        tabSubjects.getColumnModel().getColumn(0).setMaxWidth(0);
-        tabSubjects.getColumnModel().getColumn(0).setWidth(0);
-        DefaultTableCellRenderer centerSubject = new DefaultTableCellRenderer();
-        centerSubject.setHorizontalAlignment( jLabel1.CENTER );
-        tabSubjects.getColumnModel().getColumn(1).setCellRenderer( centerSubject );
+        cmbGestion.addItem("II"); 
     }//GEN-LAST:event_formWindowOpened
 
     private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
         this.setVisible(false);
     }//GEN-LAST:event_btnCloseMouseClicked
-
-    private void cmbYearItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbYearItemStateChanged
-        int year = 0;
-        /*if(evt.getStateChange() == ItemEvent.SELECTED){
-            if(!(evt.getItem().toString().equals("Seleccionar"))){
-                year = Integer.parseInt(evt.getItem().toString());
-                this.generateAssignedSubjects(year);
-            }
-        }*/
-    }//GEN-LAST:event_cmbYearItemStateChanged
 
     private void btnAssignMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAssignMouseClicked
         int teacherId = this.teacherID;
@@ -318,15 +267,12 @@ public class Assignation extends javax.swing.JFrame {
             subjects = new String[tabSubjects.getSelectedRowCount()];
             int i = 0;
             for(int row: selectedRow){
-                //System.out.println(tabSubjects.getValueAt(i, 0).toString()+" "+tabSubjects.getValueAt(i, 1).toString());
                 subjects[i] = tabSubjects.getValueAt(row, 0).toString();
                 i++;
             }
             boolean flag = ctrlT.assignTeacher(teacherId, subjects, year, gestion, true);
             if(flag){
-                System.out.println(true);
-            }else{
-                System.out.println(false);
+                this.setDataToTables(teacherId, year);
             }
         }else{
             JOptionPane.showMessageDialog(this, 
@@ -336,7 +282,51 @@ public class Assignation extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAssignMouseClicked
 
-    private void generateAssignedSubjects(int year){
+    private void setDataToTables(int teacherId, int year){
+        DefaultTableModel emptyModel = new DefaultTableModel();
+        
+        /* Populating table Subjects (First) */
+        tabSubjects.setModel(emptyModel);
+        Object[][] subjects = {};
+        subjects = ctrlT.getSubjectsAssigned(teacherId, year, "not");
+        if(subjects.length == 0)
+            subjects = ctrlS.getAllSubjects();
+        String titlesS[] = {"id", "Nombre"};
+        DefaultTableModel subjectMod = new DefaultTableModel(subjects, titlesS){
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+            
+        };
+        tabSubjects.setModel(subjectMod);
+        tabSubjects.getColumnModel().getColumn(0).setMinWidth(0);
+        tabSubjects.getColumnModel().getColumn(0).setMaxWidth(0);
+        tabSubjects.getColumnModel().getColumn(0).setWidth(0);
+        DefaultTableCellRenderer centerSubject = new DefaultTableCellRenderer();
+        centerSubject.setHorizontalAlignment( jLabel1.CENTER );
+        tabSubjects.getColumnModel().getColumn(1).setCellRenderer( centerSubject );
+        
+        /* Populating table Assigned (Second) */
+        tabAssigned.setModel(emptyModel);
+        Object[][] subjectsAssigened = ctrlT.getSubjectsAssigned(teacherId, year, "");
+        String[] titlesA = {"id", "Nombre"};
+        DefaultTableModel modelAssigned = new DefaultTableModel(subjectsAssigened, titlesA){
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+          
+        };
+        tabAssigned.setModel(modelAssigned);
+        tabAssigned.getColumnModel().getColumn(0).setMinWidth(0);
+        tabAssigned.getColumnModel().getColumn(0).setMaxWidth(0);
+        tabAssigned.getColumnModel().getColumn(0).setWidth(0);
+    }
+    
+    /*private void generateAssignedSubjects(int year){
         int count = tabAssigned.getModel().getRowCount();
         if( count < 1 ){
             DefaultTableModel emptyModel = new DefaultTableModel();
@@ -353,7 +343,7 @@ public class Assignation extends javax.swing.JFrame {
 
         };
         tabAssigned.setModel(modAssigned);
-    }
+    }*/
     /**
      * @param args the command line arguments
      */

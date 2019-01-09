@@ -30,6 +30,7 @@ public class CtrlTeacher {
                 subjects.length > 0 && 
                 year != 0 && 
                 gestion.length()!= 0 ){
+            String[] subjectsAssigned = mod.getSubjectsAssigned(teacherId, year, gestion);
             res = mod.assignSubject(teacherId, year, gestion, available, subjects);
         }
         return res;
@@ -38,7 +39,7 @@ public class CtrlTeacher {
         Object[][] subjects = {};
         String assigned[] = {};
         if( teacher_id > 0 && year > 0 ){
-            assigned = mod.getSubjectsAssigned(teacher_id, year);
+            assigned = mod.getSubjectsAssigned(teacher_id, year, "");
             if(assigned.length > 0)
                 subjects = mod.getTeachersSubject(assigned, negative);
         }

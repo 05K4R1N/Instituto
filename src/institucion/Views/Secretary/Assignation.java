@@ -235,9 +235,8 @@ public class Assignation extends javax.swing.JFrame {
         int teacherId = this.teacherID;
         int year = Calendar.getInstance().get(Calendar.YEAR);
         this.setDataToTables(teacherId, year);
-        year--;
         cmbYear.addItem("Seleccionar");
-        for(int i = year; i < year+3; i++){
+        for(int i = year; i < year+2; i++){
             cmbYear.addItem(i);
         }
         cmbGestion.addItem("Seleccionar");
@@ -288,9 +287,9 @@ public class Assignation extends javax.swing.JFrame {
         /* Populating table Subjects (First) */
         tabSubjects.setModel(emptyModel);
         Object[][] subjects = {};
-        subjects = ctrlT.getSubjectsAssigned(teacherId, year, "not");
-        if(subjects.length == 0)
-            subjects = ctrlS.getAllSubjects();
+        //subjects = ctrlT.getSubjectsAssigned(teacherId, year, "not");
+        //if(subjects.length == 0)
+        subjects = ctrlS.getAllSubjects();
         String titlesS[] = {"id", "Nombre"};
         DefaultTableModel subjectMod = new DefaultTableModel(subjects, titlesS){
 
@@ -326,24 +325,6 @@ public class Assignation extends javax.swing.JFrame {
         tabAssigned.getColumnModel().getColumn(0).setWidth(0);
     }
     
-    /*private void generateAssignedSubjects(int year){
-        int count = tabAssigned.getModel().getRowCount();
-        if( count < 1 ){
-            DefaultTableModel emptyModel = new DefaultTableModel();
-            tabAssigned.setModel(emptyModel);
-        }
-        String columns[] = {"id", "Nombre", "Horarios"};
-        Object[][] data = ctrlT.getSubjectsAssigned(teacherID, year);
-        DefaultTableModel modAssigned = new DefaultTableModel(data, columns){
-
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-
-        };
-        tabAssigned.setModel(modAssigned);
-    }*/
     /**
      * @param args the command line arguments
      */

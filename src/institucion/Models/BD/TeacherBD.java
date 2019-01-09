@@ -76,7 +76,7 @@ public class TeacherBD {
         return photo;
     }
     
-    public String[] getSubjectsAssigned(int teacher_id, int year){
+    public String[] getSubjectsAssigned(int teacher_id, int year, String gestion){
         String[] subjects = {};
         Connection conn         =   null;
         PreparedStatement ptmt  =   null;
@@ -85,10 +85,11 @@ public class TeacherBD {
             conn            =   Conexion.getInstance().getConnection();
             String query    = "SELECT subject_id "
                             + "FROM teacher_subject "
-                            + "WHERE teacher_id = ? AND year = ?";
+                            + "WHERE teacher_id = ? AND year = ? AND gestion = ?";
             ptmt            =   conn.prepareStatement(query);
             ptmt.setInt(1, teacher_id);
             ptmt.setInt(2, year);
+            ptmt.setString(3, gestion);
             rs              =   ptmt.executeQuery();
             rs.beforeFirst();  
             rs.last();  
@@ -126,7 +127,6 @@ public class TeacherBD {
             cond = cond.replaceFirst(",", "");
             cond += ")";
             query += cond;
-            System.out.println(query);
             ptmt = conn.prepareStatement(query);
             rs = ptmt.executeQuery();
             rs.beforeFirst();  

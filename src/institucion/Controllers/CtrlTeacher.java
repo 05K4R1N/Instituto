@@ -40,12 +40,11 @@ public class CtrlTeacher {
                 subjects.size() > 0 && 
                 year != 0 && 
                 gestion.length()!= 0 ){
-            //String[] subjectsAssigned = mod.getSubjectsAssigned(teacherId, year, gestion);
-            //subjects = mod.getSubjectsNotAssigned(teacherId, year, gestion, subjects);
             res = mod.assignSubject(teacherId, year, gestion, subjects);
         }
         return res;
     }
+    
     public Object[][] getSubjectsAssigned(int teacher_id, int year, 
                                         String gestion){
         Object[][] subjects = {};

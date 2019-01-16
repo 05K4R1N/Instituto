@@ -22,67 +22,7 @@ import java.util.Hashtable;
  * @author master
  */
 public class TeacherBD {
-    
-    public ArrayList<String> getSubjectsNotAssigned(int teacherId, int year, 
-                                                String gestion, ArrayList<String> subjects){
-        ArrayList<String> notAssigned = new ArrayList<String>();
-        Connection conn = null;
-        PreparedStatement ptmt = null;
-        ResultSet rs = null;
-        try{
-            conn = Conexion.getInstance().getConnection();
-            //System.out.println(year+ " " + gestion + " "+teacherId);
-            String query = "SELECT id "
-                        + "FROM subject "
-                        + "WHERE  id IN (";
-            String cond = "";
-            for(int i = 0; i < subjects.size(); i++){
-                cond += ","+subjects.get(i);
-            }
-            cond = cond.replaceFirst(",", "");
-            cond += ")";
-            query += cond;
-            //System.out.println(query);
-            ptmt = conn.prepareStatement(query);
-            rs = ptmt.executeQuery();
-            while(rs.next()){
-                notAssigned.add(rs.getString("id"));
-            }
-            rs.close();
-            ptmt.close();
-            conn.close();
-        }catch(SQLException e){
-            System.out.println(e);
-        }
-        return notAssigned;
-    }
-    /*public ArrayList<String> getAssignedByTeacher(int teacherId, int year, String gestion){
-        ArrayList<String> assigned = new ArrayList<String>();
-        Connection conn = null;
-        PreparedStatement ptmt = null;
-        ResultSet rs = null;
-        try{
-            conn = Conexion.getInstance().getConnection();
-            String query = "SELECT subject_id "
-                        + "FROM teacher_subject "
-                        + "WHERE teacher_id = ? AND year = ? AND gestion = ?";
-            ptmt = conn.prepareStatement(query);
-            ptmt.setInt(1, teacherId);
-            ptmt.setInt(2, year);
-            ptmt.setString(3, gestion);
-            rs = ptmt.executeQuery();
-            while(rs.next()){
-                assigned.add(rs.getString("subject_id"));
-            }
-            rs.close();
-            ptmt.close();
-            conn.close();
-        }catch(SQLException e){
-            System.out.println(e);
-        }
-        return assigned;
-    }*/
-    
+
     public boolean assignSubject(int teacher_id, int year, String gestion, 
                                 ArrayList<String> subjects){
         boolean res             =   false;

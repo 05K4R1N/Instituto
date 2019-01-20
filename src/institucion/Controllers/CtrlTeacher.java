@@ -22,25 +22,29 @@ public class CtrlTeacher {
     public CtrlTeacher(){
         mod = new TeacherBD();
     }
-
-    /*public ArrayList<String> getSubjectsAssigned2(int teacherId, int year, String gestion){
-        ArrayList<String> assigned = new ArrayList<String>();
-        if( teacherId > 0 && 
-                year != 0 && 
-                gestion.length() != 0 ){
-            assigned = mod.getAssignedByTeacher(teacherId, year, gestion);
-        }
-        return assigned;
-    }*/
     
-    public boolean assignTeacher(int teacherId, ArrayList<String> subjects, int year, 
-                                String gestion){
-        boolean res = false;
+    public Object[] assignTeacher(int teacherId, ArrayList<String> subjSelected, 
+                                int year, String gestion){
+        Object[] res = new Object[2];
+        // [0] for State
+        // [1] for data
+        res[0] = false;
+        res[1] = new ArrayList<String>();
         if( teacherId != 0 && 
-                subjects.size() > 0 && 
+                subjSelected.size() > 0 && 
                 year != 0 && 
                 gestion.length()!= 0 ){
-            res = mod.assignSubject(teacherId, year, gestion, subjects);
+            ArrayList<String> assigned = mod.getSubjectsAssigned(teacherId, year, gestion);
+            subjSelected.removeAll(assigned);
+            ArrayList<Integer> assignedBefore = mod.subjectsSelectedBefore(subjSelected, year, gestion);
+            //System.out.println(assignedBefore);
+            if(assignedBefore.size() > 0){
+                ArrayList<String> subjectsAssignedBefore = mod.getSubjectsByIds(assignedBefore);
+                res[1] = subjectsAssignedBefore;
+            }
+            //res[1] = subjectsAssignedBefore;
+            if(subjSelected.size() > 0)
+                res[0] = mod.assignSubject(teacherId, year, gestion, subjSelected);
         }
         return res;
     }
@@ -48,10 +52,10 @@ public class CtrlTeacher {
     public Object[][] getSubjectsAssigned(int teacher_id, int year, 
                                         String gestion){
         Object[][] subjects = {};
-        String assigned[] = {};
+        ArrayList<String> assigned = new ArrayList<String>();
         if( teacher_id > 0 && year > 0 ){
             assigned = mod.getSubjectsAssigned(teacher_id, year, gestion);
-            if(assigned.length > 0)
+            if(assigned.size() > 0)
                 subjects = mod.getTeachersSubject(assigned, "");
         }
         return subjects;

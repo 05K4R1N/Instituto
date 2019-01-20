@@ -272,13 +272,31 @@ public class Assignation extends javax.swing.JFrame {
                 subjectsSelected.add(tabSubjects.getValueAt(row, 0).toString());
                 i++;
             }
-            boolean flag = ctrlT.assignTeacher(teacherId, subjectsSelected, year, gestion);
+            Object[] info = ctrlT.assignTeacher(teacherId, subjectsSelected, year, gestion);
+            boolean flag = (Boolean)info[0];
             if(!flag){
                 JOptionPane.showMessageDialog(this, 
                                             "Ingrese bien los datos.", 
                                             "Error", 
                                             JOptionPane.ERROR_MESSAGE);
                 return;
+            }else{
+                ArrayList<String> assignedB = (ArrayList<String>) info[1];
+                System.out.println(assignedB);
+                String message = "Inscripcion exitosa!";
+                if(assignedB.size() > 0){
+                    String extra = "";
+                    for(int j = 0; j < assignedB.size(); j++){
+                        extra += assignedB.get(j)+"\n";
+                    }
+                    if(assignedB.size() > 0){
+                        message += "\nMaterias ya fueron asignadas anteriormente: \n"+extra;
+                    }
+                }
+                JOptionPane.showMessageDialog(this, 
+                                                message, 
+                                                "Asignacion", 
+                                                JOptionPane.INFORMATION_MESSAGE);
             }
             this.setDataToTables(teacherId, year, gestion, true);
         }else{
@@ -292,7 +310,6 @@ public class Assignation extends javax.swing.JFrame {
     private void setDataToTables(int teacherId, int year, 
                                 String gestion, boolean assignation){
         DefaultTableModel emptyModel = new DefaultTableModel();
-        
         if(!assignation){
             /* Populating table Subjects (First) */
             tabSubjects.setModel(emptyModel);

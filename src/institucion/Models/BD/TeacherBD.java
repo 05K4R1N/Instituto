@@ -76,8 +76,8 @@ public class TeacherBD {
         return photo;
     }
     
-    public String[] getSubjectsAssigned(int teacher_id, int year, String gestion){
-        String[] subjects = {};
+    public ArrayList<String> getSubjectsAssigned(int teacher_id, int year, String gestion){
+        ArrayList<String> res = new ArrayList<String>();
         Connection conn         =   null;
         PreparedStatement ptmt  =   null;
         ResultSet rs            =   null;
@@ -91,14 +91,49 @@ public class TeacherBD {
             ptmt.setInt(2, year);
             ptmt.setString(3, gestion);
             rs              =   ptmt.executeQuery();
-            rs.beforeFirst();  
+            /*rs.beforeFirst();  
             rs.last();  
             int tam = rs.getRow();
             subjects = new String[tam];
             rs = ptmt.executeQuery();
+            int i = 0;*/
+            while(rs.next()){
+                //subjects[i] = rs.getString("subject_id");
+                res.add(rs.getString("subject_id"));
+                //i++;
+            }
+            rs.close();
+            ptmt.close();
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return res;
+    }
+    public ArrayList<Integer> subjectsSelectedBefore(ArrayList<String> subjects, int year, String gestion){
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        Connection conn = null;
+        PreparedStatement ptmt = null;
+        ResultSet rs = null;
+        try{
+            conn = Conexion.getInstance().getConnection();
+            String query = "SELECT subject_id "
+                            + "FROM teacher_subject "
+                            + "WHERE year = "+year
+                            + " AND gestion = '"+gestion+"'"
+                            + " AND subject_id NOT IN (";
+            String cond = "";
+            for(int i = 0; i < subjects.size(); i++){
+                cond += ","+subjects.get(i);
+            }
+            cond = cond.replaceFirst(",", "");
+            cond += ")";
+            query += cond;
+            ptmt= conn.prepareStatement(query);
+            rs = ptmt.executeQuery();
             int i = 0;
             while(rs.next()){
-                subjects[i] = rs.getString("subject_id");
+                res.add(rs.getInt("subject_id"));
                 i++;
             }
             rs.close();
@@ -107,22 +142,53 @@ public class TeacherBD {
         }catch(SQLException e){
             System.out.println(e);
         }
-        return subjects;
+        return res;
     }
-    public Object[][] getTeachersSubject(String[] subjects, String negative){
+    public ArrayList<String> getSubjectsByIds(ArrayList<Integer> subjects){
+        ArrayList<String> res = new ArrayList<String>();
+        Connection conn = null;
+        PreparedStatement ptmt = null;
+        ResultSet rs = null;
+        try{
+            conn = Conexion.getInstance().getConnection();
+            String query = "SELECT name "
+                        + "FROM subject "
+                        + "WHERE id IN (";
+            String cond = "";
+            for(int i = 0; i < subjects.size(); i++){
+                cond += ","+subjects.get(i);
+            }
+            cond = cond.replaceFirst(",", "");
+            cond += ")";
+            query += cond;
+            System.out.println(query);
+            ptmt = conn.prepareStatement(query);
+            rs = ptmt.executeQuery();
+            while(rs.next()){
+                res.add(rs.getString("name"));
+            }
+            rs.close();
+            ptmt.close();
+            conn.close();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return res;
+    }
+    public Object[][] getTeachersSubject(ArrayList<String> subjects, String negative){
         Object assigned[][] = {};
         Connection conn         =   null;
         PreparedStatement ptmt  =   null;
         ResultSet rs            =   null;
         try{
             conn = Conexion.getInstance().getConnection();
-            int size = subjects.length;
+            int size = subjects.size();
             String query = "SELECT * "
                         + "FROM subject "
                         + "WHERE id "+negative+" IN (";
             String cond = "";
             for(int i = 0; i < size; i++){
-                cond += ","+subjects[i];
+                cond += ","+subjects.get(i);
             }
             cond = cond.replaceFirst(",", "");
             cond += ")";

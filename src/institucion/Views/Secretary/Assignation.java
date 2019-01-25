@@ -282,7 +282,6 @@ public class Assignation extends javax.swing.JFrame {
                 return;
             }else{
                 ArrayList<String> assignedB = (ArrayList<String>) info[1];
-                System.out.println(assignedB);
                 String message = "Inscripcion exitosa!";
                 if(assignedB.size() > 0){
                     String extra = "";

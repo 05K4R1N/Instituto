@@ -28,6 +28,7 @@ public class CtrlTeacher {
         Object[] res = new Object[2];
         // [0] for State
         // [1] for data
+        // [2] in order to corroborate there has been subjects assigned before
         res[0] = false;
         res[1] = new ArrayList<String>();
         if( teacherId != 0 && 
@@ -36,13 +37,11 @@ public class CtrlTeacher {
                 gestion.length()!= 0 ){
             ArrayList<String> assigned = mod.getSubjectsAssigned(teacherId, year, gestion);
             subjSelected.removeAll(assigned);
-            ArrayList<Integer> assignedBefore = mod.subjectsSelectedBefore(subjSelected, year, gestion);
-            //System.out.println(assignedBefore);
+            ArrayList<Integer> assignedBefore = mod.subjectsSelectedBefore(teacherId, subjSelected, year, gestion);
             if(assignedBefore.size() > 0){
                 ArrayList<String> subjectsAssignedBefore = mod.getSubjectsByIds(assignedBefore);
                 res[1] = subjectsAssignedBefore;
             }
-            //res[1] = subjectsAssignedBefore;
             if(subjSelected.size() > 0)
                 res[0] = mod.assignSubject(teacherId, year, gestion, subjSelected);
         }

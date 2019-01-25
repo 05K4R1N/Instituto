@@ -91,16 +91,8 @@ public class TeacherBD {
             ptmt.setInt(2, year);
             ptmt.setString(3, gestion);
             rs              =   ptmt.executeQuery();
-            /*rs.beforeFirst();  
-            rs.last();  
-            int tam = rs.getRow();
-            subjects = new String[tam];
-            rs = ptmt.executeQuery();
-            int i = 0;*/
             while(rs.next()){
-                //subjects[i] = rs.getString("subject_id");
                 res.add(rs.getString("subject_id"));
-                //i++;
             }
             rs.close();
             ptmt.close();
@@ -110,7 +102,8 @@ public class TeacherBD {
         }
         return res;
     }
-    public ArrayList<Integer> subjectsSelectedBefore(ArrayList<String> subjects, int year, String gestion){
+    public ArrayList<Integer> subjectsSelectedBefore(int teacherId, ArrayList<String> subjects, 
+                                                int year, String gestion){
         ArrayList<Integer> res = new ArrayList<Integer>();
         Connection conn = null;
         PreparedStatement ptmt = null;
@@ -120,6 +113,7 @@ public class TeacherBD {
             String query = "SELECT subject_id "
                             + "FROM teacher_subject "
                             + "WHERE year = "+year
+                            + " AND teacher_id = '"+teacherId+"'"
                             + " AND gestion = '"+gestion+"'"
                             + " AND subject_id NOT IN (";
             String cond = "";
@@ -161,7 +155,6 @@ public class TeacherBD {
             cond = cond.replaceFirst(",", "");
             cond += ")";
             query += cond;
-            System.out.println(query);
             ptmt = conn.prepareStatement(query);
             rs = ptmt.executeQuery();
             while(rs.next()){

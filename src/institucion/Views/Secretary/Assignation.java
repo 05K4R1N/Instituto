@@ -6,14 +6,18 @@
 
 package institucion.Views.Secretary;
 
+import config.Secretary.HeaderAssignation;
 import institucion.Controllers.CtrlSubject;
 import institucion.Controllers.CtrlTeacher;
+import java.awt.Dimension;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -331,6 +335,10 @@ public class Assignation extends javax.swing.JFrame {
             DefaultTableCellRenderer centerSubject = new DefaultTableCellRenderer();
             centerSubject.setHorizontalAlignment( jLabel1.CENTER );
             tabSubjects.getColumnModel().getColumn(1).setCellRenderer( centerSubject );
+            
+            tabSubjects.getColumnModel().getColumn(1).setHeaderRenderer(new HeaderAssignation());
+            tabSubjects.setShowGrid(false);
+            tabSubjects.setIntercellSpacing(new Dimension(0, 0));
         }
         /* Populating table Assigned (Second) */
         tabAssigned.setModel(emptyModel);
@@ -348,6 +356,10 @@ public class Assignation extends javax.swing.JFrame {
         tabAssigned.getColumnModel().getColumn(0).setMinWidth(0);
         tabAssigned.getColumnModel().getColumn(0).setMaxWidth(0);
         tabAssigned.getColumnModel().getColumn(0).setWidth(0);
+        
+        tabAssigned.getColumnModel().getColumn(1).setHeaderRenderer(new HeaderAssignation());
+        tabAssigned.setShowGrid(false);
+        tabAssigned.setIntercellSpacing(new Dimension(0, 0));
     }
     
     /**

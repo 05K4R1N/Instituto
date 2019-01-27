@@ -21,6 +21,7 @@ import javax.swing.table.TableCellRenderer;
 public class HeaderSubject extends JLabel implements TableCellRenderer{
 
     public HeaderSubject(){
+        setHorizontalAlignment(JLabel.CENTER);
         setFont(new Font("LAO UI", Font.BOLD, 16));
         setOpaque(true);
         setBackground(new Color(102, 0, 0));

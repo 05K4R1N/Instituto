@@ -6,7 +6,9 @@
 
 package institucion.Views.Secretary;
 
+import config.Secretary.HeaderSubject;
 import institucion.Controllers.CtrlSubject;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JMenuItem;
@@ -227,6 +229,14 @@ public class Subjects extends javax.swing.JFrame {
         tabSubjects.getColumnModel().getColumn(0).setMinWidth(0);
         tabSubjects.getColumnModel().getColumn(0).setMaxWidth(0);
         tabSubjects.getColumnModel().getColumn(0).setWidth(0);
+        tabSubjects.setShowGrid(false);
+        tabSubjects.setIntercellSpacing(new Dimension(0, 0));
+        tabSubjects.getColumnModel().getColumn(0).setHeaderRenderer(new HeaderSubject());
+        tabSubjects.getColumnModel().getColumn(1).setHeaderRenderer(new HeaderSubject());
+        tabSubjects.getColumnModel().getColumn(2).setHeaderRenderer(new HeaderSubject());
+        //tabSubjects.setBorder(null);
+
+
     }//GEN-LAST:event_formWindowOpened
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked

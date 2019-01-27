@@ -12,22 +12,22 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
 /**
  *
  * @author OscarT
  */
-public class HeaderSubject extends JLabel implements TableCellRenderer{
+public class HeaderTeacher extends JLabel implements TableCellRenderer{
 
-    public HeaderSubject(){
+    public HeaderTeacher(){
         setFont(new Font("LAO UI", Font.BOLD, 16));
         setOpaque(true);
-        setBackground(new Color(102, 0, 0));
+        setBackground(new Color(51, 51, 51));
         setForeground(Color.WHITE);
         setBorder(BorderFactory.createEtchedBorder());
     }
-    
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         setText(value.toString());

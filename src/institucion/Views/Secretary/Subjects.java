@@ -234,7 +234,6 @@ public class Subjects extends javax.swing.JFrame {
         tabSubjects.getColumnModel().getColumn(0).setHeaderRenderer(new HeaderSubject());
         tabSubjects.getColumnModel().getColumn(1).setHeaderRenderer(new HeaderSubject());
         tabSubjects.getColumnModel().getColumn(2).setHeaderRenderer(new HeaderSubject());
-        //tabSubjects.setBorder(null);
 
 
     }//GEN-LAST:event_formWindowOpened

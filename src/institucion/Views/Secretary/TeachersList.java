@@ -6,7 +6,9 @@
 
 package institucion.Views.Secretary;
 
+import config.Secretary.HeaderTeacher;
 import institucion.Controllers.CtrlTeacher;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JMenuItem;
@@ -217,9 +219,8 @@ public class TeachersList extends javax.swing.JFrame {
             
         };
         tabTeachers.setModel(teachers_model);
-        tabTeachers.getColumnModel().getColumn(0).setMinWidth(0);
-        tabTeachers.getColumnModel().getColumn(0).setMaxWidth(0);
-        tabTeachers.getColumnModel().getColumn(0).setWidth(0);
+        this.setTeacherTable();
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void txtSearchTeacherKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchTeacherKeyReleased
@@ -241,9 +242,7 @@ public class TeachersList extends javax.swing.JFrame {
                 } 
             };
             tabTeachers.setModel(allTeachers_model);
-            tabTeachers.getColumnModel().getColumn(0).setMinWidth(0);
-            tabTeachers.getColumnModel().getColumn(0).setMaxWidth(0);
-            tabTeachers.getColumnModel().getColumn(0).setWidth(0);
+            this.setTeacherTable();
             return;
         }
         DefaultTableModel teachers_model = new DefaultTableModel(teachers, head){
@@ -254,9 +253,7 @@ public class TeachersList extends javax.swing.JFrame {
             }
         };
         tabTeachers.setModel(teachers_model);
-        tabTeachers.getColumnModel().getColumn(0).setMinWidth(0);
-        tabTeachers.getColumnModel().getColumn(0).setMaxWidth(0);
-        tabTeachers.getColumnModel().getColumn(0).setWidth(0);
+        this.setTeacherTable();
     }//GEN-LAST:event_txtSearchTeacherKeyReleased
 
     private void tabTeachersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabTeachersMouseClicked
@@ -332,6 +329,17 @@ public class TeachersList extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void setTeacherTable(){
+        tabTeachers.getColumnModel().getColumn(0).setMinWidth(0);
+        tabTeachers.getColumnModel().getColumn(0).setMaxWidth(0);
+        tabTeachers.getColumnModel().getColumn(0).setWidth(0);
+        tabTeachers.getColumnModel().getColumn(1).setHeaderRenderer(new HeaderTeacher());
+        tabTeachers.getColumnModel().getColumn(2).setHeaderRenderer(new HeaderTeacher());
+        tabTeachers.getColumnModel().getColumn(3).setHeaderRenderer(new HeaderTeacher());
+        tabTeachers.getColumnModel().getColumn(4).setHeaderRenderer(new HeaderTeacher());
+        tabTeachers.setShowGrid(false);
+        tabTeachers.setIntercellSpacing(new Dimension(0, 0));
+    }
     /**
      * @param args the command line arguments
      */

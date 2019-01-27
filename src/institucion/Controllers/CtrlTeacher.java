@@ -23,6 +23,14 @@ public class CtrlTeacher {
         mod = new TeacherBD();
     }
     
+    public String getSubjectsForTeacher(int subjectId){
+        String res = "";
+        if(subjectId > 0){
+            res = mod.getSubjectsForTeacher(subjectId);
+        } 
+        return res;
+    }
+    
     public Object[] assignTeacher(int teacherId, ArrayList<String> subjSelected, 
                                 int year, String gestion){
         Object[] res = new Object[2];

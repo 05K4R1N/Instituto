@@ -10,12 +10,16 @@ import config.Secretary.HeaderAssignation;
 import institucion.Controllers.CtrlSubject;
 import institucion.Controllers.CtrlTeacher;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import javax.swing.AbstractAction;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -107,6 +111,11 @@ public class Assignation extends javax.swing.JFrame {
 
             }
         ));
+        tabSubjects.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabSubjectsMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabSubjects);
 
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
@@ -309,6 +318,28 @@ public class Assignation extends javax.swing.JFrame {
                                         JOptionPane.ERROR_MESSAGE);  
         }
     }//GEN-LAST:event_btnAssignMouseClicked
+
+    private void tabSubjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabSubjectsMouseClicked
+        int row = tabSubjects.getSelectedRow();
+        if(row > -1){
+            int subjectId = Integer.parseInt(tabSubjects.getValueAt(tabSubjects.getSelectedRow(), 0).toString());
+            JPopupMenu menu = new JPopupMenu();
+            JMenuItem schedule = new JMenuItem(new AbstractAction("Mostrar Horarios") {
+                
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String schedules = "";
+                    schedules = ctrlT.getSubjectsForTeacher(subjectId);
+                    JOptionPane.showMessageDialog(null, 
+                                                "Los siguientes Horarios son: "+schedules,
+                                                "HORARIOS",
+                                                JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
+            menu.add(schedule);
+            tabSubjects.setComponentPopupMenu(menu);
+        }
+    }//GEN-LAST:event_tabSubjectsMouseClicked
 
     private void setDataToTables(int teacherId, int year, 
                                 String gestion, boolean assignation){

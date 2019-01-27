@@ -23,6 +23,33 @@ import java.util.Hashtable;
  */
 public class TeacherBD {
 
+    public String getSubjectsForTeacher(int subjecrId){
+        String res = "";
+        Connection conn = null;
+        PreparedStatement ptmt = null;
+        ResultSet rs = null;
+        try{
+            conn = Conexion.getInstance().getConnection();
+            String query = "SELECT schedules FROM subject WHERE id = ?";
+            ptmt = conn.prepareStatement(query);
+            ptmt.setInt(1, subjecrId);
+            rs = ptmt.executeQuery();
+            String schedules = "";
+            String[] data = {};
+            if(rs.next()){
+                schedules = rs.getString("schedules");
+                data = schedules.split(",");
+                for(String x: data){
+                    if(x.equals("--:--"))
+                        continue;
+                    res+="\n"+x;
+                }
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return res;
+    }
     public boolean assignSubject(int teacher_id, int year, String gestion, 
                                 ArrayList<String> subjects){
         boolean res             =   false;

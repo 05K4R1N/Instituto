@@ -6,14 +6,18 @@
 
 package institucion.Views.Secretary;
 
+import config.Tiempo;
 import institucion.Views.Loggin.Loggin;
 
 /**
  *
  * @author Oscar
  */
-public class WelcomeS extends javax.swing.JFrame {
+public class WelcomeS extends javax.swing.JFrame implements Runnable {
 
+    private Thread h1;
+    
+    private Tiempo t;
     public int secretary_id;
     /**
      * Creates new form WelcomeS
@@ -23,6 +27,11 @@ public class WelcomeS extends javax.swing.JFrame {
         initComponents();
         this.setSize(1400,700);
         this.setLocationRelativeTo(null);
+        
+        t = new Tiempo();
+        
+        h1 = new Thread(this);
+        h1.start();
     }
 
     /**
@@ -36,6 +45,7 @@ public class WelcomeS extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         btnClose = new javax.swing.JButton();
+        lblTime = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnPrincipalProfile = new javax.swing.JButton();
         btnTeachers = new javax.swing.JButton();
@@ -60,13 +70,19 @@ public class WelcomeS extends javax.swing.JFrame {
             }
         });
 
+        lblTime.setFont(new java.awt.Font("Lao UI", 1, 48)); // NOI18N
+        lblTime.setForeground(new java.awt.Color(255, 255, 255));
+        lblTime.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(1050, Short.MAX_VALUE)
-                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(963, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblTime)
+                    .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44))
         );
         jPanel1Layout.setVerticalGroup(
@@ -74,7 +90,9 @@ public class WelcomeS extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(294, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
+                .addComponent(lblTime)
+                .addGap(35, 35, 35))
         );
 
         getContentPane().add(jPanel1);
@@ -279,5 +297,21 @@ public class WelcomeS extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblTime;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
+        Thread ct = Thread.currentThread();
+        while(ct == h1) {
+            lblTime.setText(t.calcular());
+            try {
+                    Thread.sleep(1000);
+            }catch(InterruptedException e) {
+                    System.out.println(e);
+            }
+        }
+    }
+
+    
 }

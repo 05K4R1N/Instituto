@@ -42,7 +42,7 @@ public class TeacherBD {
                 for(String x: data){
                     if(x.equals("--:--"))
                         continue;
-                    res+="\n"+x;
+                    res += "\n"+x;
                 }
             }
         }catch(SQLException e){

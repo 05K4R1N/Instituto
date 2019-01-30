@@ -209,7 +209,7 @@ public class TeachersList extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Object[][] teachers = ctrlT.getAllTeachers();
-        Object[] head = {"id","Apellidos", "Nombres", "Fecha de Nac.", "Usuario"};
+        Object[] head = {"id","Nombres", "Apellidos", "Fecha de Nac.", "Usuario"};
         DefaultTableModel teachers_model = new DefaultTableModel(teachers, head){
 
             @Override

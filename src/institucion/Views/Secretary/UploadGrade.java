@@ -7,8 +7,20 @@
 package institucion.Views.Secretary;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Iterator;
 import javax.swing.JFileChooser;
-
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.commons.compress.archivers.zip.ZipFile;
+import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
+import org.apache.poi.xwpf.model.XWPFCommentsDecorator;
 /**
  *
  * @author OscarT
@@ -40,7 +52,7 @@ public class UploadGrade extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnUpload = new javax.swing.JButton();
         lblState = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -96,16 +108,16 @@ public class UploadGrade extends javax.swing.JFrame {
         lblState.setFont(new java.awt.Font("Lao UI", 1, 12)); // NOI18N
         lblState.setForeground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/close.png"))); // NOI18N
+        btnClose.setBorder(null);
+        btnClose.setBorderPainted(false);
+        btnClose.setContentAreaFilled(false);
+        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnClose.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btnCloseMouseClicked(evt);
             }
         });
 
@@ -124,14 +136,14 @@ public class UploadGrade extends javax.swing.JFrame {
                 .addContainerGap(97, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnClose)
                 .addGap(48, 48, 48))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(jButton1)
+                .addComponent(btnClose)
                 .addGap(95, 95, 95)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpload, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,13 +166,40 @@ public class UploadGrade extends javax.swing.JFrame {
         try{
             String fileName = f.getAbsolutePath();
             System.out.println(fileName);
-        }catch(NullPointerException e){            
+            FileInputStream fileXls = null;
+            fileXls = new FileInputStream(fileName);
+            
+            XSSFWorkbook workbook = new XSSFWorkbook(fileXls);
+            XSSFSheet sheet = workbook.getSheetAt(0);
+            Iterator<Row> filas = sheet.iterator();
+            Iterator<Cell> celdas;
+            Row fila;
+            Cell celda;
+            while(filas.hasNext()){
+                fila = filas.next();
+                celdas = fila.cellIterator();
+                
+                while(celdas.hasNext()){
+                    celda = celdas.next();
+                    if(celda.getColumnIndex() == 1){
+                        System.out.println(String.valueOf(celda.getStringCellValue()));
+                    }
+                }
+            }
+            fileXls.close();
+            
+        }catch(NullPointerException e){
+            System.out.println(e);
+        }catch(FileNotFoundException e){
+            System.out.println(e);
+        }catch (IOException e) {
+            System.out.println(e);
         }
     }//GEN-LAST:event_btnUploadMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void btnCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCloseMouseClicked
         this.dispose();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_btnCloseMouseClicked
 
     /**
      * @param args the command line arguments
@@ -198,8 +237,8 @@ public class UploadGrade extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClose;
     private javax.swing.JButton btnUpload;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
